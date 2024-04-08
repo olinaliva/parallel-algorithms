@@ -1,0 +1,354 @@
+from project.thesis_plots.strong_scaling import *
+from project.thesis_plots.incremental_benefit_table import *
+from project.thesis_plots.span_work_imprvmnt import *
+from project.thesis_plots.span_perf_imprvmnt import *
+from project.thesis_plots.relative_speedup import *
+from project.thesis_plots.span_overhead import *
+from project.thesis_plots.share_of_progress import *
+from project.thesis_plots.work_eff_vs_overall_span import *
+from project.thesis_plots.improved_families import *
+from project.thesis_plots.decade_progress import *
+from project.thesis_plots.pareto_frontier import *
+from project.thesis_plots.aggregated_relative_speedup import *
+from project.thesis_plots.span_work_problem import *
+from project.thesis_plots.new_parallelism import *
+from project.thesis_plots.weak_scaling import *
+from project.thesis_plots.models import *
+from project.thesis_plots.varying_scaling import *
+from project.paper_plots.average_imprvmnt_rates import *
+
+from data.converter import *
+from data.processor_data_acquisition import *
+
+# from project.processed_data import *
+
+print("starting main")
+
+################################################################################
+################## DATA ########################################################
+################################################################################
+
+# print(find_proc_increase_supercomputer())
+# print(find_best_top_every_year("top500_pre_2008"))
+
+# print(find_best_top_every_year("cpu_short"))
+# print(find_proc_increase_commercial())
+
+model_sheet_name = "data/par_models_JAN26"
+old_sheet_name = "past_data/parallel_sheet_for_models_JAN_8"
+mod_map = {
+    100: 130,
+    110: 110,
+    120: 120,
+    130: 130,
+    131: 130,
+    132: 130,
+    133: 130,
+    135: 130,
+    200: 200,
+    210: 200,
+    220: 200,
+    300: 300,
+    310: 300,
+    320: 300,
+    330: 300,
+    400: 400,
+    500: 500,
+    510: 500,
+    520: 500,
+    600: 600,
+    610: 600,
+    700: 700,
+    800: 600}
+# make_model_plots(model_sheet_name,mod_map)
+
+# convert_csv_to_json("data/par_algos_1")
+# apply_various_operations_to_change_the_json_file_so_its_usable(name="data/par_algos_1",
+#         wanted_fields=PARALLEL_ALGO_FIELDS,
+#         unwanted_values=PARALLEL_DISCARABLE_FIELD_VALUES,
+#         allowed_model_list = PARALLEL_ALLOWABLE_MODELS)
+
+
+# create_seq_data("data/Sheet1"+VERSION,"data/Sheet1_New_Entries"+VERSION)
+# create_par_data("data/Parallel_Algos"+VERSION)
+
+def make_model_dataset(par_algos):
+    jsonArray = []
+    for name in par_algos:
+        year = par_algos[name]["year"]
+        model = par_algos[name]["model"]
+        alg_id = par_algos[name]["id"]
+        jsonArray.append({"year":year,"model":model,"id":alg_id})
+
+    newJsonFilePath = r'./data/par_models_JAN26.json'
+    with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 
+        jsonString = json.dumps(jsonArray, indent=4)
+        jsonf.write(jsonString)
+    pass
+
+# make_model_dataset(simulated_par_data)
+
+# for elem in simulated_par_data:
+#     # print(simulated_par_data[elem]['id'])
+#     # print(type(simulated_par_data[elem]['id']))
+#     # break
+#     if simulated_par_data[elem]['id'] == '533':
+#         print(simulated_par_data[elem]['id'])
+
+# create_aux_data(simulated_par_data,full_seq_data)
+# create_aux_data(full_data,rel_speedup_seq_data)
+
+################################################################################
+##### FINAL GRAPH CALLS ########################################################
+################################################################################
+
+# pset = get_problems(simulated_par_data)
+# print(len(pset))
+# print(len(simulated_par_data))
+# print(pset)
+
+# fset = get_families(simulated_par_data)
+# print(len(fset))
+# print(fset)
+
+# # 4.1
+# short_decs = [{"max":CUR_YEAR,"label":"all the time"}]
+# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,short_decs)
+# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
+
+# # 4.2
+# available_processors(top_processor_data,pc_processor_data)
+
+# # 4.3
+# print(speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP',
+#                                        top_processor_data,pc_processor_data,n=10**6,seq=True))
+
+# # 4.4
+# print(speedup_for_available_processors(simulated_par_data,full_seq_data,'2-Player',
+#                                        top_processor_data,pc_processor_data,n=10**6,seq=True))
+# problem_relative_speedup_graph(simulated_par_data,full_seq_data,['1D Maximum Subarray'],n=10**6) # debugging
+# aggregated_relative_speedup(simulated_par_data,full_seq_data,n=10**6)
+# new_aggregated_relative_speedup_graph(simulated_par_data,full_seq_data,n=10**6) 
+
+# # 5.1
+# problem_work_vs_span_pareto_frontier(original_par_data,full_seq_data,'LCS')
+
+# # 5.2 - figure out if sequential algos should be counted
+# pareto_frontier_graph(simulated_par_data,full_seq_data,DECADES)
+# print(pareto_frontier_current_fractions(simulated_par_data,full_seq_data,DECADES))
+# print(len(get_problems(simulated_par_data)))
+
+# # 5.3
+# span_comparison_best_vs_work_efficient(full_problem_data)
+
+# # 5.4
+# span_overhead_matrix(full_problem_data)
+
+# # 5.5
+# work_span_improvement_heatmap(simulated_par_data)
+
+# # 6.1
+bs_mst_algo_name = "14475Johnson, Metaxas (1992)"
+we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
+# strong_scaling(simulated_par_data,bs_mst_algo_name,pr_sizes=[10**3,10**6,10**9])
+# strong_scaling_comparison(simulated_par_data,bs_mst_algo_name,we_mst_algo_name)
+# weak_scaling_comparison_graph(simulated_par_data,bs_mst_algo_name,we_mst_algo_name)
+# varying_scaling_comparison_graph(simulated_par_data,bs_mst_algo_name,we_mst_algo_name)
+
+# # 6.2
+# new_parallelism_graph(full_problem_data)
+
+# # 7.1 - something seems sus... looks very different from the work plot
+# print(get_impr_data(simulated_par_data,n=10**3,p=8))
+# performance_vs_span_improvement(simulated_par_data,lower=True)#,p_values=[1,10],n_values=[10**3,10**9])
+
+# # 7.2
+# compound_growth_rate_distribution_graph(simulated_par_data,full_seq_data,g_buckets,n=10**3,p=2**3)
+# compound_growth_rate_histo_grid(simulated_par_data,full_seq_data,g_buckets,
+#                                     n_values=[10**3,10**6,10**9],p_values=[8,10**3,10**6])
+
+# # 7.3
+# share_of_progress_graph(simulated_par_data,full_seq_data,possible_n=[10**3,10**6,10**9])
+# print(share_of_progress_problem_data(simulated_par_data,full_seq_data,'OBST',n=10**6))
+
+
+
+# # NEW 5.5 and 7.1 (only Pareto algorithms)
+# pareto_algorithms = pareto_frontier_pushing(simulated_par_data,full_seq_data)
+# work_span_improvement_heatmap(simulated_par_data,seq_data={},pareto=pareto_algorithms)
+# performance_vs_span_improvement(simulated_par_data,pareto=pareto_algorithms,lower=True)
+
+# print(pareto_algorithms)
+# work_span_improvement_heatmap(pareto_algorithms,seq_data={},all_data=simulated_par_data)
+# for algo in pareto_algorithms:
+#     assert algo in simulated_par_data
+#     assert pareto_algorithms[algo] == simulated_par_data[algo]
+
+
+
+################################################################################
+##### PAPER GRAPHS #############################################################
+################################################################################    
+
+yearly_impr_rate_histo_grid(simulated_par_data, many_g_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6], measure="rt")
+
+
+
+
+################## Extra Functions ############################
+
+def year_stats():
+    problems = get_problems(simulated_par_data)
+    year_dict = {}
+    for alg in simulated_par_data:
+        yr = simulated_par_data[alg]["year"]
+        pr = simulated_par_data[alg]["problem"]
+        if pr in year_dict:
+            year_dict[pr] = min(year_dict[pr], yr)
+        else:
+            year_dict[pr] = yr
+    year_list = year_dict.values()
+    print(year_list)
+    dec_dict = {}
+    for yr in year_list:
+        dc = get_decade(yr)
+        if dc not in dec_dict:
+            dec_dict[dc] = 1
+        else:
+            dec_dict[dc] += 1
+    print(dec_dict)
+# year_stats()
+
+def overflow_debugging():
+    code1 = 8011.0
+    code2 = 8010.0
+    n = 10**3
+
+    huge1 = Huge(max(math.log(max(math.log(n,2),1),2),1),n-1)
+    huge1 = huge1 * (n * max(math.log(n,2),1))
+    base2 = max(math.log(max(math.log(n,2),1),2),1)
+    huge2 = Huge(base2, n+math.log(n,base2))
+
+    print(huge1)
+    print(huge2)
+    print(huge1.evaluate())
+    print(huge1 > huge2)
+    print(huge1 == huge2)
+
+    print("--------------------------------------")
+
+    print(max(math.log(n,2),1))
+    print(max(math.log(max(math.log(n,2),1),2),1))
+    print(decimal.Decimal(int(n-1)))
+
+    print(get_seq_runtime(code1,n)==huge1)
+    print(get_seq_runtime(code1,n)==huge1.evaluate())
+
+    print("--------------------------------------")
+
+    print(get_seq_runtime(code1,n))
+    print(log(get_seq_runtime(code1,n),10))
+
+    print(get_seq_runtime(code2,n))
+
+    rt = get_runtime(code1,code2,n,p=1)
+
+    print("runtime:")
+    print(rt)
+
+    pass
+# overflow_debugging()
+
+
+
+
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+################################################################################
+##### OLD CALLS ################################################################
+################################################################################
+
+# absolute speedup vs processors for 3 values of n for 1 algorithm
+name = "14.1-11-Johnson, Metaxas (1992)"
+# absolute_speedup(full_data,name)
+# incremental_benefit_scaling(full_data,name)
+# print(performance_vs_span_improvement(full_data))
+
+# rel_speedup_sus()
+# print(problem_relative_speedup_data(full_data,rel_speedup_seq_data,14.1,n=10**6,p=2**30))
+# problem_relative_speedup_graph(full_data,rel_speedup_seq_data,[17],n=10**6)
+# available_processors(top_processor_data,pc_processor_data)
+# print(speedup_for_available_processors(full_data,rel_speedup_seq_data,17,
+#                                        top_processor_data,pc_processor_data,n=10**6,seq=True))
+# span_overhead_matrix(aux_data)
+
+# share_of_progress_graph(full_data,rel_speedup_seq_data,possible_n=[10**3,10**6,10**9])
+# print(share_of_progress_problem_data(full_data,rel_speedup_seq_data,problem=13.1,n=10**6))
+
+# span_comparison_best_vs_work_efficient(aux_data)
+# new_parallelism_graph(aux_data)
+# yearly_impr_rate_histo_rt(full_data, g_buckets, n=10**3,p=512)
+# decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
+# pareto_frontier_graph(full_data,rel_speedup_seq_data,g_decades)
+# aggregated_relative_speedup(full_data,rel_speedup_seq_data,n=10**6)
+# work_span_improvement_heatmap(full_data)
+# print(pareto_frontier_current_fractions(full_data,rel_speedup_seq_data,g_decades)
+
+# compound_growth_rate_distribution_graph(full_data,rel_speedup_seq_data, g_buckets,n=10**9,p=2**3)
+
+# print(average_improvement_over_decade_data(full_data,rel_speedup_seq_data,g_decades))
+# average_improvement_over_decade_graph(full_data,rel_speedup_seq_data,g_decades)
+
+# problem_work_vs_span_pareto_frontier(full_data,rel_speedup_seq_data,14.1)
+
+# names:
+bs_mst_algo_name = "14.1-11-Johnson, Metaxas (1992)"
+we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
+# strong_scaling_comparison(full_data,bs_mst_algo_name,we_mst_algo_name)
+# weak_scaling_comparison_graph(full_data,bs_mst_algo_name,we_mst_algo_name)
+# varying_scaling_comparison_graph(full_data,bs_mst_algo_name,we_mst_algo_name)
+
+
+# new_aggregated_relative_speedup_graph(full_data,rel_speedup_seq_data,n=10**6)
+# debug(full_data,rel_speedup_seq_data,n=10**6)
+# print(new_data_for_speedup_for_available_processors(full_data,rel_speedup_seq_data,problem=13.1))
+# print(problem_relative_speedup_data(full_data,rel_speedup_seq_data,problem=13.1,n=10**6,p=1))
+# print(problem_relative_speedup_data(full_data,rel_speedup_seq_data,problem=13.1,n=10**6,p=128))
+# print(problem_relative_speedup_data(full_data,rel_speedup_seq_data,problem=13.1,n=10**6,p=10**6))
+
+# print(share_of_progress_problem_data(full_data,rel_speedup_seq_data,problem=13.1,n=10**6))
+# share_of_progress_graph(full_data,rel_speedup_seq_data,possible_n=[10**3,10**6,10**9])
+
+
+# {'k Nearest Neighbors Search', 'undirected SSSP', 'Polygon Clipping with Arbitrary Clipping Polygon', 
+# 'Non-comparison Sorting', 'Bipartite Graph MCM', 'kth Order Statistic', '2-dimensional space', 
+# 'Single String Search', '2-Dimensional Delaunay Triangulation', 'Max Flow', 'DFA Minimization', 
+# '2-D Polynomial Interpolation', 'General Linear Programming', 'APSP', 'General Graph MCM', 
+# 'General Linear System', 'CC', 'Matrix Chain Scheduling Problem', 'Matrix Multiplication', 
+# 'Greatest Common Divisor', 'General Maximum-Weight Matching', 'SCCs', 'Intersection detection', 
+# 'Boolean Matrix Multiplication', 'Constructing Suffix Trees', 'directed SSSP', 'Variance Calculations', 
+# 'Line Drawing', '2-Player', '2-dimensional', 'undirected nonneg SSSP', 'Approximate MCOP', 
+# 'k-dimensional space', 'Reporting intersection points', '2D Maximum Subarray', 'directed MST; MST', 
+# 'CC; SCCs', 'Point-in-Polygon', 'Multiplication', '1D Maximum Subarray', 'MST', 'Matrix LU Decomposition', 
+# 'Topological Sorting', 'Comparison Sorting', '3-dimensional', 'General Permutations', 'LCS', 'OBST', 
+# 'Constructing Eulerian Trails in a Graph', 'Lossless Compression', 'General Root Computation', 
+# 'Constuct Voronoi Diagram', 'Edit Distance, constant-size alphabet', 
+# 'Transitive Reduction Problem of Directed Graphs', 'directed nonneg SSSP', 'Discrete Fourier Transform'}
+
+# nice problems:
+# - 'Topological Sorting' - 2 steps, 3 par points, but only 1 model (?)
+# - 'LCS' - 1 step, but lots of non-boring points
+# - 'Bipartite Graph MCM' - 2 steps (2 par points)
+# - 'MST' - 1 step, too many par points
+# - 'Comparison Sorting' - same; also check 1988 MIMD-TC algo - span is higher than bseq
+# - 'General Permutations' - same
+# - 'APSP' - 1 step, quite boring
+# - 'SCCs' - 1 step, 1 par algo
+# - 'Variance Calculations' - 1 step, 1 par algo
+# - '2-dimensional' - 1 step, quite a few par points
+# - 'Point-in-Polygon' - 1 step, 1 par point
+# - 'directed nonneg SSSP' - 1 step, 1 par algo
+
