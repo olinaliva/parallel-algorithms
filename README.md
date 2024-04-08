@@ -2,13 +2,13 @@
 
 This is the code for the improvements in parallel algorithms project. It generates plots and other information to analyze parallel algorithms.
 
-The **Plots** and **Preliminary Plots** folders house the generated plots. Newly-created plots get saved here by default. The specific folder location can be changed in **header.py**.
-The **data** folder has data files in various stages of being ready to use, as well as some code to process said data.
-The **project** folder contains the code to generate the plots. It also has the following:
-    - **complexity_functions.py**: all helper functions that compute asymptotic time
-    - **huge_num.py**: a class for handling very large numbers with not very large precision
-    - **processed_data.py**: stores complementary data (such as processor data) and function calls for reading the main algorithms data
-    - **standard_codes.py**: stores mappings of codes (used to interpret the data) to their meanings
+The **Plots** and **Preliminary Plots** folders house the generated plots. Newly-created plots get saved here by default. The specific folder location can be changed in **header.py**.  
+The **data** folder has data files in various stages of being ready to use, as well as some code to process said data.  
+The **project** folder contains the code to generate the plots. It also has the following:  
+    - **complexity_functions.py**: all helper functions that compute asymptotic time  
+    - **huge_num.py**: a class for handling very large numbers with not very large precision  
+    - **processed_data.py**: stores complementary data (such as processor data) and function calls for reading the main algorithms data  
+    - **standard_codes.py**: stores mappings of codes (used to interpret the data) to their meanings  
     - **helper_functions.py**: miscellanious helper functions
 
 
