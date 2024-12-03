@@ -12,6 +12,6 @@ The **project** folder contains the code to generate the plots. It also has the 
     - **helper_functions.py**: miscellanious helper functions
 
 
-The main way to use this is to comment/uncomment calls to functions in the **main.py** file. Most parameters (such as colors, the main parallel model, or the location of saved plots) can be changed in **header.py**. An exception is changing the version of the data to be generated, which can be done in **project/processed_data.py**.
+The main way to use this is to comment/uncomment calls to functions in the **main.py** file. Most parameters (such as colors, the main parallel model, or the location of saved plots) can be changed in **header.py**. An exception is changing the version of the data to be generated, which can be done in **src/processed_data.py**.
 
 That's the overview. If you have any questions, feel free to email me at dtontici@mit.edu.

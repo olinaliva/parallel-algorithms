@@ -1,32 +1,43 @@
-from project.thesis_plots.strong_scaling import *
-from project.thesis_plots.incremental_benefit_table import *
-from project.thesis_plots.span_work_imprvmnt import *
-from project.thesis_plots.span_perf_imprvmnt import *
-from project.thesis_plots.relative_speedup import *
-from project.thesis_plots.span_overhead import *
-from project.thesis_plots.share_of_progress import *
-from project.thesis_plots.work_eff_vs_overall_span import *
-from project.thesis_plots.improved_families import *
-from project.thesis_plots.decade_progress import *
-from project.thesis_plots.pareto_frontier import *
-from project.thesis_plots.aggregated_relative_speedup import *
-from project.thesis_plots.span_work_problem import *
-from project.thesis_plots.new_parallelism import *
-from project.thesis_plots.weak_scaling import *
-from project.thesis_plots.models import *
-from project.thesis_plots.varying_scaling import *
-from project.paper_plots.average_imprvmnt_rates import *
+from src.thesis_plots.strong_scaling import *
+from src.thesis_plots.incremental_benefit_table import *
+from src.thesis_plots.span_work_imprvmnt import *
+from src.thesis_plots.span_perf_imprvmnt import *
+from src.thesis_plots.relative_speedup import *
+from src.thesis_plots.span_overhead import *
+from src.thesis_plots.share_of_progress import *
+from src.thesis_plots.work_eff_vs_overall_span import *
+from src.thesis_plots.improved_families import *
+from src.thesis_plots.decade_progress import *
+from src.thesis_plots.pareto_frontier import *
+from src.thesis_plots.aggregated_relative_speedup import *
+from src.thesis_plots.span_work_problem import *
+from src.thesis_plots.new_parallelism import *
+from src.thesis_plots.weak_scaling import *
+from src.thesis_plots.models import *
+from src.thesis_plots.varying_scaling import *
+from src.paper_plots.average_imprvmnt_rates import *
+from src.paper_plots.span_work_more_probs import *
+from src.paper_plots.num_overhead_vs_span import *
+from src.paper_plots.problem_overhead_vs_proc import *
+from src.paper_plots.problem_speedup_vs_proc import *
+from src.paper_plots.aggregate_switch_to_work_ineff import *
 
 from data.converter import *
 from data.processor_data_acquisition import *
 
-# from project.processed_data import *
+# from src.processed_data import *
 
 print("starting main")
 
 ################################################################################
 ################## DATA ########################################################
 ################################################################################
+
+########## Refactor data
+import src.data_processing
+print(src.data_processing.raw_database.populate_raw_database_parallel())
+
+########## End of refactor data
 
 # print(find_proc_increase_supercomputer())
 # print(find_best_top_every_year("top500_pre_2008"))
@@ -102,7 +113,7 @@ def make_model_dataset(par_algos):
 ##### FINAL GRAPH CALLS ########################################################
 ################################################################################
 
-# pset = get_problems(simulated_par_data)
+pset = get_problems(simulated_par_data)
 # print(len(pset))
 # print(len(simulated_par_data))
 # print(pset)
@@ -190,8 +201,61 @@ we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 ##### PAPER GRAPHS #############################################################
 ################################################################################    
 
-yearly_impr_rate_histo_grid(simulated_par_data, many_g_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6], measure="rt")
+histo_buckets = [{"max": 0.03, "label": "0-3%"},
+            {"max": 0.1, "label": "3-10%"},
+            {"max": 0.3, "label": "10-30%"},
+            {"max": 1, "label": "30-100%"},
+            {"max": 3, "label": "100-300%"},
+            {"max": 10, "label": "300-1000%"},
+            {"max": math.inf, "label": ">1000%"},]
+# yearly_impr_rate_histo_grid(simulated_par_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt")
+
+# span_vs_work_multiple_probs(simulated_par_data,full_seq_data,
+#                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+# span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data,
+#                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+
+# numerical_overhead_vs_span(simulated_par_data,full_seq_data,
+#             problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
+
+# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+
+# problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],
+#                              allowed_models=set(model_dict.keys()))
+
+small_pset = ['DFA Minimization','Stable Marriage Problem','Exact Laplacian Solver']
+
+# print(problems_switch_to_work_inefficient(simulated_par_data,full_seq_data,small_pset,n=10**3,max_p=10**20))
+
+# problems_switch_to_work_inefficient_graph(simulated_par_data,full_seq_data,pset,
+#                             n_values = [10**3,10**6,10**9],max_p=10**10)
+# problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset,
+#                             n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
+
+
+# print(work_overhead_histogram(simulated_par_data,full_seq_data,small_pset,p=10**3,n=10**3,
+#                             upper_bounds=[0,10,50,100,math.inf],
+#                             max_p=10**20,allowed_models=set(model_dict.keys()))) # TODO: numbers don't add up
+
+# work_overhead_histogram_graph(simulated_par_data,full_seq_data,pset,p=10**3,n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,50,100,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+
+# work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,100,1000,10000,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+
+
+
+
+# helpers
+
+# print(best_algos_by_speedup(simulated_par_data,full_seq_data,"LCS",n=10**6,
+#                           allowed_models=set(model_dict.keys())))
+
+# print(get_pareto_points(simulated_par_data,full_seq_data,'LCS',allowed_models=PRAM_LIKE_MODELS))
+
 
 
 
@@ -337,6 +401,30 @@ we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 # 'Constructing Eulerian Trails in a Graph', 'Lossless Compression', 'General Root Computation', 
 # 'Constuct Voronoi Diagram', 'Edit Distance, constant-size alphabet', 
 # 'Transitive Reduction Problem of Directed Graphs', 'directed nonneg SSSP', 'Discrete Fourier Transform'}
+
+
+# {'Matrix Multiplication', 'k Nearest Neighbors Search', 'directed nonneg SSSP', 
+# 'directed MST', 'Topological Sorting', 'MST', 'Enumerating Maximal Cliques', 'Multiplication', 
+# 'Boolean Matrix Multiplication', 'APSP', 'Matrix LU Decomposition', 'Bipartite Graph MCM', 
+# 'General Permutations', 'Determinant of Matrices with Integer Entries', '2D Maximum Subarray', 
+# 'General Linear System', 'Intersection detection', 'General Root Computation', 
+# 'Exact Laplacian Solver', 'Maximum Cut', 'undirected SSSP', 'Comparison Sorting', 
+# 'Constructing Eulerian Trails in a Graph', 'Transitive Reduction Problem of Directed Graphs', 
+# 'All Nearest Neighbors', 'Bipartite Maximum-Weight Matching', '2-dimensional Convex Hull', 
+# 'Constructing Suffix Trees', 'Point-in-Polygon', 'Non-comparison Sorting', 
+# 'General Maximum-Weight Matching', 'Polygon Clipping with Arbitrary Clipping Polygon', 
+# 'Single String Search', 'Variance Calculations', 'Subset Sum', '3-dimensional Convex Hull', 
+# '2-Dimensional Delaunay Triangulation', '2-D Polynomial Interpolation', 'CFG Parsing', 
+# '2-Dimensional Poisson Problem', 'k-dimensional space Closest Pair Problem', 
+# '2-Player Nash Equilibria', 'Max Flow', 'Line Drawing', '1D Maximum Subarray', 'DFA Minimization', 
+# 'All Permutations', 'Transitive Closure', 'directed SSSP', 'Stable Marriage Problem', 
+# 'Edit Distance, constant-size alphabet', 'General Graph MCM', 'OBST', 'directed APSP', 
+# 'Lossless Compression', 'LCS', 'Reporting intersection points', 'Discrete Fourier Transform', 
+# 'CC', '3-Dimensional Poisson Problem', 'kth Order Statistic', 
+# 'Transitive Closure of a symmetric Boolean matrix', 'undirected nonneg SSSP', 
+# 'Constuct Voronoi Diagram', 'Matrix Chain Scheduling Problem', 'SCCs', 'MCOP', 
+# '2-dimensional space Closest Pair Problem', 'Greatest Common Divisor', 'General Linear Programming'}
+
 
 # nice problems:
 # - 'Topological Sorting' - 2 steps, 3 par points, but only 1 model (?)

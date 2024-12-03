@@ -26,12 +26,13 @@ from operator import itemgetter
 import json
 import decimal
 import numbers
-from project.huge_num import Huge, log
+from src.huge_num import Huge, log
+import matplotx
 
 
-from project.standard_codes import *
-from project.processed_data import *
-from project.helper_functions import *
+from src.standard_codes import *
+from src.processed_data import *
+from src.helper_functions import *
 
 
 plt.style.use('default')
@@ -75,5 +76,9 @@ MODEL_COLORS = {
     700: '#469990',
     800: '#dcbeff'}
 
+# all PRAMs, MIMDs, and SIMDs
+PRAM_LIKE_MODELS = {100, 110, 120, 130, 131, 132, 133, 135, 200, 210, 220, 
+                    300, 310, 320, 330}
 
-SAVE_LOC = "Plots/New/"
+
+SAVE_LOC = "Plots/PostFeedback/"
