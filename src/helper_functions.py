@@ -4,6 +4,9 @@ import math
 from src.standard_codes import *
 from src.complexity_functions import *
 from src.processed_data import *
+#from standard_codes import *
+#from complexity_functions import *
+#from processed_data import *
 import matplotlib
 import numbers
 import warnings
@@ -74,7 +77,14 @@ def get_comp_fn(code):
     '''
     tail = int(round((code%1),5)*10**4)
     fn_str = "comp_fn_"+str(int(code//1))+"_"+f'{tail:04}'
-    return globals()[fn_str]
+    #dealing with encodings that dont exist yet
+    #return globals()[fn_str]
+    if fn_str not in globals().keys():
+        to_return=globals()["comp_fn_"+str(int(1000//1))+"_"+f'{int(round((1000%1),5)*10**4):04}'] #plugged in a random encoding thats going to be very high and incorrect (2^n)
+    else:
+        to_return=globals()[fn_str]
+    return to_return
+    
 
 def get_problems(data):
     '''
@@ -213,8 +223,20 @@ def create_aux_data(par_data,seq_data):
 
     for prob in prob_dict:
         wk = prob_dict[prob]["bs work"]
-        prob_dict[prob]["bs overhead"] = (0.0 if wk==prob_dict[prob]["best seq"]
-                            else CODE_DIVISON[(wk,prob_dict[prob]["best seq"])])
+        #print("prob: ",prob)
+        #print("prob_dict[prob]: ",prob_dict[prob])
+        #print("code_division", CODE_DIVISON[(wk,prob_dict[prob]["best seq"])])
+        #dealing with CODE_DIVISIONS that are still TODO
+        if wk==prob_dict[prob]["best seq"]:
+            prob_dict[prob]["bs overhead"] = 0.0
+        elif (wk,prob_dict[prob]["best seq"]) in CODE_DIVISON.keys():
+            prob_dict[prob]["bs overhead"]=CODE_DIVISON[(wk,prob_dict[prob]["best seq"])]
+        else:
+            prob_dict[prob]["bs overhead"]=1 #no idea how badly this is going to mess shit up yikes
+        # old code (if all CODE_DIVISON exist, should go back to this probably)
+        # prob_dict[prob]["bs overhead"] = (0.0 if wk==prob_dict[prob]["best seq"]
+        #                     else CODE_DIVISON[(wk,prob_dict[prob]["best seq"])])
+
         # dealing with problems with no existing we algo
         if not prob_dict[prob]["we exist"]:
             prob_dict[prob]["we span"] = prob_dict[prob]["best seq"]

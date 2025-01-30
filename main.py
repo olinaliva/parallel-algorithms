@@ -22,8 +22,10 @@ from src.paper_plots.problem_overhead_vs_proc import *
 from src.paper_plots.problem_speedup_vs_proc import *
 from src.paper_plots.aggregate_switch_to_work_ineff import *
 
-from data.converter import *
+from converter import *
 from data.processor_data_acquisition import *
+
+
 
 # from src.processed_data import *
 
@@ -34,8 +36,13 @@ print("starting main")
 ################################################################################
 
 ########## Refactor data
-import src.data_processing
-print(src.data_processing.raw_database.populate_raw_database_parallel())
+#import src.data_processing
+#print(src.data_processing.raw_database.populate_raw_database_parallel())
+# IDK WHAT'S GOING ON HERE
+#import src.processed_data
+#print(src.processed_data.raw_database.populate_raw_database_parallel())
+
+
 
 ########## End of refactor data
 
@@ -208,53 +215,63 @@ histo_buckets = [{"max": 0.03, "label": "0-3%"},
             {"max": 3, "label": "100-300%"},
             {"max": 10, "label": "300-1000%"},
             {"max": math.inf, "label": ">1000%"},]
-# yearly_impr_rate_histo_grid(simulated_par_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6], measure="rt")
-
+#funstion in average_improvement_rate
+#yearly_impr_rate_histo_grid(simulated_par_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                p_values=[8,10**3,10**6], measure="rt")
+NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6], measure="rt")
+print("checkpoint 1")
+#funtions in span_work_more_probs
 # span_vs_work_multiple_probs(simulated_par_data,full_seq_data,
 #                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 # span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data,
 #                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
-
+print("checkpoint 2")
+#function in numerical_overhead_vs_span
+#print(simulated_par_data)
 # numerical_overhead_vs_span(simulated_par_data,full_seq_data,
 #             problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-
-# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+print("checkpoint 3")
+#function in numerical_speedup_vs_proc
+#problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+print("checkpoint 4")
+#function in problem_overhead_vs_proc
 
 # problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],
 #                              allowed_models=set(model_dict.keys()))
-
+print("checkpoint 5")
 small_pset = ['DFA Minimization','Stable Marriage Problem','Exact Laplacian Solver']
 
-# print(problems_switch_to_work_inefficient(simulated_par_data,full_seq_data,small_pset,n=10**3,max_p=10**20))
-
+#print(problems_switch_to_work_inefficient(simulated_par_data,full_seq_data,small_pset,n=10**3,max_p=10**20))
+print("checkpoint 6")
+#functions in aggregate_switch_to_work_ineff
 # problems_switch_to_work_inefficient_graph(simulated_par_data,full_seq_data,pset,
 #                             n_values = [10**3,10**6,10**9],max_p=10**10)
 # problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset,
 #                             n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
+print("checkpoint 7")
 
+#print(work_overhead_histogram(simulated_par_data,full_seq_data,small_pset,p=10**3,n=10**3,
+#                            upper_bounds=[0,10,50,100,math.inf],
+#                            max_p=10**20,allowed_models=set(model_dict.keys()))) # TODO: numbers don't add up
 
-# print(work_overhead_histogram(simulated_par_data,full_seq_data,small_pset,p=10**3,n=10**3,
-#                             upper_bounds=[0,10,50,100,math.inf],
-#                             max_p=10**20,allowed_models=set(model_dict.keys()))) # TODO: numbers don't add up
-
-# work_overhead_histogram_graph(simulated_par_data,full_seq_data,pset,p=10**3,n_values=[10**3,10**6,10**9],
-#                             upper_bounds=[0,10,50,100,math.inf],
-#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+#work_overhead_histogram_graph(simulated_par_data,full_seq_data,pset,p=10**3,n_values=[10**3,10**6,10**9],
+#                            upper_bounds=[0,10,50,100,math.inf],
+#                           max_p=10**9,allowed_models=set(model_dict.keys()))
 
 # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-
+print("checkpoint 8")
 
 
 # helpers
 
-# print(best_algos_by_speedup(simulated_par_data,full_seq_data,"LCS",n=10**6,
-#                           allowed_models=set(model_dict.keys())))
+print(best_algos_by_speedup(simulated_par_data,full_seq_data,"LCS",n=10**6,
+                          allowed_models=set(model_dict.keys())))
 
-# print(get_pareto_points(simulated_par_data,full_seq_data,'LCS',allowed_models=PRAM_LIKE_MODELS))
+print(get_pareto_points(simulated_par_data,full_seq_data,'LCS',allowed_models=PRAM_LIKE_MODELS))
 
 
 
@@ -355,7 +372,7 @@ name = "14.1-11-Johnson, Metaxas (1992)"
 # span_comparison_best_vs_work_efficient(aux_data)
 # new_parallelism_graph(aux_data)
 # yearly_impr_rate_histo_rt(full_data, g_buckets, n=10**3,p=512)
-# decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
+decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
 # pareto_frontier_graph(full_data,rel_speedup_seq_data,g_decades)
 # aggregated_relative_speedup(full_data,rel_speedup_seq_data,n=10**6)
 # work_span_improvement_heatmap(full_data)
@@ -440,3 +457,5 @@ we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 # - 'Point-in-Polygon' - 1 step, 1 par point
 # - 'directed nonneg SSSP' - 1 step, 1 par algo
 
+
+print("finished main")

@@ -25,7 +25,13 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
     # TODO
     
     plt.style.use('default')
-    fig, ax = plt.subplots(1,1,figsize=(6.55,3),dpi=200,layout='tight')
+    #fig, ax = plt.subplots(1,1,figsize=(6.55,3),dpi=200,layout='tight')
+    #v1:
+    # fig, ax = plt.subplots(1, 1, figsize=(6.55, 4), dpi=200)  #took away layout="tight" and increased size to 4
+    #v2:
+    fig, ax = plt.subplots(1, 1, figsize=(8, 3), dpi=200)  #width and height changes
+
+    
 
     local_colors = ['#79d8f3','#a7f379','red','#f4e474']
 
@@ -102,22 +108,45 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
     ax.fill_between(x=all_x_values,y1=y_val_dict[1],y2=y_val_dict[0],color=local_colors[2])
     ax.fill_between(x=all_x_values,y1=y_val_dict[0],y2=0,color=local_colors[3])
 
-    
-    ax.text(20,75,"No Parallel Algorithm Exists",fontsize=10,verticalalignment='center')
-    ax.text(7,35,"Sequential Algorithm Fastest",fontsize=10,verticalalignment='center')
-    ax.text(0.8*10**3,18,"Work Efficient Algorithm Fastest",fontsize=10,verticalalignment='center')
-    ax.text(0.4*10**4,5.5,"Work Inefficient Algorithm Fastest",fontsize=10,verticalalignment='center')
+    # Remove text annotations inside the plot
+    #ax.text(20,75,"No Parallel Algorithm Exists",fontsize=10,verticalalignment='center')
+    #ax.text(7,35,"Sequential Algorithm Fastest",fontsize=10,verticalalignment='center')
+    #ax.text(0.8*10**3,18,"Work Efficient Algorithm Fastest",fontsize=10,verticalalignment='center')
+    #ax.text(0.4*10**4,5.5,"Work Inefficient Algorithm Fastest",fontsize=10,verticalalignment='center')
+    # Add legend with square color patches
+    #v1:
+    # legend_labels = [
+    #     "No Parallel Algorithm Exists",
+    #     "Sequential Algorithm Fastest",
+    #     "Work Efficient Algorithm Fastest",
+    #     "Work Inefficient Algorithm Fastest"
+    # ]
+    # legend_patches = [mpatches.Patch(color=color, label=label) for color, label in zip(local_colors, legend_labels)]
+    # ax.legend(handles=legend_patches, loc='upper center', bbox_to_anchor=(0.5, -0.2), ncol=2)
+
+    #v2:
+    legend_labels = [
+        "No Parallel\nAlgorithm Exists",        # Split into two lines
+        "Sequential\nAlgorithm Fastest",        # Split into two lines
+        "Work Efficient\nAlgorithm Fastest",    # Split into two lines
+        "Work Inefficient\nAlgorithm Fastest"   # Split into two lines
+    ]
+    legend_patches = [mpatches.Patch(color=color, label=label) for color, label in zip(local_colors, legend_labels)]
+    ax.legend(handles=legend_patches, loc='center left', bbox_to_anchor=(1.0, 0.5), ncol=1)
+
+    ###
+
 
     ax.hlines(y=perc_no_par*100,xmin=1,xmax=x_values[-1],color=local_colors[0])
 
-    new_patch = mpatches.Patch(color=n_color, label="No Parallel Algorithm Exists")
-    handles.append(new_patch)
-    new_patch = mpatches.Patch(color=n_color, label="Sequential Algorithm Fastest")
-    handles.append(new_patch)
-    new_patch = mpatches.Patch(color=n_color, label="Work Efficient Algorithm Fastest")
-    handles.append(new_patch)
-    new_patch = mpatches.Patch(color=n_color, label="Work Inefficient Algorithm Fastest")
-    handles.append(new_patch)
+    # new_patch = mpatches.Patch(color=n_color, label="No Parallel Algorithm Exists")
+    # handles.append(new_patch)
+    # new_patch = mpatches.Patch(color=n_color, label="Sequential Algorithm Fastest")
+    # handles.append(new_patch)
+    # new_patch = mpatches.Patch(color=n_color, label="Work Efficient Algorithm Fastest")
+    # handles.append(new_patch)
+    # new_patch = mpatches.Patch(color=n_color, label="Work Inefficient Algorithm Fastest")
+    # handles.append(new_patch)
     
     # ax.legend(handles=handles)
     ax.set_xscale('log')
@@ -126,6 +155,13 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
     ax.set_xlabel("Number of processors")
     ax.set_yticks(ax.get_yticks(),[str(round(x))+"%" for x in ax.get_yticks()])
     ax.set_title("Work Efficiency of the Fastest Algorithm\nfor $n = "+get_nice_n(n)+"$")
+
+    #layout tweak to hopefully prevent overlap
+    fig.tight_layout()
+    #v1:
+    #fig.subplots_adjust(bottom=0.3)  #extra space for the legend
+    #v2:
+    fig.subplots_adjust(right=0.75)
 
     # plt.show()
     plt.savefig(SAVE_LOC+'work_efficiency_fastest_algo'+'.png')

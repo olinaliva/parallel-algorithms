@@ -1,7 +1,17 @@
-from header import *
+#from header import *
 import json
 import csv
 import copy
+#aaaaaaah
+#import sys
+#import os
+#header_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+#sys.path.append(header_dir)
+#from header import *
+
+#put these here to not deal w/ the commented out header
+VERSION="_JAN26"
+import warnings
 
 
 PARALLEL_ALGO_FIELDS={
@@ -47,8 +57,8 @@ PARALLEL_DISCARABLE_FIELD_VALUES = {
         "problem": "",
         "auth": "", 
         "year": "", 
-        "span": "",
-        "work": "", 
+        "span": "", 
+        "work": "",
         "model": "", 
         "approximate": "1", 
         "heuristic": "1", 
@@ -151,18 +161,23 @@ def apply_various_operations_to_change_the_json_file_so_its_usable(name,wanted_f
     values = json.load(jsonFile)
 
     wanted_fields_only_values = filter_unwanted_fields_json(values, wanted_fields)
+    print("FILTER UNDWANTED FIELDS ONLY VALUES DONE")
 
     discarded_bad_algos_values = filter_unwanted_algos(wanted_fields_only_values, unwanted_values)
+    print("FILTER UNDWANTED ALGOS DONE")
 
     # one_var_per_algo_values, vars = separate_variations(discarded_bad_algos_values)
     algos_with_final_subproblems = consolidate_subproblems(discarded_bad_algos_values)
+    print("ALGOS WITH FINAL SUBPROBLEMS DONE")
     
     final_values = type_cast_data(algos_with_final_subproblems)
+    print("TYPE CAST DATA DONE")
 
     # make the "original" dataset with only meaningful models (no other or distributed memory)
     meaningful_models_values = remove_nonspecific_models(final_values,allowed_model_list)
     print(str(len(meaningful_models_values))+" algorithms in the original dataset")
     newJsonFilePath = './data/par_algos_original'+VERSION+'.json'
+    print("file path: ",newJsonFilePath)
     with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 
         jsonString = json.dumps(meaningful_models_values, indent=4)
         jsonf.write(jsonString)
@@ -220,10 +235,32 @@ def filter_unwanted_algos(values, unwanted_values):
     for i in reversed(range(len(values))):
         element = values[i]
         for field in unwanted_values:
+            print("element ",element)
+            #its taking "values" as just the name of the csv :(
+            print("unwanted values ", unwanted_values)
+            print("field", field)
             if element[field] == unwanted_values[field]:
                 new_values.pop(i)
                 removed_stats[field] += 1
-                break
+            #deal w/ xxx xxxx and yy (and also an error where they are "")
+            elif (element["span"] == "xxxx" or element["span"] == "xxx" or element["span"] == "yy" or element["span"] == "" or element["span"] == " "):
+                new_values.pop(i)
+                removed_stats["span"] += 1
+            elif (element["work"] == "xxxx" or element["work"] == "xxx" or element["work"] == "yy"):
+                new_values.pop(i)
+                removed_stats["work"] += 1
+            #checking if these will fix an error im getting :(
+            elif (element["model"] == "" or element["model"] == " "):
+                new_values.pop(i)
+                removed_stats["model"] += 1
+            elif (element["par"] == "" or element["par"] == " "):
+                new_values.pop(i)
+                removed_stats["par"] += 1
+            #removing double encoded models for now
+            elif (";" in element["model"]): 
+                new_values.pop(i)
+                removed_stats["model"] += 1
+            break
     
     return new_values
 
@@ -231,7 +268,7 @@ def consolidate_subproblems(values):
     '''
     TODO
     '''
-    warnings.warn("Warning...........Subproblems not consolidated!")
+    warnings.warn("Warning...........Subproblems not consolidated!") #what was the thought process here?
     problem_set = set()
     for val in values:
         problem_set.add(val["problem"])
@@ -296,9 +333,17 @@ def type_cast_data(values):
                 if element[field] == '-':
                     del new_values[i]
                 else:
+                    print("element[field] ",element[field])
+                    print("field: ",field)
+                    #tripping over model="" which is weird since it should be filtered out i think??
+                    #seems ti be fixed by specifically filtering out models that are "" and " " ??
                     element[field] = int(element[field])
         for field in ["span","work","par","time"]:
             if field in element:
+                print("element[field] ",element[field])
+                print("field: ",field)
+                #same issues of "" values :( (did specific filtering above)
+                #also oh no there are models with value; value. need to fix
                 element[field] = float(element[field])
     
     return new_values
@@ -322,7 +367,11 @@ def remove_nonspecific_models(values,allowed_model_list):
     for element in values:
         if element["model"] in allowed_model_list:
             new_values.append(copy.deepcopy(element))
-            new_name = element["family"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
+            print(element)
+            #print(element["family"])
+            #there isn't a key "family", going to go with "problem" and see if it fucks stuff over later
+            #new_name = element["family"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
+            new_name = element["problem"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
             new_values[-1]["name"] = new_name
     return new_values
 
@@ -393,5 +442,11 @@ if __name__ == '__main__':
     # convert_csv_to_json("parallel_algos")
     # filter_unwanted_fields_json("parallel_algos",PARALLEL_ALGO_FIELDS)
     # filter_unwanted_algos("parallel_algos",PARALLEL_DISCARABLE_FIELD_VALUES)
+
+    #wut?^^^^
+
+    create_par_data("Parallel_Algos_JAN26")
+    #technically should probably use this one but im just copying the old ones and changing the version name
+    #create_seq_data(name1,name2)
 
     pass
