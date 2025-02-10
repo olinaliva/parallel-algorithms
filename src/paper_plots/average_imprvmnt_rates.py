@@ -308,7 +308,7 @@ def improvements(data, n=10**3,p=8,lower=False):
 def first_seq_names(data):
     '''returns: first_algos: dictionary by problem of algorithm names for the 1st algo of that problem'''
     #sort em
-    #going to assume that first algo is the worst one, if multiple in one year; for seq data just use time
+    #going to assume that first algo is the worst one, if multiple in one year
     names = list(data.keys())
     names.sort(key= lambda name: (data[name]["year"], -1*data[name]["time"])) 
     first_algos={}
@@ -319,21 +319,46 @@ def first_seq_names(data):
             first_algos[prob]=algo
     return first_algos
 
+def best_seq_names(data):
+    '''returns: best_algos: dictionary by problem of algorithm names for the first best algo (by runtime) of that problem'''
+    #sort em
+    names = list(data.keys())
+    #names.sort(key= lambda name: 1*data[name]["time"]) 
+    #changing it so that if multiple best algos then we take the earliest one
+    names.sort(key= lambda name: (data[name]["time"],data[name]["year"])) 
+    best_algos={}
+    #go through all, if no algo for problem yet, add it
+    # saveable={} #this was to test stuff
+    for algo in names:
+        prob=data[algo]["problem"]
+        if prob not in best_algos.keys():
+            best_algos[prob]=algo
+    #         saveable[algo]=("BEST",prob,data[algo]["time"],data[algo]["year"])
+    #     else:
+    #         saveable[algo]=(prob,data[algo]["time"],data[algo]["year"])
+    # with open("best_seq.json", "w") as json_file:
+    #     json.dump(saveable, json_file, indent=4)
+    return best_algos
+
 
 
 #new improvement rate graph function
 def NEW_yearly_impr_rate_histo_grid(par_data, seq_data, raw_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt"):
+                                p_values=[8,10**3,10**6],measure="rt",start_from="first_seq"):
     fig, ax = plt.subplots(len(p_values),len(n_values),figsize=(7,7),dpi=200,layout='tight',sharey='all')
     #got mad about argument "layout"
     #fig, ax = plt.subplots(len(p_values),len(n_values),figsize=(7,7),dpi=200, sharey='all')
-    
     
     for i in range(len(p_values)):
         p = p_values[i]
         for j in range(len(n_values)):
             n = n_values[j]
-            NEW_yearly_impr_rate_histo_helper(ax[i,j],par_data,seq_data,raw_buckets,n,p,measure=measure)
+            if (start_from=="stacked"):
+                stacked_impr_rate_histo_helper(ax[i,j],par_data,seq_data,raw_buckets,n,p,measure=measure)
+            elif(measure=="work"):
+                WORK_impr_rate_histo_helper(ax[i,j],par_data,seq_data,raw_buckets,n,p)
+            else:
+                NEW_yearly_impr_rate_histo_helper(ax[i,j],par_data,seq_data,raw_buckets,n,p,measure=measure,start_from=start_from)
             # ax[i,j].set_title("$n="+get_nice_n(n)+"$ \# processors = "+get_nice_n(p)+"$")
             
     labels = [raw_buckets[i]["label"] for i in range(len(raw_buckets))]
@@ -360,14 +385,132 @@ def NEW_yearly_impr_rate_histo_grid(par_data, seq_data, raw_buckets,n_values=[10
     ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
     ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
             
-    fig.suptitle("Algorithm Problem Average Yearly Improvement Rate\n(Sequential and Parallel)")
+    fig.suptitle("Algorithm Problem Average Yearly Improvement Rate\n(Sequential and Parallel)\n"+start_from)
     
-    plt.savefig(SAVE_LOC+'NEW_average_improvement_rate.png')
+    plt.savefig(SAVE_LOC+start_from+'_NEW_average_improvement_rate.png')
     # plt.show()
 
 #requires at least 2 buckets
 # measure can be either "rt" (running time) or "sp" (span)
-def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, measure="rt"):
+#well, actually rn it's expecting runtime
+def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, measure="rt",start_from="first_seq"):
+    assert measure == "sp" or measure == "rt"
+    def get_measure_value(measure,work,span,n,p):
+        '''
+        returns running time (if measure is "rt") or span
+        :measure: either "sp" for span or "rt" for runtime
+        TODO
+        '''
+        if measure == "sp":
+            return get_comp_fn(span)(n)
+        elif measure == "rt":
+            return get_runtime(work,span,n,p)
+
+    # sort the algos based on increasing year, then based on decreasing span
+    #we do a bunch of sorting elsewhere, idt this is needed
+    # names = list(par_data.keys())
+    # names.sort(key= lambda name: (par_data[name]["year"], -1*par_data[name]["span"]))
+    # print("finished sorting")
+
+    #best=smallest run time for the problem size and processor number
+    
+    all_rates = []
+    problems=get_problems(par_data) #takes problems from parallel data, do we want ALL problems instead?
+    best_stats, first_stats=improvements(par_data,n,p)
+    #get best sequential algos
+    best_seq=best_seq_names(seq_data)
+    if (start_from=="first_seq"):
+        #get first sequential algos
+        start_algos=first_seq_names(seq_data)
+        start_data=seq_data
+    elif (start_from=="best_seq"):
+        #use best sequential algos
+        start_algos=best_seq
+        start_data=seq_data
+    else:
+        #use first parallel
+        start_algos=first_stats
+        start_data=par_data
+    print("n= ",n," p= ",p)
+    for problem in problems:
+
+        if problem in start_algos.keys():
+            #take 1st chronological algo
+            first=start_algos[problem]
+            #^format example is "44658Narayanaswami (1996)"
+            first_algo=start_data[first]
+            if (start_from=="first_par"):
+                first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
+            else:
+                first_algo_time=first_algo["time"]
+                first_rt = get_seq_runtime(first_algo_time,n)
+        else:
+            first=first_stats[problem]
+            #^format example is "44658Narayanaswami (1996)"
+            first_algo=par_data[first]
+            first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
+        #take best algo
+        best=best_stats[problem][2024]["br alg"] #taking br here insetad of bs
+        best_algo=par_data[best]
+        best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
+        #print("problem: ",problem)
+        #print("best rate: ", best_rt, " first rate: ", first_rt)
+        #i guess sometimes the parallel algos are worse than the sequential ones (nash equillibria you bastard)
+        #should probably take the best sequential improvement then
+        #honestly, do i have a dataset with everything in it? that would make all this simpler - something to think about
+        # if (first_rt<best_rt):
+        #     impr_ratio=1
+        # else:
+        #     impr_ratio = first_rt / best_rt
+        if (first_rt<best_rt):
+            if problem not in best_seq.keys():
+                #idk how this scenario would happen
+                #HELP
+                print("PROBLEM NOT IN SEQ ALGOS BUT BEST RT WORSE THAN FIRST RT")
+                best_rt=first_rt
+            else:
+                best=best_seq[problem]
+                best_algo=seq_data[best]
+                best_algo_time=best_algo["time"]
+                best_rt=get_seq_runtime(best_algo_time,n)
+        impr_ratio = first_rt / best_rt
+        #print("improvement ratio: ", impr_ratio)
+        #delta t is from first seq to now (2025)
+        #print(first_algo["year"])
+        #print(impr_ratio)
+        #print(impr_ratio ** (1/(2025-first_algo["year"])))
+        
+        if (first_algo["year"]>best_algo["year"]):
+            print("first algo year: ",first_algo["year"], "best algo year: ", best_algo["year"])
+            print("problem: ", problem)
+        #double check formula!!
+        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
+        all_rates.append(yearly_impr_rate)
+
+    print("finished finding improvement rates")
+
+    # find the distribution values to be plotted
+    buckets = copy.deepcopy(raw_buckets)
+    assert len(buckets) >= 2
+    all_rates.sort()
+    # print(all_rates) # (11x0.0) 14, 9, 6, 2, 3, 3, 2, 1, 1, 1, 4, 0
+    buckets[0]["index"] = bisect.bisect_left(all_rates, buckets[0]["max"])
+    buckets[0]["count"] = buckets[0]["index"]
+    for i in range(1,len(buckets)-1):
+        max_val = buckets[i]["max"]
+        buckets[i]["index"] = bisect.bisect_left(all_rates, max_val)
+        buckets[i]["count"] = buckets[i]["index"] - buckets[i-1]["index"]
+    buckets[-1]["count"] = len(all_rates) - buckets[-2]["index"]
+    for i in range(len(buckets)):
+        buckets[i]["share"] = buckets[i]["count"] / len(all_rates)
+
+    print("finished finding the distribution")
+
+    # drawing the distribution histogram
+    values = [buckets[i]["share"]*100 for i in range(len(buckets))]
+    ax.bar(list(range(len(buckets))), values, align='center')
+
+def stacked_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, measure="rt"):
     assert measure == "sp" or measure == "rt"
     def get_measure_value(measure,work,span,n,p):
         '''
@@ -385,22 +528,152 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
     names.sort(key= lambda name: (par_data[name]["year"], -1*par_data[name]["span"]))
     print("finished sorting")
 
+    
+    par_rates = []
+    seq_rates =[]
+    problems=get_problems(par_data) #takes problems from parallel data, do we want ALL problems instead?
+    best_stats, first_stats=improvements(par_data,n,p)
+    best_seq=best_seq_names(seq_data)
+    first_seq=first_seq_names(seq_data)
+    
+    for problem in problems:
+        #take 1st chronological seq algo if it exists for problem
+        if problem in first_seq.keys():
+            first=first_seq[problem]
+            first_algo=seq_data[first]
+            first_algo_time=first_algo["time"]
+            first_rt = get_seq_runtime(first_algo_time,n)
+        else:
+            first_rt=-1
+            # first=first_stats[problem]
+            # #^format example is "44658Narayanaswami (1996)"
+            # first_algo=par_data[first]
+            # first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
+        #take best seq algo
+        if (first_rt!=-1):
+            best_seq_algo_name=best_seq[problem]
+            best_seq_algo=seq_data[best_seq_algo_name]
+            best_seq_time=best_seq_algo["time"]
+            best_seq_rt = get_seq_runtime(best_seq_time,n)
+            seq_impr_ratio=first_rt/best_seq_rt
+            #seq_yearly_impr_rate = seq_impr_ratio ** (1/(best_seq_algo["year"]-first_algo["year"]))-1
+            seq_yearly_impr_rate = seq_impr_ratio ** (1/(2025-first_algo["year"]))-1
+        else:
+            #idk how to deal w/ otherwise
+            seq_yearly_impr_rate=0 
+        seq_rates.append(seq_yearly_impr_rate)
+
+        #now do from best seq or first par to best par
+        if (first_rt==-1):
+            #take 1st parallel
+            first_par_algo_name=first_stats[problem]
+            first_par_algo=par_data[first_par_algo_name]
+            first_par_rt=get_measure_value(measure, first_par_algo["work"], first_par_algo["span"],n,p)
+
+            best_seq_algo=first_par_algo
+            best_seq_rt=first_par_rt
+            first_algo=first_par_algo
+        best=best_stats[problem][2024]["br alg"]
+        best_algo=par_data[best]
+        best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
+
+        par_impr_ratio=best_seq_rt/best_rt
+        if (par_impr_ratio<1):
+            #idk how to fix this :(((((
+            par_impr_ratio=1
+        
+        #par_yearly_impr_rate = par_impr_ratio ** (1/(2025-best_seq_algo["year"]))-1
+        par_yearly_impr_rate = par_impr_ratio ** (1/(2025-first_algo["year"]))-1
+        par_rates.append(par_yearly_impr_rate)
+
+    print("finished finding improvement rates")
+
+    # find the distribution values to be plotted
+    buckets = copy.deepcopy(raw_buckets)
+    assert len(buckets) >= 2
+
+    # Sort the rates
+    par_rates.sort()
+    seq_rates.sort()
+
+    # Compute bucket counts for both par_rates and seq_rates
+    for rates, key in [(par_rates, "par_count"), (seq_rates, "seq_count")]:
+        buckets[0]["index"] = bisect.bisect_left(rates, buckets[0]["max"])
+        buckets[0][key] = buckets[0]["index"]
+        
+        for i in range(1, len(buckets) - 1):
+            max_val = buckets[i]["max"]
+            buckets[i]["index"] = bisect.bisect_left(rates, max_val)
+            buckets[i][key] = buckets[i]["index"] - buckets[i - 1]["index"]
+        
+        buckets[-1][key] = len(rates) - buckets[-2]["index"]
+
+    # Compute shares
+    for i in range(len(buckets)):
+        buckets[i]["par_share"] = buckets[i]["par_count"] / len(par_rates)
+        buckets[i]["seq_share"] = buckets[i]["seq_count"] / len(seq_rates)
+
+    print("Finished finding the distribution")
+
+    # Prepare data for plotting
+    x = list(range(len(buckets)))
+    par_values = [buckets[i]["par_share"] * 100 for i in range(len(buckets))]
+    seq_values = [buckets[i]["seq_share"] * 100 for i in range(len(buckets))]
+    # Draw histogram with two bars per bucket
+    ax.bar(x, seq_values, width=0.4, align='center', label="Seq Rates", alpha=0.7)
+    ax.bar([i + 0.4 for i in x], par_values, width=0.4, align='center', label="Par Rates", alpha=0.7)
+    ax.legend()
+
+
+def WORK_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p):
+#get_runtime(work,span,n,p)
+
+#pseudocode
+#for each problem
+    #take first seq algo
+    #what is problem size m if runtime is n?
+    #take parallel algo with best span
+    #what is runtime with problem size m and processors p
+    #get improvement rate
+
+
+
+    # sort the algos based on increasing year, then based on decreasing span
+    names = list(par_data.keys())
+    names.sort(key= lambda name: (par_data[name]["year"], -1*par_data[name]["span"]))
+    print("finished sorting")
+
     #for each problem, takes 1st sequential algo and best parallel algo
     #best=smallest run time for the problem size and processor number
     
     all_rates = []
     problems=get_problems(par_data) #takes problems from parallel data, do we want ALL problems instead?
     best_stats, first_stats=improvements(par_data,n,p)
-    #get first sequential algos
-    first_seq=first_seq_names(seq_data)
+    best_seq=best_seq_names(seq_data)
+    if (start_from=="first_seq"):
+        #get first sequential algos
+        start_algos=first_seq_names(seq_data)
+        start_data=seq_data
+    elif (start_from=="best_seq"):
+        #get best sequential algos
+        start_algos=best_seq
+        start_data=seq_data
+    else:
+        #use first parallel
+        start_algos=first_stats
+        start_data=par_data
     for problem in problems:
-        if problem in first_seq.keys():
+
+        if problem in start_algos.keys():
             #take 1st chronological algo
-            first=first_seq[problem]
+            first=start_algos[problem]
             #^format example is "44658Narayanaswami (1996)"
-            first_algo=seq_data[first]
-            first_algo_time=first_algo["time"]
-            first_rt = get_seq_runtime(first_algo_time,n)
+            first_algo=start_data[first]
+            if (start_from=="first_par"):
+                first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
+            else:
+                first_algo_time=first_algo["time"]
+                first_rt = get_seq_runtime(first_algo_time,n)
         else:
             first=first_stats[problem]
             #^format example is "44658Narayanaswami (1996)"
@@ -410,7 +683,26 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
         best=best_stats[problem][2024]["bs alg"]
         best_algo=par_data[best]
         best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
-        #print("best rate: ", best_rt, " first rate: ", first_rt)
+        print("problem: ",problem)
+        print("best rate: ", best_rt, " first rate: ", first_rt)
+        #i guess sometimes the parallel algos are worse than the sequential ones (nash equillibria you bastard)
+        #should probably take the best sequential improvement then
+        #honestly, do i have a dataset with everything in it? that would make all this simpler - something to think about
+        # if (first_rt<best_rt):
+        #     impr_ratio=1
+        # else:
+        #     impr_ratio = first_rt / best_rt
+        if (first_rt<best_rt):
+            if problem not in best_seq.keys():
+                #idk how this scenario would happen
+                #HELP
+                print("PROBLEM NOT IN SEQ ALGOS BUT BEST RT WORSE THAN FIRST RT")
+                best_rt=first_rt
+            else:
+                best=best_seq[problem]
+                best_algo=seq_data[best]
+                best_algo_time=best_algo["time"]
+                best_rt=get_seq_runtime(best_algo_time,n)
         impr_ratio = first_rt / best_rt
         #print("improvement ratio: ", impr_ratio)
         #delta t is from first seq to now (2025)
@@ -418,8 +710,7 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
         print(impr_ratio)
         print(impr_ratio ** (1/(2025-first_algo["year"])))
         #double check formula!!
-        #yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
-        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))
+        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
         all_rates.append(yearly_impr_rate)
 
     print("finished finding improvement rates")
@@ -446,20 +737,3 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
     ax.bar(list(range(len(buckets))), values, align='center')
 
 
-g_buckets = [{"max": 0.1, "label": "0-10%"},
-            {"max": 0.2, "label": "10-20%"},
-            {"max": 0.3, "label": "20-30%"},
-            {"max": math.inf, "label": ">30%"},]
-
-many_g_buckets = [{"max": 0.1, "label": "0-10%"},
-            {"max": 0.2, "label": "10-20%"},
-            {"max": 0.3, "label": "20-30%"},
-            {"max": 0.4, "label": "30-40%"},
-            {"max": 0.5, "label": "40-50%"},
-            {"max": 0.6, "label": "50-60%"},
-            {"max": 0.7, "label": "60-70%"},
-            {"max": 0.8, "label": "70-80%"},
-            {"max": 0.9, "label": "80-90%"},
-            {"max": 1, "label": "90-100%"},
-            {"max": 10, "label": "100-1000%"},
-            {"max": math.inf, "label": ">1000%"},]

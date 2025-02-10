@@ -207,8 +207,9 @@ we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 ################################################################################
 ##### PAPER GRAPHS #############################################################
 ################################################################################    
-
-histo_buckets = [{"max": 0.03, "label": "0-3%"},
+#{"max": 0.001, "label": "0-0.1%"},
+histo_buckets = [
+            {"max": 0.03, "label": "0.1-3%"},
             {"max": 0.1, "label": "3-10%"},
             {"max": 0.3, "label": "10-30%"},
             {"max": 1, "label": "30-100%"},
@@ -218,8 +219,40 @@ histo_buckets = [{"max": 0.03, "label": "0-3%"},
 #funstion in average_improvement_rate
 #yearly_impr_rate_histo_grid(simulated_par_data, histo_buckets,n_values=[10**3,10**6,10**9],
 #                                p_values=[8,10**3,10**6], measure="rt")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_seq")
+#NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="best_seq")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_par")
 NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6], measure="rt")
+                                p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
+
+names=first_seq_names(full_seq_data)
+first_seq_times=[]
+for algo in names.values():
+    first_seq_times.append(full_seq_data[algo]["time"])
+
+with open("first_seq.json", "w") as json_file:
+    json.dump(first_seq_times, json_file, indent=4)
+print(f"Dictionary saved")
+
+n=1000
+best_stats, first_stats=improvements(simulated_par_data,n,1)
+best_seq=best_seq_names(full_seq_data)
+problems=get_problems(simulated_par_data)
+work_dict={}
+for problem in problems:
+    best=best_stats[problem][2024]["br alg"]
+    if (problem not in best_seq.keys()):
+        work_dict[problem]=("no seq",best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
+    elif (get_seq_runtime(full_seq_data[best_seq[problem]]["time"],n)>
+          get_runtime(simulated_par_data[best]["work"], simulated_par_data[best]["span"],n,1)):
+        work_dict[problem]=(best_seq[problem],full_seq_data[best_seq[problem]]["time"],best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
+print(work_dict)
+
+
+#print(first_seq_names(full_seq_data))
 print("checkpoint 1")
 #funtions in span_work_more_probs
 # span_vs_work_multiple_probs(simulated_par_data,full_seq_data,
