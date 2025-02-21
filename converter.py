@@ -10,7 +10,8 @@ import copy
 #from header import *
 
 #put these here to not deal w/ the commented out header
-VERSION="_JAN26"
+#VERSION="_JAN26"
+VERSION="_FEB18"
 import warnings
 
 
@@ -53,7 +54,7 @@ SEQUENTIAL_ALGO_FIELDS={
         "Domains": "domains"
     }
 
-PARALLEL_DISCARABLE_FIELD_VALUES = {        
+PARALLEL_DISCARABLE_FIELD_VALUES = {   
         "problem": "",
         "auth": "", 
         "year": "", 
@@ -260,6 +261,9 @@ def filter_unwanted_algos(values, unwanted_values):
             elif (";" in element["model"]): 
                 new_values.pop(i)
                 removed_stats["model"] += 1
+            elif (element["problem"]=="#N/A"):
+                new_values.pop(i)
+                removed_stats["problem"] += 1
             break
     
     return new_values
@@ -370,8 +374,9 @@ def remove_nonspecific_models(values,allowed_model_list):
             print(element)
             #print(element["family"])
             #there isn't a key "family", going to go with "problem" and see if it fucks stuff over later
-            #new_name = element["family"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
-            new_name = element["problem"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
+            #yes it did fuck stuff over later but its unfucked now
+            #new_name = element["problem"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
+            new_name = element["family"]+element["id"]+element["auth"]+" ("+str(element["year"])+")"
             new_values[-1]["name"] = new_name
     return new_values
 
@@ -445,7 +450,7 @@ if __name__ == '__main__':
 
     #wut?^^^^
 
-    create_par_data("Parallel_Algos_JAN26")
+    create_par_data("Parallel_Algos_FEB18")
     #technically should probably use this one but im just copying the old ones and changing the version name
     #create_seq_data(name1,name2)
 

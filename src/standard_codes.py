@@ -324,7 +324,8 @@ problem_dict = {
     17: "All Pairs Shortest Paths",
     33: "Generating Random Permutations",
     'APSP': "All Pairs Shortest Paths",
-    'LCS': "Longest Common Subsequence",
+    #adding \n so it splits into two lines in graphs
+    'LCS': "Longest Common\nSubsequence",
     '2-Dimensional Delaunay Triangulation':'2-Dimensional Delaunay Triangulation',
     '1D Maximum Subarray': '1D Maximum Subarray',
     '2-Player': '2-Player Nash Equilibria',

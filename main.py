@@ -52,7 +52,7 @@ print("starting main")
 # print(find_best_top_every_year("cpu_short"))
 # print(find_proc_increase_commercial())
 
-model_sheet_name = "data/par_models_JAN26"
+model_sheet_name = "data/par_models_FEB18"
 old_sheet_name = "past_data/parallel_sheet_for_models_JAN_8"
 mod_map = {
     100: 130,
@@ -98,7 +98,7 @@ def make_model_dataset(par_algos):
         alg_id = par_algos[name]["id"]
         jsonArray.append({"year":year,"model":model,"id":alg_id})
 
-    newJsonFilePath = r'./data/par_models_JAN26.json'
+    newJsonFilePath = r'./data/par_models_FEB18.json'
     with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
@@ -120,7 +120,7 @@ def make_model_dataset(par_algos):
 ##### FINAL GRAPH CALLS ########################################################
 ################################################################################
 
-pset = get_problems(simulated_par_data)
+#pset = get_problems(simulated_par_data)
 # print(len(pset))
 # print(len(simulated_par_data))
 # print(pset)
@@ -166,8 +166,8 @@ pset = get_problems(simulated_par_data)
 # work_span_improvement_heatmap(simulated_par_data)
 
 # # 6.1
-bs_mst_algo_name = "14475Johnson, Metaxas (1992)"
-we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
+# bs_mst_algo_name = "14475Johnson, Metaxas (1992)"
+# we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 # strong_scaling(simulated_par_data,bs_mst_algo_name,pr_sizes=[10**3,10**6,10**9])
 # strong_scaling_comparison(simulated_par_data,bs_mst_algo_name,we_mst_algo_name)
 # weak_scaling_comparison_graph(simulated_par_data,bs_mst_algo_name,we_mst_algo_name)
@@ -207,15 +207,15 @@ we_mst_algo_name = "14457Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 ################################################################################
 ##### PAPER GRAPHS #############################################################
 ################################################################################    
-#{"max": 0.001, "label": "0-0.1%"},
-histo_buckets = [
-            {"max": 0.03, "label": "0.1-3%"},
-            {"max": 0.1, "label": "3-10%"},
-            {"max": 0.3, "label": "10-30%"},
-            {"max": 1, "label": "30-100%"},
-            {"max": 3, "label": "100-300%"},
-            {"max": 10, "label": "300-1000%"},
-            {"max": math.inf, "label": ">1000%"},]
+# #{"max": 0.001, "label": "0-0.1%"},
+# histo_buckets = [
+#             {"max": 0.03, "label": "0.1-3%"},
+#             {"max": 0.1, "label": "3-10%"},
+#             {"max": 0.3, "label": "10-30%"},
+#             {"max": 1, "label": "30-100%"},
+#             {"max": 3, "label": "100-300%"},
+#             {"max": 10, "label": "300-1000%"},
+#             {"max": math.inf, "label": ">1000%"},]
 #funstion in average_improvement_rate
 #yearly_impr_rate_histo_grid(simulated_par_data, histo_buckets,n_values=[10**3,10**6,10**9],
 #                                p_values=[8,10**3,10**6], measure="rt")
@@ -225,64 +225,64 @@ histo_buckets = [
 #                                 p_values=[8,10**3,10**6], measure="rt",start_from="best_seq")
 # NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
 #                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_par")
-NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
 
-names=first_seq_names(full_seq_data)
-first_seq_times=[]
-for algo in names.values():
-    first_seq_times.append(full_seq_data[algo]["time"])
+# names=first_seq_names(full_seq_data)
+# first_seq_times=[]
+# for algo in names.values():
+#     first_seq_times.append(full_seq_data[algo]["time"])
 
-with open("first_seq.json", "w") as json_file:
-    json.dump(first_seq_times, json_file, indent=4)
-print(f"Dictionary saved")
+# with open("first_seq.json", "w") as json_file:
+#     json.dump(first_seq_times, json_file, indent=4)
+# print(f"Dictionary saved")
 
-n=1000
-best_stats, first_stats=improvements(simulated_par_data,n,1)
-best_seq=best_seq_names(full_seq_data)
-problems=get_problems(simulated_par_data)
-work_dict={}
-for problem in problems:
-    best=best_stats[problem][2024]["br alg"]
-    if (problem not in best_seq.keys()):
-        work_dict[problem]=("no seq",best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
-    elif (get_seq_runtime(full_seq_data[best_seq[problem]]["time"],n)>
-          get_runtime(simulated_par_data[best]["work"], simulated_par_data[best]["span"],n,1)):
-        work_dict[problem]=(best_seq[problem],full_seq_data[best_seq[problem]]["time"],best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
-print(work_dict)
+# n=1000
+# best_stats, first_stats=improvements(simulated_par_data,n,1)
+# best_seq=best_seq_names(full_seq_data)
+# problems=get_problems(simulated_par_data)
+# work_dict={}
+# for problem in problems:
+#     best=best_stats[problem][2024]["br alg"]
+#     if (problem not in best_seq.keys()):
+#         work_dict[problem]=("no seq",best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
+#     elif (get_seq_runtime(full_seq_data[best_seq[problem]]["time"],n)>
+#           get_runtime(simulated_par_data[best]["work"], simulated_par_data[best]["span"],n,1)):
+#         work_dict[problem]=(best_seq[problem],full_seq_data[best_seq[problem]]["time"],best,simulated_par_data[best]["span"],simulated_par_data[best]["work"])
+# print(work_dict)
 
 
 #print(first_seq_names(full_seq_data))
-print("checkpoint 1")
+#print("checkpoint 1")
 #funtions in span_work_more_probs
 # span_vs_work_multiple_probs(simulated_par_data,full_seq_data,
 #                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 # span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data,
 #                 problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
-print("checkpoint 2")
+#print("checkpoint 2")
 #function in numerical_overhead_vs_span
 #print(simulated_par_data)
 # numerical_overhead_vs_span(simulated_par_data,full_seq_data,
 #             problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-print("checkpoint 3")
+#print("checkpoint 3")
 #function in numerical_speedup_vs_proc
 #problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
-print("checkpoint 4")
+#print("checkpoint 4")
 #function in problem_overhead_vs_proc
 
 # problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],
 #                              allowed_models=set(model_dict.keys()))
-print("checkpoint 5")
-small_pset = ['DFA Minimization','Stable Marriage Problem','Exact Laplacian Solver']
+#print("checkpoint 5")
+#small_pset = ['DFA Minimization','Stable Marriage Problem','Exact Laplacian Solver']
 
 #print(problems_switch_to_work_inefficient(simulated_par_data,full_seq_data,small_pset,n=10**3,max_p=10**20))
-print("checkpoint 6")
+#print("checkpoint 6")
 #functions in aggregate_switch_to_work_ineff
 # problems_switch_to_work_inefficient_graph(simulated_par_data,full_seq_data,pset,
 #                             n_values = [10**3,10**6,10**9],max_p=10**10)
 # problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset,
 #                             n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
-print("checkpoint 7")
+#print("checkpoint 7")
 
 #print(work_overhead_histogram(simulated_par_data,full_seq_data,small_pset,p=10**3,n=10**3,
 #                            upper_bounds=[0,10,50,100,math.inf],
@@ -296,7 +296,7 @@ print("checkpoint 7")
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-print("checkpoint 8")
+#print("checkpoint 8")
 
 
 # helpers
@@ -405,7 +405,7 @@ name = "14.1-11-Johnson, Metaxas (1992)"
 # span_comparison_best_vs_work_efficient(aux_data)
 # new_parallelism_graph(aux_data)
 # yearly_impr_rate_histo_rt(full_data, g_buckets, n=10**3,p=512)
-decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
+#decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
 # pareto_frontier_graph(full_data,rel_speedup_seq_data,g_decades)
 # aggregated_relative_speedup(full_data,rel_speedup_seq_data,n=10**6)
 # work_span_improvement_heatmap(full_data)
@@ -419,8 +419,8 @@ decade_progress(full_data,rel_speedup_seq_data,g_decades,n=10**3,p=64)
 # problem_work_vs_span_pareto_frontier(full_data,rel_speedup_seq_data,14.1)
 
 # names:
-bs_mst_algo_name = "14.1-11-Johnson, Metaxas (1992)"
-we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
+# bs_mst_algo_name = "14.1-11-Johnson, Metaxas (1992)"
+# we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 # strong_scaling_comparison(full_data,bs_mst_algo_name,we_mst_algo_name)
 # weak_scaling_comparison_graph(full_data,bs_mst_algo_name,we_mst_algo_name)
 # varying_scaling_comparison_graph(full_data,bs_mst_algo_name,we_mst_algo_name)
@@ -489,6 +489,70 @@ we_mst_algo_name = "14.1-13-Deo and Yoo (1981)" #"14.1-10-Chin et al. (1982)"
 # - '2-dimensional' - 1 step, quite a few par points
 # - 'Point-in-Polygon' - 1 step, 1 par point
 # - 'directed nonneg SSSP' - 1 step, 1 par algo
+
+
+print("running functions to make the actual graphs for the paper")
+
+pset = get_problems(simulated_par_data)
+#{"max": 0.001, "label": "0-0.1%"},
+histo_buckets = [
+            {"max": 0.03, "label": "0.1-3%"},
+            {"max": 0.1, "label": "3-10%"},
+            {"max": 0.3, "label": "10-30%"},
+            {"max": 1, "label": "30-100%"},
+            {"max": 3, "label": "100-300%"},
+            {"max": 10, "label": "300-1000%"},
+            {"max": math.inf, "label": ">1000%"},]
+
+# print("figure 1.1: Algorithm Improvements over Time")
+# #TODO: is there "paper weights" to use instead?
+# #TODO: figure out source of error if either of these is uncommented and also the difference between them
+# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
+# #average_improvement_over_decade_graph(full_data,rel_speedup_seq_data,g_decades)
+
+# print("figure ??: Number of Parallel Processors Over Time")
+# available_processors(top_processor_data,pc_processor_data)
+# print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
+# speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
+
+print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
+#TODO: pick which one is needed and also what buckets
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_seq")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="best_seq")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_par")
+# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
+
+#TODO: if best parallel work is better than best sq time, not accounting for that rn
+#need to take best work as best sequential
+
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6],measure="rt")
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
+
+# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
+# span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
+# numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
+# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+# #TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
+# span_comparison_best_vs_work_efficient(full_problem_data)
+
+# print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
+# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+# print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
+# problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
+# print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
+# problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
+
+# print("figure 1.5: Work Overhead for the fastest algorithm")
+# work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,100,1000,10000,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
 
 print("finished main")

@@ -14,8 +14,9 @@ import json
 
 
 #VERSION = "_JAN23"
-VERSION = "_JAN26"
+#VERSION = "_JAN26"
 #VERSION = "_DEC15"
+VERSION = "_FEB18"
 
 
 top_processor_data = {
@@ -156,6 +157,16 @@ original_par_data = parse_json("par_algos_original"+VERSION)
 simulated_par_data = parse_json("par_algos_simulated"+VERSION)
 full_seq_data = parse_json("seq_data"+VERSION)
 full_problem_data = create_aux_data(simulated_par_data,full_seq_data)
+
+full_data = dict(simulated_par_data)
+#print(full_data['143Sorenson (2010)'])
+for name in full_seq_data:
+    full_data[name]=full_seq_data[name]
+    full_data[name]["span"]=full_seq_data[name]["time"]
+    full_data[name]["work"]=full_seq_data[name]["time"]
+    full_data[name]["model"]=""
+    full_data[name]["par"]=""
+
 # print(full_problem_data)
 
 # for prob in full_problem_data:

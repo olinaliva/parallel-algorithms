@@ -296,7 +296,8 @@ def work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_values
     ax[int(len(p_values)/2)].set_xlabel("Work Overhead")
     fig.suptitle("Work Overhead for the fastest algorithm")
 
-    plt.show()
+    plt.savefig(SAVE_LOC+'work_overhead_histo_different_ps.png')
+    #plt.show()
 
     pass
 
@@ -340,10 +341,20 @@ def work_overhead_histogram_graph_helper(ax,par_data,seq_data,problems,p,n_value
 
         # arrow showing the pecentage switched
 
-    upper_bounds_labels = ["$"+get_nice_n(upper_bounds[i])+"$"+"-"+"$"+get_nice_n(upper_bounds[i+1])+"$"+"%" 
-                           for i in range(len(upper_bounds)-2)]
-    upper_bounds_labels.append("$"+get_nice_n(upper_bounds[-2])+"$"+"%+")
-    upper_bounds_labels.insert(0,"0%")
+    # upper_bounds_labels = ["$"+get_nice_n(upper_bounds[i])+"$"+"-"+"$"+get_nice_n(upper_bounds[i+1])+"$"+"%" 
+    #                        for i in range(len(upper_bounds)-2)]
+    # upper_bounds_labels.append("$"+get_nice_n(upper_bounds[-2])+"$"+"%+")
+    # upper_bounds_labels.insert(0,"0%")
+
+    #this should move every second label down so that they are not overlapping
+    upper_bounds_labels = [
+    ("\n" if i % 2 == 0 else "") + "$" + get_nice_n(upper_bounds[i]) + "$" + "-" + "$" + get_nice_n(upper_bounds[i+1]) + "$" + "%" 
+    for i in range(len(upper_bounds) - 2)
+    ]
+    #fix for the last label: extend it if it should be extended
+    last_label = ("\n" if (len(upper_bounds) - 2) % 2 == 0 else "") + "$" + get_nice_n(upper_bounds[-2]) + "$" + "%+"
+    upper_bounds_labels.append(last_label)
+    upper_bounds_labels.insert(0, "0%")
     
     ax.legend(handles=handles)
     ax.set_ylabel("",rotation=90)
