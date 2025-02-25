@@ -507,7 +507,8 @@ histo_buckets = [
 # print("figure 1.1: Algorithm Improvements over Time")
 # #TODO: is there "paper weights" to use instead?
 # #TODO: figure out source of error if either of these is uncommented and also the difference between them
-# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
+#average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
+#average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
 # #average_improvement_over_decade_graph(full_data,rel_speedup_seq_data,g_decades)
 
 # print("figure ??: Number of Parallel Processors Over Time")
@@ -529,10 +530,10 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 #TODO: if best parallel work is better than best sq time, not accounting for that rn
 #need to take best work as best sequential
 
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt")
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
+# EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6],measure="rt")
+# EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+#                                 p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
 
 # print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
 # span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
@@ -554,5 +555,26 @@ EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
+NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+                            upper_bounds=[0,10,100,1000,10000,math.inf],
+                            max_p=10**9,allowed_models=set(model_dict.keys()))
+
+
+# probs=get_problems(full_data)
+# probs_seq=get_problems(full_seq_data)
+# probs_par=get_problems(simulated_par_data)
+# with open("problems.csv", mode="w", newline="") as file:
+#     writer = csv.writer(file)
+    
+#     # Writing header
+#     writer.writerow(["Problem", "In sequential", "In Parallel"])
+    
+#     # Writing data rows
+#     for item in sorted(probs):  # Sorting to maintain order
+#         writer.writerow([
+#             item,
+#             1 if item in probs_seq else 0,
+#             1 if item in probs_par else 0
+#         ])
 
 print("finished main")

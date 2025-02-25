@@ -832,7 +832,7 @@ def EVERYTHING_yearly_impr_rate_histo_helper(ax,full_data, raw_buckets, n, p, me
 
     #plot 1st bar
     ax.bar(0, non_zero_share,  color='tab:blue', align='center')
-    ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="no parallel algo", align='center')
+    ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="no par impr", align='center')
     ax.text(0, non_zero_share * 1.1, f"{non_zero_share:.1f}%", ha='center', va='bottom', fontsize=5)
     ax.text(0, (non_zero_share + zero_share) * 1.1, f"{zero_share:.1f}%", ha='center', va='bottom', fontsize=5)
 
@@ -855,7 +855,8 @@ def EVERYTHING_yearly_impr_rate_histo_helper(ax,full_data, raw_buckets, n, p, me
     # ax.plot([-0.4, 0.4], [cut_low, cut_low], color='black', lw=1.5, linestyle='--')  # Lower cut
     # ax.plot([-0.4, 0.4], [cut_high, cut_high], color='black', lw=1.5, linestyle='--')  # Upper cut
 
-    ax.legend()
+    if (n==10**9 and p==8):
+        ax.legend()
 
     #this makes buckets w/o the 1st one highlighting 0s
     # values = [buckets[i]["share"]*100 for i in range(len(buckets))]
@@ -1034,7 +1035,7 @@ def EVERYTHING_stacked_impr_rate_histo_helper(ax, full_data, par_data, seq_data,
     ax.bar(indices[0], seq_non_zero_share, color='tab:blue', label="Seq rates", width=width)
     ax.bar(indices[0] + width, par_non_zero_share, color='tab:cyan', label="Par rates", width=width)
     ax.bar(indices[0], seq_zero_share, bottom=seq_non_zero_share, color='tab:orange', label="No seq impr", width=width)
-    ax.bar(indices[0] + width, par_zero_share, bottom=par_non_zero_share, color='tab:pink', label="No par algo", width=width)
+    ax.bar(indices[0] + width, par_zero_share, bottom=par_non_zero_share, color='tab:pink', label="No par impr", width=width)
     ax.bar(indices[0], seq_no_algo_share, bottom=seq_zero_share, color='tab:red', label="No seq algo", width=width)
     
     #labels for first bucket

@@ -440,7 +440,20 @@ def simulate_models(values):
 
 
 
+def make_full_dataset(parallel_data_name, sequential_data):
+    jsonFilePath = r'./'+parallel_data_name+r'_raw.json'
+    jsonFile = open(jsonFilePath, 'r')
+    values = json.load(jsonFile)
+    new_values=copy.deepcopy(values)
 
+    
+
+
+    newJsonFilePath = './data/full_algos_(simulated)'+VERSION+'.json'
+    with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 
+        jsonString = json.dumps(new_values, indent=4)
+        jsonf.write(jsonString)
+    pass
 
 
 if __name__ == '__main__':

@@ -35,7 +35,7 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
 
     local_colors = ['#79d8f3','#a7f379','red','#f4e474']
 
-    perc_no_par = len(problems)/140
+    perc_no_par = len(problems)/140 #where is 140 coming from??
 
     j=0
     handles = []
@@ -294,9 +294,10 @@ def work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_values
         ax[i].set_title("$p = " + str(get_nice_n(p))+"$")
 
     ax[int(len(p_values)/2)].set_xlabel("Work Overhead")
+    ax[0].set_ylabel("Percentage of Algorithm Problems")
     fig.suptitle("Work Overhead for the fastest algorithm")
 
-    plt.savefig(SAVE_LOC+'work_overhead_histo_different_ps.png')
+    plt.savefig(SAVE_LOC+'work_overhead_histo_different_ps_HISTOGRAM.png')
     #plt.show()
 
     pass
@@ -326,6 +327,8 @@ def work_overhead_histogram_graph_helper(ax,par_data,seq_data,problems,p,n_value
                             max_p=10**9,allowed_models=set(model_dict.keys())):
     j=0
     handles = []
+
+    pos = -0.3 #to make three bars
     for n in n_values:
         # colors
         n_color = COLORS[j]
@@ -337,7 +340,13 @@ def work_overhead_histogram_graph_helper(ax,par_data,seq_data,problems,p,n_value
         oh_histo = work_overhead_histogram(par_data,seq_data,problems,p,n=n,
                             upper_bounds=upper_bounds,
                             max_p=max_p,allowed_models=allowed_models)
-        ax.plot(range(len(oh_histo)),oh_histo,color=n_color)
+        #hostogram in line graph form
+        #ax.plot(range(len(oh_histo)),oh_histo,color=n_color)
+
+        #histogram with 3 bars
+        bin_edges = np.arange(len(oh_histo))
+        ax.bar(bin_edges+pos, oh_histo, color=n_color, align='center', width=0.3)
+        pos+=0.3
 
         # arrow showing the pecentage switched
 
@@ -460,4 +469,69 @@ def work_inefficiency_switching_point(par_data,seq_data,problem,n,max_p=10**9,
             # return eff_p
         
     return first_parallel_p, first_ineff_p
+
+
+
+def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_values=[10**3,10**6,10**9],n_values=[10**3,10**6,10**9],
+                            upper_bounds=[0,10,50,100,math.inf],
+                            max_p=10**9,allowed_models=set(model_dict.keys())):
+    
+    plt.style.use('default')
+    fig, ax = plt.subplots(1,len(p_values),sharey=True,figsize=(6.5,2.5),dpi=200,layout='tight')
+
+    for i in range(len(n_values)):
+        n = n_values[i]
+        print("n = " + str(n))
+        ax[i] = NEW_work_overhead_histogram_graph_helper(ax[i],par_data,seq_data,problems,n,
+                                        p_values,upper_bounds,max_p,allowed_models)
+        
+        ax[i].set_title("$n = " + str(get_nice_n(n))+"$")
+
+    ax[int(len(n_values)/2)].set_xlabel("Work Overhead")
+    ax[0].set_ylabel("Percentage of Algorithm Problems")
+    fig.suptitle("Work Overhead for the fastest algorithm")
+
+    plt.savefig(SAVE_LOC+'NEW_work_overhead_histo_different_ps.png')
+    #plt.show()
+
+    pass
+
+def NEW_work_overhead_histogram_graph_helper(ax,par_data,seq_data,problems,n,p_values=[8,10**3,10**6],
+                            upper_bounds=[0,10,50,100,math.inf],
+                            max_p=10**9,allowed_models=set(model_dict.keys())):
+
+    x_positions = np.arange(len(p_values))
+
+    j=0
+    handles = []
+    bucket_colors=[]
+    for b in range(len(upper_bounds)-1):
+        b_color = COLORS[j]
+        bucket_colors.append(b_color)
+        # new_patch = mpatches.Patch(color=b_color, 
+        #                            label="$" + get_nice_n(upper_bounds[b]) + "$" + "-" + "$" + get_nice_n(upper_bounds[b+1]) + "$" + "%")
+        # handles.append(new_patch)
+        # j+=1
+    i=0
+    for p in p_values:
+
+        # getting the x and y values
+        oh_histo = work_overhead_histogram(par_data,seq_data,problems,p,n=n,
+                            upper_bounds=upper_bounds,
+                            max_p=max_p,allowed_models=allowed_models)
+        
+        #stacked bar
+        bottom = 0
+        for frac, color in zip(oh_histo, bucket_colors):
+            ax.bar(x_positions[i], frac * 100, color=color, bottom=bottom * 100, width=0.5)
+            bottom += frac  #bottom for stacking
+
+
+    ax.set_xticks(x_positions)
+    ax.set_xticklabels([f"p= {get_nice_n(i)}" for i in p_values])
+    i+=1
+
+    return ax
+
+    pass
 
