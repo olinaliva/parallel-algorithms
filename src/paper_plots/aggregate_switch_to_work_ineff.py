@@ -1,5 +1,6 @@
 # collection of aggregate graphs for speedup vs processors
 from header import *
+from matplotlib.ticker import PercentFormatter
 
 
 # what percentage of families have their best (in terms of speedup) algo be
@@ -391,7 +392,7 @@ def work_overhead_histogram(par_data,seq_data,problems,p,n=10**6,
     # for every problem, find its work overhead and increment the bucket's count
     overhead_bucket_counts = [0]*n_of_buckets
     for problem in problems:
-        print(problem)
+        #print(problem)
         max_speedup = best_algos_by_speedup(par_data,seq_data,problem,n=n,max_p=p+1,
                             allowed_models=allowed_models)
         # print(max_speedup)
@@ -428,7 +429,7 @@ def work_overhead_histogram(par_data,seq_data,problems,p,n=10**6,
             #     print(problem)
             overhead_bucket_counts[j] += 1
         
-    print(overhead_bucket_counts)
+    #print(overhead_bucket_counts)
 
     return [overhead_bucket_counts[i]/sum(overhead_bucket_counts) for i in range(len(overhead_bucket_counts))]
 
@@ -487,8 +488,11 @@ def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_va
         
         ax[i].set_title("$n = " + str(get_nice_n(n))+"$")
 
-    ax[int(len(n_values)/2)].set_xlabel("Work Overhead")
-    ax[0].set_ylabel("Percentage of Algorithm Problems")
+    
+
+    ax[i].yaxis.set_major_formatter(PercentFormatter(xmax=100))
+    ax[int(len(n_values)/2)].set_xlabel("Number of processors")
+    ax[0].set_ylabel("Percentage of\nAlgorithm Problems")
     fig.suptitle("Work Overhead for the fastest algorithm")
 
     plt.savefig(SAVE_LOC+'NEW_work_overhead_histo_different_ps.png')
@@ -496,42 +500,61 @@ def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_va
 
     pass
 
-def NEW_work_overhead_histogram_graph_helper(ax,par_data,seq_data,problems,n,p_values=[8,10**3,10**6],
-                            upper_bounds=[0,10,50,100,math.inf],
-                            max_p=10**9,allowed_models=set(model_dict.keys())):
+
+def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n, 
+                                             p_values=[8, 10**3, 10**6],
+                                             upper_bounds=[0, 10, 50, 100, math.inf], 
+                                             max_p=10**9, 
+                                             allowed_models=set(model_dict.keys())):
 
     x_positions = np.arange(len(p_values))
 
-    j=0
-    handles = []
-    bucket_colors=[]
-    for b in range(len(upper_bounds)-1):
-        b_color = COLORS[j]
-        bucket_colors.append(b_color)
-        # new_patch = mpatches.Patch(color=b_color, 
-        #                            label="$" + get_nice_n(upper_bounds[b]) + "$" + "-" + "$" + get_nice_n(upper_bounds[b+1]) + "$" + "%")
-        # handles.append(new_patch)
-        # j+=1
-    i=0
-    for p in p_values:
+    b_color=COLORS[0]
+    label=f"${0}$%"
+    bucket_colors = [b_color]
+    legend_patches = [mpatches.Patch(color=b_color, label=label)]  # List to store legend entries
 
-        # getting the x and y values
-        oh_histo = work_overhead_histogram(par_data,seq_data,problems,p,n=n,
-                            upper_bounds=upper_bounds,
-                            max_p=max_p,allowed_models=allowed_models)
-        
-        #stacked bar
+
+    for j in range(len(upper_bounds) - 1):
+        b_color = COLORS[j+1]  # Wrap around if not enough colors
+        bucket_colors.append(b_color)
+
+        # Handle "infinity" case for legend
+        lower_bound = get_nice_n(upper_bounds[j])
+        upper_bound = f" - ${get_nice_n(upper_bounds[j + 1])}$%" if upper_bounds[j + 1] != math.inf else "+"
+        label = f"${lower_bound}$%{upper_bound}"
+
+        legend_patches.append(mpatches.Patch(color=b_color, label=label))
+
+    for i, p in enumerate(p_values):  # Enumerate over p_values
+
+        # Get histogram values
+        oh_histo = work_overhead_histogram(par_data, seq_data, problems, p, n=n,
+                                           upper_bounds=upper_bounds,
+                                           max_p=max_p, allowed_models=allowed_models)
+
+        # # Debug: Check that histogram values sum to 1
+        # total_fraction = sum(oh_histo)
+        # print(f"p={p}: oh_histo={oh_histo}, sum={total_fraction}")  # Debug output
+
+        # if not np.isclose(total_fraction, 1.0):
+        #     print(f"Warning: Histogram fractions for p={p} do not sum to 1!")
+
+        # Stacked bar
         bottom = 0
         for frac, color in zip(oh_histo, bucket_colors):
-            ax.bar(x_positions[i], frac * 100, color=color, bottom=bottom * 100, width=0.5)
-            bottom += frac  #bottom for stacking
+            height = frac * 100  # Convert fraction to percentage
+            ax.bar(x_positions[i], height, color=color, bottom=bottom, width=0.5)
+            bottom += height  # Properly accumulate bottom for stacking
 
-
+    # Set x-ticks
     ax.set_xticks(x_positions)
-    ax.set_xticklabels([f"p= {get_nice_n(i)}" for i in p_values])
-    i+=1
+    ax.set_xticklabels([f"$p= {get_nice_n(i)}$" for i in p_values])
+    ax.tick_params(axis='x', labelsize=6)
+
+    # Add legend
+    if (n==10**9):
+        ax.legend(handles=legend_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+
 
     return ax
-
-    pass
-

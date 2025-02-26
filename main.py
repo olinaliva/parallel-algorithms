@@ -551,13 +551,15 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 # problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
 
 # print("figure 1.5: Work Overhead for the fastest algorithm")
+#THIS ONE IS THE OLD VERSION
 # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
-                            upper_bounds=[0,10,100,1000,10000,math.inf],
-                            max_p=10**9,allowed_models=set(model_dict.keys()))
+#USE THIS ONE:
+# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,100,1000,10000,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
 
 # probs=get_problems(full_data)
