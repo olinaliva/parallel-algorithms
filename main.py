@@ -490,6 +490,11 @@ name = "14.1-11-Johnson, Metaxas (1992)"
 # - 'Point-in-Polygon' - 1 step, 1 par point
 # - 'directed nonneg SSSP' - 1 step, 1 par algo
 
+#check data correctness
+with open("aux.json", "w") as json_file:
+    json.dump(full_problem_data, json_file, indent=4)
+
+
 
 print("running functions to make the actual graphs for the paper")
 
@@ -504,17 +509,16 @@ histo_buckets = [
             {"max": 10, "label": "300-1000%"},
             {"max": math.inf, "label": ">1000%"},]
 
-# print("figure 1.1: Algorithm Improvements over Time")
-# #TODO: is there "paper weights" to use instead?
-# #TODO: figure out source of error if either of these is uncommented and also the difference between them
-#average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
-#average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
-# #average_improvement_over_decade_graph(full_data,rel_speedup_seq_data,g_decades)
+print("figure 1.1: Algorithm Improvements over Time")
+#TODO: address the "thesis_weight" and whether its actually doing anything
+average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
+average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
 
-# print("figure ??: Number of Parallel Processors Over Time")
-# available_processors(top_processor_data,pc_processor_data)
-# print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
-# speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
+
+print("figure ??: Number of Parallel Processors Over Time")
+available_processors(top_processor_data,pc_processor_data)
+print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
+speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
 
 print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
 #TODO: pick which one is needed and also what buckets
@@ -530,36 +534,40 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 #TODO: if best parallel work is better than best sq time, not accounting for that rn
 #need to take best work as best sequential
 
-# EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6],measure="rt")
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6],measure="rt")
 # EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
 #                                 p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9], 
+                                       p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="seq_plus_all")
 
-# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
-# span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
-# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
-# numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
-# #TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
-# span_comparison_best_vs_work_efficient(full_problem_data)
 
-# print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
-# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
-# print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
-# problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
-# print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
-# problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
 
-# print("figure 1.5: Work Overhead for the fastest algorithm")
+print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
+span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
+numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
+print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+#TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
+span_comparison_best_vs_work_efficient(full_problem_data)
+
+print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
+problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
+problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
+print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
+problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
+
+print("figure 1.5: Work Overhead for the fastest algorithm")
 #THIS ONE IS THE OLD VERSION
 # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
 #USE THIS ONE:
-# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
-#                             upper_bounds=[0,10,100,1000,10000,math.inf],
-#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+                            upper_bounds=[0,10,100,1000,10000,math.inf],
+                            max_p=10**9,allowed_models=set(model_dict.keys()))
 
 
 # probs=get_problems(full_data)
@@ -578,5 +586,9 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 #             1 if item in probs_seq else 0,
 #             1 if item in probs_par else 0
 #         ])
+
+
+
+three_bar_chart(full_data,simulated_par_data)
 
 print("finished main")

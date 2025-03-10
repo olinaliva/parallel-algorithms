@@ -21,7 +21,8 @@ def span_vs_work_multiple_probs_pareto_frontier(par_data,seq_data,problems,allow
                              #'56718Chaudhuri (1992)', 
                             #   '56719Li, Pan, Shen (2003)',
                                 #'56720Schudy (2008)'
-                                '13Schudy (2008)']
+                                #'13Schudy (2008)'
+                                '56Schudy (2008)']
         elif prob == "LCS":
             pareto_points = [#'4256Aggarwal & Park (1988)', 
                             '4Aggarwal & Park (1988)', 

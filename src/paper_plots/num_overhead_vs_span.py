@@ -24,7 +24,8 @@ def numerical_overhead_vs_span(par_data,seq_data,problems,n=10**6,allowed_models
                              #'56718Chaudhuri (1992)', 
                             #   '56719Li, Pan, Shen (2003)',
                             #'56720Schudy (2008)'
-                                '13Schudy (2008)']
+                                #'13Schudy (2008)'
+                                '56Schudy (2008)']
         elif problem == "LCS":
             pareto_points = [#'4256Aggarwal & Park (1988)', 
                             '4Aggarwal & Park (1988)', 

@@ -832,7 +832,7 @@ def EVERYTHING_yearly_impr_rate_histo_helper(ax,full_data, raw_buckets, n, p, me
 
     #plot 1st bar
     ax.bar(0, non_zero_share,  color='tab:blue', align='center')
-    ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="no par impr", align='center')
+    ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="0% par impr", align='center')
     ax.text(0, non_zero_share * 1.1, f"{non_zero_share:.1f}%", ha='center', va='bottom', fontsize=5)
     ax.text(0, (non_zero_share + zero_share) * 1.1, f"{zero_share:.1f}%", ha='center', va='bottom', fontsize=5)
 
@@ -875,6 +875,8 @@ def EVERYTHING_yearly_impr_rate_histo_grid(full_data, raw_buckets,n_values=[10**
             n = n_values[j]
             if (variation=="default"):
                 EVERYTHING_yearly_impr_rate_histo_helper(ax[i,j],full_data, raw_buckets, n, p)
+            elif(variation=="seq_plus_all"):
+                EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax[i,j], full_data, par_data, seq_data, raw_buckets, n, p)
             else:
                 EVERYTHING_stacked_impr_rate_histo_helper(ax[i,j], full_data, par_data, seq_data, raw_buckets, n, p)
             
@@ -1062,3 +1064,219 @@ def EVERYTHING_stacked_impr_rate_histo_helper(ax, full_data, par_data, seq_data,
     #this makes buckets w/o the 1st one highlighting 0s
     # values = [buckets[i]["share"]*100 for i in range(len(buckets))]
     # ax.bar(list(range(len(buckets))), values, align='center')
+
+
+
+def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_data, raw_buckets, n, p, measure="rt"):
+    assert measure == "sp" or measure == "rt"
+    def get_measure_value(measure,work,span,n,p):
+        '''
+        returns running time (if measure is "rt") or span
+        :measure: either "sp" for span or "rt" for runtime
+        TODO
+        '''
+        if measure == "sp":
+            return get_comp_fn(span)(n)
+        elif measure == "rt":
+            return get_runtime(work,span,n,p)
+        
+    #best=smallest run time for the problem size and processor number
+    all_rates = []
+    seq_rates = []
+    problems=get_problems(full_data) #takes all problems 
+    # par_problems=get_problems(par_data)
+    # seq_problems=get_problems(seq_data)
+    # print("all problems: ", len(problems))
+    # print("paralell problems: ", len(par_problems))
+    # print("sequential problems: ", len(seq_problems))
+    best_stats, first_stats=improvements(full_data,n,p)
+    # best_seq=best_seq_names(seq_data)
+    for problem in problems:
+        #first algorithm
+        first_algo= first_stats[problem]
+        #either sequential or force it to be sequential by p=1
+        first_rt = get_measure_value(measure, full_data[first_algo]["work"], full_data[first_algo]["span"],n,1)
+        first_year=full_data[first_algo]["year"]
+
+        #best algo by work (best seq or best par run on 1 processor)
+        best_seq_algo=best_stats[problem][2024]["bw alg"]
+        best_seq_rt=get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
+        seq_impr_ratio = first_rt/best_seq_rt
+        seq_yearly_impr_rate = seq_impr_ratio ** (1/(2025-first_year))-1
+        seq_rates.append(seq_yearly_impr_rate)
+
+        #best runtime overall
+        best_algo=best_stats[problem][2024]["br alg"]
+        best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
+        all_impr_ratio = first_rt/ best_rt
+        all_yearly_impr_rate = all_impr_ratio ** (1/(2025-first_year))-1
+
+        
+        # if(p==8 and all_yearly_impr_rate>10):
+        #     print("problem: ",problem, "; best_seq_rt=", best_seq_rt, "; best_rt=", best_rt)
+
+        all_rates.append(all_yearly_impr_rate)
+            
+    print("finished finding improvement rates for n=", n," and p=",p)
+
+    # find the distribution values to be plotted
+    buckets = copy.deepcopy(raw_buckets)
+    assert len(buckets) >= 2
+    seq_rates.sort()
+    all_rates.sort()
+    # print(all_rates) # (11x0.0) 14, 9, 6, 2, 3, 3, 2, 1, 1, 1, 4, 0
+
+    for rates, key in [(all_rates, "all_count"), (seq_rates, "seq_count")]:
+        buckets[0]["index"] = bisect.bisect_left(rates, buckets[0]["max"])
+        buckets[0][key] = buckets[0]["index"]
+        
+        for i in range(1, len(buckets) - 1):
+            max_val = buckets[i]["max"]
+            buckets[i]["index"] = bisect.bisect_left(rates, max_val)
+            buckets[i][key] = buckets[i]["index"] - buckets[i - 1]["index"]
+        
+        buckets[-1][key] = len(rates) - buckets[-2]["index"]
+
+    # Compute shares
+    for i in range(len(buckets)):
+        buckets[i]["all_share"] = buckets[i]["all_count"] / len(all_rates)
+        buckets[i]["seq_share"] = buckets[i]["seq_count"] / len(seq_rates)
+
+    print("finished finding the distribution")
+
+    all_zero_count = all_rates.count(0)  #how many 0s
+    seq_zero_count = seq_rates.count(0)
+    # seq_no_algo_count = seq_rates.count(0.017)
+    all_first_bucket_count = buckets[0]["all_count"] #how many in 1st bucket
+    seq_first_bucket_count = buckets[0]["seq_count"]
+    all_proportion_of_zero = all_zero_count / all_first_bucket_count #proportion
+    seq_proportion_of_zero = seq_zero_count / seq_first_bucket_count
+    # seq_proportion_of_no_algo = seq_no_algo_count / seq_first_bucket_count
+
+    all_zero_share = all_proportion_of_zero * buckets[0]["all_share"]*100  #percentage of 0 values
+    seq_zero_share = seq_proportion_of_zero * buckets[0]["seq_share"]*100
+    # seq_no_algo_share = seq_proportion_of_no_algo * buckets[0]["seq_share"]*100
+    all_non_zero_share = 100*buckets[0]["all_share"] - all_zero_share  #remaining portion of the bucket
+    #seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share-seq_no_algo_share
+    seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share
+    # print("seq 0: ",seq_zero_share)
+    # # print("seq no algo: ", seq_no_algo_share)
+    # print("seq_non_zero_share: ",seq_non_zero_share)
+    # print("seq bucket 1: ", 100*buckets[0]["seq_share"])
+    # print("seq_zero_count: ",seq_zero_count)
+    # # print("seq_no_algo_count: ",seq_no_algo_count)
+    # print("seq_first_bucket_count: ", buckets[0]["seq_count"])
+
+    # drawing the distribution histogram
+
+    indices = np.arange(len(buckets))
+    width = 0.4  # Bar width
+
+    #plot 1st bar
+    ax.bar(indices[0], seq_non_zero_share, color='tab:blue', label="Seq rates", width=width)
+    ax.bar(indices[0] + width, all_non_zero_share, color='tab:cyan', label="All rates", width=width)
+    ax.bar(indices[0], seq_zero_share, bottom=seq_non_zero_share, color='tab:orange', label="0% seq impr", width=width)
+    ax.bar(indices[0] + width, all_zero_share, bottom=all_non_zero_share, color='tab:pink', label="0% impr", width=width)
+    # ax.bar(indices[0], seq_no_algo_share, bottom=seq_zero_share, color='tab:red', label="No seq algo", width=width)
+    
+    #labels for first bucket
+    # ax.text(indices[0], seq_non_zero_share * 1.05, f"{seq_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # ax.text(indices[0], (seq_non_zero_share + seq_zero_share) * 1.05, f"{seq_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+
+    # ax.text(indices[0] + width, par_non_zero_share * 1.05, f"{par_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # ax.text(indices[0] + width, (par_non_zero_share + par_zero_share) * 1.05, f"{par_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+   
+    #other buckets
+    for i in range(1, len(buckets)):
+        par_values = buckets[i]["all_share"] * 100
+        seq_values = buckets[i]["seq_share"] * 100
+
+        ax.bar(indices[i], seq_values, color='tab:blue', width=width)
+        #ax.text(indices[i], seq_values * 1.05, f"{seq_values:.1f}%", ha='center', va='bottom', fontsize=6)
+
+        ax.bar(indices[i] + width, par_values, color='tab:cyan', width=width)
+        #ax.text(indices[i] + width, par_values * 1.05, f"{par_values:.1f}%", ha='center', va='bottom', fontsize=6)
+
+    if (n==10**9 and p==8):
+        ax.legend()
+
+    #this makes buckets w/o the 1st one highlighting 0s
+    # values = [buckets[i]["share"]*100 for i in range(len(buckets))]
+    # ax.bar(list(range(len(buckets))), values, align='center')
+
+
+def three_bar_chart(all_data,par_data,n=1000000,p=1000):
+
+    all_problems=get_problems(all_data)
+    par_problems=get_problems(par_data)
+    has_parallel = len(par_problems)/len(all_problems)
+    best_stats, first_stats=improvements(all_data,n,p)
+
+    parallel_faster_count=0
+    prob_speedups=[]
+    for prob in par_problems:
+        best_algo = best_stats[prob][2024]["br alg"]
+        best_algo_rt=get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"],n,p)
+        # print(best_algo)
+        # print(all_data[best_algo])
+        if (all_data[best_algo]["parallel"]=="1"):
+            parallel_faster_count+=1
+        best_work = best_stats[prob][2024]["bw alg"]
+        best_work_rt=get_runtime(all_data[best_work]["work"], all_data[best_work]["span"],n,1)
+        speedup= best_work_rt/best_algo_rt
+        prob_speedups.append(speedup)
+    
+    # prob_speedups.sort()
+    parallel_faster=parallel_faster_count/len(par_problems)
+
+    # Define speedup bins
+    speedup_bins = ["1-10x", "10-100x", "100-1000x", "1000x+"]
+    speedup_values = [0, 0, 0, 0]
+
+    # Categorize speedups
+    for s in prob_speedups:
+        if 1 <= s < 10:
+            speedup_values[0] += 1
+        elif 10 <= s < 100:
+            speedup_values[1] += 1
+        elif 100 <= s < 1000:
+            speedup_values[2] += 1
+        else:
+            speedup_values[3] += 1
+
+    # Convert counts to proportions
+    speedup_total = sum(speedup_values)
+    speedup_values = [v / speedup_total for v in speedup_values]
+
+    # Data for the first two bars
+    bar1 = [has_parallel, 1 - has_parallel]
+    bar2 = [parallel_faster, 1 - parallel_faster]
+
+    # Set up bar positions
+    x = np.array([1, 2, 3])
+    width = 0.5
+
+    fig, ax = plt.subplots()
+
+    # First bar (Proportion with parallel algorithms)
+    ax.bar(x[0], bar1[0], width, label="Has Parallel", color='blue')
+    ax.bar(x[0], bar1[1], width, bottom=bar1[0], label="No Parallel", color='gray')
+
+    # Second bar (Among parallel problems, is parallel faster?)
+    ax.bar(x[1], bar2[0], width, label="Parallel Faster", color='green')
+    ax.bar(x[1], bar2[1], width, bottom=bar2[0], label="Parallel Not Faster", color='red')
+
+    # Third bar (Speedup distribution of faster parallel problems)
+    bottom = 0
+    for i in range(len(speedup_bins)):
+        ax.bar(x[2], speedup_values[i], width, bottom=bottom, label=speedup_bins[i] if x[2] == 3 else "", alpha=0.8)
+        bottom += speedup_values[i]
+
+    # Labels and legend
+    ax.set_xticks(x)
+    ax.set_xticklabels(["Parallel Existence", "Parallel Faster", "Speedup"])
+    ax.set_ylabel("Proportion")
+    ax.set_title("Analysis of Parallel Algorithms and Speedup")
+    ax.legend()
+
+    plt.show()

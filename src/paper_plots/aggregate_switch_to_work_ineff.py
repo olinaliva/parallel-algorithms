@@ -36,7 +36,9 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
 
     local_colors = ['#79d8f3','#a7f379','red','#f4e474']
 
-    perc_no_par = len(problems)/140 #where is 140 coming from??
+    problem_nr=len(get_problems(full_data))
+    print("PROBLEM NR",problem_nr)
+    perc_no_par = len(problems)/problem_nr #where is 140 coming from?? changed it
 
     j=0
     handles = []

@@ -11,7 +11,8 @@ import copy
 
 #put these here to not deal w/ the commented out header
 #VERSION="_JAN26"
-VERSION="_FEB18"
+#VERSION="_FEB18"
+VERSION="_MAR9"
 import warnings
 
 
@@ -40,6 +41,7 @@ SEQUENTIAL_ALGO_FIELDS={
         "Old Family #": "family",
         "Looked at?": "looked at", 
         "Subproblem": "problem",
+        #"Subproblem (currently only for Parallel Algo)": "problem",
         "Variation": "vars", 
         "Algo ID": "id", 
         "Algorithm Name": "auth", 
@@ -55,15 +57,15 @@ SEQUENTIAL_ALGO_FIELDS={
     }
 
 PARALLEL_DISCARABLE_FIELD_VALUES = {   
-        "problem": "",
+        "problem": ("","#N/A"),
         "auth": "", 
         "year": "", 
-        "span": "", 
-        "work": "",
-        "model": "", 
+        "span": ("","xxxx","xxx","yy"," "), 
+        "work": ("","xxxx","xxx","yy"," "),
+        "model": (""," "), 
         "approximate": "1", 
         "heuristic": "1", 
-        "parallel": "0", 
+        "parallel": ("0",""," "), 
         "par": "", 
         "quantum": "1", 
         "gpu": "1",
@@ -107,10 +109,15 @@ def create_seq_data(name1,name2):
     #     jsonString = json.dumps(values, indent=4)
     #     jsonf.write(jsonString)
 
+    print(values[0].keys())
+    print(values[-1].keys())
+
     print(len(values))
     wanted_fields_only_values = filter_unwanted_fields_json(values, 
                         wanted_fields=SEQUENTIAL_ALGO_FIELDS)
     print(len(wanted_fields_only_values))
+    print(wanted_fields_only_values[0].keys())
+    print(wanted_fields_only_values[-1].keys())
 
     discarded_bad_algos_values = filter_unwanted_algos(wanted_fields_only_values, 
                         unwanted_values=SEQUENTIAL_DISCARABLE_FIELD_VALUES)
@@ -240,31 +247,36 @@ def filter_unwanted_algos(values, unwanted_values):
             #its taking "values" as just the name of the csv :(
             print("unwanted values ", unwanted_values)
             print("field", field)
-            if element[field] == unwanted_values[field]:
+
+            if element[field] in unwanted_values[field]:
                 new_values.pop(i)
                 removed_stats[field] += 1
-            #deal w/ xxx xxxx and yy (and also an error where they are "")
-            elif (element["span"] == "xxxx" or element["span"] == "xxx" or element["span"] == "yy" or element["span"] == "" or element["span"] == " "):
-                new_values.pop(i)
-                removed_stats["span"] += 1
-            elif (element["work"] == "xxxx" or element["work"] == "xxx" or element["work"] == "yy"):
-                new_values.pop(i)
-                removed_stats["work"] += 1
-            #checking if these will fix an error im getting :(
-            elif (element["model"] == "" or element["model"] == " "):
-                new_values.pop(i)
-                removed_stats["model"] += 1
-            elif (element["par"] == "" or element["par"] == " "):
-                new_values.pop(i)
-                removed_stats["par"] += 1
-            #removing double encoded models for now
-            elif (";" in element["model"]): 
-                new_values.pop(i)
-                removed_stats["model"] += 1
-            elif (element["problem"]=="#N/A"):
-                new_values.pop(i)
-                removed_stats["problem"] += 1
-            break
+
+            # if element[field] == unwanted_values[field]:
+            #     new_values.pop(i)
+            #     removed_stats[field] += 1
+            # #deal w/ xxx xxxx and yy (and also an error where they are "")
+            # elif (element["span"] == "xxxx" or element["span"] == "xxx" or element["span"] == "yy" or element["span"] == "" or element["span"] == " "):
+            #     new_values.pop(i)
+            #     removed_stats["span"] += 1
+            # elif (element["work"] == "xxxx" or element["work"] == "xxx" or element["work"] == "yy"):
+            #     new_values.pop(i)
+            #     removed_stats["work"] += 1
+            # #checking if these will fix an error im getting :(
+            # elif (element["model"] == "" or element["model"] == " "):
+            #     new_values.pop(i)
+            #     removed_stats["model"] += 1
+            # elif (element["par"] == "" or element["par"] == " "):
+            #     new_values.pop(i)
+            #     removed_stats["par"] += 1
+            # #removing double encoded models for now
+            # elif (";" in element["model"]): 
+            #     new_values.pop(i)
+            #     removed_stats["model"] += 1
+            # elif (element["problem"]=="#N/A"):
+            #     new_values.pop(i)
+            #     removed_stats["problem"] += 1
+                break
     
     return new_values
 
@@ -463,8 +475,9 @@ if __name__ == '__main__':
 
     #wut?^^^^
 
-    create_par_data("Parallel_Algos_FEB18")
+    # create_par_data("Parallel_Algos_MAR9")
+    # print("DONE WITH PARALLEL")
     #technically should probably use this one but im just copying the old ones and changing the version name
-    #create_seq_data(name1,name2)
+    create_seq_data("Sheet1_MAR9","Sheet1_New_Entries_MAR9")
 
     pass

@@ -526,6 +526,9 @@ def comp_fn_40_1000(n):
     return n**4 * max(math.log(max(math.log(n,2),1),2),1)
 def comp_fn_41_0000(n):
     return n**4 * max(math.log(n,2),1)
+#hopefully this one is correct
+def comp_fn_41_1000(n):
+    return n**4 * max(math.log(n,2),1) * max(math.log(max(math.log(n,2),1),2),1)
 def comp_fn_43_0000(n):
     return n**4 * max(math.log(n,2),1)**3
 def comp_fn_44_8000(n):
@@ -534,6 +537,9 @@ def comp_fn_49_0000(n):
     return n**5 / max(math.log(n,2),1)
 def comp_fn_51_0000(n):
     return n**5 * max(math.log(n,2),1)
+#added, hopefully correct
+def comp_fn_52_0000(n):
+    return n**5 * max(math.log(n,2),1)**2
 def comp_fn_55_4000(n):
     return n**6 / max(math.log(n,2),1)**6
 def comp_fn_55_5000(n):
@@ -564,6 +570,9 @@ def comp_fn_92_0000(n):
     return n**9 * max(math.log(n,2),1)**2
 
 
+#this is poly(n), coding as n^16 i guess?
+def comp_fn_400_0000(n):
+    return n**16
 def comp_fn_937_9000(n):
     return Huge(2,math.sqrt(n)*math.log(3,2)/3) / (math.sqrt(n)*math.log(n,2))
 def comp_fn_938_0000(n):
