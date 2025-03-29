@@ -119,11 +119,11 @@ def get_families_and_problems(data):
     # print(fams)
     return fams
 
-def get_runtime(work,span,n,p,lower=False):
+def get_runtime(work,span,n,p,lower=False, parallel=True):
     if lower:
         warnings.warn("Warning - using lower bound for runtime!")
         return get_lower_runtime(work,span,n,p)
-
+    if parallel==False: return get_seq_runtime(work,n)
     assert p >= 1
     work_fn = get_comp_fn(work)
     span_fn = get_comp_fn(span)

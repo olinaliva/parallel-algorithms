@@ -509,86 +509,87 @@ histo_buckets = [
             {"max": 10, "label": "300-1000%"},
             {"max": math.inf, "label": ">1000%"},]
 
-print("figure 1.1: Algorithm Improvements over Time")
-#TODO: address the "thesis_weight" and whether its actually doing anything
-average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
-average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
+# print("figure 1.1: Algorithm Improvements over Time")
+# #TODO: address the "thesis_weight" and whether its actually doing anything
+# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
+# average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
 
 
-print("figure ??: Number of Parallel Processors Over Time")
-available_processors(top_processor_data,pc_processor_data)
-print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
-speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
+# print("figure ??: Number of Parallel Processors Over Time")
+# available_processors(top_processor_data,pc_processor_data)
+# print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
+# speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
 
-print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
-#TODO: pick which one is needed and also what buckets
-# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_seq")
-# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6], measure="rt",start_from="best_seq")
-# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_par")
-# NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
+# print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
+# #TODO: pick which one is needed and also what buckets
+# # NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+# #                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_seq")
+# # NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+# #                                 p_values=[8,10**3,10**6], measure="rt",start_from="best_seq")
+# # NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+# #                                 p_values=[8,10**3,10**6], measure="rt",start_from="first_par")
+# # NEW_yearly_impr_rate_histo_grid(simulated_par_data, full_seq_data, histo_buckets,n_values=[10**3,10**6,10**9],
+# #                                 p_values=[8,10**3,10**6], measure="rt",start_from="stacked")
 
-#TODO: if best parallel work is better than best sq time, not accounting for that rn
-#need to take best work as best sequential
+# #TODO: if best parallel work is better than best sq time, not accounting for that rn
+# #need to take best work as best sequential
 
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt")
 # EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-#                                 p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9], 
-                                       p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="seq_plus_all")
+#                                 p_values=[8,10**3,10**6],measure="rt")
+# # EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+# #                                 p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="stacked")
+# EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9], 
+#                                        p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="seq_plus_all")
 
 
 
-print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
-span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
-print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
-numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
-#TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
-span_comparison_best_vs_work_efficient(full_problem_data)
+# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
+# span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+# print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
+# numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
+# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+# #TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
+# span_comparison_best_vs_work_efficient(full_problem_data)
 
-print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
-problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
-print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
-problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
-print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
-problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
+# print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
+# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
+# print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
+# problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
+# print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
+# problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
 
-print("figure 1.5: Work Overhead for the fastest algorithm")
-#THIS ONE IS THE OLD VERSION
-# work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+# print("figure 1.5: Work Overhead for the fastest algorithm")
+# #THIS ONE IS THE OLD VERSION
+# # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+# #                             upper_bounds=[0,10,100,1000,10000,math.inf],
+# #                             max_p=10**9,allowed_models=set(model_dict.keys()))
+
+# #USE THIS ONE:
+# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-#USE THIS ONE:
-NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
-                            upper_bounds=[0,10,100,1000,10000,math.inf],
-                            max_p=10**9,allowed_models=set(model_dict.keys()))
 
-
-# probs=get_problems(full_data)
-# probs_seq=get_problems(full_seq_data)
-# probs_par=get_problems(simulated_par_data)
-# with open("problems.csv", mode="w", newline="") as file:
-#     writer = csv.writer(file)
+# # probs=get_problems(full_data)
+# # probs_seq=get_problems(full_seq_data)
+# # probs_par=get_problems(simulated_par_data)
+# # with open("problems.csv", mode="w", newline="") as file:
+# #     writer = csv.writer(file)
     
-#     # Writing header
-#     writer.writerow(["Problem", "In sequential", "In Parallel"])
+# #     # Writing header
+# #     writer.writerow(["Problem", "In sequential", "In Parallel"])
     
-#     # Writing data rows
-#     for item in sorted(probs):  # Sorting to maintain order
-#         writer.writerow([
-#             item,
-#             1 if item in probs_seq else 0,
-#             1 if item in probs_par else 0
-#         ])
+# #     # Writing data rows
+# #     for item in sorted(probs):  # Sorting to maintain order
+# #         writer.writerow([
+# #             item,
+# #             1 if item in probs_seq else 0,
+# #             1 if item in probs_par else 0
+# #         ])
 
 
 
-three_bar_chart(full_data,simulated_par_data)
+# three_bar_chart(full_data,simulated_par_data)
+sanky_style_chart(full_data,simulated_par_data)
 
 print("finished main")

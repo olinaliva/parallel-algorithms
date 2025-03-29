@@ -1,5 +1,6 @@
 from header import *
 from src.thesis_plots.relative_speedup import *
+import matplotlib.patches as patches
 
 # dataset: main model simulation
 
@@ -267,19 +268,36 @@ def improvements(data, n=10**3,p=8,lower=False):
             first_stats[prob] = name
 
         # update the best span algorithm if necessary
+        #this is using best asymptotic span :(
+        # if best_stats[prob][year]["bs alg"] is None:
+        #     best_span = data[best_stats[prob][year-1]["bs alg"]]["span"]
+        # else:
+        #     best_span = data[best_stats[prob][year]["bs alg"]]["span"]
+        # if data[name]["span"] < best_span:
+        #     best_stats[prob][year]["bs alg"] = name
+        #this takes best span according to n
         if best_stats[prob][year]["bs alg"] is None:
-            best_span = data[best_stats[prob][year-1]["bs alg"]]["span"]
+            best_span = get_seq_runtime(data[best_stats[prob][year-1]["bs alg"]]["span"],n)
         else:
-            best_span = data[best_stats[prob][year]["bs alg"]]["span"]
-        if data[name]["span"] < best_span:
+            best_span = get_seq_runtime(data[best_stats[prob][year]["bs alg"]]["span"],n)
+        if get_seq_runtime(data[name]["span"],n) < best_span:
             best_stats[prob][year]["bs alg"] = name
 
+
         # update the best work algorithm if necessary
+        # takes best work asymptotically and uh, not what we want!!! (i think)
+        # if best_stats[prob][year]["bw alg"] is None:
+        #     best_work = data[best_stats[prob][year-1]["bw alg"]]["work"]
+        # else:
+        #     best_work = data[best_stats[prob][year]["bw alg"]]["work"]
+        # if data[name]["work"] < best_work:
+        #     best_stats[prob][year]["bw alg"] = name
+        #now does it with the numbers we plug in
         if best_stats[prob][year]["bw alg"] is None:
-            best_work = data[best_stats[prob][year-1]["bw alg"]]["work"]
+            best_work = get_seq_runtime(data[best_stats[prob][year-1]["bw alg"]]["work"],n)
         else:
-            best_work = data[best_stats[prob][year]["bw alg"]]["work"]
-        if data[name]["work"] < best_work:
+            best_work = get_seq_runtime(data[best_stats[prob][year]["bw alg"]]["work"],n)
+        if get_seq_runtime(data[name]["work"],n) < best_work:
             best_stats[prob][year]["bw alg"] = name
             
         # update the best running time algorithm if necessary
@@ -287,16 +305,22 @@ def improvements(data, n=10**3,p=8,lower=False):
             old_name = best_stats[prob][year-1]["br alg"]
             wk = data[old_name]["work"]
             sp = data[old_name]["span"]
-            best_runtime = get_runtime(wk,sp,n,p,lower=lower)
+            if data[old_name]["parallel"]==1: parallel=True
+            else: parallel=False
+            best_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
         else:
             old_name = best_stats[prob][year]["br alg"]
             wk = data[old_name]["work"]
             sp = data[old_name]["span"]
-            best_runtime = get_runtime(wk,sp,n,p,lower=lower)
+            if data[old_name]["parallel"]==1: parallel=True
+            else: parallel=False
+            best_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
             
         wk = data[name]["work"]
         sp = data[name]["span"]
-        cur_runtime = get_runtime(wk,sp,n,p,lower=lower)
+        if data[name]["parallel"]==1: parallel=True
+        else: parallel=False
+        cur_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
         if cur_runtime < best_runtime:
             best_stats[prob][year]["br alg"] = name
 
@@ -1206,13 +1230,12 @@ def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_
 
 
 def three_bar_chart(all_data,par_data,n=1000000,p=1000):
-
     all_problems=get_problems(all_data)
     par_problems=get_problems(par_data)
     has_parallel = len(par_problems)/len(all_problems)
     best_stats, first_stats=improvements(all_data,n,p)
 
-    parallel_faster_count=0
+    parallel_faster_count=0 
     prob_speedups=[]
     for prob in par_problems:
         best_algo = best_stats[prob][2024]["br alg"]
@@ -1278,5 +1301,117 @@ def three_bar_chart(all_data,par_data,n=1000000,p=1000):
     ax.set_ylabel("Proportion")
     ax.set_title("Analysis of Parallel Algorithms and Speedup")
     ax.legend()
+
+    plt.show()
+
+def sanky_style_chart(all_data, par_data, n=1000000, p=1000):
+    all_problems = get_problems(all_data)
+    par_problems = get_problems(par_data)
+    has_parallel = len(par_problems) / len(all_problems)
+    best_stats, first_stats = improvements(all_data, n, p)
+
+    parallel_faster_count = 0
+    prob_speedups = []
+    for prob in par_problems:
+        best_algo = best_stats[prob][2024]["br alg"]
+        if all_data[best_algo]["parallel"] == "1":
+            parallel_faster_count += 1
+            parallel=True
+        else:
+            parallel=False
+        best_algo_rt = get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"], n, p,parallel=parallel)
+        best_work = best_stats[prob][2024]["bw alg"]
+        best_work_rt = get_runtime(all_data[best_work]["work"], all_data[best_work]["span"], n, 1, parallel=False)
+        speedup = best_work_rt / best_algo_rt
+        prob_speedups.append(speedup)
+        if (speedup>=10000):
+            print("speedup: ", speedup)
+            print("best algo: ",best_algo, " work, span: ",all_data[best_algo]["work"], all_data[best_algo]["span"], " runtime: ", best_algo_rt)
+            print("best algo work: ",all_data[best_algo]["work"], get_seq_runtime(all_data[best_algo]["work"],n))
+            print("best seq algo: ", best_work, " work, span: ",all_data[best_work]["work"], all_data[best_work]["span"], " runtime: ", best_work_rt)
+
+    parallel_faster = parallel_faster_count / len(par_problems)
+
+    speedup_bins = ["1-10x", "10-100x", "100-1000x"]
+    speedup_values = [0, 0, 0]
+
+    for s in prob_speedups:
+        if 1 <= s < 10:
+            speedup_values[0] += 1
+        elif 10 <= s < 100:
+            speedup_values[1] += 1
+        elif 100 <= s < 1000:
+            speedup_values[2] += 1
+        else:
+            raise ValueError("There is now a speedup more than 1000, update code buckets")
+
+    speedup_total = sum(speedup_values)
+    speedup_values = [v / speedup_total for v in speedup_values]
+
+    fig, ax = plt.subplots(figsize=(8, 6))
+    bar_width = 0.7
+
+    # Bar 1 - Parallel Existence
+    bar1 = [has_parallel, 1 - has_parallel]
+    ax.bar(1, bar1[1], width=bar_width, color='gray')
+    ax.bar(1, bar1[0], width=bar_width, bottom=bar1[1], color='blue')
+
+    # Add labels to Bar 1
+    ax.text(1, bar1[1] / 2, f"No Par. Algo Exists\n{bar1[1]* 100:.2f}%", ha='center', va='center', color='white')
+    ax.text(1, bar1[1] + bar1[0] / 2, f"Par. Algo Exists\n{bar1[0]* 100:.2f}%", ha='center', va='center', color='white')
+
+    # Add proportion on top of Bar 1 (100%)
+    ax.text(1, 1.02, f"{100:.0f}%", ha='center', va='bottom', color='black')
+
+    # Bar 2 - Parallel Faster
+    bar2 = [parallel_faster, 1 - parallel_faster]
+    ax.bar(2, bar2[1], width=bar_width, color='red')
+    ax.bar(2, bar2[0], width=bar_width, bottom=bar2[1], color='green')
+
+    # Add labels to Bar 2
+    ax.text(2, bar2[1] / 2, f"Par. Algo Not Better\n{bar2[1]* 100:.2f}%", ha='center', va='center', color='white')
+    ax.text(2, bar2[1] + bar2[0] / 2, f"Par. Algo Better\n{bar2[0]* 100:.2f}%", ha='center', va='center', color='white')
+
+    # Add proportion on top of Bar 2
+    ax.text(2, 1.02, f"{has_parallel * 100:.0f}%", ha='center', va='bottom', color='black')
+
+    # Bar 3 - Speedup Distribution
+    bottom = 0
+    for i in range(len(speedup_bins)):
+        ax.bar(3, speedup_values[i], width=bar_width, bottom=bottom, alpha=0.8)
+        ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}\n{speedup_values[i]* 100:.2f}%", ha='center', va='center', color='black')
+        # ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
+        bottom += speedup_values[i]
+
+    # Add proportion on top of Bar 3 (Has Parallel x Faster)
+    ax.text(3, 1.02, f"{has_parallel * parallel_faster*100:.0f}%", ha='center', va='bottom', color='black')
+
+    # Draw dotted lines
+    ax.plot([1 + bar_width / 2, 2 - bar_width / 2], [1, 1], linestyle='--', color='black')
+    ax.plot([1 + bar_width / 2, 2 - bar_width / 2], [bar1[1], 0], linestyle='--', color='black')
+
+    ax.plot([2 + bar_width / 2, 3 - bar_width / 2], [1, 1], linestyle='--', color='black')
+    ax.plot([2 + bar_width / 2, 3 - bar_width / 2], [bar2[1], 0], linestyle='--', color='black')
+
+
+    # Remove spines (borders)
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+
+    # Keep y-axis visible
+    # ax.spines['left'].set_visible(True)
+    # or remove it?
+    ax.spines['left'].set_visible(False)
+
+    # Labels and title
+    ax.set_xticks([1, 2, 3])
+    ax.tick_params(axis='x', length=0)
+    ax.set_xticklabels(["Algorithm Problems", "Algorithm Problems\nwith Parallel Algorithms", "Speedup"])
+    # ax.set_ylabel("Proportion")
+    ax.tick_params(axis='y', length=0)
+    ax.set_ylabel('')
+    ax.set_yticklabels([])
+    ax.set_title(f"Proportion of Algorithm Problems, n={n}, p={p}")
 
     plt.show()
