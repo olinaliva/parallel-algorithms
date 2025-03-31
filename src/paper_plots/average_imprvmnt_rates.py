@@ -1229,82 +1229,82 @@ def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_
     # ax.bar(list(range(len(buckets))), values, align='center')
 
 
-def three_bar_chart(all_data,par_data,n=1000000,p=1000):
-    all_problems=get_problems(all_data)
-    par_problems=get_problems(par_data)
-    has_parallel = len(par_problems)/len(all_problems)
-    best_stats, first_stats=improvements(all_data,n,p)
+# def three_bar_chart(all_data,par_data,n=1000000,p=1000):
+#     all_problems=get_problems(all_data)
+#     par_problems=get_problems(par_data)
+#     has_parallel = len(par_problems)/len(all_problems)
+#     best_stats, first_stats=improvements(all_data,n,p)
 
-    parallel_faster_count=0 
-    prob_speedups=[]
-    for prob in par_problems:
-        best_algo = best_stats[prob][2024]["br alg"]
-        best_algo_rt=get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"],n,p)
-        # print(best_algo)
-        # print(all_data[best_algo])
-        if (all_data[best_algo]["parallel"]=="1"):
-            parallel_faster_count+=1
-        best_work = best_stats[prob][2024]["bw alg"]
-        best_work_rt=get_runtime(all_data[best_work]["work"], all_data[best_work]["span"],n,1)
-        speedup= best_work_rt/best_algo_rt
-        prob_speedups.append(speedup)
+#     parallel_faster_count=0 
+#     prob_speedups=[]
+#     for prob in par_problems:
+#         best_algo = best_stats[prob][2024]["br alg"]
+#         best_algo_rt=get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"],n,p)
+#         # print(best_algo)
+#         # print(all_data[best_algo])
+#         if (all_data[best_algo]["parallel"]=="1"):
+#             parallel_faster_count+=1
+#         best_work = best_stats[prob][2024]["bw alg"]
+#         best_work_rt=get_runtime(all_data[best_work]["work"], all_data[best_work]["span"],n,1)
+#         speedup= best_work_rt/best_algo_rt
+#         prob_speedups.append(speedup)
     
-    # prob_speedups.sort()
-    parallel_faster=parallel_faster_count/len(par_problems)
+#     # prob_speedups.sort()
+#     parallel_faster=parallel_faster_count/len(par_problems)
 
-    # Define speedup bins
-    speedup_bins = ["1-10x", "10-100x", "100-1000x", "1000x+"]
-    speedup_values = [0, 0, 0, 0]
+#     # Define speedup bins
+#     speedup_bins = ["1-10x", "10-100x", "100-1000x", "1000x+"]
+#     speedup_values = [0, 0, 0, 0]
 
-    # Categorize speedups
-    for s in prob_speedups:
-        if 1 <= s < 10:
-            speedup_values[0] += 1
-        elif 10 <= s < 100:
-            speedup_values[1] += 1
-        elif 100 <= s < 1000:
-            speedup_values[2] += 1
-        else:
-            speedup_values[3] += 1
+#     # Categorize speedups
+#     for s in prob_speedups:
+#         if 1 <= s < 10:
+#             speedup_values[0] += 1
+#         elif 10 <= s < 100:
+#             speedup_values[1] += 1
+#         elif 100 <= s < 1000:
+#             speedup_values[2] += 1
+#         else:
+#             speedup_values[3] += 1
 
-    # Convert counts to proportions
-    speedup_total = sum(speedup_values)
-    speedup_values = [v / speedup_total for v in speedup_values]
+#     # Convert counts to proportions
+#     speedup_total = sum(speedup_values)
+#     speedup_values = [v / speedup_total for v in speedup_values]
 
-    # Data for the first two bars
-    bar1 = [has_parallel, 1 - has_parallel]
-    bar2 = [parallel_faster, 1 - parallel_faster]
+#     # Data for the first two bars
+#     bar1 = [has_parallel, 1 - has_parallel]
+#     bar2 = [parallel_faster, 1 - parallel_faster]
 
-    # Set up bar positions
-    x = np.array([1, 2, 3])
-    width = 0.5
+#     # Set up bar positions
+#     x = np.array([1, 2, 3])
+#     width = 0.5
 
-    fig, ax = plt.subplots()
+#     fig, ax = plt.subplots()
 
-    # First bar (Proportion with parallel algorithms)
-    ax.bar(x[0], bar1[0], width, label="Has Parallel", color='blue')
-    ax.bar(x[0], bar1[1], width, bottom=bar1[0], label="No Parallel", color='gray')
+#     # First bar (Proportion with parallel algorithms)
+#     ax.bar(x[0], bar1[0], width, label="Has Parallel", color='blue')
+#     ax.bar(x[0], bar1[1], width, bottom=bar1[0], label="No Parallel", color='gray')
 
-    # Second bar (Among parallel problems, is parallel faster?)
-    ax.bar(x[1], bar2[0], width, label="Parallel Faster", color='green')
-    ax.bar(x[1], bar2[1], width, bottom=bar2[0], label="Parallel Not Faster", color='red')
+#     # Second bar (Among parallel problems, is parallel faster?)
+#     ax.bar(x[1], bar2[0], width, label="Parallel Faster", color='green')
+#     ax.bar(x[1], bar2[1], width, bottom=bar2[0], label="Parallel Not Faster", color='red')
 
-    # Third bar (Speedup distribution of faster parallel problems)
-    bottom = 0
-    for i in range(len(speedup_bins)):
-        ax.bar(x[2], speedup_values[i], width, bottom=bottom, label=speedup_bins[i] if x[2] == 3 else "", alpha=0.8)
-        bottom += speedup_values[i]
+#     # Third bar (Speedup distribution of faster parallel problems)
+#     bottom = 0
+#     for i in range(len(speedup_bins)):
+#         ax.bar(x[2], speedup_values[i], width, bottom=bottom, label=speedup_bins[i] if x[2] == 3 else "", alpha=0.8)
+#         bottom += speedup_values[i]
 
-    # Labels and legend
-    ax.set_xticks(x)
-    ax.set_xticklabels(["Parallel Existence", "Parallel Faster", "Speedup"])
-    ax.set_ylabel("Proportion")
-    ax.set_title("Analysis of Parallel Algorithms and Speedup")
-    ax.legend()
+#     # Labels and legend
+#     ax.set_xticks(x)
+#     ax.set_xticklabels(["Parallel Existence", "Parallel Faster", "Speedup"])
+#     ax.set_ylabel("Proportion")
+#     ax.set_title("Analysis of Parallel Algorithms and Speedup")
+#     ax.legend()
 
-    plt.show()
+#     plt.show()
 
-def sanky_style_chart(all_data, par_data, n=1000000, p=1000):
+def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     all_problems = get_problems(all_data)
     par_problems = get_problems(par_data)
     has_parallel = len(par_problems) / len(all_problems)
@@ -1414,4 +1414,5 @@ def sanky_style_chart(all_data, par_data, n=1000000, p=1000):
     ax.set_yticklabels([])
     ax.set_title(f"Proportion of Algorithm Problems, n={n}, p={p}")
 
-    plt.show()
+    plt.savefig(SAVE_LOC+'sankey_style_graph.png')
+    # plt.show()

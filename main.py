@@ -547,9 +547,10 @@ histo_buckets = [
 # span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 # print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
 # numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
-# #TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
-# span_comparison_best_vs_work_efficient(full_problem_data)
+print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+#TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
+span_comparison_best_vs_work_efficient(full_problem_data)
+NEW_span_comparison_best_vs_work_efficient(full_problem_data)
 
 # print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
 # problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
@@ -558,16 +559,16 @@ histo_buckets = [
 # print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
 # problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
 
-# print("figure 1.5: Work Overhead for the fastest algorithm")
+print("figure 1.5: Work Overhead for the fastest algorithm")
 # #THIS ONE IS THE OLD VERSION
 # # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 # #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 # #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-# #USE THIS ONE:
-# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
-#                             upper_bounds=[0,10,100,1000,10000,math.inf],
-#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+#USE THIS ONE:
+NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+                            upper_bounds=[0,10,100,1000,10000,math.inf],
+                            max_p=10**9,allowed_models=set(model_dict.keys()))
 
 
 # # probs=get_problems(full_data)
@@ -589,7 +590,6 @@ histo_buckets = [
 
 
 
-# three_bar_chart(full_data,simulated_par_data)
-sanky_style_chart(full_data,simulated_par_data)
+sankey_style_graph(full_data,simulated_par_data)
 
 print("finished main")

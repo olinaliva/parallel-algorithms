@@ -186,6 +186,7 @@ def create_aux_data(par_data,seq_data):
                 "we exist": False,
             }
         # set the best seq to the best work (in case there are no seq algos)
+        #or best par work<best seq
         elif par_data[val]["work"] < prob_dict[prob]["best seq"]:
             prob_dict[prob]["best seq"] = par_data[val]["work"]
 
@@ -215,10 +216,11 @@ def create_aux_data(par_data,seq_data):
     # - check to see if it's work-efficient
         if prob_dict[prob]["best seq"] == wk:
     #   + if it is, check to see if span is better
-            if not prob_dict[prob]["we exist"] or (prob_dict[prob]["we span"]>sp):
+            if (prob_dict[prob]["we exist"] is None) or (prob_dict[prob]["we span"]!=None and prob_dict[prob]["we span"]>sp):
     #     = if so, update the current we
                 prob_dict[prob]["we name"] = val
-                prob_dict[prob]["we span"] = par_data[val]["span"]
+                # prob_dict[prob]["we span"] = par_data[val]["span"]
+                prob_dict[prob]["we span"] = sp
                 prob_dict[prob]["we par"] = par_data[val]["par"]
                 prob_dict[prob]["we exist"] = True
 
