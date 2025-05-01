@@ -1,5 +1,4 @@
 # header used for basically every plot
-
 from matplotlib import pyplot as plt
 import matplotlib.colors as mcolors
 import matplotlib.patches as mpatches

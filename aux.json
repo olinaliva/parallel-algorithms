@@ -1,29 +1,32 @@
 {
     "Comparison Sorting": {
+        "best seq name": "1Parallel Merge Sort - Cole (1) (1988)",
         "best seq": 11.0,
         "bs name": "1Parallel Merge Sort - Cole (1) (1988)",
         "bs span": 1.0,
         "bs work": 11.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "1Parallel Merge Sort - Cole (1) (1988)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "kth Order Statistic": {
+        "best seq name": "2Akl (1983)",
         "best seq": 10.0,
         "bs name": "2Cole, Vishkin (1986)",
         "bs span": 1.001,
         "bs work": 10.0,
         "bs par": 8.99,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "2Cole, Vishkin (1986)",
+        "we span": 1.001,
+        "we par": 8.99,
+        "we exist": true
     },
     "MCOP": {
+        "best seq name": "331T. C. Hu ; M. T. Shing (1982)",
         "best seq": 11.0,
         "bs name": "3Bradford, Rawlins, Shannon (3) (1998)",
         "bs span": 2.0,
@@ -36,30 +39,33 @@
         "we exist": false
     },
     "Matrix Chain Scheduling Problem": {
+        "best seq name": "334Czumaj (1993)",
         "best seq": 20.0,
         "bs name": "334Czumaj (1993)",
         "bs span": 3.0,
         "bs work": 20.0,
         "bs par": 17.9,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "334Czumaj (1993)",
+        "we span": 3.0,
+        "we par": 17.9,
+        "we exist": true
     },
     "LCS": {
+        "best seq name": "4Alves, C\u00e1ceres, Song (2003)",
         "best seq": 20.0,
         "bs name": "4Babu, Saxena (1) (1997)",
         "bs span": 1.0,
         "bs work": 21.0,
         "bs par": 20.0,
         "bs overhead": 1.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "4Babu, Saxena (2) (1997)",
+        "we span": 2.0,
+        "we par": 18.0,
+        "we exist": true
     },
     "Max Flow": {
+        "best seq name": "566Cheriyan et al. (1990)",
         "best seq": 15.95,
         "bs name": "5Peretz, Fischler (2022)",
         "bs span": 6.1,
@@ -72,6 +78,7 @@
         "we exist": false
     },
     "Matrix Multiplication": {
+        "best seq name": "684Fran\u00e7ois Le Gall (2014)",
         "best seq": 15.101,
         "bs name": "6Gazit, Miller (parallel Coppersmith & Winograd 1987) (1988)",
         "bs span": 1.0,
@@ -84,90 +91,98 @@
         "we exist": false
     },
     "General Linear System": {
+        "best seq name": "9Bader, Gehrke (1991)",
         "best seq": 16.0,
         "bs name": "9Csanky (1975)",
         "bs span": 2.0,
         "bs work": 22.0,
         "bs par": 20.0,
         "bs overhead": 6.2,
-        "we name": null,
-        "we span": 16.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "9Bader, Gehrke (1991)",
+        "we span": 10.0,
+        "we par": 6.0,
+        "we exist": true
     },
     "General Linear Programming": {
+        "best seq name": "10Alon & Megiddo (1990)",
         "best seq": 40.0,
         "bs name": "10Alon & Megiddo (1990)",
         "bs span": 22.0,
         "bs work": 40.0,
         "bs par": 18.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 40.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "10Alon & Megiddo (1990)",
+        "we span": 22.0,
+        "we par": 18.0,
+        "we exist": true
     },
     "Reporting intersection points": {
+        "best seq name": "11Reif, Sen (implicit) (1992)",
         "best seq": 20.0,
         "bs name": "11Reif, Sen (implicit) (1992)",
         "bs span": 0.0,
         "bs work": 20.0,
         "bs par": 20.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "11Reif, Sen (implicit) (1992)",
+        "we span": 0.0,
+        "we par": 20.0,
+        "we exist": true
     },
     "Intersection detection": {
+        "best seq name": "11Atallah, Cole, Goodrich (1989)",
         "best seq": 11.0,
         "bs name": "11Atallah, Cole, Goodrich (1989)",
         "bs span": 1.0,
         "bs work": 11.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "11Atallah, Cole, Goodrich (1989)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "3-dimensional Convex Hull": {
+        "best seq name": "12Ghouse, Goodrich [Theorem 6] (1991)",
         "best seq": 11.0,
         "bs name": "12Reif, Sen (1992)",
         "bs span": 1.0,
         "bs work": 11.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "12Reif, Sen (1992)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "2-dimensional Convex Hull": {
+        "best seq name": "12Nath, Maheshwari, Bhatt [modified CONVEXHULL-4] (1981)",
         "best seq": 11.0,
         "bs name": "12Akl (1982)",
         "bs span": 0.0,
         "bs work": 30.0,
         "bs par": 30.0,
         "bs overhead": 19.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "12Atallah, Goodrich (1986)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "CC": {
+        "best seq name": "13Vishkin (1982)",
         "best seq": 10.0,
         "bs name": "13Reif (1985)",
         "bs span": 1.0,
         "bs work": 10.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "13Reif (1985)",
+        "we span": 1.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "Transitive Closure": {
+        "best seq name": "13143Paul Purdom (1970)",
         "best seq": 16.0,
         "bs name": "13Ja'Ja' (1978)",
         "bs span": 2.0,
@@ -180,78 +195,85 @@
         "we exist": false
     },
     "Transitive Closure of a symmetric Boolean matrix": {
+        "best seq name": "13Hirschberg, Chandra, Sarwate (1979)",
         "best seq": 21.0,
         "bs name": "13Hirschberg, Chandra, Sarwate (1979)",
         "bs span": 2.0,
         "bs work": 21.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 21.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "13Hirschberg, Chandra, Sarwate (1979)",
+        "we span": 2.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "MST": {
+        "best seq name": "14Deo and Yoo (1) (1981)",
         "best seq": 10.0,
         "bs name": "14Adler, Dittrich, Juurlink, Kutylowski, Rieping (2) (1998)",
         "bs span": 0.0,
         "bs work": 10.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "14Adler, Dittrich, Juurlink, Kutylowski, Rieping (2) (1998)",
+        "we span": 0.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "directed MST": {
+        "best seq name": "14Tsin, Chin (1984)",
         "best seq": 11.0,
         "bs name": "14Tsin, Chin (1984)",
         "bs span": 2.0,
         "bs work": 11.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "14Tsin, Chin (1984)",
+        "we span": 2.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "2-dimensional space Closest Pair Problem": {
+        "best seq name": "15MacKenzie, Stout (1991)",
         "best seq": 10.0,
         "bs name": "15MacKenzie, Stout (1991)",
         "bs span": 0.0,
         "bs work": 10.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "15MacKenzie, Stout (1991)",
+        "we span": 0.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "k-dimensional space Closest Pair Problem": {
+        "best seq name": "15Blelloch, Gu, Shun, Sun (2016)",
         "best seq": 10.0,
         "bs name": "15Blelloch, Gu, Shun, Sun (2016)",
         "bs span": 2.001,
         "bs work": 10.0,
         "bs par": 8.895,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "15Blelloch, Gu, Shun, Sun (2016)",
+        "we span": 2.001,
+        "we par": 8.895,
+        "we exist": true
     },
     "undirected nonneg SSSP": {
+        "best seq name": "16Driscoll, Gabow, Shrairman, Tarjan (1987)",
         "best seq": 10.0,
         "bs name": "16Driscoll, Gabow, Shrairman, Tarjan (1987)",
         "bs span": 6.1,
         "bs work": 10.0,
         "bs par": 5.9,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "16Driscoll, Gabow, Shrairman, Tarjan (1987)",
+        "we span": 6.1,
+        "we par": 5.9,
+        "we exist": true
     },
     "directed nonneg SSSP": {
+        "best seq name": "16177Dijkstra's algorithm with list (Whiting & Hillier 1960) (1960)",
         "best seq": 10.0,
         "bs name": "16Brodal, Traff, Zaroliagis (1997)",
         "bs span": 6.0,
@@ -264,42 +286,46 @@
         "we exist": false
     },
     "undirected SSSP": {
+        "best seq name": "16Spencer (1991)",
         "best seq": 16.1,
         "bs name": "16Spencer (1991)",
         "bs span": 10.0,
         "bs work": 16.1,
         "bs par": 6.1,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 16.1,
-        "we par": 0,
-        "we exist": false
+        "we name": "16Spencer (1991)",
+        "we span": 10.0,
+        "we par": 6.1,
+        "we exist": true
     },
     "directed SSSP": {
+        "best seq name": "16Garg (2018)",
         "best seq": 16.0,
         "bs name": "16Garg (2018)",
         "bs span": 6.01,
         "bs work": 16.0,
         "bs par": 9.1,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 16.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "16Garg (2018)",
+        "we span": 6.01,
+        "we par": 9.1,
+        "we exist": true
     },
     "APSP": {
+        "best seq name": "17Takaoka (2004)",
         "best seq": 15.97,
         "bs name": "17Takaoka (2004)",
         "bs span": 0.1,
         "bs work": 15.97,
         "bs par": 15.96,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 15.97,
-        "we par": 0,
-        "we exist": false
+        "we name": "17Takaoka (2004)",
+        "we span": 0.1,
+        "we par": 15.96,
+        "we exist": true
     },
     "Matrix LU Decomposition": {
+        "best seq name": "20212Bunch; Hopcroft (1974)",
         "best seq": 15.109,
         "bs name": "20Solomonik, Demmel (Classical 2.5D) (2011)",
         "bs span": 6.1,
@@ -312,18 +338,20 @@
         "we exist": false
     },
     "Single String Search": {
+        "best seq name": "22Kedem et al. (1989)",
         "best seq": 10.0,
         "bs name": "22Galil (1995)",
         "bs span": 0.0,
         "bs work": 10.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "22Galil (1995)",
+        "we span": 0.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "Edit Distance, constant-size alphabet": {
+        "best seq name": "23252Masek; Patterson (1980)",
         "best seq": 19.0,
         "bs name": "23Apostolico et al. (2) (1990)",
         "bs span": 1.15,
@@ -336,6 +364,7 @@
         "we exist": false
     },
     "Multiplication": {
+        "best seq name": "27277Furer's algorithm (2007)",
         "best seq": 11.0,
         "bs name": "27Sinha, Srimani (1988)",
         "bs span": 1.0,
@@ -348,6 +377,7 @@
         "we exist": false
     },
     "Bipartite Graph MCM": {
+        "best seq name": "28287Mucha; Sankowski (planar) (2006)",
         "best seq": 15.097,
         "bs name": "28Kim, Chwa (1987)",
         "bs span": 6.11,
@@ -360,126 +390,137 @@
         "we exist": false
     },
     "General Graph MCM": {
+        "best seq name": "28Andrews et al. (1) (1995)",
         "best seq": 6.1,
         "bs name": "28Andrews et al. (1) (1995)",
         "bs span": 3.0,
         "bs work": 6.1,
         "bs par": 5.8,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 6.1,
-        "we par": 0,
-        "we exist": false
+        "we name": "28Andrews et al. (1) (1995)",
+        "we span": 3.0,
+        "we par": 5.8,
+        "we exist": true
     },
     "Exact Laplacian Solver": {
+        "best seq name": "31Blelloch et al. (2011)",
         "best seq": 15.0,
         "bs name": "31Blelloch et al. (2011)",
         "bs span": 5.61,
         "bs work": 15.0,
         "bs par": 7.15,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 15.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "31Blelloch et al. (2011)",
+        "we span": 5.61,
+        "we par": 7.15,
+        "we exist": true
     },
     "General Permutations": {
+        "best seq name": "33Reif (1985)",
         "best seq": 10.0,
         "bs name": "33Hagerup (1) (1991)",
         "bs span": 0.0,
         "bs work": 15.0,
         "bs par": 15.0,
         "bs overhead": 5.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "33Hagerup (2) (1991)",
+        "we span": 0.001,
+        "we par": 9.999,
+        "we exist": true
     },
     "All Permutations": {
+        "best seq name": "37Akl (1987)",
         "best seq": 9001.0,
         "bs name": "37Akl (1987)",
         "bs span": 10.0,
         "bs work": 9001.0,
         "bs par": 9000.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 9001.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "37Akl (1987)",
+        "we span": 10.0,
+        "we par": 9000.0,
+        "we exist": true
     },
     "OBST": {
+        "best seq name": "38Kechid, Myoupo (2008)",
         "best seq": 20.0,
         "bs name": "38Myoupo, Tchendji (2014)",
         "bs span": 7.2,
         "bs work": 20.0,
         "bs par": 15.4,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "38Myoupo, Tchendji (2014)",
+        "we span": 7.2,
+        "we par": 15.4,
+        "we exist": true
     },
     "General Maximum-Weight Matching": {
+        "best seq name": "40Osiakwan, Akl (1990)",
         "best seq": 16.0,
         "bs name": "40Osiakwan, Akl (1990)",
         "bs span": 11.0,
         "bs work": 16.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 16.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "40Osiakwan, Akl (1990)",
+        "we span": 11.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "Constructing Eulerian Trails in a Graph": {
+        "best seq name": "41Caceres, Nasu (2003)",
         "best seq": 10.0,
         "bs name": "41Caceres, Nasu (2003)",
         "bs span": 1.0,
         "bs work": 10.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "41Caceres, Nasu (2003)",
+        "we span": 1.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "Discrete Fourier Transform": {
+        "best seq name": "42Pease (1968)",
         "best seq": 11.0,
         "bs name": "42Pease (1968)",
         "bs span": 1.0,
         "bs work": 11.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "42Pease (1968)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "Line Drawing": {
+        "best seq name": "43Pang (1990)",
         "best seq": 10.0,
         "bs name": "43Pang (1990)",
         "bs span": 0.0,
         "bs work": 10.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "43Pang (1990)",
+        "we span": 0.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "Constuct Voronoi Diagram": {
+        "best seq name": "54Cole, Goodrich, \u00d3'D\u00fanlaing [Theorem 7.2] (1990)",
         "best seq": 11.0,
         "bs name": "54Xin et al. (2013)",
         "bs span": 1.0,
         "bs work": 11.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 11.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "54Xin et al. (2013)",
+        "we span": 1.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "Variance Calculations": {
+        "best seq name": "55448Na\u00efve algorithm (1940)",
         "best seq": 10.0,
         "bs name": "55452Chan's algorithm Parallel Implementation (1979)",
         "bs span": 1.0,
@@ -492,6 +533,7 @@
         "we exist": false
     },
     "Topological Sorting": {
+        "best seq name": "56453Kahn's algorithm (1962)",
         "best seq": 10.0,
         "bs name": "56Li, Pan, Shen (2003)",
         "bs span": 1.0,
@@ -504,6 +546,7 @@
         "we exist": false
     },
     "DFA Minimization": {
+        "best seq name": "57456Hopcroft's algorithm (1971)",
         "best seq": 11.0,
         "bs name": "57JaJa, Kosaraju (1988)",
         "bs span": 2.0,
@@ -516,30 +559,33 @@
         "we exist": false
     },
     "2-Dimensional Poisson Problem": {
+        "best seq name": "62Sameh, Chen, Kuck (1976)",
         "best seq": 21.0,
         "bs name": "62Sameh, Chen, Kuck (1976)",
         "bs span": 1.0,
         "bs work": 21.0,
         "bs par": 20.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 21.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "62Sameh, Chen, Kuck (1976)",
+        "we span": 1.0,
+        "we par": 20.0,
+        "we exist": true
     },
     "3-Dimensional Poisson Problem": {
+        "best seq name": "63Giraud, Guivarch, Stein (2001)",
         "best seq": 31.0,
         "bs name": "63Giraud, Guivarch, Stein (2001)",
         "bs span": 21.0,
         "bs work": 31.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 31.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "63Giraud, Guivarch, Stein (2001)",
+        "we span": 21.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "2-Dimensional Delaunay Triangulation": {
+        "best seq name": "64531Drysdale; Su (1996)",
         "best seq": 10.0,
         "bs name": "64Reif, Sen (1989)",
         "bs span": 1.0,
@@ -552,42 +598,46 @@
         "we exist": false
     },
     "3-Dimensional Delaunay Triangulation": {
+        "best seq name": "64Cignoni, Montani, Perego, Scopigno (1993)",
         "best seq": 20.0,
         "bs name": "64Cignoni, Montani, Perego, Scopigno (1993)",
         "bs span": 1.0,
         "bs work": 20.0,
         "bs par": 19.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "64Cignoni, Montani, Perego, Scopigno (1993)",
+        "we span": 1.0,
+        "we par": 19.0,
+        "we exist": true
     },
     "Subset Sum": {
+        "best seq name": "66Sanches, Soma, Yanasse (2007)",
         "best seq": 988.0,
         "bs name": "66Sanches, Soma, Yanasse (2007)",
         "bs span": 10.0,
         "bs work": 988.0,
         "bs par": 987.9,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 988.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "66Sanches, Soma, Yanasse (2007)",
+        "we span": 10.0,
+        "we par": 987.9,
+        "we exist": true
     },
     "CFG Parsing": {
+        "best seq name": "73Parallel Earley's method (1985)",
         "best seq": 30.0,
         "bs name": "73Parallel Earley's method (1985)",
         "bs span": 10.0,
         "bs work": 30.0,
         "bs par": 20.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 30.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "73Parallel Earley's method (1985)",
+        "we span": 10.0,
+        "we par": 20.0,
+        "we exist": true
     },
     "Stable Marriage Problem": {
+        "best seq name": "78611Gale\u2013Shapley algorithm (1962)",
         "best seq": 20.0,
         "bs name": "78620Tomas Feder, Nimrod Megiddo, Serge A. Plotkin (1994)",
         "bs span": 6.23,
@@ -600,42 +650,46 @@
         "we exist": false
     },
     "1D Maximum Subarray": {
+        "best seq name": "80628Perumalla and Deo (1995)",
         "best seq": 10.0,
         "bs name": "80Alves, Caceres, Song (1) (2004)",
         "bs span": 0.0,
         "bs work": 10.0,
         "bs par": 10.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "80Alves, Caceres, Song (1) (2004)",
+        "we span": 0.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "2D Maximum Subarray": {
+        "best seq name": "80Smith (1987)",
         "best seq": 30.0,
         "bs name": "80Alves, Caceres, Song (2) (2004)",
         "bs span": 0.0,
         "bs work": 30.0,
         "bs par": 30.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 30.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "80Alves, Caceres, Song (2) (2004)",
+        "we span": 0.0,
+        "we par": 30.0,
+        "we exist": true
     },
     "Constructing Suffix Trees": {
+        "best seq name": "81Blelloch, Shun (2011)",
         "best seq": 10.0,
         "bs name": "81637Farach (1997)",
         "bs span": 1.0,
         "bs work": 10.0,
         "bs par": 9.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 10.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "81637Farach (1997)",
+        "we span": 1.0,
+        "we par": 9.0,
+        "we exist": true
     },
     "Point-in-Polygon": {
+        "best seq name": "107830Ray casting algorithm Shimrat; M (1962)",
         "best seq": 10.0,
         "bs name": "107Puri (2015)",
         "bs span": 1.0,
@@ -648,60 +702,65 @@
         "we exist": false
     },
     "Maximum Cut": {
+        "best seq name": "117Akl (1989)",
         "best seq": 6.0,
         "bs name": "117Akl (1989)",
         "bs span": 1.0,
         "bs work": 6.0,
         "bs par": 5.9,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 6.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "117Akl (1989)",
+        "we span": 1.0,
+        "we par": 5.9,
+        "we exist": true
     },
     "Determinant of Matrices with Integer Entries": {
+        "best seq name": "119Preparata, Sarwate (1977)",
         "best seq": 15.605,
         "bs name": "119Preparata, Sarwate (1977)",
         "bs span": 2.0,
         "bs work": 15.605,
         "bs par": 15.603,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 15.605,
-        "we par": 0,
-        "we exist": false
+        "we name": "119Preparata, Sarwate (1977)",
+        "we span": 2.0,
+        "we par": 15.603,
+        "we exist": true
     },
     "Transitive Reduction Problem of Directed Graphs": {
+        "best seq name": "129Chang, Henschen (1990)",
         "best seq": 16.0,
         "bs name": "129Gibbons et al. (1988)",
         "bs span": 4.0,
         "bs work": 16.24,
         "bs par": 16.0,
         "bs overhead": 4.0,
-        "we name": null,
-        "we span": 16.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "129Chang, Henschen (1990)",
+        "we span": 6.0,
+        "we par": 10.0,
+        "we exist": true
     },
     "2-D Polynomial Interpolation": {
+        "best seq name": "142Egecioglu, Gallopoulos, Koc (1990)",
         "best seq": 20.0,
         "bs name": "142Egecioglu, Gallopoulos, Koc (1990)",
         "bs span": 1.0,
         "bs work": 20.0,
         "bs par": 19.0,
         "bs overhead": 0.0,
-        "we name": null,
-        "we span": 20.0,
-        "we par": 0,
-        "we exist": false
+        "we name": "142Egecioglu, Gallopoulos, Koc (1990)",
+        "we span": 1.0,
+        "we par": 19.0,
+        "we exist": true
     },
     "Greatest Common Divisor": {
+        "best seq name": "1431003Euclid's algorithm (-300)",
         "best seq": 20.0,
-        "bs name": "143Chor, Goldreich [CRCW] (1990)",
-        "bs span": 990.0,
-        "bs work": 2090.5,
-        "bs par": 1099.0,
-        "bs overhead": 2070.5,
+        "bs name": "1431003Euclid's algorithm (-300)",
+        "bs span": 20.0,
+        "bs work": 20.0,
+        "bs par": 0,
+        "bs overhead": 0.0,
         "we name": null,
         "we span": 20.0,
         "we par": 0,

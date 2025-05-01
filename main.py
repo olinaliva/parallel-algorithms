@@ -510,7 +510,8 @@ histo_buckets = [
             {"max": math.inf, "label": ">1000%"},]
 
 # print("figure 1.1: Algorithm Improvements over Time")
-# #TODO: address the "thesis_weight" and whether its actually doing anything
+# # #TODO: address the "thesis_weight" and whether its actually doing anything
+# #TODO: test if what i have is correct (check which problems have lots of variations, do they scale down intui)
 # average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
 # average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
 
@@ -547,28 +548,37 @@ histo_buckets = [
 # span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 # print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
 # numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
-print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
-#TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
-span_comparison_best_vs_work_efficient(full_problem_data)
-NEW_span_comparison_best_vs_work_efficient(full_problem_data)
+# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+# #TODO: at some point also called with aux_data so what was that? and what is full_problem_data?
+# span_comparison_best_vs_work_efficient(full_problem_data)
+# NEW_span_comparison_best_vs_work_efficient(full_problem_data)
+# NEW_w_seq_span_comparison_best_vs_work_efficient(full_problem_data)
 
-# print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
-# problem_speedup_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9],max_p=10**7)
-# print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
+print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
+problem_speedup_vs_proc(full_data,"Bipartite Graph MCM",n_values=[10**3,10**6, 10**9],max_p=10**10)
+# problem_speedup_vs_proc(full_data,"APSP",n_values=[10**3,10**6,10**9],max_p=10**7)
+# full_data_prob = {
+#         name: info
+#         for name, info in full_data.items()
+#         if info.get("problem") == "Bipartite Graph MCM"
+#     }
+# get_processor_breakpoints(full_data_prob, 1000000,
+#                                min_processors=1, max_processors=10_000_000, num_points=1000)
+# # print("figure 1.4: Work Overhead vs # of Processors for the Bipartite Graph MCM Problem")
 # problem_overhead_vs_proc(simulated_par_data,full_seq_data,"Bipartite Graph MCM",n_values=[10**3,10**6,10**9], allowed_models=set(model_dict.keys()))
 # print("figure 1.4: Work Efficiency of the Fastest Algorithm for n=10^6")
 # problems_work_efficiency_by_processors_graph(simulated_par_data,full_seq_data,pset, n = 10**6, max_p=10**9,allowed_models=set(model_dict.keys()))
 
-print("figure 1.5: Work Overhead for the fastest algorithm")
+#print("figure 1.5: Work Overhead for the fastest algorithm")
 # #THIS ONE IS THE OLD VERSION
 # # work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
 # #                             upper_bounds=[0,10,100,1000,10000,math.inf],
 # #                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
-#USE THIS ONE:
-NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
-                            upper_bounds=[0,10,100,1000,10000,math.inf],
-                            max_p=10**9,allowed_models=set(model_dict.keys()))
+# #USE THIS ONE:
+# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,100,1000,10000,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
 
 
 # # probs=get_problems(full_data)
@@ -588,8 +598,40 @@ NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,ps
 # #             1 if item in probs_par else 0
 # #         ])
 
+# with open("best_algos.csv", mode="w", newline="") as file:
+#     writer = csv.writer(file)
+#     writer.writerow(["Problem", "Best span algo", "Best span", "Best sequential/best work algo","Best work", "If par WE exists: name", "Best WE span"])
+#     for prob in full_problem_data:
+#         writer.writerow([
+#             prob,
+#             full_problem_data[prob]["bs name"],
+#             full_problem_data[prob]["bs span"],
+#             full_problem_data[prob]["best seq name"],
+#             full_problem_data[prob]["best seq"],
+#             full_problem_data[prob]["we name"],
+#             full_problem_data[prob]["we span"]
+            
+#         ])
 
 
-sankey_style_graph(full_data,simulated_par_data)
+
+
+
+
+#okay, here are the functions that are sorted out for real tm
+
+# print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
+# span_comparison_best_vs_work_efficient(full_problem_data)
+# NEW_span_comparison_best_vs_work_efficient(full_problem_data)
+# NEW_w_seq_span_comparison_best_vs_work_efficient(full_problem_data)
+
+# print("figure 1.5: Work Overhead for the fastest algorithm")
+# #todo: make sure the labels are for everything, even when not in graph
+# NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
+#                             upper_bounds=[0,10,100,1000,10000,math.inf],
+#                             max_p=10**9,allowed_models=set(model_dict.keys()))
+
+
+# sankey_style_graph(full_data,simulated_par_data)
 
 print("finished main")

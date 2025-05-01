@@ -1,0 +1,60 @@
+Problem,Best span algo,Best span,Best sequential/best work algo,Best work,If par WE exists: name,Best WE span
+Comparison Sorting,1Parallel Merge Sort - Cole (1) (1988),1.0,1Parallel Merge Sort - Cole (1) (1988),11.0,1Parallel Merge Sort - Cole (1) (1988),1.0
+kth Order Statistic,"2Cole, Vishkin (1986)",1.001,2Akl (1983),10.0,"2Cole, Vishkin (1986)",1.001
+MCOP,"3Bradford, Rawlins, Shannon (3) (1998)",2.0,331T. C. Hu ; M. T. Shing (1982),11.0,,11.0
+Matrix Chain Scheduling Problem,334Czumaj (1993),3.0,334Czumaj (1993),20.0,334Czumaj (1993),3.0
+LCS,"4Babu, Saxena (1) (1997)",1.0,"4Alves, Cáceres, Song (2003)",20.0,"4Babu, Saxena (2) (1997)",2.0
+Max Flow,"5Peretz, Fischler (2022)",6.1,566Cheriyan et al. (1990),15.95,,15.95
+Matrix Multiplication,"6Gazit, Miller (parallel Coppersmith & Winograd 1987) (1988)",1.0,684François Le Gall (2014),15.101,,15.101
+General Linear System,9Csanky (1975),2.0,"9Bader, Gehrke (1991)",16.0,"9Bader, Gehrke (1991)",10.0
+General Linear Programming,10Alon & Megiddo (1990),22.0,10Alon & Megiddo (1990),40.0,10Alon & Megiddo (1990),22.0
+Reporting intersection points,"11Reif, Sen (implicit) (1992)",0.0,"11Reif, Sen (implicit) (1992)",20.0,"11Reif, Sen (implicit) (1992)",0.0
+Intersection detection,"11Atallah, Cole, Goodrich (1989)",1.0,"11Atallah, Cole, Goodrich (1989)",11.0,"11Atallah, Cole, Goodrich (1989)",1.0
+3-dimensional Convex Hull,"12Reif, Sen (1992)",1.0,"12Ghouse, Goodrich [Theorem 6] (1991)",11.0,"12Reif, Sen (1992)",1.0
+2-dimensional Convex Hull,12Akl (1982),0.0,"12Nath, Maheshwari, Bhatt [modified CONVEXHULL-4] (1981)",11.0,"12Atallah, Goodrich (1986)",1.0
+CC,13Reif (1985),1.0,13Vishkin (1982),10.0,13Reif (1985),1.0
+Transitive Closure,13Ja'Ja' (1978),2.0,13143Paul Purdom (1970),16.0,,16.0
+Transitive Closure of a symmetric Boolean matrix,"13Hirschberg, Chandra, Sarwate (1979)",2.0,"13Hirschberg, Chandra, Sarwate (1979)",21.0,"13Hirschberg, Chandra, Sarwate (1979)",2.0
+MST,"14Adler, Dittrich, Juurlink, Kutylowski, Rieping (2) (1998)",0.0,14Deo and Yoo (1) (1981),10.0,"14Adler, Dittrich, Juurlink, Kutylowski, Rieping (2) (1998)",0.0
+directed MST,"14Tsin, Chin (1984)",2.0,"14Tsin, Chin (1984)",11.0,"14Tsin, Chin (1984)",2.0
+2-dimensional space Closest Pair Problem,"15MacKenzie, Stout (1991)",0.0,"15MacKenzie, Stout (1991)",10.0,"15MacKenzie, Stout (1991)",0.0
+k-dimensional space Closest Pair Problem,"15Blelloch, Gu, Shun, Sun (2016)",2.001,"15Blelloch, Gu, Shun, Sun (2016)",10.0,"15Blelloch, Gu, Shun, Sun (2016)",2.001
+undirected nonneg SSSP,"16Driscoll, Gabow, Shrairman, Tarjan (1987)",6.1,"16Driscoll, Gabow, Shrairman, Tarjan (1987)",10.0,"16Driscoll, Gabow, Shrairman, Tarjan (1987)",6.1
+directed nonneg SSSP,"16Brodal, Traff, Zaroliagis (1997)",6.0,16177Dijkstra's algorithm with list (Whiting & Hillier 1960) (1960),10.0,,10.0
+undirected SSSP,16Spencer (1991),10.0,16Spencer (1991),16.1,16Spencer (1991),10.0
+directed SSSP,16Garg (2018),6.01,16Garg (2018),16.0,16Garg (2018),6.01
+APSP,17Takaoka (2004),0.1,17Takaoka (2004),15.97,17Takaoka (2004),0.1
+Matrix LU Decomposition,"20Solomonik, Demmel (Classical 2.5D) (2011)",6.1,20212Bunch; Hopcroft (1974),15.109,,15.109
+Single String Search,22Galil (1995),0.0,22Kedem et al. (1989),10.0,22Galil (1995),0.0
+"Edit Distance, constant-size alphabet",23Apostolico et al. (2) (1990),1.15,23252Masek; Patterson (1980),19.0,,19.0
+Multiplication,"27Sinha, Srimani (1988)",1.0,27277Furer's algorithm (2007),11.0,,11.0
+Bipartite Graph MCM,"28Kim, Chwa (1987)",6.11,28287Mucha; Sankowski (planar) (2006),15.097,,15.097
+General Graph MCM,28Andrews et al. (1) (1995),3.0,28Andrews et al. (1) (1995),6.1,28Andrews et al. (1) (1995),3.0
+Exact Laplacian Solver,31Blelloch et al. (2011),5.61,31Blelloch et al. (2011),15.0,31Blelloch et al. (2011),5.61
+General Permutations,33Hagerup (1) (1991),0.0,33Reif (1985),10.0,33Hagerup (2) (1991),0.001
+All Permutations,37Akl (1987),10.0,37Akl (1987),9001.0,37Akl (1987),10.0
+OBST,"38Myoupo, Tchendji (2014)",7.2,"38Kechid, Myoupo (2008)",20.0,"38Myoupo, Tchendji (2014)",7.2
+General Maximum-Weight Matching,"40Osiakwan, Akl (1990)",11.0,"40Osiakwan, Akl (1990)",16.0,"40Osiakwan, Akl (1990)",11.0
+Constructing Eulerian Trails in a Graph,"41Caceres, Nasu (2003)",1.0,"41Caceres, Nasu (2003)",10.0,"41Caceres, Nasu (2003)",1.0
+Discrete Fourier Transform,42Pease (1968),1.0,42Pease (1968),11.0,42Pease (1968),1.0
+Line Drawing,43Pang (1990),0.0,43Pang (1990),10.0,43Pang (1990),0.0
+Constuct Voronoi Diagram,54Xin et al. (2013),1.0,"54Cole, Goodrich, Ó'Dúnlaing [Theorem 7.2] (1990)",11.0,54Xin et al. (2013),1.0
+Variance Calculations,55452Chan's algorithm Parallel Implementation (1979),1.0,55448Naïve algorithm (1940),10.0,,10.0
+Topological Sorting,"56Li, Pan, Shen (2003)",1.0,56453Kahn's algorithm (1962),10.0,,10.0
+DFA Minimization,"57JaJa, Kosaraju (1988)",2.0,57456Hopcroft's algorithm (1971),11.0,,11.0
+2-Dimensional Poisson Problem,"62Sameh, Chen, Kuck (1976)",1.0,"62Sameh, Chen, Kuck (1976)",21.0,"62Sameh, Chen, Kuck (1976)",1.0
+3-Dimensional Poisson Problem,"63Giraud, Guivarch, Stein (2001)",21.0,"63Giraud, Guivarch, Stein (2001)",31.0,"63Giraud, Guivarch, Stein (2001)",21.0
+2-Dimensional Delaunay Triangulation,"64Reif, Sen (1989)",1.0,64531Drysdale; Su (1996),10.0,,10.0
+3-Dimensional Delaunay Triangulation,"64Cignoni, Montani, Perego, Scopigno (1993)",1.0,"64Cignoni, Montani, Perego, Scopigno (1993)",20.0,"64Cignoni, Montani, Perego, Scopigno (1993)",1.0
+Subset Sum,"66Sanches, Soma, Yanasse (2007)",10.0,"66Sanches, Soma, Yanasse (2007)",988.0,"66Sanches, Soma, Yanasse (2007)",10.0
+CFG Parsing,73Parallel Earley's method (1985),10.0,73Parallel Earley's method (1985),30.0,73Parallel Earley's method (1985),10.0
+Stable Marriage Problem,"78620Tomas Feder, Nimrod Megiddo, Serge A. Plotkin (1994)",6.23,78611Gale–Shapley algorithm (1962),20.0,,20.0
+1D Maximum Subarray,"80Alves, Caceres, Song (1) (2004)",0.0,80628Perumalla and Deo (1995),10.0,"80Alves, Caceres, Song (1) (2004)",0.0
+2D Maximum Subarray,"80Alves, Caceres, Song (2) (2004)",0.0,80Smith (1987),30.0,"80Alves, Caceres, Song (2) (2004)",0.0
+Constructing Suffix Trees,81637Farach (1997),1.0,"81Blelloch, Shun (2011)",10.0,81637Farach (1997),1.0
+Point-in-Polygon,107Puri (2015),1.0,107830Ray casting algorithm Shimrat; M (1962),10.0,,10.0
+Maximum Cut,117Akl (1989),1.0,117Akl (1989),6.0,117Akl (1989),1.0
+Determinant of Matrices with Integer Entries,"119Preparata, Sarwate (1977)",2.0,"119Preparata, Sarwate (1977)",15.605,"119Preparata, Sarwate (1977)",2.0
+Transitive Reduction Problem of Directed Graphs,129Gibbons et al. (1988),4.0,"129Chang, Henschen (1990)",16.0,"129Chang, Henschen (1990)",6.0
+2-D Polynomial Interpolation,"142Egecioglu, Gallopoulos, Koc (1990)",1.0,"142Egecioglu, Gallopoulos, Koc (1990)",20.0,"142Egecioglu, Gallopoulos, Koc (1990)",1.0
+Greatest Common Divisor,1431003Euclid's algorithm (-300),20.0,1431003Euclid's algorithm (-300),20.0,,20.0

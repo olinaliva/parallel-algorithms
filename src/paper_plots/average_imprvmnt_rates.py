@@ -1317,33 +1317,70 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
         if all_data[best_algo]["parallel"] == "1":
             parallel_faster_count += 1
             parallel=True
+            best_algo_rt = get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"], n, p,parallel=parallel)
+            best_work = best_stats[prob][2024]["bw alg"]
+            best_work_rt = get_runtime(all_data[best_work]["work"], all_data[best_work]["span"], n, 1, parallel=False)
+            speedup = best_work_rt / best_algo_rt
+            prob_speedups.append(speedup)
+            # if (speedup>1000):
+            #     print("speedup: ", speedup)
+            #     print("best algo: ",best_algo, " work, span: ",all_data[best_algo]["work"], all_data[best_algo]["span"], " runtime: ", best_algo_rt)
+            #     print("best algo work: ",all_data[best_algo]["work"], get_seq_runtime(all_data[best_algo]["work"],n))
+            #     print("best seq algo: ", best_work, " work, span: ",all_data[best_work]["work"], all_data[best_work]["span"], " runtime: ", best_work_rt)
+
         else:
             parallel=False
-        best_algo_rt = get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"], n, p,parallel=parallel)
-        best_work = best_stats[prob][2024]["bw alg"]
-        best_work_rt = get_runtime(all_data[best_work]["work"], all_data[best_work]["span"], n, 1, parallel=False)
-        speedup = best_work_rt / best_algo_rt
-        prob_speedups.append(speedup)
-        if (speedup>=10000):
-            print("speedup: ", speedup)
-            print("best algo: ",best_algo, " work, span: ",all_data[best_algo]["work"], all_data[best_algo]["span"], " runtime: ", best_algo_rt)
-            print("best algo work: ",all_data[best_algo]["work"], get_seq_runtime(all_data[best_algo]["work"],n))
-            print("best seq algo: ", best_work, " work, span: ",all_data[best_work]["work"], all_data[best_work]["span"], " runtime: ", best_work_rt)
-
+        
     parallel_faster = parallel_faster_count / len(par_problems)
 
-    speedup_bins = ["1-10x", "10-100x", "100-1000x"]
-    speedup_values = [0, 0, 0]
+    # speedup_bins = ["1-10x", "10-100x", "100-1000x"]
+    # speedup_values = [0, 0, 0]
+    # # speedup_bins = ["1-10x", "10-100x", "100-1000x", "1000-10000x"]
+    # # speedup_values = [0, 0, 0, 0]
 
+    # for s in prob_speedups:
+    #     if 1 <= s < 10:
+    #         speedup_values[0] += 1
+    #     elif 10 <= s < 100:
+    #         speedup_values[1] += 1
+    #     elif 100 <= s < 1000:
+    #         speedup_values[2] += 1
+    #     else:
+    #         raise ValueError("There is now a speedup more than 1000, update code buckets")
+    #     # elif 1000 <= s < 10000:
+    #     #     speedup_values[3] += 1
+    #     # else:
+    #     #     raise ValueError("There is now a speedup more than 10000, update code buckets")
+
+
+
+    speedup_bins = ["1-2x", "2x-4x", "4x-8x", "8x-16x", "16x-32x", "32x-64x", "64x-128x", "128x-256x", 
+                    "256x-512x", "512x-1024x"]
+    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for s in prob_speedups:
-        if 1 <= s < 10:
+        if 1 < s < 2:
             speedup_values[0] += 1
-        elif 10 <= s < 100:
+        elif 2 <= s < 4:
             speedup_values[1] += 1
-        elif 100 <= s < 1000:
+        elif 4 <= s < 8:
             speedup_values[2] += 1
+        elif 8 <= s < 16:
+            speedup_values[3] += 1
+        elif 16 <= s < 32:
+            speedup_values[4] += 1
+        elif 32 <= s < 64:
+            speedup_values[5] += 1
+        elif 64 <= s < 128:
+            speedup_values[6] += 1
+        elif 128 <= s < 256:
+            speedup_values[7] += 1
+        elif 256 <= s < 512:
+            speedup_values[8] += 1
+        elif 512 <= s < 1024:
+            speedup_values[9] += 1
         else:
-            raise ValueError("There is now a speedup more than 1000, update code buckets")
+            raise ValueError("There is now a speedup more than 1024!")
+
 
     speedup_total = sum(speedup_values)
     speedup_values = [v / speedup_total for v in speedup_values]
@@ -1379,7 +1416,9 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     bottom = 0
     for i in range(len(speedup_bins)):
         ax.bar(3, speedup_values[i], width=bar_width, bottom=bottom, alpha=0.8)
-        ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}\n{speedup_values[i]* 100:.2f}%", ha='center', va='center', color='black')
+        if speedup_values[i]>0:
+            #ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
+            ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}\n{speedup_values[i]* 100:.2f}%", ha='center', va='center', color='black')
         # ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
         bottom += speedup_values[i]
 

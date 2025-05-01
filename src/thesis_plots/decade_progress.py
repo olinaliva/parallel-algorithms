@@ -15,7 +15,8 @@ def average_improvement_over_decade_graph(par_data,seq_data,decade_list,var_weig
     fig, ax = plt.subplots(1,1,figsize=(6.55,3.5),dpi=200,layout='tight')
     fam_num = len(get_families(par_data))
 
-    colors = SEQ_PAR_COLORS # list(mcolors.TABLEAU_COLORS.values())
+    #colors = SEQ_PAR_COLORS # list(mcolors.TABLEAU_COLORS.values())
+    colors=COLORS #trying to see a different color scheme here
     ax.bar(range(len(decade_list)),[ct/fam_num*100 for ct in all_seq_counts],
            width=-0.4,align='edge',color=colors[0])
     ax.bar(range(len(decade_list)),[ct/fam_num*100 for ct in all_par_counts],
@@ -32,6 +33,7 @@ def average_improvement_over_decade_graph(par_data,seq_data,decade_list,var_weig
     ax.set_xticks(range(len(decade_list)))
     ax.set_xticklabels([d["label"] for d in decade_list])
     ax.set_ylabel("% Problem\nFamilies with\nImprovements",rotation=0,labelpad=40.0)
+    ax.set_ylim(0, 100)
     ax.set_xlabel("Decade")
     ax.yaxis.set_major_formatter(mtick.PercentFormatter())
     # ax.yaxis.set_major_locator(MaxNLocator(integer=True))
@@ -51,7 +53,8 @@ def average_improvement_over_decade_data(par_data,seq_data,decade_list,var_weigh
     :seq_data: sequential dataset
     :decade_list: list of dicts with the form {"max":,"label"}
     :var_weights: type of weighting for variations (use "thesis_weight" for treating all 
-            vars as independent problems)
+            vars as independent problems, 
+            use "equal_weight" to assign proportional weight to improvements for problems from the same family)
     """
     par_names = list(par_data.keys())
     par_names.sort(key= lambda name: (par_data[name]["year"], -1*par_data[name]["work"]))
@@ -62,8 +65,10 @@ def average_improvement_over_decade_data(par_data,seq_data,decade_list,var_weigh
     variations = get_problems(par_data)
     fams = get_families(par_data)
     par_i, seq_i = 0, 0
-    all_par_improvements = [{prob: False for prob in fams} for _ in range(len(decade_list))]
-    all_seq_improvements = [{prob: False for prob in fams} for _ in range(len(decade_list))] # keeps track of seq imprs for each decade
+    # all_par_improvements = [{prob: False for prob in fams} for _ in range(len(decade_list))]
+    # all_seq_improvements = [{prob: False for prob in fams} for _ in range(len(decade_list))] # keeps track of seq imprs for each decade
+    all_par_improvements = [{prob: False for prob in variations} for _ in range(len(decade_list))]
+    all_seq_improvements = [{prob: False for prob in variations} for _ in range(len(decade_list))] # keeps track of seq imprs for each decade
 
     # keeps track of all algorithms on the pareto frontier for each problem
     par_all_so_far = {prob: set() for prob in variations}
@@ -88,7 +93,8 @@ def average_improvement_over_decade_data(par_data,seq_data,decade_list,var_weigh
             cur_time = seq_data[seq_names[seq_i]]["time"]
             if seq_best_so_far[var] > cur_time:
                 seq_best_so_far[var] = cur_time
-                all_seq_improvements[dec_i][fam] = True
+                # all_seq_improvements[dec_i][fam] = True
+                all_seq_improvements[dec_i][var] = True
             seq_i+=1
 
         # parallel
@@ -108,21 +114,39 @@ def average_improvement_over_decade_data(par_data,seq_data,decade_list,var_weigh
                     break
             if frontier_push:
                 par_all_so_far[var].add((cur_span,cur_work,dec['max']))
-                all_par_improvements[dec_i][fam] = True
+                #all_par_improvements[dec_i][fam] = True
+                all_par_improvements[dec_i][var] = True
 
             par_i+=1
 
+    # all_par_counts = [0 for _ in range(len(decade_list))]
+    # all_seq_counts = [0 for _ in range(len(decade_list))]
+    # for dec_i in range(len(decade_list)):
+    #     for fam in all_par_improvements[dec_i]:
+    #         if all_par_improvements[dec_i][fam]:
+    #             all_par_counts[dec_i] += 1
+                
+    #     for fam in all_seq_improvements[dec_i]:
+    #         if all_seq_improvements[dec_i][fam]:
+    #             all_seq_counts[dec_i] += 1
+    
     all_par_counts = [0 for _ in range(len(decade_list))]
     all_seq_counts = [0 for _ in range(len(decade_list))]
     for dec_i in range(len(decade_list)):
-        for fam in all_par_improvements[dec_i]:
-            if all_par_improvements[dec_i][fam]:
-                all_par_counts[dec_i] += 1
+        for var in all_par_improvements[dec_i]:
+            if all_par_improvements[dec_i][var]:
+                all_par_counts[dec_i] += var_weight_dict[var][var_weights]
                 
-        for fam in all_seq_improvements[dec_i]:
-            if all_seq_improvements[dec_i][fam]:
-                all_seq_counts[dec_i] += 1
-        
+        for var in all_seq_improvements[dec_i]:
+            if all_seq_improvements[dec_i][var]:
+                all_seq_counts[dec_i] += var_weight_dict[var][var_weights]
+
+    # all_par_counts = [sum(var_weight_dict[fam][var_weights] for fam in all_par_improvements[dec_i] if all_par_improvements[dec_i][fam]) 
+    #               for dec_i in range(len(decade_list))]
+
+    # all_seq_counts = [sum(var_weight_dict[fam][var_weights] for fam in all_seq_improvements[dec_i] if all_seq_improvements[dec_i][fam]) 
+    #               for dec_i in range(len(decade_list))]
+
     return all_seq_counts, all_par_counts
 
 
@@ -216,6 +240,6 @@ def decade_progress(par_data,seq_data,decade_list,n,p):
     ax.set_title("Comparing Sequential and Parallel Improvement per Decade\nfor n="+nice_n+" and p="+str(p))
     ax.set_xticks(range(len(decade_list)))
     ax.set_xticklabels([d["label"] for d in decade_list])
+    
     plt.show()
-
     pass

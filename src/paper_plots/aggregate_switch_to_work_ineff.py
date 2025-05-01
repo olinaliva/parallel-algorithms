@@ -473,7 +473,7 @@ def work_inefficiency_switching_point(par_data,seq_data,problem,n,max_p=10**9,
         
     return first_parallel_p, first_ineff_p
 
-
+active_labels = set()
 
 def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_values=[10**3,10**6,10**9],n_values=[10**3,10**6,10**9],
                             upper_bounds=[0,10,50,100,math.inf],
@@ -481,16 +481,21 @@ def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_va
     
     plt.style.use('default')
     fig, ax = plt.subplots(1,len(p_values),sharey=True,figsize=(6.5,2.5),dpi=200,layout='tight')
+    legend_patches=[[],[],[]]
+    global active_labels #keep track of which categories to actually have legend for
+    active_labels.clear()  # Reset active labels at the start
 
     for i in range(len(n_values)):
         n = n_values[i]
         print("n = " + str(n))
-        ax[i] = NEW_work_overhead_histogram_graph_helper(ax[i],par_data,seq_data,problems,n,
+        ax[i],legend_patches[i] = NEW_work_overhead_histogram_graph_helper(ax[i],par_data,seq_data,problems,n,
                                         p_values,upper_bounds,max_p,allowed_models)
         
         ax[i].set_title("$n = " + str(get_nice_n(n))+"$")
 
-    
+    filtered_patches = [patch for patch in legend_patches[0] if patch.get_label() in active_labels]
+    ax[2].legend(handles=filtered_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+
 
     ax[i].yaxis.set_major_formatter(PercentFormatter(xmax=100))
     ax[int(len(n_values)/2)].set_xlabel("Number of processors")
@@ -515,6 +520,7 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
     label=f"${0}$%"
     bucket_colors = [b_color]
     legend_patches = [mpatches.Patch(color=b_color, label=label)]  # List to store legend entries
+    global active_labels
 
 
     for j in range(len(upper_bounds) - 1):
@@ -544,10 +550,14 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
 
         # Stacked bar
         bottom = 0
-        for frac, color in zip(oh_histo, bucket_colors):
-            height = frac * 100  # Convert fraction to percentage
-            ax.bar(x_positions[i], height, color=color, bottom=bottom, width=0.5)
-            bottom += height  # Properly accumulate bottom for stacking
+        # for frac, color in zip(oh_histo, bucket_colors):
+        for frac, color, patch in zip(oh_histo, bucket_colors, legend_patches):
+            if frac > 0:  #only plot nonzero categories (and track labels)
+                height = frac * 100  # Convert fraction to percentage
+                ax.bar(x_positions[i], height, color=color, bottom=bottom, width=0.5)
+                bottom += height  # Properly accumulate bottom for stacking
+                # active_labels.add(label) #yep, need to show this on legend
+                active_labels.add(patch.get_label())
 
     # Set x-ticks
     ax.set_xticks(x_positions)
@@ -555,8 +565,13 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
     ax.tick_params(axis='x', labelsize=6)
 
     # Add legend
-    if (n==10**9):
-        ax.legend(handles=legend_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+    # if (n==10**9):
+    #     ax.legend(handles=legend_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+    #this one should only show legend labels for stuff thats in graph
+    # if n == 10**9:
+    #     # filtered_patches = [mpatches.Patch(color=c, label=l) for c, l in legend_patches if l in active_labels]
+    #     filtered_patches = [patch for patch in legend_patches if patch.get_label() in active_labels]
+    #     ax.legend(handles=filtered_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
 
 
-    return ax
+    return ax, legend_patches 

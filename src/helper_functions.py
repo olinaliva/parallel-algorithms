@@ -123,14 +123,38 @@ def get_runtime(work,span,n,p,lower=False, parallel=True):
     if lower:
         warnings.warn("Warning - using lower bound for runtime!")
         return get_lower_runtime(work,span,n,p)
-    if parallel==False: return get_seq_runtime(work,n)
+    #now using new definition for this
     assert p >= 1
     work_fn = get_comp_fn(work)
     span_fn = get_comp_fn(span)
-    try:
-        return work_fn(n)/p + span_fn(n)
-    except OverflowError:
-        return work_fn(n)//p + int(span_fn(n))
+    if parallel==False:
+        parallel=0
+    if parallel==True:
+        parallel=1
+    return (work_fn(n)-span_fn(n))/p + span_fn(n) + parallel
+    # #if parallel==False: return get_seq_runtime(work,n)
+    # if parallel==False or parallel==0: return get_seq_runtime(work,n)
+    # assert p >= 1
+    # work_fn = get_comp_fn(work)
+    # span_fn = get_comp_fn(span)
+    # try:
+    #     return work_fn(n)/p + span_fn(n)
+    # except OverflowError:
+    #     return work_fn(n)//p + int(span_fn(n))
+
+#runtime using max
+# def get_runtime(work,span,n,p,lower=False, parallel=True):
+#     if lower:
+#         warnings.warn("Warning - using lower bound for runtime!")
+#         return get_lower_runtime(work,span,n,p)
+#     if parallel==False: return get_seq_runtime(work,n)
+#     assert p >= 1
+#     work_fn = get_comp_fn(work)
+#     span_fn = get_comp_fn(span)
+#     try:
+#         return max(work_fn(n)/p,span_fn(n))
+#     except OverflowError:
+#         return max(work_fn(n)//p,int(span_fn(n)))
     
 def get_lower_runtime(work,span,n,p):
     assert p >= 1
@@ -174,6 +198,7 @@ def create_aux_data(par_data,seq_data):
         prob = par_data[val]["problem"]
         if prob not in prob_dict:
             prob_dict[prob] = {
+                "best seq name": val,
                 "best seq": par_data[val]["work"],
                 "bs name": None,
                 "bs span": None,
@@ -189,6 +214,7 @@ def create_aux_data(par_data,seq_data):
         #or best par work<best seq
         elif par_data[val]["work"] < prob_dict[prob]["best seq"]:
             prob_dict[prob]["best seq"] = par_data[val]["work"]
+            prob_dict[prob]["best seq name"] = val
 
     # print(prob_dict)
 
@@ -198,6 +224,13 @@ def create_aux_data(par_data,seq_data):
         if prob in prob_dict:
             if seq_data[val]["time"] < prob_dict[prob]["best seq"]:
                 prob_dict[prob]["best seq"] = seq_data[val]["time"]
+                prob_dict[prob]["best seq name"] = val
+            #in case the parallel algos are all really stupid, put sequential algo in for span
+            if (prob_dict[prob]["bs span"] is None) or (seq_data[val]["time"] < prob_dict[prob]["bs span"]):
+                prob_dict[prob]["bs span"] = seq_data[val]["time"]
+                prob_dict[prob]["bs name"] = val
+                prob_dict[prob]["bs work"] = seq_data[val]["time"]
+                prob_dict[prob]["bs par"] = 0
 
     # for every parallel algorithm,
     for val in par_data:
@@ -205,24 +238,27 @@ def create_aux_data(par_data,seq_data):
         prob = par_data[val]["problem"]
         sp = par_data[val]["span"]
         wk = par_data[val]["work"]
-        if (prob_dict[prob]["bs span"] is None) or (prob_dict[prob]["bs span"] > sp or 
-                                    (prob_dict[prob]["bs span"] == sp 
-                                    and prob_dict[prob]["bs work"] > wk)):
+        if ((prob_dict[prob]["bs span"] is None) or (prob_dict[prob]["bs span"] > sp) or 
+                                    ((prob_dict[prob]["bs span"] == sp 
+                                    and prob_dict[prob]["bs work"] > wk))):
     #   + if so, update the current bs
+            print("this is some bs ", prob_dict[prob]["bs span"])
             prob_dict[prob]["bs name"] = val
             prob_dict[prob]["bs span"] = sp
             prob_dict[prob]["bs work"] = wk
             prob_dict[prob]["bs par"] = par_data[val]["par"]
     # - check to see if it's work-efficient
         if prob_dict[prob]["best seq"] == wk:
+            print("here! we exists!")
     #   + if it is, check to see if span is better
-            if (prob_dict[prob]["we exist"] is None) or (prob_dict[prob]["we span"]!=None and prob_dict[prob]["we span"]>sp):
+            if ((prob_dict[prob]["we exist"] is False) or (prob_dict[prob]["we span"]!=None and prob_dict[prob]["we span"]>sp)):
     #     = if so, update the current we
                 prob_dict[prob]["we name"] = val
                 # prob_dict[prob]["we span"] = par_data[val]["span"]
                 prob_dict[prob]["we span"] = sp
                 prob_dict[prob]["we par"] = par_data[val]["par"]
                 prob_dict[prob]["we exist"] = True
+                print("here! we getting into the good shit")
 
     for prob in prob_dict:
         wk = prob_dict[prob]["bs work"]
@@ -342,9 +378,13 @@ def best_algos_by_speedup(par_data,seq_data,problem,n=10**6,max_p=10**9,
     returns a list of "segments", where each segment is a tuple of
     (interval start p, speedup, algo name, True if parallel or False otherwise)
     '''
+    #get pareto-optimal par algo and best seq algo
+    #TODO: check that get_pareto_points is correct
     pareto_points, best_seq = get_pareto_points(par_data,seq_data,problem,
                                                 allowed_models=allowed_models)
 
+    #oh no, this is not fully done,
+    #TODO: fix it
     if best_seq is None:
         seq_time = get_best_seq_time_from_par_algos(par_data,problem)
         # TODO
@@ -354,6 +394,7 @@ def best_algos_by_speedup(par_data,seq_data,problem,n=10**6,max_p=10**9,
     # print(seq_data[best_seq])
     
     # finding the max p
+    #basically maximum parallelism amongst the pareto-optimal algos
     max_max_p = 2
     for par_pt in pareto_points:
         work = par_data[par_pt]["work"]
@@ -388,6 +429,7 @@ def best_algos_by_speedup(par_data,seq_data,problem,n=10**6,max_p=10**9,
                 max_speedup.insert(i+1,new_interval)
                 continue
 
+            #compute speedup at the boundaries ??
             p1 = max_speedup[i][0]
             speedup1 = seq_rt / get_runtime(work,span,n,p=p1,lower=True)
             p2 = max_speedup[i+1][0]
