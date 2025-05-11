@@ -32,7 +32,9 @@ def average_improvement_over_decade_graph(par_data,seq_data,decade_list,var_weig
     ax.set_title("Algorithm Improvements over Time")
     ax.set_xticks(range(len(decade_list)))
     ax.set_xticklabels([d["label"] for d in decade_list])
-    ax.set_ylabel("% Problem\nFamilies with\nImprovements",rotation=0,labelpad=40.0)
+    #changing label to be vertical
+    #ax.set_ylabel("% Problem\nFamilies with\nImprovements",rotation=0,labelpad=40.0)
+    ax.set_ylabel("Percentage of\nAlgorithm Problems Improved", rotation=90, labelpad=10)
     ax.set_ylim(0, 100)
     ax.set_xlabel("Decade")
     ax.yaxis.set_major_formatter(mtick.PercentFormatter())

@@ -32,13 +32,13 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
     #v2:
     fig, ax = plt.subplots(1, 1, figsize=(8, 3), dpi=200)  #width and height changes
 
-    
-
     local_colors = ['#79d8f3','#a7f379','red','#f4e474']
 
-    problem_nr=len(get_problems(full_data))
-    print("PROBLEM NR",problem_nr)
-    perc_no_par = len(problems)/problem_nr #where is 140 coming from?? changed it
+    #total # problems - sequential and parallel
+    #TODO: do we care about thesis weight vs equal weight here?
+    problem_nr=len(get_problems(full_data)) 
+    #print("PROBLEM NR",problem_nr)
+    perc_no_par = len(problems)/problem_nr #where is 140 coming from?? --> changed it
 
     j=0
     handles = []
@@ -494,7 +494,7 @@ def NEW_work_overhead_histogram_graph_multiple_p(par_data,seq_data,problems,p_va
         ax[i].set_title("$n = " + str(get_nice_n(n))+"$")
 
     filtered_patches = [patch for patch in legend_patches[0] if patch.get_label() in active_labels]
-    ax[2].legend(handles=filtered_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+    # ax[2].legend(handles=filtered_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
 
 
     ax[i].yaxis.set_major_formatter(PercentFormatter(xmax=100))
@@ -565,8 +565,8 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
     ax.tick_params(axis='x', labelsize=6)
 
     # Add legend
-    # if (n==10**9):
-    #     ax.legend(handles=legend_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
+    if (n==10**9):
+        ax.legend(handles=legend_patches, title="Work Overhead", loc="center left", bbox_to_anchor=(1.2, 0.5))
     #this one should only show legend labels for stuff thats in graph
     # if n == 10**9:
     #     # filtered_patches = [mpatches.Patch(color=c, label=l) for c, l in legend_patches if l in active_labels]

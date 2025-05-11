@@ -12,7 +12,8 @@ import copy
 #put these here to not deal w/ the commented out header
 #VERSION="_JAN26"
 #VERSION="_FEB18"
-VERSION="_MAR9"
+# VERSION="_MAR9"
+VERSION="_MAY1"
 import warnings
 
 
@@ -72,9 +73,10 @@ PARALLEL_DISCARABLE_FIELD_VALUES = {
     }
 
 SEQUENTIAL_DISCARABLE_FIELD_VALUES = {        
-        "problem": "",
+        "problem": "", #i think this field is specified for parallel algos, 
+        # not necessarily specified for seq so uh, need to check its not filtering out things we want 
         "auth": "", 
-        "year": "", 
+        "year": ("",'-'), 
         "time": "",
         "approximate": "1", 
         "heuristic": "1", 
@@ -247,7 +249,7 @@ def filter_unwanted_algos(values, unwanted_values):
             #its taking "values" as just the name of the csv :(
             print("unwanted values ", unwanted_values)
             print("field", field)
-
+            
             if element[field] in unwanted_values[field]:
                 new_values.pop(i)
                 removed_stats[field] += 1
@@ -344,18 +346,28 @@ def type_cast_data(values):
 
     for i in reversed(range(len(new_values))):
         element = new_values[i]
+        deleted=False
         for field in ["year","model"]:
             if field in element:
+                # print("field in element")
                 if element[field] == '-':
+                    # print("dash")
                     del new_values[i]
+                    deleted=True
+                    break
                 else:
                     print("element[field] ",element[field])
                     print("field: ",field)
                     #tripping over model="" which is weird since it should be filtered out i think??
                     #seems ti be fixed by specifically filtering out models that are "" and " " ??
                     element[field] = int(element[field])
+        if deleted==True: break
         for field in ["span","work","par","time"]:
             if field in element:
+                if element[field] == '-':
+                    # print("dash")
+                    del new_values[i]
+                    break
                 print("element[field] ",element[field])
                 print("field: ",field)
                 #same issues of "" values :( (did specific filtering above)
@@ -469,15 +481,15 @@ def make_full_dataset(parallel_data_name, sequential_data):
 
 
 if __name__ == '__main__':
-    # convert_csv_to_json("parallel_algos")
-    # filter_unwanted_fields_json("parallel_algos",PARALLEL_ALGO_FIELDS)
-    # filter_unwanted_algos("parallel_algos",PARALLEL_DISCARABLE_FIELD_VALUES)
+    # convert_csv_to_json("Parallel_Algos_MAY1")
+    # filter_unwanted_fields_json("Parallel_Algos_MAY1",PARALLEL_ALGO_FIELDS)
+    # filter_unwanted_algos("Parallel_Algos_MAY1",PARALLEL_DISCARABLE_FIELD_VALUES)
 
     #wut?^^^^
 
-    # create_par_data("Parallel_Algos_MAR9")
-    # print("DONE WITH PARALLEL")
+    create_par_data("Parallel_Algos_MAY1")
+    print("DONE WITH PARALLEL")
     #technically should probably use this one but im just copying the old ones and changing the version name
-    create_seq_data("Sheet1_MAR9","Sheet1_New_Entries_MAR9")
+    create_seq_data("Sheet1_MAY1","Sheet1_New_Entries_MAY1")
 
     pass

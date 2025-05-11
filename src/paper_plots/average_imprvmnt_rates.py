@@ -1,6 +1,11 @@
 from header import *
 from src.thesis_plots.relative_speedup import *
 import matplotlib.patches as patches
+import seaborn as sns
+import matplotlib.pyplot as plt
+import matplotlib.cm as cm
+import numpy as np
+from matplotlib.patches import FancyArrowPatch
 
 # dataset: main model simulation
 
@@ -405,9 +410,12 @@ def NEW_yearly_impr_rate_histo_grid(par_data, seq_data, raw_buckets,n_values=[10
     ax[0,0].set_title("Problem size ($n$) =\n"+long_human_format(n_values[0]))
     ax[0,1].set_title("Problem size ($n$) =\n"+long_human_format(n_values[1]))
     ax[0,2].set_title("Problem size ($n$) =\n"+long_human_format(n_values[2]))
-    ax[0,0].set_ylabel("# processors = \n"+long_human_format(p_values[0]))
-    ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
-    ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
+    # ax[0,0].set_ylabel("# processors = \n"+long_human_format(p_values[0]))
+    # ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
+    # ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
+    ax[0,0].set_ylabel(long_human_format(p_values[0])+" processors")
+    ax[1,0].set_ylabel(long_human_format(p_values[1])+" processors")
+    ax[2,0].set_ylabel(long_human_format(p_values[2])+" processors")
             
     fig.suptitle("Algorithm Problem Average Yearly Improvement Rate\n(Sequential and Parallel)\n"+start_from)
     
@@ -530,30 +538,30 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
         buckets[i]["share"] = buckets[i]["count"] / len(all_rates)
 
     print("finished finding the distribution")
-    zero_count = all_rates.count(0)  #how many 0s
-    first_bucket_count = buckets[0]["count"] #how many in 1st bucket
-    proportion_of_zero = zero_count / first_bucket_count #proportion
+    #this section will make orange bar of 0s
+    # zero_count = all_rates.count(0)  #how many 0s
+    # first_bucket_count = buckets[0]["count"] #how many in 1st bucket
+    # proportion_of_zero = zero_count / first_bucket_count #proportion
 
 
-    zero_share = proportion_of_zero * buckets[0]["share"]*100  #percentage of 0 values
-    non_zero_share = 100*buckets[0]["share"] - zero_share  #remaining portion of the bucket
+    # zero_share = proportion_of_zero * buckets[0]["share"]*100  #percentage of 0 values
+    # non_zero_share = 100*buckets[0]["share"] - zero_share  #remaining portion of the bucket
 
-    # drawing the distribution histogram
+    # # drawing the distribution histogram
 
-    #plot 1st bar
-    ax.bar(0, non_zero_share,  color='tab:blue', align='center')
-    ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="0s", align='center')
-    #plot the others
-    for i in range(1, len(buckets)):
-        values = buckets[i]["share"] * 100
-        ax.bar(i, values, color='tab:blue', align='center')
-    ax.legend()
+    # #plot 1st bar
+    # ax.bar(0, non_zero_share,  color='tab:blue', align='center')
+    # ax.bar(0, zero_share, bottom=non_zero_share, color='tab:orange', label="0s", align='center')
+    # #plot the others
+    # for i in range(1, len(buckets)):
+    #     values = buckets[i]["share"] * 100
+    #     ax.bar(i, values, color='tab:blue', align='center')
+    # ax.legend()
 
     #this makes buckets w/o the 1st one highlighting 0s
-    # values = [buckets[i]["share"]*100 for i in range(len(buckets))]
-    # ax.bar(list(range(len(buckets))), values, align='center')
+    values = [buckets[i]["share"]*100 for i in range(len(buckets))]
+    ax.bar(list(range(len(buckets))), values, align='center')
 
-    
 
 def stacked_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, measure="rt"):
     assert measure == "sp" or measure == "rt"
@@ -901,6 +909,8 @@ def EVERYTHING_yearly_impr_rate_histo_grid(full_data, raw_buckets,n_values=[10**
                 EVERYTHING_yearly_impr_rate_histo_helper(ax[i,j],full_data, raw_buckets, n, p)
             elif(variation=="seq_plus_all"):
                 EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax[i,j], full_data, par_data, seq_data, raw_buckets, n, p)
+            elif (variation=="just_par_impr"):
+                EVERYTHING_yearly_impr_rate_histo_helper_just_par(ax[i,j],full_data, raw_buckets, n, p)
             else:
                 EVERYTHING_stacked_impr_rate_histo_helper(ax[i,j], full_data, par_data, seq_data, raw_buckets, n, p)
             
@@ -926,9 +936,12 @@ def EVERYTHING_yearly_impr_rate_histo_grid(full_data, raw_buckets,n_values=[10**
     ax[0,0].set_title("Problem size ($n$) =\n"+long_human_format(n_values[0]))
     ax[0,1].set_title("Problem size ($n$) =\n"+long_human_format(n_values[1]))
     ax[0,2].set_title("Problem size ($n$) =\n"+long_human_format(n_values[2]))
-    ax[0,0].set_ylabel("# processors = \n"+long_human_format(p_values[0]))
-    ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
-    ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
+    # ax[0,0].set_ylabel("# processors = \n"+long_human_format(p_values[0]))
+    # ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
+    # ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
+    ax[0,0].set_ylabel(human_format(p_values[0])+" processors")
+    ax[1,0].set_ylabel(human_format(p_values[1])+" processors")
+    ax[2,0].set_ylabel(human_format(p_values[2])+" processors")
             
     fig.suptitle("Algorithm Problem Average Yearly Improvement Rate\n(Sequential and Parallel)\nEVERYTHING")
     
@@ -1168,65 +1181,82 @@ def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_
 
     print("finished finding the distribution")
 
-    all_zero_count = all_rates.count(0)  #how many 0s
-    seq_zero_count = seq_rates.count(0)
-    # seq_no_algo_count = seq_rates.count(0.017)
-    all_first_bucket_count = buckets[0]["all_count"] #how many in 1st bucket
-    seq_first_bucket_count = buckets[0]["seq_count"]
-    all_proportion_of_zero = all_zero_count / all_first_bucket_count #proportion
-    seq_proportion_of_zero = seq_zero_count / seq_first_bucket_count
-    # seq_proportion_of_no_algo = seq_no_algo_count / seq_first_bucket_count
+    # all_zero_count = all_rates.count(0)  #how many 0s
+    # seq_zero_count = seq_rates.count(0)
+    # # seq_no_algo_count = seq_rates.count(0.017)
+    # all_first_bucket_count = buckets[0]["all_count"] #how many in 1st bucket
+    # seq_first_bucket_count = buckets[0]["seq_count"]
+    # all_proportion_of_zero = all_zero_count / all_first_bucket_count #proportion
+    # seq_proportion_of_zero = seq_zero_count / seq_first_bucket_count
+    # # seq_proportion_of_no_algo = seq_no_algo_count / seq_first_bucket_count
 
-    all_zero_share = all_proportion_of_zero * buckets[0]["all_share"]*100  #percentage of 0 values
-    seq_zero_share = seq_proportion_of_zero * buckets[0]["seq_share"]*100
-    # seq_no_algo_share = seq_proportion_of_no_algo * buckets[0]["seq_share"]*100
-    all_non_zero_share = 100*buckets[0]["all_share"] - all_zero_share  #remaining portion of the bucket
-    #seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share-seq_no_algo_share
-    seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share
-    # print("seq 0: ",seq_zero_share)
-    # # print("seq no algo: ", seq_no_algo_share)
-    # print("seq_non_zero_share: ",seq_non_zero_share)
-    # print("seq bucket 1: ", 100*buckets[0]["seq_share"])
-    # print("seq_zero_count: ",seq_zero_count)
-    # # print("seq_no_algo_count: ",seq_no_algo_count)
-    # print("seq_first_bucket_count: ", buckets[0]["seq_count"])
+    # all_zero_share = all_proportion_of_zero * buckets[0]["all_share"]*100  #percentage of 0 values
+    # seq_zero_share = seq_proportion_of_zero * buckets[0]["seq_share"]*100
+    # # seq_no_algo_share = seq_proportion_of_no_algo * buckets[0]["seq_share"]*100
+    # all_non_zero_share = 100*buckets[0]["all_share"] - all_zero_share  #remaining portion of the bucket
+    # #seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share-seq_no_algo_share
+    # seq_non_zero_share = 100*buckets[0]["seq_share"] - seq_zero_share
+    # # print("seq 0: ",seq_zero_share)
+    # # # print("seq no algo: ", seq_no_algo_share)
+    # # print("seq_non_zero_share: ",seq_non_zero_share)
+    # # print("seq bucket 1: ", 100*buckets[0]["seq_share"])
+    # # print("seq_zero_count: ",seq_zero_count)
+    # # # print("seq_no_algo_count: ",seq_no_algo_count)
+    # # print("seq_first_bucket_count: ", buckets[0]["seq_count"])
 
-    # drawing the distribution histogram
+    # # drawing the distribution histogram
 
-    indices = np.arange(len(buckets))
-    width = 0.4  # Bar width
+    # indices = np.arange(len(buckets))
+    # width = 0.4  # Bar width
 
-    #plot 1st bar
-    ax.bar(indices[0], seq_non_zero_share, color='tab:blue', label="Seq rates", width=width)
-    ax.bar(indices[0] + width, all_non_zero_share, color='tab:cyan', label="All rates", width=width)
-    ax.bar(indices[0], seq_zero_share, bottom=seq_non_zero_share, color='tab:orange', label="0% seq impr", width=width)
-    ax.bar(indices[0] + width, all_zero_share, bottom=all_non_zero_share, color='tab:pink', label="0% impr", width=width)
-    # ax.bar(indices[0], seq_no_algo_share, bottom=seq_zero_share, color='tab:red', label="No seq algo", width=width)
+    # #plot 1st bar
+    # ax.bar(indices[0], seq_non_zero_share, color='tab:blue', label="Seq rates", width=width)
+    # ax.bar(indices[0] + width, all_non_zero_share, color='tab:cyan', label="All rates", width=width)
+    # ax.bar(indices[0], seq_zero_share, bottom=seq_non_zero_share, color='tab:orange', label="0% seq impr", width=width)
+    # ax.bar(indices[0] + width, all_zero_share, bottom=all_non_zero_share, color='tab:pink', label="0% impr", width=width)
+    # # ax.bar(indices[0], seq_no_algo_share, bottom=seq_zero_share, color='tab:red', label="No seq algo", width=width)
     
-    #labels for first bucket
-    # ax.text(indices[0], seq_non_zero_share * 1.05, f"{seq_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
-    # ax.text(indices[0], (seq_non_zero_share + seq_zero_share) * 1.05, f"{seq_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # #labels for first bucket
+    # # ax.text(indices[0], seq_non_zero_share * 1.05, f"{seq_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # # ax.text(indices[0], (seq_non_zero_share + seq_zero_share) * 1.05, f"{seq_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
 
-    # ax.text(indices[0] + width, par_non_zero_share * 1.05, f"{par_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
-    # ax.text(indices[0] + width, (par_non_zero_share + par_zero_share) * 1.05, f"{par_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # # ax.text(indices[0] + width, par_non_zero_share * 1.05, f"{par_non_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
+    # # ax.text(indices[0] + width, (par_non_zero_share + par_zero_share) * 1.05, f"{par_zero_share:.1f}%", ha='center', va='bottom', fontsize=6)
    
-    #other buckets
-    for i in range(1, len(buckets)):
-        par_values = buckets[i]["all_share"] * 100
-        seq_values = buckets[i]["seq_share"] * 100
+    # #other buckets
+    # for i in range(1, len(buckets)):
+    #     par_values = buckets[i]["all_share"] * 100
+    #     seq_values = buckets[i]["seq_share"] * 100
 
-        ax.bar(indices[i], seq_values, color='tab:blue', width=width)
-        #ax.text(indices[i], seq_values * 1.05, f"{seq_values:.1f}%", ha='center', va='bottom', fontsize=6)
+    #     ax.bar(indices[i], seq_values, color='tab:blue', width=width)
+    #     #ax.text(indices[i], seq_values * 1.05, f"{seq_values:.1f}%", ha='center', va='bottom', fontsize=6)
 
-        ax.bar(indices[i] + width, par_values, color='tab:cyan', width=width)
-        #ax.text(indices[i] + width, par_values * 1.05, f"{par_values:.1f}%", ha='center', va='bottom', fontsize=6)
+    #     ax.bar(indices[i] + width, par_values, color='tab:cyan', width=width)
+    #     #ax.text(indices[i] + width, par_values * 1.05, f"{par_values:.1f}%", ha='center', va='bottom', fontsize=6)
 
+    # if (n==10**9 and p==8):
+    #     ax.legend()
+
+    #this makes buckets w/o the 1st one highlighting 0s
+    indices = np.arange(len(buckets))
+    width = 0.4  # width of each bar
+
+    # Extract values
+    seq_values = [b["seq_share"] * 100 for b in buckets]
+    all_values = [b["all_share"] * 100 for b in buckets]
+
+    # Plot bars
+    ax.bar(indices - width/2, seq_values, width=width, color='tab:blue', label="Seq rates")
+    ax.bar(indices + width/2, all_values, width=width, color='tab:cyan', label="All rates")
+
+    #value labels
+    # for i, (s, a) in enumerate(zip(seq_values, all_values)):
+    #     ax.text(indices[i] - width/2, s + 1, f"{s:.1f}%", ha='center', va='bottom', fontsize=6)
+    #     ax.text(indices[i] + width/2, a + 1, f"{a:.1f}%", ha='center', va='bottom', fontsize=6)
+    #legend
     if (n==10**9 and p==8):
         ax.legend()
 
-    #this makes buckets w/o the 1st one highlighting 0s
-    # values = [buckets[i]["share"]*100 for i in range(len(buckets))]
-    # ax.bar(list(range(len(buckets))), values, align='center')
 
 
 # def three_bar_chart(all_data,par_data,n=1000000,p=1000):
@@ -1388,39 +1418,90 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     fig, ax = plt.subplots(figsize=(8, 6))
     bar_width = 0.7
 
+    cb_colors = sns.color_palette("colorblind")
+    # Pick distinct, high-contrast colors
+    bar1_color_top = cb_colors[0]   # blue
+    bar1_color_bottom = cb_colors[1]  # orange
+
+    bar2_color_top = cb_colors[2]   # green
+    bar2_color_bottom = cb_colors[3]  # red
+
     # Bar 1 - Parallel Existence
     bar1 = [has_parallel, 1 - has_parallel]
-    ax.bar(1, bar1[1], width=bar_width, color='gray')
-    ax.bar(1, bar1[0], width=bar_width, bottom=bar1[1], color='blue')
+
+    ax.bar(1, bar1[1], width=bar_width, color=bar1_color_bottom)
+    ax.bar(1, bar1[0], width=bar_width, bottom=bar1[1], color=bar1_color_top)
 
     # Add labels to Bar 1
-    ax.text(1, bar1[1] / 2, f"No Par. Algo Exists\n{bar1[1]* 100:.2f}%", ha='center', va='center', color='white')
-    ax.text(1, bar1[1] + bar1[0] / 2, f"Par. Algo Exists\n{bar1[0]* 100:.2f}%", ha='center', va='center', color='white')
+    ax.text(1, bar1[1] / 2, f"No Parallel\nAlgorithm Exists\n{bar1[1]* 100:.0f}%", ha='center', va='center', color='white')
+    ax.text(1, bar1[1] + bar1[0] / 2, f"Parallel\nAlgorithm Exists\n{bar1[0]* 100:.0f}%", ha='center', va='center', color='white')
 
     # Add proportion on top of Bar 1 (100%)
     ax.text(1, 1.02, f"{100:.0f}%", ha='center', va='bottom', color='black')
 
     # Bar 2 - Parallel Faster
     bar2 = [parallel_faster, 1 - parallel_faster]
-    ax.bar(2, bar2[1], width=bar_width, color='red')
-    ax.bar(2, bar2[0], width=bar_width, bottom=bar2[1], color='green')
+    ax.bar(2, bar2[1], width=bar_width, color=bar2_color_bottom)
+    ax.bar(2, bar2[0], width=bar_width, bottom=bar2[1], color=bar2_color_top)
 
     # Add labels to Bar 2
-    ax.text(2, bar2[1] / 2, f"Par. Algo Not Better\n{bar2[1]* 100:.2f}%", ha='center', va='center', color='white')
-    ax.text(2, bar2[1] + bar2[0] / 2, f"Par. Algo Better\n{bar2[0]* 100:.2f}%", ha='center', va='center', color='white')
+    ax.text(2, bar2[1] / 2, f"Parallel Algorithm\nNot Faster\n{bar2[1]* 100:.0f}%", ha='center', va='center', color='white')
+    ax.text(2, bar2[1] + bar2[0] / 2, f"Parallel Algorithm\nFaster\n{bar2[0]* 100:.0f}%", ha='center', va='center', color='white')
 
     # Add proportion on top of Bar 2
     ax.text(2, 1.02, f"{has_parallel * 100:.0f}%", ha='center', va='bottom', color='black')
 
-    # Bar 3 - Speedup Distribution
+    # # Bar 3 - Speedup Distribution
+    # bottom = 0
+    # for i in range(len(speedup_bins)):
+    #     ax.bar(3, speedup_values[i], width=bar_width, bottom=bottom, alpha=0.8)
+    #     if speedup_values[i]>0:
+    #         #ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
+    #         ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}\n{speedup_values[i]* 100:.2f}%", ha='center', va='center', color='black')
+    #     # ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
+    #     bottom += speedup_values[i]
+
     bottom = 0
+    label_base_x = 3 + bar_width / 2 + 0.03  # starting x position
+    stagger_x_offset = 0.07  # offset for second-level stagger
+    nonzero_idx = 0  # counts only non-empty bins
+
+    #picking a colormap
+    greens = [cm.Greens(x) for x in np.linspace(0.3, 0.95, len(speedup_bins))]
     for i in range(len(speedup_bins)):
-        ax.bar(3, speedup_values[i], width=bar_width, bottom=bottom, alpha=0.8)
-        if speedup_values[i]>0:
-            #ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
-            ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}\n{speedup_values[i]* 100:.2f}%", ha='center', va='center', color='black')
-        # ax.text(3, bottom + speedup_values[i] / 2, f"{speedup_bins[i]}", ha='center', va='center', color='black')
-        bottom += speedup_values[i]
+        value = speedup_values[i]
+        ax.bar(3, value, width=bar_width, bottom=bottom, alpha=0.8, color=greens[i])
+
+        if value > 0:
+            mid_y = bottom + value / 2
+
+            # Percentage inside the bar
+            ax.text(3, mid_y, f"{speedup_bins[i]}", ha='center', va='center', fontsize=8, color='black')
+
+            # Horizontal line to label
+            ax.plot([3 + bar_width / 2, label_base_x], [mid_y, mid_y], color='black', lw=0.5)
+
+            # Stagger labels only among non-empty categories
+            level = nonzero_idx % 2
+            label_x = label_base_x + (stagger_x_offset if level else 0)
+            ax.text(label_x, mid_y, f"{value * 100:.2f}%", ha='left', va='center', fontsize=8)
+            nonzero_idx += 1
+
+        bottom += value
+        # # Draw curly bracket on the right of bar 3 using LaTeX
+        # curly_bracket = FancyArrowPatch(
+        #     (3, bottom),  # Start point of the bracket
+        #     (3, 0),       # End point of the bracket
+        #     connectionstyle="arc3,rad=0.3",  # This adds a curved style to simulate the curly bracket
+        #     mutation_scale=30,  # Controls the size of the bracket
+        #     color="black",
+        #     linewidth=2,
+        # )
+
+        # # Add the curly bracket to the plot
+        # ax.add_patch(curly_bracket)
+
+
 
     # Add proportion on top of Bar 3 (Has Parallel x Faster)
     ax.text(3, 1.02, f"{has_parallel * parallel_faster*100:.0f}%", ha='center', va='bottom', color='black')
@@ -1441,17 +1522,97 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     # Keep y-axis visible
     # ax.spines['left'].set_visible(True)
     # or remove it?
-    ax.spines['left'].set_visible(False)
+    ax.spines['left'].set_visible(True)
 
     # Labels and title
     ax.set_xticks([1, 2, 3])
     ax.tick_params(axis='x', length=0)
     ax.set_xticklabels(["Algorithm Problems", "Algorithm Problems\nwith Parallel Algorithms", "Speedup"])
     # ax.set_ylabel("Proportion")
-    ax.tick_params(axis='y', length=0)
+    # ax.tick_params(axis='y', length=0)
+    ax.tick_params(axis='y', length=5)
     ax.set_ylabel('')
-    ax.set_yticklabels([])
+    ax.set_ylabel("Percentage of Algorithm Problems", fontsize=12)
+    # ax.set_yticklabels([])
     ax.set_title(f"Proportion of Algorithm Problems, n={n}, p={p}")
 
-    plt.savefig(SAVE_LOC+'sankey_style_graph.png')
+    plt.savefig(SAVE_LOC+'sankey_style_graph_n_'+str(n)+'_p_'+str(p)+'.png')
     # plt.show()
+
+def EVERYTHING_yearly_impr_rate_histo_helper_just_par(ax,full_data, raw_buckets, n, p, measure="rt"):
+    assert measure == "sp" or measure == "rt"
+    def get_measure_value(measure,work,span,n,p):
+        '''
+        returns running time (if measure is "rt") or span
+        :measure: either "sp" for span or "rt" for runtime
+        TODO
+        '''
+        if measure == "sp":
+            return get_comp_fn(span)(n)
+        elif measure == "rt":
+            return get_runtime(work,span,n,p)
+        
+    #best=smallest run time for the problem size and processor number
+
+    all_rates = []
+    problems=get_problems(full_data) #takes all problems
+    best_stats, first_stats=improvements(full_data,n,p)
+    for problem in problems:
+        #best seq algo
+        best_seq_algo= best_stats[problem][2024]["bw alg"]
+        #either sequential or force it to be sequential by p=1
+        best_seq_rt = get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
+        best_seq_year=full_data[best_seq_algo]["year"]
+
+        #best algorithm
+        best_algo=best_stats[problem][2024]["br alg"]
+        #if parallel
+        if (full_data[best_algo]["parallel"]=="1"):
+            best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
+            impr_ratio = best_seq_rt / best_rt
+            yearly_impr_rate = impr_ratio ** (1/(2025-best_seq_year))-1
+        else: #if no parallel algo
+            yearly_impr_rate=0
+
+        # if(p==8 and yearly_impr_rate>10):
+        #     print("problem: ",problem, "; first_rt=", first_rt,"; best_rt=", best_rt)
+
+        all_rates.append(yearly_impr_rate)
+            
+    print("finished finding improvement rates for n=", n," and p=",p)
+
+    # find the distribution values to be plotted
+    buckets = copy.deepcopy(raw_buckets)
+    assert len(buckets) >= 2
+    all_rates.sort()
+    # print(all_rates) # (11x0.0) 14, 9, 6, 2, 3, 3, 2, 1, 1, 1, 4, 0
+
+    buckets[0]["index"] = bisect.bisect_left(all_rates, buckets[0]["max"])
+    buckets[0]["count"] = buckets[0]["index"]
+    for i in range(1,len(buckets)-1):
+        max_val = buckets[i]["max"]
+        buckets[i]["index"] = bisect.bisect_left(all_rates, max_val)
+        buckets[i]["count"] = buckets[i]["index"] - buckets[i-1]["index"]
+    buckets[-1]["count"] = len(all_rates) - buckets[-2]["index"]
+    for i in range(len(buckets)):
+        buckets[i]["share"] = buckets[i]["count"] / len(all_rates)
+
+    print("finished finding the distribution")
+
+    # drawing the distribution histogram
+    values = [buckets[i]["share"]*100 for i in range(len(buckets))]
+    # ax.bar(list(range(len(buckets))), values, align='center')
+    bars = ax.bar(list(range(len(buckets))), values, align='center')
+
+    # Add text labels
+    for i, bar in enumerate(bars):
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2, height + 1,  # 1 is vertical offset
+                f"{values[i]:.1f}%",  # format as percent with 1 decimal
+                ha='center', va='bottom', fontsize=6)
+        
+    # Get current y-limit
+    ymin, ymax = ax.get_ylim()
+
+    # Set a new y-limit with a bit of padding above the tallest bar
+    ax.set_ylim(ymin, max(ymax, max(values) * 1.15))  # add 10% headroom

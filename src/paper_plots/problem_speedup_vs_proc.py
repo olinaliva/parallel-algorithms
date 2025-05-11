@@ -1,4 +1,6 @@
 from header import *
+import matplotlib.pyplot as plt
+import matplotlib.ticker as mtick
 
 
 # draws the best speedup for all processors (the envelope of speedup vs
@@ -181,6 +183,12 @@ def get_processor_breakpoints(algorithms, n,
         A dictionary mapping each breakpoint processor count to the best algorithm used
         from that point onward until the next breakpoint.
     """
+
+    algorithms = dict(sorted(
+        algorithms.items(),
+        key=lambda item: item[1].get("work", float("inf"))
+    ))
+
     def best_algo_at(p):
         runtimes = {}
         works = {}
@@ -253,7 +261,7 @@ def get_processor_breakpoints(algorithms, n,
             cleaned_breakpoints[p] = breakpoints[p]
             prev_algo = algo
 
-    print("cleaned breakpoints",cleaned_breakpoints)
+    # print("cleaned breakpoints",cleaned_breakpoints)
     return cleaned_breakpoints
 
     #this was the old func (trying every proc value)
@@ -291,37 +299,185 @@ def problem_speedup_vs_proc(all_data, problem, n_values=[10**3],max_p=10**9):
     # plt.figure(figsize=(10, 6))
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 10), sharex=True)
 
+
+    # colors = plt.cm.viridis(np.linspace(0, 1, len(n_values)))
+    n_colors = ["blue","orange","green"]
+    marker_styles = ['o', 's', '^', 'D', 'P', '*', 'v', 'X', 'h']
+    algorithm_markers = {}
+    legend_handles = {}
+    marker_index = 0  # Keep track of which marker to assign next
+
+
     #for each n in n_values
-    for n in n_values:
-        print("n:",n)
+    # for n in n_values:
+    for i, n in enumerate(n_values):
+        # print("n:",n)
         #get breakpoints
         processor_data = get_processor_breakpoints(all_data_prob,n,min_processors=1,max_processors=max_p)
-        print("processor data",processor_data)
+        # print("processor data",processor_data)
         processor_counts = list(processor_data.keys())
-        print("processor counts",processor_counts)
+        # print("processor counts",processor_counts)
 
-        #compute speedups at breakpoints
-        speedups = [
-            processor_data[1]["runtime"] / processor_data[p]["runtime"] #1 processor will give best seq
-            for p in processor_counts
-        ]
-        print("speedups:", speedups)
+        speedups = []
+        work_overheads = []
 
-        # plt.plot(processor_counts, speedups, linestyle='--', marker=None, label=f"n = {n}")
-        # plt.scatter(processor_counts, speedups, marker='o')
-        ax1.plot(processor_counts, speedups, linestyle='--', marker=None, label=f"n = {n}")
-        ax1.scatter(processor_counts, speedups, marker='o')
+        for p in processor_counts:
+            data = processor_data[p]
+            algo = data.get("algorithm", "unknown")
 
-        serial_work = processor_data[1]["work"]
-        work_overheads = [
-            processor_data[p]["work"] / serial_work
-            for p in processor_counts
-        ]
-        # ax2.plot(processor_counts, work_overheads, linestyle='--', marker=None, label=f"n = {n}")
-        ax2.step(processor_counts, work_overheads, where='post', linestyle='--', label=f"n = {n}")
-        ax2.scatter(processor_counts, work_overheads, marker='o')
+            # Assign a marker to this algorithm if it hasn't been seen
+            if algo not in algorithm_markers:
+                algorithm_markers[algo] = marker_styles[marker_index % len(marker_styles)]
+                marker_index += 1
 
-        
+            marker = algorithm_markers[algo]
+            color = n_colors[i]
+
+            speedup = processor_data[1]["runtime"] / data["runtime"]
+            overhead = data["work"] / processor_data[1]["work"]
+
+            speedups.append(speedup)
+            work_overheads.append(overhead)
+
+            # Plot point
+            # Apply same y-offset to keep markers visually aligned with the line
+            # if i == 1:
+            #     speedup *= 1.04
+            #     overhead *= 1.04
+            # elif i == 0:
+            #     speedup *= 1.08
+            #     overhead *=1.08
+
+
+            ax1.scatter(p, speedup, marker=marker, color=color)
+            ax2.scatter(p, overhead, marker=marker, color=color)
+
+            # Create legend entry for the algorithm
+            if algo not in legend_handles:
+                legend_handles[algo] = ax1.scatter([], [], marker=marker, color='black', label=algo)
+
+        # Draw connecting lines (color by n)
+        # Slight y-offset for the first line segment to avoid overlap
+        plot_speedups = speedups.copy()
+        # if i == 1:  # Second line: push first two points slightly up
+        #     plot_speedups[0] *= 1.04
+        #     plot_speedups[1] *= 1.04
+        #     work_overheads[0] *= 1.04
+        #     work_overheads[1] *= 1.04
+        # elif i == 0:  # Third line: push first two points slightly down
+        #     plot_speedups[0] *= 1.08
+        #     plot_speedups[1] *= 1.08
+        #     work_overheads[0] *= 1.08
+        #     work_overheads[1] *= 1.08
+
+        # Now draw the slightly modified speedup line
+        ax1.plot(processor_counts, plot_speedups, linestyle='-', color=n_colors[i])
+        # ax1.plot(processor_counts, speedups, linestyle='-', color=n_colors[i])
+        ax2.step(processor_counts, work_overheads, where='post', linestyle='-', color=n_colors[i])
+
+        # Annotate the n value at the end of the line
+        ax1.text(processor_counts[-1] *1.10, speedups[-1], f"n={get_nice_n(n)}", va="center", fontsize=9, color=n_colors[i])
+        ax2.text(processor_counts[-1] *1.10, work_overheads[-1], f"n={get_nice_n(n)}", va="center", fontsize=9, color=n_colors[i])
+
+
+    #     # Compute speedups
+    #     speedups = [
+    #         processor_data[1]["runtime"] / processor_data[p]["runtime"]
+    #         for p in processor_counts
+    #     ]
+
+    #     # Compute work overheads
+    #     serial_work = processor_data[1]["work"]
+    #     work_overheads = [
+    #         processor_data[p]["work"] / serial_work
+    #         for p in processor_counts
+    #     ]
+
+    #     # #compute speedups at breakpoints
+    #     # speedups = [
+    #     #     processor_data[1]["runtime"] / processor_data[p]["runtime"] #1 processor will give best seq
+    #     #     for p in processor_counts
+    #     # ]
+    #     # print("speedups:", speedups)
+
+    #     # # plt.plot(processor_counts, speedups, linestyle='--', marker=None, label=f"n = {n}")
+    #     # # plt.scatter(processor_counts, speedups, marker='o')
+    #     # ax1.plot(processor_counts, speedups, linestyle='--', marker=None, label=f"n = {n}")
+    #     # ax1.scatter(processor_counts, speedups, marker='o')
+
+    #     # serial_work = processor_data[1]["work"]
+    #     # work_overheads = [
+    #     #     processor_data[p]["work"] / serial_work
+    #     #     for p in processor_counts
+    #     # ]
+    #     # # ax2.plot(processor_counts, work_overheads, linestyle='--', marker=None, label=f"n = {n}")
+    #     # ax2.step(processor_counts, work_overheads, where='post', linestyle='--', label=f"n = {n}")
+    #     # ax2.scatter(processor_counts, work_overheads, marker='o')
+    #     # Line plots for speedup and work
+    #     # ax1.plot(processor_counts, speedups, linestyle='--', color='gray', alpha=0.5, label=f"n = {n}")
+    #     # ax2.step(processor_counts, work_overheads, where='post', linestyle='--', color='gray', alpha=0.5, label=f"n = {n}")
+
+    #     # # Scatter points with algorithm markers
+    #     # for i, p in enumerate(processor_counts):
+    #     #     algo = processor_data[p]["algorithm"]
+    #     #     marker = algo_to_marker[algo]
+    #     #     ax1.scatter(p, speedups[i], marker=marker, label=algo if algo not in used_algos else "", s=60)
+    #     #     ax2.scatter(p, work_overheads[i], marker=marker, label=algo if algo not in used_algos else "", s=60)
+    #     #     used_algos.append(algo)
+    #     # Line for each n (same color for both subplots)
+    #     color = next(ax1._get_lines.prop_cycler)['color']
+    #     # ax1.plot(processor_counts, speedups, linestyle='-', color=color, label=f"n = {n}")
+    #     # ax2.step(processor_counts, work_overheads, where='post', linestyle='-', color=color, label=f"n = {n}")
+
+    #     # # Dots with algorithm-specific marker, using color of the line
+    #     # for i, p in enumerate(processor_counts):
+    #     #     marker = algo_to_marker[algos[i]]
+    #     #     ax1.scatter(p, speedups[i], marker=marker, color=color, s=60,
+    #     #                 label=algos[i] if algos[i] not in used_algos else "")
+    #     #     ax2.scatter(p, work_overheads[i], marker=marker, color=color, s=60,
+    #     #                 label=algos[i] if algos[i] not in used_algos else "")
+    #     #     used_algos.add(algos[i])
+    #     # Plot speedups and work overheads for the current `n`
+    #     ax1.plot(processor_counts, speedups, linestyle='-', color=colors[i], label=f"n = {n}")
+    #     ax1.scatter(processor_counts, speedups, marker=markers[i % len(markers)], color=colors[i])
+
+    #     ax2.step(processor_counts, work_overheads, where='post', linestyle='-', color=colors[i])
+    #     ax2.scatter(processor_counts, work_overheads, marker=markers[i % len(markers)], color=colors[i])
+
+    #     # Add custom legend entries for the algorithm symbols (not the n values)
+    #     for j, p in enumerate(processor_counts):
+    #         # For each algorithm, create a scatter with the correct marker and color
+    #         legend_entries.append(ax1.scatter([], [], marker=markers[j % len(markers)], color=colors[i], label=f"Algorithm {j+1}"))
+
+    #     # # Add custom legend entries for the algorithms (markers only)
+    #     # legend_entries.append(ax1.scatter([], [], marker=markers[i % len(markers)], color=colors[i], label=f"Algorithm {i+1}"))
+    #     # legend_entries.append(ax2.scatter([], [], marker=markers[i % len(markers)], color=colors[i], label=f"Algorithm {i+1}"))
+
+    #     # Annotate last point for speedup line on ax1
+    #     ax1.text(
+    #         processor_counts[-1] * 1.05,  # Shift slightly to the right
+    #         speedups[-1],
+    #         f"n = {get_nice_n(n)}",
+    #         va="center",
+    #         fontsize=9,
+    #         color=colors[i]
+    #     )
+
+    #     # Annotate last point for work overhead line on ax2
+    #     ax2.text(
+    #         processor_counts[-1] * 1.05,  # Shift slightly to the right
+    #         work_overheads[-1],
+    #         f"n = {get_nice_n(n)}",
+    #         va="center",
+    #         fontsize=9,
+    #         color=colors[i]
+    #     )
+
+    
+    # # Add a legend manually with custom entries
+    # ax1.legend(handles=legend_entries, loc='center left', bbox_to_anchor=(1, 0.5), title="Algorithms", fontsize=9)
+
+    
 
     # #final plot formatting
     # plt.xscale('log')
@@ -334,6 +490,8 @@ def problem_speedup_vs_proc(all_data, problem, n_values=[10**3],max_p=10**9):
     # plt.tight_layout()
 
     # plt.savefig(SAVE_LOC+'speedup_vs_proc_'+problem+'.png')
+
+    ax1.legend(handles=list(legend_handles.values()), title="Algorithms", loc='center left', bbox_to_anchor=(1, 0.5))
 
     ax1.set_xscale('log')
     ax2.set_xscale('log')
@@ -355,3 +513,234 @@ def problem_speedup_vs_proc(all_data, problem, n_values=[10**3],max_p=10**9):
     plt.tight_layout()
     plt.savefig(SAVE_LOC + f'speedup_and_work_overhead_{problem}.png')
 
+
+# def fastest_algo_work_eff(data, n=10**6, min_p=1, max_p=10**6):
+    
+#     serial={}
+#     we={}
+#     not_we={}
+
+#     problems=get_problems(data)
+#     #for each problem
+#     for problem in problems:
+#     #TODO: rewrite this bit
+#         data_prob = {
+#             name: info
+#             for name, info in data.items()
+#             if info.get("problem") == problem
+#         }
+#         #find fastest algo cutoff points
+#         #spits out dictionary of processor number and the algo name and runtime that is fastest at that point
+#         processor_data = get_processor_breakpoints(data_prob,n,min_processors=min_p,max_processors=max_p)
+
+#         # For each processor count and the fastest algo at that point
+#         for proc_count in processor_data.keys():
+#             algo_name=processor_data[proc_count]["algorithm"]
+#             #is it serial?
+#             if not data[algo_name]["parallel"]:
+#                 serial[proc_count] += 1
+#             #is it parallel and work efficient
+#             elif data[algo_name]["parallel"] and data[algo_name].get("we", False):
+#                 we[proc_count] += 1
+#             #else parallel and not work efficient
+#             else:
+#                 not_we[proc_count] += 1
+
+#     # Normalize counts to percentages
+#     processor_range = sorted(set(serial) | set(we) | set(not_we))
+#     total_problems = len(problems)
+
+#     serial_pct = [serial[p] / total_problems for p in processor_range]
+#     we_pct = [we[p] / total_problems for p in processor_range]
+#     not_we_pct = [not_we[p] / total_problems for p in processor_range]
+
+#     # Stacked area plot
+#     plt.stackplot(
+#         processor_range,
+#         serial_pct,
+#         we_pct,
+#         not_we_pct,
+#         labels=["Serial", "Work-Efficient Parallel", "Not Work-Efficient Parallel"],
+#         colors=["#ff9999", "#99ff99", "#9999ff"]
+#     )
+#     plt.xlabel("Number of Processors")
+#     plt.ylabel("Fraction of Problems")
+#     plt.title("Fastest Algorithm Category by Processor Count")
+#     plt.legend(loc="upper right")
+#     plt.grid(True)
+#     plt.tight_layout()
+#     plt.show()    
+
+
+
+def fastest_algo_work_eff(data, n=10**6, min_p=1, max_p=10**6, step=1000):
+    problems = get_problems(data)
+    processor_range = list(range(min_p, max_p + 1, step))  # Step to make it tractable
+
+    # Maps problem → {proc_count → category}
+    problem_proc_to_category = {}
+
+    for problem in problems:
+        # Get problem-specific algorithm data
+        data_prob = {
+            name: info
+            for name, info in data.items()
+            if info.get("problem") == problem
+        }
+
+        # Get breakpoints for fastest algorithms
+        processor_data = get_processor_breakpoints(data_prob, n, min_processors=min_p, max_processors=max_p)
+
+        # Map of proc_count → category
+        proc_to_cat = {}
+        for proc_count, entry in processor_data.items():
+            algo_name = entry["algorithm"]
+            if not data[algo_name]["parallel"]:
+                cat = "serial"
+            elif data[algo_name]["parallel"] and data[algo_name].get("we", False):
+                cat = "we"
+            else:
+                cat = "not_we"
+            proc_to_cat[proc_count] = cat
+
+        # Convert breakpoints to a full list using forward fill
+        proc_list = sorted(proc_to_cat)
+        filled_cat = []
+        last_cat = None
+        idx = 0
+        for p in processor_range:
+            while idx < len(proc_list) and proc_list[idx] <= p:
+                last_cat = proc_to_cat[proc_list[idx]]
+                idx += 1
+            filled_cat.append(last_cat if last_cat is not None else "serial")  # Default to serial if no info
+
+        problem_proc_to_category[problem] = filled_cat
+
+    # Aggregate across all problems at each processor count
+    serial_pct = []
+    we_pct = []
+    not_we_pct = []
+
+    total_problems = len(problems)
+
+    for i in range(len(processor_range)):
+        serial_ct = we_ct = not_we_ct = 0
+        for problem in problems:
+            cat = problem_proc_to_category[problem][i]
+            if cat == "serial":
+                serial_ct += 1
+            elif cat == "we":
+                we_ct += 1
+            else:
+                not_we_ct += 1
+
+        serial_pct.append(serial_ct / total_problems)
+        we_pct.append(we_ct / total_problems)
+        not_we_pct.append(not_we_ct / total_problems)
+
+    # Plotting
+    plt.figure(figsize=(12, 6))
+    plt.stackplot(
+        processor_range,
+        serial_pct,
+        we_pct,
+        not_we_pct,
+        labels=["Serial", "Work-Efficient Parallel", "Not Work-Efficient Parallel"],
+        colors=["#ff9999", "#99ff99", "#9999ff"]
+    )
+    plt.xlabel("Number of Processors")
+    plt.ylabel("Fraction of Problems")
+    plt.title("Fastest Algorithm Category by Processor Count")
+    plt.legend(loc="upper right")
+    plt.grid(True)
+    plt.tight_layout()
+    plt.show()
+
+def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6, step=100):
+    problems = get_problems(data)
+    par_problems = get_problems(par_data)
+    no_par_problems_number=len(problems)-len(par_problems)
+    processor_range = list(range(min_p, max_p + 1, step))
+
+    # Initialize count for each processor: how many problems had serial/parallel fastest
+    serial_counts = {p: 0 for p in processor_range}
+    parallel_counts_we = {p: 0 for p in processor_range}
+    parallel_counts_not_we = {p: 0 for p in processor_range}
+
+
+    for problem in problems:
+        # Filter to just algorithms for this problem
+        data_prob = {
+            name: info
+            for name, info in data.items()
+            if info.get("problem") == problem
+        }
+
+        # Get fastest algorithm at each processor count
+        proc_list = get_processor_breakpoints(
+            data_prob, n, min_processors=min_p, max_processors=max_p
+        )
+
+        for p in processor_range:
+            # if p==1:
+            #     print(problem, data[proc_list[1]["algorithm"]]["parallel"])
+            prev_proc_pt=1
+            for proc_pt in proc_list.keys():
+                if proc_pt==p:
+                    algo_name=proc_list[proc_pt]["algorithm"]
+                    work=data[algo_name]["work"]
+                    break
+                if proc_pt>p:
+                    algo_name=proc_list[prev_proc_pt]["algorithm"]
+                    work=data[algo_name]["work"]
+                    break
+                prev_proc_pt=proc_pt
+            
+            if data[algo_name]["parallel"]=="1":
+                if data[proc_list[1]["algorithm"]]["work"]/work==1:
+                    parallel_counts_we[p] += 1
+                else: parallel_counts_not_we[p] += 1
+            else: serial_counts[p] += 1
+
+
+    # Total number of problems
+    total_problems = len(problems)
+
+    # Normalize to percentages
+    parallel_not_we_pct = [100 * parallel_counts_not_we[p] / total_problems for p in processor_range]
+    parallel_we_pct = [100 * parallel_counts_we[p] / total_problems for p in processor_range]
+    serial_pct = [100 * (serial_counts[p] - no_par_problems_number) / total_problems for p in processor_range]
+    no_par_pct = [100 * no_par_problems_number / total_problems for _ in processor_range]
+
+    # Stackplot
+    plt.figure(figsize=(12, 6))
+    plt.stackplot(
+        processor_range,
+        parallel_not_we_pct,
+        parallel_we_pct,
+        serial_pct,
+        no_par_pct,
+        labels=["Parallel Work Inefficient\n Algorithm Fastest", "Parallel Work-Efficient\nAlgorithm Fastest", "Serial Algorithm\nFastest", "No Parallel\nAlgorithm Exists"],
+        colors=["red", "yellow", "green", "blue"]
+    )
+
+
+    plt.xlabel("Number of Processors")
+    plt.ylabel("Percentage of Algorithm Problems")
+    plt.title(f"Work Efficiency of the Fastest Algorithm\n$n={get_nice_n(n)}$")
+    # plt.legend(loc="upper right")
+    plt.legend(
+        loc="upper right",
+        ncol=2
+    )
+    plt.grid(True)
+    plt.xscale("log")
+    plt.xlim(min_p, max_p)
+    plt.ylim(0, 100)
+
+    # Format y-axis ticks to show '%' symbol
+    plt.gca().yaxis.set_major_formatter(mtick.FuncFormatter(lambda x, _: f'{x:.0f}%'))
+
+    plt.tight_layout()
+    # plt.show()
+    plt.savefig(SAVE_LOC + f'work_efficiency_fastest_algo_{str(n)}.png')
