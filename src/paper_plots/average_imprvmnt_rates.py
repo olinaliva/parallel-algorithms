@@ -933,9 +933,12 @@ def EVERYTHING_yearly_impr_rate_histo_grid(full_data, raw_buckets,n_values=[10**
             ax[i,j].get_yaxis().set_visible(False)
 
             
-    ax[0,0].set_title("Problem size ($n$) =\n"+long_human_format(n_values[0]))
-    ax[0,1].set_title("Problem size ($n$) =\n"+long_human_format(n_values[1]))
-    ax[0,2].set_title("Problem size ($n$) =\n"+long_human_format(n_values[2]))
+    # ax[0,0].set_title("Problem size ($n$) =\n"+long_human_format(n_values[0]))
+    # ax[0,1].set_title("Problem size ($n$) =\n"+long_human_format(n_values[1]))
+    # ax[0,2].set_title("Problem size ($n$) =\n"+long_human_format(n_values[2]))
+    ax[0,0].set_title(human_format(n_values[0])+" problem size")
+    ax[0,1].set_title(human_format(n_values[1])+" problem size")
+    ax[0,2].set_title(human_format(n_values[2])+" problem size")
     # ax[0,0].set_ylabel("# processors = \n"+long_human_format(p_values[0]))
     # ax[1,0].set_ylabel("# processors = \n"+long_human_format(p_values[1]))
     # ax[2,0].set_ylabel("# processors = \n"+long_human_format(p_values[2]))
@@ -943,7 +946,7 @@ def EVERYTHING_yearly_impr_rate_histo_grid(full_data, raw_buckets,n_values=[10**
     ax[1,0].set_ylabel(human_format(p_values[1])+" processors")
     ax[2,0].set_ylabel(human_format(p_values[2])+" processors")
             
-    fig.suptitle("Algorithm Problem Average Yearly Improvement Rate\n(Sequential and Parallel)\nEVERYTHING")
+    fig.suptitle("Average Yearly Speedup from Parallelization")
     
     plt.savefig(SAVE_LOC+variation+'_EVERYTHING_average_improvement_rate.png')
 
@@ -1385,8 +1388,8 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
 
 
     speedup_bins = ["1-2x", "2x-4x", "4x-8x", "8x-16x", "16x-32x", "32x-64x", "64x-128x", "128x-256x", 
-                    "256x-512x", "512x-1024x"]
-    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "256x-512x", "512x-1024x", "oh no"]
+    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for s in prob_speedups:
         if 1 < s < 2:
             speedup_values[0] += 1
@@ -1408,6 +1411,8 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
             speedup_values[8] += 1
         elif 512 <= s < 1024:
             speedup_values[9] += 1
+        elif 1024 <= s < 2048: #oh no
+            speedup_values[10] += 1
         else:
             raise ValueError("There is now a speedup more than 1024!")
 
@@ -1563,6 +1568,7 @@ def EVERYTHING_yearly_impr_rate_histo_helper_just_par(ax,full_data, raw_buckets,
         #either sequential or force it to be sequential by p=1
         best_seq_rt = get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
         best_seq_year=full_data[best_seq_algo]["year"]
+        first_seq_year=full_data[first_stats[problem]]["year"]
 
         #best algorithm
         best_algo=best_stats[problem][2024]["br alg"]
@@ -1570,7 +1576,8 @@ def EVERYTHING_yearly_impr_rate_histo_helper_just_par(ax,full_data, raw_buckets,
         if (full_data[best_algo]["parallel"]=="1"):
             best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
             impr_ratio = best_seq_rt / best_rt
-            yearly_impr_rate = impr_ratio ** (1/(2025-best_seq_year))-1
+            yearly_impr_rate = impr_ratio ** (1/(2025-first_seq_year))-1
+            # yearly_impr_rate = impr_ratio ** (1/(2025-best_seq_year))-1
         else: #if no parallel algo
             yearly_impr_rate=0
 

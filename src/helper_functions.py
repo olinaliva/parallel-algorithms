@@ -127,11 +127,15 @@ def get_runtime(work,span,n,p,lower=False, parallel=True):
     assert p >= 1
     work_fn = get_comp_fn(work)
     span_fn = get_comp_fn(span)
+    work_calc=work_fn(n)
+    span_calc=span_fn(n)
     if parallel==False:
         parallel=0
     if parallel==True:
         parallel=1
-    return (work_fn(n)-span_fn(n))/p + span_fn(n) + parallel
+        if p>=(work_calc/p)/span_calc:
+            return 2*span_calc-span_calc**2/work_calc
+    return (work_calc-span_calc)/p + span_calc + parallel
     # #if parallel==False: return get_seq_runtime(work,n)
     # if parallel==False or parallel==0: return get_seq_runtime(work,n)
     # assert p >= 1

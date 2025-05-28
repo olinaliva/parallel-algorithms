@@ -50,6 +50,18 @@ PROCESSOR_COLORS = ['#3cb44b','#ffe119','#a9a9a9'] # green, yellow, grey
 #                 '#00ffff', '#777777', '#7700ff', '#469990']
 SEQ_PAR_COLORS = ['#F5C8AF','#58D68D']
 
+#blue
+ALGO_COLORS = ["#AEDBFF", "#369BFF", "#6FBFFF"]
+ALGO_LINE_COLOR ="#0A2A4F"
+#red
+# ALGO_COLORS = ["#FFC1C1", "#E63946", "#FF6B6B"]
+# ALGO_LINE_COLOR ="#4B0A0A"
+
+n_COLORS = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:pink', 'tab:gray', 'tab:olive', 'tab:cyan']
+
+COLORS_GRADIENT = ['#88CCEE', '#6BAEDC', '#4E94C6', '#3970A5', '#2B5580']
+WORK_EFF_COLORS =["#4477AA", "#88CCEE", "#FDB863", "#D55E00"]
+
 MODEL_COLORS = {
     100: '#0000ff', # 130
     110: '#ff0000',

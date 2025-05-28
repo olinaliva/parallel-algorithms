@@ -498,6 +498,14 @@ with open("aux.json", "w") as json_file:
 
 
 print("running functions to make the actual graphs for the paper")
+##### overall TODO's #####
+#TODO: in the google sheet, check all relevant parallel algos have subproblem
+#TODO: in the google sheet, check all relevant serial algos have subproblem filled in (both sheet1 and new entries to sheet1)
+#TODO: sanity check work vs lower bounds for all problems for typos/mistakes
+#TODO: use newest data version
+#TODO: go through each figure and decide if work should be T_1 or 2T_1-T_inf
+#TODO: go through each figure and check that p is never larger than maximum useful p*
+#TODO: are we calculating parallel and serial runtimes correctly?
 
 pset = get_problems(simulated_par_data)
 #{"max": 0.001, "label": "0-0.1%"},
@@ -507,97 +515,98 @@ histo_buckets = [
             {"max": 0.1, "label": "3-10%"},
             {"max": 0.3, "label": "10-30%"},
             {"max": 1, "label": "30-100%"},
-            {"max": 3, "label": "100-300%"},
-            {"max": 10, "label": "300-1000%"},
-            {"max": math.inf, "label": ">1000%"},]
+            # {"max": 3, "label": "100-300%"},
+            # {"max": 10, "label": "300-1000%"},
+            # {"max": math.inf, "label": ">1000%"},
+            ]
 
 
-# fastest_algo_work_eff(simulated_par_data, n=10**6, min_p=1, max_p=10**6)
-count_fastest_algo_by_category(full_data, simulated_par_data, n=10**6, min_p=1, max_p=10**6, step=1)
-
-
+######### FIGURE 1 #########
 print("figure 1.1: Algorithm Improvements over Time")
 #TODO: test if what i have is correct (check which problems have lots of variations, do they scale down intuitively)
-#TODO: remove title so we can title it in overleaf directly
 average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES)
 average_improvement_over_decade_graph(simulated_par_data,full_seq_data,DECADES,var_weights="thesis_weight")
 
-#TODO: change colors?
-#TODO: take away title so it can be just in latex
 print("figure ??: Number of Parallel Processors Over Time")
+#TODO: change colors?
 available_processors(top_processor_data,pc_processor_data)
+
+print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
 #TODO: fix the manual gap labels 
 #TODO: maybe do different colors for this one and the one above
 #TODO: this is probably sparse apsp, so why does the problem say apsp? data error?
 #TODO: take away title
 #TODO: if later the autoformat changes then make sure the y range is bottom:1, top: whatever the top is 
-print("figure ??: Parallel Performance for All Pairs Shortest Paths Problem using processors available at the time")
 speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_processor_data,pc_processor_data,n=10**6,seq=True)
 
-print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
-#this one (should be) just parallel improvement: measures from best seq
-#TODO: take title away so we just latex it
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt",variation="just_par_impr")
-#this one is sequential + all
-#TODO: take away title
-#TODO: make legend written out
-#TODO: do we want bar labels?
-EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9], 
-                                       p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="seq_plus_all")
+
+######### FIGURE 2 #########
+print("sankey style figure")
+#TODO: try other colors
+#TODO: fix the label & title overlap
+#TODO: if the rightmost bar tick marks dont overlap because of thin categories, remove the buffer so every second one is not moved out
+#TODO: change titles
+#personal
+# sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
+# #big
+# sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
 
 
+######### FIGURE 3 #########
 print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
 #TODO: make sure that the hardcoded values in this graph are still ok
-#TODO: take title away
 span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
 numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
 
 print("figure 1.3: Best Span vs Best Work-efficient Algorithm Span for all Problems")
-#TODO: probably take title away like for everything else
 #TODO: make labels look nicer
-#TODO: fix that one dotted line
+#TODO: fix that one dotted line (change going to 0 to going to 100%)
 NEW_w_seq_span_comparison_best_vs_work_efficient(full_problem_data)
 
-print("figure 1.4: Speed of Parallel Bipartite Graph Maximum Cardinality Matching")
-#TODO: make it stop at processor limit
-#TODO: style stuff
-#TODO: title
-#TODO: get runtime defs from rezaul and then add stoppers
-#TODO: fix n formatting
+
+######### FIGURE 4 #########
+#TODO: need to pick one of these -> done, using the just parallel one
+print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial and Parallel)")
+#this one (should be) just parallel improvement: measures from best seq
+#TODO: add labels to axis
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6],measure="rt",variation="just_par_impr")
+#just going to use the parallel impr one
+# #this one is sequential + all
+# #TODO: take away title
+# #TODO: make legend written out
+# #TODO: do we want bar labels?
+# EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9], 
+#                                        p_values=[8,10**3,10**6],measure="rt", par_data=simulated_par_data, seq_data=full_seq_data, variation="seq_plus_all")
+
+
+######### FIGURE 5 #########
+print("figure 1.4: Fastest Parallel Algorithm and Work Overhead for Topological Sorting (in dense graphs)")
 #TODO: beutify algo names
-problem_speedup_vs_proc(full_data,"Bipartite Graph MCM",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"Topological Sorting",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"LCS",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"Edit Distance, constant-size alphabet",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"MST",n_values=[10**3,10**6, 10**9],max_p=10**10)
-# problem_speedup_vs_proc(full_data,"Comparison Sorting",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"General Permutations",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"APSP",n_values=[10**3,10**6, 10**9],max_p=10**10)
-# problem_speedup_vs_proc(full_data,"SCCs",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"Variance Calculations",n_values=[10**3,10**6, 10**9],max_p=10**10)
-# problem_speedup_vs_proc(full_data,"2-dimensional",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"Point-in-Polygon",n_values=[10**3,10**6, 10**9],max_p=10**10)
-problem_speedup_vs_proc(full_data,"directed nonneg SSSP",n_values=[10**3,10**6, 10**9],max_p=10**10)
-# problem_speedup_vs_proc(full_data,"SCCs",n_values=[10**3,10**6, 10**9],max_p=10**10)
+#TODO: place algo names/ "work overhead" somewhere nicer
+#TODO: in actual paper will need have something in caption that points to an explanation in the text about ignoring constants
+#TODO: why is there a break?
+#TODO: change work overhead to lower-upper range
+#TODO: make line stop once no more parallelism
+#TODO: bigger fonts for everything
+#TODO: when things dont fit, move label outside of graph and add arrow
+#TODO: 
+problem_speedup_vs_proc_three_curves(full_data,"Topological Sorting",n_values=[10**3,10**6, 10**9],max_p=10**10)
 
 
+######### FIGURE 6 #########
+#TODO: keep tweaking colors
 print("figure 1.5: Work Overhead for the fastest algorithm")
-#TODO: title
 #TODO: change % to x
 NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
                             upper_bounds=[0,100,1000,10000,math.inf],
                             max_p=10**9,allowed_models=set(model_dict.keys()))
+# fastest_algo_work_eff(simulated_par_data, n=10**6, min_p=1, max_p=10**6)
+count_fastest_algo_by_category(full_data, simulated_par_data, n=10**6, min_p=1, max_p=10**6, step=1)
 
-print("sankey style figure")
-#TODO: try other colors
-#TODO: also plug in big p and n numbers to make side by side graphs (n=10**6, p=8) "on your laptop" and (n=10**9, p=10**3)
-sankey_style_graph(full_data,simulated_par_data)
-#personal
-sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
-#big
-sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
+
+
 
 # # probs=get_problems(full_data)
 # # probs_seq=get_problems(full_seq_data)

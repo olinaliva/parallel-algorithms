@@ -1,6 +1,9 @@
 from header import *
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mtick
+import math
+import matplotlib.gridspec as gridspec
+import numpy as np
 
 
 # draws the best speedup for all processors (the envelope of speedup vs
@@ -721,7 +724,7 @@ def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6
         serial_pct,
         no_par_pct,
         labels=["Parallel Work Inefficient\n Algorithm Fastest", "Parallel Work-Efficient\nAlgorithm Fastest", "Serial Algorithm\nFastest", "No Parallel\nAlgorithm Exists"],
-        colors=["red", "yellow", "green", "blue"]
+        colors=WORK_EFF_COLORS
     )
 
 
@@ -744,3 +747,320 @@ def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6
     plt.tight_layout()
     # plt.show()
     plt.savefig(SAVE_LOC + f'work_efficiency_fastest_algo_{str(n)}.png')
+
+
+def problem_speedup_vs_proc_three(all_data, problem, n_values=[10**3], max_p=10**9):
+    all_data_prob = {
+        name: info for name, info in all_data.items() if info.get("problem") == problem
+    }
+
+    fig, axes = plt.subplots(len(n_values), 1, figsize=(10, 5 * len(n_values)), sharex=True)
+
+    if len(n_values) == 1:
+        axes = [axes]  # Ensure axes is always iterable
+
+    #############
+    # fig = plt.figure(figsize=(10, 5 * len(n_values) + 1))  # Extra space for top bar
+    # gs = gridspec.GridSpec(len(n_values) + 1, 1, height_ratios=[0.1] + [1]*len(n_values), hspace=0.4)
+
+    # # Top bar for "Work Overhead"
+    # bar_ax = fig.add_subplot(gs[0])
+    # bar_ax.axis('off')
+    # bar_ax.text(0.5, 0.5, "Work Overhead", ha='center', va='center', fontsize=12, weight='bold')
+
+    # # Regular subplots below
+    # axes = [fig.add_subplot(gs[i+1]) for i in range(len(n_values))]
+    # top_ax = axes[0]
+    # xmin, xmax = top_ax.get_xlim()
+    # xmin = max(xmin, 1e-6)
+    # log_min = math.log10(xmin)
+    # log_max = math.log10(xmax)
+
+    ##########
+    # Adjust GridSpec to create extra rows for "Work Overhead" bars
+    # fig = plt.figure(figsize=(10, 5 * len(n_values) + 1*len(n_values))) 
+    # gs = gridspec.GridSpec(len(n_values) * 2, 1, height_ratios=[0.2] * len(n_values) + [1] * len(n_values), hspace=0.4)
+
+    # # Regular subplots below for data
+    # axes = [fig.add_subplot(gs[i * 2 + 1]) for i in range(len(n_values))]
+    # top_ax = axes[0]
+    # xmin, xmax = top_ax.get_xlim()
+    # xmin = max(xmin, 1e-6)
+    # log_min = math.log10(xmin)
+    # log_max = math.log10(xmax)
+
+    # # Create the "Work Overhead" bars for each subplot
+    # for i, ax in enumerate(axes):
+    #     # Create a new axis at the top of each subplot for the "Work Overhead" label
+    #     bar_ax = fig.add_subplot(gs[i * 2])  # Top bar for each subplot
+    #     bar_ax.axis('off')  # Remove axis from this bar
+
+    #     # Add "Work Overhead" label and shade the bar
+    #     bar_ax.text(0.5, 0.5, "Work Overhead", ha='center', va='center', fontsize=12, weight='bold')
+    #     bar_ax.set_facecolor("#d3d3d3")  # Light gray shading for the bar
+
+    #     # Continue with plotting the actual data on the main axes (ax)
+    #     processor_data = get_processor_breakpoints(all_data_prob, n_values[i], min_processors=1, max_processors=max_p)
+    #     processor_counts = list(processor_data.keys())
+
+    n_colors = ["blue", "orange", "green", "red", "purple"]
+    marker_styles = ['o', 's', '^', 'D', 'P', '*', 'v', 'X', 'h']
+
+    for i, (ax, n) in enumerate(zip(axes, n_values)):
+        processor_data = get_processor_breakpoints(all_data_prob, n, min_processors=1, max_processors=max_p)
+        processor_counts = list(processor_data.keys())
+        # color = n_colors[i]
+
+        # for j in range(1, max_p,100):
+        #     p1 = j
+        #     p2 = j+100
+        #     prev_proc_pt1=1
+        #     for proc_pt1 in processor_counts:
+        #         if proc_pt1==p1:
+        #             algo1 = processor_data[p1]["algorithm"]
+        #             work=processor_data[p1]["work"]
+        #             break
+        #         if proc_pt1>p1:
+        #             algo1=processor_data[prev_proc_pt1]["algorithm"]
+        #             work=processor_data[prev_proc_pt1]["work"]
+        #             break
+        #         prev_proc_pt1=proc_pt1
+        #     prev_proc_pt2=1
+        #     for proc_pt2 in processor_counts:
+        #         if proc_pt2==p2:
+        #             algo2 = processor_data[p2]["algorithm"]
+        #             work=processor_data[p2]["work"]
+        #             break
+        #         if proc_pt2>p2:
+        #             algo2=processor_data[prev_proc_pt2]["algorithm"]
+        #             work=processor_data[prev_proc_pt2]["work"]
+        #             break
+        #         prev_proc_pt2=proc_pt2
+
+        #     rt1 = get_runtime(all_data[algo1]["work"], all_data[algo1]["span"], n, p1, all_data[algo1]["parallel"])
+        #     rt2 = get_runtime(all_data[algo2]["work"], all_data[algo2]["span"], n, p2, all_data[algo2]["parallel"])
+
+        #     speedup1 = processor_data[1]["runtime"] / rt1  # serial over parallel
+        #     speedup2 = processor_data[1]["runtime"] / rt2
+
+        #     overhead = work / processor_data[1]["work"]
+
+        #     # # Midpoint in log space
+        #     # mid_x = 10 ** ((math.log10(p1) + math.log10(p2)) / 2)
+        #     # mid_y = 10 ** ((math.log10(speedup1) + math.log10(speedup2)) / 2)
+
+        #     # Draw segment manually
+        #     ax.plot([p1, p2], [speedup1, speedup2], color=color, linestyle='-')
+
+        #     # # Label the segment
+        #     # label = f"{algo2}, {overhead:.2f}×"
+        #     # ax.text(mid_x, mid_y, label, fontsize=8, ha='center', va='bottom', color=color)
+
+        ############# my attempts for a rational function
+        # color = n_colors[i]
+        # serial_runtime=processor_data[1]["work"]
+
+        # for j in range(len(processor_counts)-1):
+        #     p1 = processor_counts[j]
+        #     p2 = processor_counts[j+1]
+        #     algo= processor_data[p1]["algorithm"]
+        #     work_numerical=processor_data[p1]["work"]
+        #     span=all_data[algo]["span"]
+        #     span_fn=get_comp_fn(span)
+        #     span_numerical=span_fn(n)
+        #     parallel=int(all_data[algo]["parallel"])
+
+        #     def speedup_function(p):
+        #         return serial_runtime/((work_numerical-span_numerical)/p + span_numerical + parallel)
+
+        #     x_vals = [i for i in range(p1,p2,100)]
+        #     y_vals = [speedup_function(p) for p in x_vals]
+
+        #     plt.plot(x_vals, y_vals)
+
+        ##############
+
+
+        algorithm_markers = {}
+        marker_index = 0
+        color = n_colors[i]
+
+        speedups = []
+        labels = []
+        shade_colors = ["#f0f0f0", "#e0e0ff"]  # alternating shades
+        shade_idx = 0
+
+        for j in range(len(processor_counts)):
+            p = processor_counts[j]
+            data = processor_data[p]
+            algo = data["algorithm"]
+
+            ax.axvline(x=p, color='gray', linestyle='--', linewidth=0.8)
+
+            
+
+            if algo not in algorithm_markers:
+                algorithm_markers[algo] = marker_styles[marker_index % len(marker_styles)]
+                marker_index += 1
+            marker = algorithm_markers[algo]
+
+            speedup = processor_data[1]["runtime"] / data["runtime"]
+            overhead = data["work"] / processor_data[1]["work"]
+
+            speedups.append((p, speedup))
+            
+            if p!=max_p:
+                ax.scatter(p, speedup, marker=marker, color=color)
+                labels.append((p, speedup, f"{algo}, {overhead:.2f}x"))
+
+                # Shade region between this and next processor count
+                p_next = processor_counts[j + 1]
+                ax.axvspan(p, p_next, facecolor=shade_colors[shade_idx % len(shade_colors)], alpha=0.3)
+                shade_idx += 1
+            
+                # Midpoint in log space for label placement
+                mid_x = 10 ** ((math.log10(p) + math.log10(p_next)) / 2)
+                mid_y= 10 ** ((math.log10(speedup) + math.log10(processor_data[1]["runtime"] / processor_data[p_next]["runtime"])) / 2)
+
+                ax.text(mid_x, processor_data[1]["runtime"] / processor_data[max_p]["runtime"], f"{overhead:.0f}×",
+                        fontsize=8, ha='center', va='bottom', clip_on=False)
+                ax.text(mid_x, mid_y, f"{algo}",
+                        fontsize=8, ha='center', va='bottom', clip_on=False)
+                # ax.text(mid_x, processor_data[1]["runtime"] / processor_data[max_p]["runtime"], f"{algo}\n{overhead:.2f}×",
+                #         fontsize=8, ha='center', va='bottom', clip_on=False)
+        
+
+        # Sort and plot line
+        speedups.sort()
+        x_vals, y_vals = zip(*speedups)
+        ax.plot(x_vals, y_vals, color=color, label=f"$n = {get_nice_n(n)}$")
+
+        # # Add annotations
+        # for (p, y, label) in labels:
+        #     ax.annotate(label, (p, y), textcoords="offset points", xytext=(5, 5), fontsize=8)
+
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_ylabel("Speedup")
+        ax.set_title(f"Speedup vs Processors ($n = {get_nice_n(n)}$)\nWork Overhead")
+        ax.axhline(y=1, color='gray', linestyle=':', linewidth=1)
+        ax.grid(True, which='both', ls='--', linewidth=0.5)
+        # ax.text(10**5, ax.get_ylim()[1], "Work Overhead", ha='center', va='top', fontsize=16)
+
+    axes[-1].set_xlabel("Number of Processors")
+    plt.tight_layout()
+    plt.savefig(SAVE_LOC + f'speedup_separated_{problem}.png')
+
+
+def problem_speedup_vs_proc_three_curves(all_data, problem, n_values=[10**3], max_p=10**9, point_number=1000):
+    '''makes the speedup (and work overhead) vs processors graph
+    "fastest parallel algorithm and work overhead for [problem]"
+    one graph for each problem size n value, where x axis is the number of processors 
+    and y axis is the speedup of the fastest parallel algorithm at that processor number relative to best serial algorithm
+
+    input:
+        all_data: dictionary with all algorithms (serial and parallel combined)
+        problem: string (has to match the exact problem string that the dictionary will have)
+        n_values: list of problem size n values
+        max_p: integer, maximum processor number to plot
+        TODO: min_p: integer, minimum end of processor number, right now assumption is min_p=1, this could be changed if there is a need for some reason
+        point_number: integer, how many points to logarithmically sample in each algorithm segment
+    output:
+        saves graph to SAVE_LOC + f'speedup_separated_{problem}_curves.png'
+        (SAVE_LOC determinded in header.py)
+    '''
+    #trims down the dictionary to only the problem we care about
+    all_data_prob = {
+            name: info for name, info in all_data.items() if info.get("problem") == problem
+    }
+
+    fig, axes = plt.subplots(len(n_values), 1, figsize=(10, 5 * len(n_values)), constrained_layout=True)
+
+    if len(n_values) == 1:
+        axes = [axes]  #so axes always iterable
+
+
+    #TODO: standardize these colors with other graphs, probably in header.py ?
+    #actually, what if all lines are black?
+    #n_colors = n_COLORS
+    #background colors for algorithm segments
+    algorithm_backgrounds = {}
+    background_color_index = 0
+    background_colors = ALGO_COLORS
+
+    #here actually make the graphs (one for each n)
+    for i, (ax, n) in enumerate(zip(axes, n_values)):
+        #get_processor_breakpoints returns a dictionary where 
+            #keys are processor numbers where a switch to another algo happens
+            #["algorithm"] - algo name
+            #["runtime"] - calculated runtime from the n and p for that algo
+            #["work"] - calculated work from the n for that algo
+        processor_data = get_processor_breakpoints(all_data_prob, n, min_processors=1, max_processors=max_p)
+        processor_counts = list(processor_data.keys()) #just make a list of the keys
+        
+        #color = n_colors[i]
+        color=ALGO_LINE_COLOR
+        serial_runtime = processor_data[1]["runtime"]
+
+        for j in range(len(processor_counts) - 1):
+            p1 = processor_counts[j]
+            p2 = processor_counts[j + 1]
+            data = processor_data[p1]
+            algo = data["algorithm"]
+            #assign background shade if its a new algorithm
+            if algo not in algorithm_backgrounds.keys():
+                algorithm_backgrounds[algo]=background_colors[background_color_index]
+                background_color_index+=1
+
+            #hoping I can cut down on time by precalculating/saving values
+            
+            work = data["work"]
+            work_enc=all_data[algo]["work"]
+            span = all_data[algo]["span"]
+            parallel = int(all_data[algo]["parallel"])
+            overhead = work / processor_data[1]["work"]
+            span_fn = get_comp_fn(span)
+            span_val = span_fn(n)
+            overhead_upper = (work*2-span_val)/processor_data[1]["work"]
+            p_star=work/span_val #processor value where parallelism stops
+            def runtime_fn(p):
+                    return (work - span_val) / p + span_val + parallel
+            
+            #this should stop the line at maximum parallelism
+            # if p1!=1 and p_star<p2: #parallelism fades out before end of segment
+            #     p2=p_star
+            #sample points logarithmically
+            ps = np.logspace(np.log10(p1), np.log10(p2), point_number)
+            #TODO: probably should just cal get_runtime so if we change the runtime func stuff doesnt get messed up
+            # speedups_curve = [serial_runtime / runtime_fn(p) for p in ps]
+            #just calls runtime
+            speedups_curve = [serial_runtime / get_runtime(work_enc,span,n,p,parallel) for p in ps]
+
+
+            #plot the line (curve)
+            ax.plot(ps, speedups_curve, color=color)
+
+            #vertical lines and shading
+            ax.axvline(x=p1, color='gray', linestyle='--', linewidth=0.8)
+            ax.axvspan(p1, p2, facecolor=algorithm_backgrounds[algo], alpha=0.3)
+
+            #label with algorithm name and work overhead
+            mid_x = 10 ** ((math.log10(p1) + math.log10(p2)) / 2)
+            top_y = serial_runtime / processor_data[max_p]["runtime"]*2
+            ax.text(mid_x, top_y, f"{algo}\nWork Overhead: {overhead:.0f}×-{overhead_upper:.0f}x",fontsize=8, ha='center', va='top', clip_on=False)
+
+        ax.set_xscale('log')
+        ax.set_yscale('log')
+        ax.set_ylabel("Speedup", fontsize=14)
+        ax.set_title(f"$n = {get_nice_n(n)}$", fontsize=14)
+        ax.axhline(y=1, color='gray', linestyle=':', linewidth=1)
+        ax.grid(True, which='major', axis='y', ls='--', linewidth=0.5)
+        ax.set_xlim(1,max_p)
+        ax.set_ylim(0.9,top_y*1.5)
+        
+
+    axes[-1].set_xlabel("Number of Processors", fontsize=14)
+
+    fig.suptitle(f"Fastest Parallel Algorithm and Work Overhead for {problem} (in dense graphs)", fontsize=16)
+    # plt.tight_layout(rect=[0, 0, 1, 0.96])  #leave space at the top for the suptitle
+    plt.savefig(SAVE_LOC + f'speedup_separated_{problem}_curves.png')

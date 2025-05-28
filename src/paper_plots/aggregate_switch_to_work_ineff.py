@@ -516,7 +516,7 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
 
     x_positions = np.arange(len(p_values))
 
-    b_color=COLORS[0]
+    b_color=COLORS_GRADIENT[0]
     label=f"${0}$%"
     bucket_colors = [b_color]
     legend_patches = [mpatches.Patch(color=b_color, label=label)]  # List to store legend entries
@@ -524,7 +524,7 @@ def NEW_work_overhead_histogram_graph_helper(ax, par_data, seq_data, problems, n
 
 
     for j in range(len(upper_bounds) - 1):
-        b_color = COLORS[j+1]  # Wrap around if not enough colors
+        b_color = COLORS_GRADIENT[j+1]  # Wrap around if not enough colors
         bucket_colors.append(b_color)
 
         # Handle "infinity" case for legend
