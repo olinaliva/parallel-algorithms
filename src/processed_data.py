@@ -5,22 +5,11 @@
 from src.complexity_functions import *
 from src.standard_codes import CODE_DIVISON
 from src.helper_functions import create_aux_data
-# from complexity_functions import *
-# from standard_codes import CODE_DIVISON
-# from helper_functions import create_aux_data
 import json
 
+VERSION = "_JAN23"
 
-
-
-#VERSION = "_JAN23"
-#VERSION = "_JAN26"
-#VERSION = "_DEC15"
-#VERSION = "_FEB18"
-#VERSION = "_MAR9"
-VERSION = "_MAY1"
-
-
+# TODO Investigate if this data is complete.
 top_processor_data = {
     1925: (1, None), 
     # 1972: (64, 'ILLIAC IV'),
@@ -54,6 +43,7 @@ pc_processor_data = {
     # 2022: (128, ''), # Tachyum prodigy, not really a conventional CPU
 }
 
+# unclear what this does, looks like hand verified information about problem familes??
 aux_data = {
 13.1: {"lower bound": 20, "best seq": 20, "bs span": 1, "bs work": 20, "bs par":19, "bs overhead": 0, "we exist": 1, "we span": 1, "we work": 20, "we par": 19},
 14.1: {"lower bound": 20, "best seq": 20, "bs span": 1.5, "bs work": 21.5,"bs par":20,  "bs overhead": 1.5, "we exist": 1, "we span": 2, "we work": 20, "we par": 18},
@@ -61,6 +51,7 @@ aux_data = {
 33: {"lower bound": 10, "best seq": 10, "bs span": 0, "bs work": 15, "bs par":15, "bs overhead": 5, "we exist": 1, "we span": 0.001, "we work": 10, "we par": 9.999},
 }
 
+# unclear what this does
 rel_speedup_seq_data = {
 "1": {"problem": 14.1, "year": 1926, "auth": "Borůvka", "time": 21, "span fn":bo26, "const span fn": bo26_const},
 "2": {"problem": 14.1, "year": 1975, "auth": "Yao", "time": 20.1, "span fn":yao75, "const span fn": yao75_const},
@@ -74,6 +65,7 @@ rel_speedup_seq_data = {
 "10": {"problem": 17, "year": 2014, "auth": "Williams", "time": 29.1, "span fn": wi14, "const span fn": wi14_const},
 }
 
+#Unclear what this does
 full_data = {
 "13.1-20-Reif (1985)": {"year": 1985, "problem": 13.1, "span": 1, "span fn": comp_fn_1_0000, "work": 20, "work eff": 0, "sim": 0, "par": 19, "model": 135},
 "13.1-21-Gazit (1986)": {"year": 1986, "problem": 13.1, "span": 1, "span fn": comp_fn_1_0000, "work": 20, "work eff": 0, "sim": 0, "par": 19, "model": 135},
@@ -159,16 +151,6 @@ original_par_data = parse_json("par_algos_original"+VERSION)
 simulated_par_data = parse_json("par_algos_simulated"+VERSION)
 full_seq_data = parse_json("seq_data"+VERSION)
 full_problem_data = create_aux_data(simulated_par_data,full_seq_data)
-
-full_data = dict(simulated_par_data)
-#print(full_data['143Sorenson (2010)'])
-for name in full_seq_data:
-    full_data[name]=full_seq_data[name]
-    full_data[name]["span"]=full_seq_data[name]["time"]
-    full_data[name]["work"]=full_seq_data[name]["time"]
-    full_data[name]["model"]=""
-    full_data[name]["par"]=""
-
 # print(full_problem_data)
 
 # for prob in full_problem_data:
