@@ -141,6 +141,10 @@ def parse_json(name):
 
     dict_to_be_returned = {}
     for val in values:
+        # Add missing parallel field if it doesn't exist
+        if "parallel" not in val:
+            # Default to parallel=True if "par" field exists and is > 0
+            val["parallel"] = 1 if "par" in val and val["par"] > 0 else 0
         dict_to_be_returned[val["name"]] = val
         assert "year" in val
     

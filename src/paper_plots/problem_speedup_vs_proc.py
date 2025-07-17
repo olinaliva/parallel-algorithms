@@ -195,14 +195,33 @@ def get_processor_breakpoints(algorithms, n,
     def best_algo_at(p):
         runtimes = {}
         works = {}
+        print(f"\nbest_algo_at called with p={p}")
+        print(f"Number of algorithms available: {len(algorithms)}")
+        print(f"First 5 algorithms: {list(algorithms.keys())[:5]}")
+        
         for algo in algorithms:
-            work = algorithms[algo]["work"]
-            span = algorithms[algo]["span"]
-            parallel = algorithms[algo]["parallel"]
-            rt = get_runtime(work, span, n, p, parallel)
-            runtimes[algo] = rt
-            works[algo] = get_seq_runtime(work,n)
+            try:
+                work = algorithms[algo]["work"]
+                span = algorithms[algo]["span"]
+                parallel = algorithms[algo]["parallel"]
+                rt = get_runtime(work, span, n, p, parallel)
+                runtimes[algo] = rt
+                works[algo] = get_seq_runtime(work,n)
+                print(f"Algorithm {algo}: work={work}, span={span}, parallel={parallel}, runtime={rt}")
+            except Exception as e:
+                print(f"Error processing algorithm {algo}: {e}")
+                print(f"Available fields: {algorithms[algo].keys()}")
+        
+        if not runtimes:
+            print("WARNING: No valid runtimes computed!")
+            print(f"n={n}, p={p}")
+            print(f"Total algorithms processed: {len(algorithms)}")
+            print("First 3 algorithms details:")
+            for algo in list(algorithms.keys())[:3]:
+                print(f"{algo}: {algorithms[algo]}")
+        
         best = min(runtimes, key=runtimes.get)
+        print(f"Selected best algorithm: {best} with runtime {runtimes[best]}")
         return best, runtimes[best], works[best]
 
     def search_breakpoints(start, end, start_algo, start_runtime, end_algo, end_runtime):
@@ -699,11 +718,12 @@ def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6
                     break
                 prev_proc_pt=proc_pt
             
-            if data[algo_name]["parallel"]=="1":
-                if data[proc_list[1]["algorithm"]]["work"]/work==1:
-                    parallel_counts_we[p] += 1
-                else: parallel_counts_not_we[p] += 1
-            else: serial_counts[p] += 1
+            if proc_list[1]["algorithm"] == algo_name:
+                parallel_counts_we[p] += 1
+            elif algo_name in proc_list:
+                parallel_counts_not_we[p] += 1
+            else:
+                serial_counts[p] += 1
 
 
     # Total number of problems
@@ -719,11 +739,11 @@ def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6
     plt.figure(figsize=(12, 6))
     plt.stackplot(
         processor_range,
-        parallel_not_we_pct,
         parallel_we_pct,
+        parallel_not_we_pct,
         serial_pct,
         no_par_pct,
-        labels=["Parallel Work Inefficient\n Algorithm Fastest", "Parallel Work-Efficient\nAlgorithm Fastest", "Serial Algorithm\nFastest", "No Parallel\nAlgorithm Exists"],
+        labels=["Parallel Work-Efficient\nAlgorithm Fastest", "Parallel Work Inefficient\n Algorithm Fastest", "Serial Algorithm\nFastest", "No Parallel\nAlgorithm Exists"],
         colors=WORK_EFF_COLORS
     )
 
@@ -745,8 +765,37 @@ def count_fastest_algo_by_category(data, par_data, n=10**6, min_p=1, max_p=10**6
     plt.gca().yaxis.set_major_formatter(mtick.FuncFormatter(lambda x, _: f'{x:.0f}%'))
 
     plt.tight_layout()
-    # plt.show()
-    plt.savefig(SAVE_LOC + f'work_efficiency_fastest_algo_{str(n)}.png')
+    # Add debugging information
+    print(f"\n=== Plotting Debug Info ===")
+    print(f"Saving plot to: {SAVE_LOC}work_efficiency_fastest_algo_{str(n)}.png")
+    print(f"Processor range: {processor_range}")
+    print(f"Parallel WE percentages: {parallel_we_pct[:5]}...")
+    print(f"Parallel not WE percentages: {parallel_not_we_pct[:5]}...")
+    print(f"Serial percentages: {serial_pct[:5]}...")
+    print(f"No parallel percentages: {no_par_pct[:5]}...")
+    
+    # Verify directory exists and is writable
+    import os
+    if not os.path.exists(SAVE_LOC):
+        print(f"Error: Directory {SAVE_LOC} does not exist")
+        os.makedirs(SAVE_LOC, exist_ok=True)
+    
+    # Save with a unique filename to prevent caching
+    import time
+    timestamp = int(time.time())
+    output_path = SAVE_LOC + f'work_efficiency_fastest_algo_{str(n)}_{timestamp}.png'
+    print(f"Attempting to save plot to: {output_path}")
+    
+    try:
+        plt.savefig(output_path)
+        print(f"Plot saved successfully with timestamp: {timestamp}")
+    except Exception as e:
+        print(f"Error saving plot: {str(e)}")
+        print(f"Full error: {traceback.format_exc()}")
+    
+    # Clear the plot to prevent memory issues
+    plt.close()
+    print(f"=== End of Plotting Debug Info ===\n")
 
 
 def problem_speedup_vs_proc_three(all_data, problem, n_values=[10**3], max_p=10**9):
@@ -970,9 +1019,22 @@ def problem_speedup_vs_proc_three_curves(all_data, problem, n_values=[10**3], ma
         (SAVE_LOC determinded in header.py)
     '''
     #trims down the dictionary to only the problem we care about
+    print(f"\nFiltering data for problem: {problem}")
+    print(f"Total algorithms in all_data: {len(all_data)}")
+    print("First 5 algorithms in all_data:")
+    for name, info in list(all_data.items())[:5]:
+        print(f"{name}: {info}")
+    
     all_data_prob = {
             name: info for name, info in all_data.items() if info.get("problem") == problem
     }
+    
+    print(f"\nFiltered algorithms for problem {problem}:")
+    print(f"Number of matching algorithms: {len(all_data_prob)}")
+    print("First 5 matching algorithms:")
+    for name, info in list(all_data_prob.items())[:5]:
+        print(f"{name}: {info}")
+    print(f"\nProblem string used for filtering: {problem}")
 
     fig, axes = plt.subplots(len(n_values), 1, figsize=(10, 5 * len(n_values)), constrained_layout=True)
 

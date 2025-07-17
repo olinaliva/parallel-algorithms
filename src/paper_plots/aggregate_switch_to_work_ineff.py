@@ -108,9 +108,9 @@ def problems_work_efficiency_by_processors_graph(par_data,seq_data,problems,
     # ax.fill_between(x=[1, 3, 20, 21, 23, 75, 398, 631, 4618, 19932, 62698, 1000000, 1000001, 12166508],y1=100,y2=perc_no_par*100,color=local_colors[0])
     ax.fill_between(x=all_x_values,y1=100,y2=perc_no_par*100,color=local_colors[0])
     ax.fill_between(x=all_x_values,y1=perc_no_par*100,y2=y_val_dict[1],color=local_colors[1])
-    ax.fill_between(x=all_x_values,y1=y_val_dict[1],y2=y_val_dict[0],color=local_colors[2])
     ax.fill_between(x=all_x_values,y1=y_val_dict[0],y2=0,color=local_colors[3])
-
+    ax.fill_between(x=all_x_values,y1=y_val_dict[1],y2=y_val_dict[0],color=local_colors[2])
+    
     # Remove text annotations inside the plot
     #ax.text(20,75,"No Parallel Algorithm Exists",fontsize=10,verticalalignment='center')
     #ax.text(7,35,"Sequential Algorithm Fastest",fontsize=10,verticalalignment='center')

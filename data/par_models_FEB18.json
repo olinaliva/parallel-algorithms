@@ -2,2431 +2,2917 @@
     {
         "year": 1968,
         "model": 510,
-        "id": "1"
+        "id": "1",
+        "parallel": true
     },
     {
         "year": 1968,
         "model": 510,
-        "id": "2"
+        "id": "2",
+        "parallel": true
     },
     {
         "year": 1971,
         "model": 510,
-        "id": "3"
+        "id": "3",
+        "parallel": true
     },
     {
         "year": 1971,
         "model": 510,
-        "id": "4"
+        "id": "4",
+        "parallel": true
     },
     {
         "year": 1972,
         "model": 510,
-        "id": "5"
+        "id": "5",
+        "parallel": true
     },
     {
         "year": 1975,
         "model": 200,
-        "id": "6"
-    },
-    {
-        "year": 1975,
-        "model": 510,
-        "id": "7"
+        "id": "6",
+        "parallel": true
     },
     {
         "year": 1975,
         "model": 510,
-        "id": "8"
+        "id": "7",
+        "parallel": true
+    },
+    {
+        "year": 1975,
+        "model": 510,
+        "id": "8",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 210,
-        "id": "9"
+        "id": "9",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 210,
-        "id": "10"
+        "id": "10",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 210,
-        "id": "11"
+        "id": "11",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 200,
-        "id": "12"
+        "id": "12",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 200,
-        "id": "13"
+        "id": "13",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 200,
-        "id": "14"
+        "id": "14",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 520,
-        "id": "15"
+        "id": "15",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 520,
-        "id": "16"
+        "id": "16",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 520,
-        "id": "17"
+        "id": "17",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 200,
-        "id": "18"
+        "id": "18",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 510,
-        "id": "19"
+        "id": "19",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 520,
-        "id": "20"
+        "id": "20",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 520,
-        "id": "21"
+        "id": "21",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 520,
-        "id": "22"
+        "id": "22",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 520,
-        "id": "23"
+        "id": "23",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 510,
-        "id": "25"
+        "id": "25",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 520,
-        "id": "26"
+        "id": "26",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 210,
-        "id": "27"
+        "id": "27",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 130,
-        "id": "28"
+        "id": "28",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 520,
-        "id": "30"
+        "id": "30",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 200,
-        "id": "31"
+        "id": "31",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 510,
-        "id": "32"
+        "id": "32",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 510,
-        "id": "33"
+        "id": "33",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 200,
-        "id": "34"
+        "id": "34",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 200,
-        "id": "36"
+        "id": "36",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 510,
-        "id": "37"
+        "id": "37",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 520,
-        "id": "38"
+        "id": "38",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 300,
-        "id": "40"
+        "id": "40",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 300,
-        "id": "41"
+        "id": "41",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 510,
-        "id": "43"
+        "id": "43",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 100,
-        "id": "44"
+        "id": "44",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 100,
-        "id": "45"
+        "id": "45",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 520,
-        "id": "47"
+        "id": "47",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 510,
-        "id": "48"
+        "id": "48",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 510,
-        "id": "49"
+        "id": "49",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 510,
-        "id": "50"
+        "id": "50",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 510,
-        "id": "53"
+        "id": "53",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 510,
-        "id": "54"
+        "id": "54",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "57"
+        "id": "57",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "58"
+        "id": "58",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 110,
-        "id": "59"
+        "id": "59",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 300,
-        "id": "60"
+        "id": "60",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "62"
+        "id": "62",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 110,
-        "id": "63"
-    },
-    {
-        "year": 1988,
-        "model": 300,
-        "id": "64"
+        "id": "63",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 300,
-        "id": "66"
+        "id": "64",
+        "parallel": true
+    },
+    {
+        "year": 1988,
+        "model": 300,
+        "id": "66",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "70"
+        "id": "70",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "71"
+        "id": "71",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "72"
+        "id": "72",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 110,
-        "id": "74"
+        "id": "74",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 110,
-        "id": "75"
+        "id": "75",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "76"
+        "id": "76",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 510,
-        "id": "79"
+        "id": "79",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 510,
-        "id": "83"
+        "id": "83",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "85"
+        "id": "85",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 510,
-        "id": "86"
+        "id": "86",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 110,
-        "id": "88"
+        "id": "88",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 200,
-        "id": "90"
+        "id": "90",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 510,
-        "id": "91"
+        "id": "91",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 510,
-        "id": "93"
+        "id": "93",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 510,
-        "id": "97"
+        "id": "97",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 200,
-        "id": "98"
+        "id": "98",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "101"
+        "id": "101",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 510,
-        "id": "102"
+        "id": "102",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "103"
+        "id": "103",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 110,
-        "id": "105"
+        "id": "105",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "106"
+        "id": "106",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 110,
-        "id": "107"
+        "id": "107",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 520,
-        "id": "108"
+        "id": "108",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "115"
+        "id": "115",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 300,
-        "id": "116"
+        "id": "116",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 100,
-        "id": "117"
+        "id": "117",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 700,
-        "id": "118"
+        "id": "118",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 300,
-        "id": "119"
+        "id": "119",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "121"
+        "id": "121",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "123"
+        "id": "123",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "124"
+        "id": "124",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "126"
+        "id": "126",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 510,
-        "id": "127"
+        "id": "127",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 510,
-        "id": "135"
+        "id": "135",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 510,
-        "id": "141"
+        "id": "141",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 100,
-        "id": "144"
+        "id": "144",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 100,
-        "id": "145"
+        "id": "145",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 110,
-        "id": "146"
+        "id": "146",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 130,
-        "id": "148"
+        "id": "148",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 130,
-        "id": "150"
+        "id": "150",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "151"
+        "id": "151",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 510,
-        "id": "153"
+        "id": "153",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 300,
-        "id": "155"
+        "id": "155",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 520,
-        "id": "157"
+        "id": "157",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 520,
-        "id": "158"
+        "id": "158",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 400,
-        "id": "160"
+        "id": "160",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 200,
-        "id": "161"
+        "id": "161",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 510,
-        "id": "162"
+        "id": "162",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 700,
-        "id": "165"
+        "id": "165",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 700,
-        "id": "166"
+        "id": "166",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 200,
-        "id": "167"
+        "id": "167",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 110,
-        "id": "171"
+        "id": "171",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 510,
-        "id": "172"
+        "id": "172",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 700,
-        "id": "174"
+        "id": "174",
+        "parallel": true
     },
     {
         "year": 2005,
         "model": 131,
-        "id": "189"
+        "id": "189",
+        "parallel": true
     },
     {
         "year": 2007,
         "model": 110,
-        "id": "193"
+        "id": "193",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 510,
-        "id": "196"
+        "id": "196",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 200,
-        "id": "199"
+        "id": "199",
+        "parallel": true
     },
     {
         "year": 2011,
         "model": 700,
-        "id": "203"
+        "id": "203",
+        "parallel": true
     },
     {
         "year": 2011,
         "model": 110,
-        "id": "204"
+        "id": "204",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 510,
-        "id": "205"
+        "id": "205",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 100,
-        "id": "206"
+        "id": "206",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 130,
-        "id": "208"
+        "id": "208",
+        "parallel": true
     },
     {
         "year": 2015,
         "model": 130,
-        "id": "213"
+        "id": "213",
+        "parallel": true
     },
     {
         "year": 2017,
         "model": 100,
-        "id": "214"
+        "id": "214",
+        "parallel": true
     },
     {
         "year": 2017,
         "model": 100,
-        "id": "216"
+        "id": "216",
+        "parallel": true
     },
     {
         "year": 2017,
         "model": 100,
-        "id": "217"
+        "id": "217",
+        "parallel": true
     },
     {
         "year": 2018,
         "model": 120,
-        "id": "218"
+        "id": "218",
+        "parallel": true
     },
     {
         "year": 2019,
         "model": 120,
-        "id": "226"
+        "id": "226",
+        "parallel": true
     },
     {
         "year": 2020,
         "model": 520,
-        "id": "229"
+        "id": "229",
+        "parallel": true
     },
     {
         "year": 2021,
         "model": 100,
-        "id": "230"
+        "id": "230",
+        "parallel": true
     },
     {
         "year": 2022,
         "model": 132,
-        "id": "233"
+        "id": "233",
+        "parallel": true
     },
     {
         "year": 2022,
         "model": 100,
-        "id": "238"
+        "id": "238",
+        "parallel": true
     },
     {
         "year": 2022,
         "model": 100,
-        "id": "239"
+        "id": "239",
+        "parallel": true
     },
     {
         "year": 2023,
         "model": 120,
-        "id": "240"
+        "id": "240",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 220,
-        "id": "242"
+        "id": "242",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 110,
-        "id": "243"
+        "id": "243",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 110,
-        "id": "244"
+        "id": "244",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 130,
-        "id": "246"
+        "id": "246",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "247"
+        "id": "247",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "248"
+        "id": "248",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "249"
+        "id": "249",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 132,
-        "id": "250"
+        "id": "250",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 120,
-        "id": "251"
+        "id": "251",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 132,
-        "id": "252"
+        "id": "252",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 130,
-        "id": "253"
+        "id": "253",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 110,
-        "id": "254"
+        "id": "254",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 120,
-        "id": "255"
+        "id": "255",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "256"
+        "id": "256",
+        "parallel": true
     },
     {
         "year": 2003,
         "model": 400,
-        "id": "257"
+        "id": "257",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "258"
+        "id": "258",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "259"
+        "id": "259",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 130,
-        "id": "260"
+        "id": "260",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 130,
-        "id": "261"
+        "id": "261",
+        "parallel": true
     },
     {
         "year": 2006,
         "model": 700,
-        "id": "262"
+        "id": "262",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 300,
-        "id": "264"
+        "id": "264",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 300,
-        "id": "265"
+        "id": "265",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 300,
-        "id": "266"
+        "id": "266",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 120,
-        "id": "267"
+        "id": "267",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 400,
-        "id": "270"
+        "id": "270",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 120,
-        "id": "272"
+        "id": "272",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 120,
-        "id": "276"
+        "id": "276",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 120,
-        "id": "277"
+        "id": "277",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 130,
-        "id": "278"
+        "id": "278",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 130,
-        "id": "284"
+        "id": "284",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 700,
-        "id": "285"
+        "id": "285",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 120,
-        "id": "286"
+        "id": "286",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 120,
-        "id": "287"
+        "id": "287",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 110,
-        "id": "288"
+        "id": "288",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 100,
-        "id": "289"
+        "id": "289",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 100,
-        "id": "290"
+        "id": "290",
+        "parallel": true
     },
     {
         "year": 2022,
         "model": 120,
-        "id": "291"
+        "id": "291",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 120,
-        "id": "292"
+        "id": "292",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 210,
-        "id": "293"
+        "id": "293",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 700,
-        "id": "294"
+        "id": "294",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 700,
-        "id": "295"
+        "id": "295",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "296"
+        "id": "296",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "297"
+        "id": "297",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "298"
+        "id": "298",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "300"
+        "id": "300",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 700,
-        "id": "315"
+        "id": "315",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 130,
-        "id": "316"
+        "id": "316",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 700,
-        "id": "321"
+        "id": "321",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 700,
-        "id": "337"
+        "id": "337",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 700,
-        "id": "368"
+        "id": "368",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 300,
-        "id": "369"
+        "id": "369",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 300,
-        "id": "370"
+        "id": "370",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 130,
-        "id": "375"
+        "id": "375",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 110,
-        "id": "376"
+        "id": "376",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "378"
+        "id": "378",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 120,
-        "id": "379"
+        "id": "379",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "380"
+        "id": "380",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "381"
+        "id": "381",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "382"
+        "id": "382",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 120,
-        "id": "383"
+        "id": "383",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "384"
+        "id": "384",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 120,
-        "id": "385"
+        "id": "385",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 120,
-        "id": "386"
+        "id": "386",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 210,
-        "id": "387"
+        "id": "387",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 210,
-        "id": "388"
+        "id": "388",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 130,
-        "id": "389"
+        "id": "389",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 220,
-        "id": "390"
+        "id": "390",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 120,
-        "id": "391"
+        "id": "391",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "392"
+        "id": "392",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 110,
-        "id": "393"
+        "id": "393",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "394"
+        "id": "394",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "395"
+        "id": "395",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 200,
-        "id": "396"
+        "id": "396",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "397"
+        "id": "397",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "398"
+        "id": "398",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 130,
-        "id": "399"
+        "id": "399",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 120,
-        "id": "400"
+        "id": "400",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 120,
-        "id": "401"
+        "id": "401",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 120,
-        "id": "402"
+        "id": "402",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 120,
-        "id": "403"
+        "id": "403",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "404"
+        "id": "404",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "405"
+        "id": "405",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "406"
+        "id": "406",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "407"
+        "id": "407",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "408"
+        "id": "408",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 110,
-        "id": "409"
+        "id": "409",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 110,
-        "id": "410"
+        "id": "410",
+        "parallel": true
     },
     {
         "year": 2003,
         "model": 130,
-        "id": "411"
+        "id": "411",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 110,
-        "id": "412"
+        "id": "412",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 110,
-        "id": "413"
+        "id": "413",
+        "parallel": true
     },
     {
         "year": 2020,
         "model": 130,
-        "id": "414"
+        "id": "414",
+        "parallel": true
     },
     {
         "year": 2020,
         "model": 130,
-        "id": "415"
+        "id": "415",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 210,
-        "id": "416"
+        "id": "416",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 210,
-        "id": "417"
+        "id": "417",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 210,
-        "id": "418"
+        "id": "418",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 210,
-        "id": "419"
+        "id": "419",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 210,
-        "id": "420"
+        "id": "420",
+        "parallel": true
     },
     {
         "year": 1978,
         "model": 100,
-        "id": "421"
+        "id": "421",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 210,
-        "id": "422"
+        "id": "422",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 320,
-        "id": "423"
+        "id": "423",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 210,
-        "id": "424"
+        "id": "424",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 210,
-        "id": "425"
+        "id": "425",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 110,
-        "id": "426"
+        "id": "426",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 131,
-        "id": "427"
+        "id": "427",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 130,
-        "id": "428"
+        "id": "428",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 130,
-        "id": "429"
+        "id": "429",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 130,
-        "id": "430"
+        "id": "430",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 110,
-        "id": "431"
+        "id": "431",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 130,
-        "id": "432"
+        "id": "432",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "433"
+        "id": "433",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "434"
+        "id": "434",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 120,
-        "id": "435"
+        "id": "435",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "436"
+        "id": "436",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "438"
+        "id": "438",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 700,
-        "id": "439"
+        "id": "439",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "440"
+        "id": "440",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "441"
+        "id": "441",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 120,
-        "id": "442"
+        "id": "442",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "443"
+        "id": "443",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "444"
+        "id": "444",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "445"
+        "id": "445",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 110,
-        "id": "447"
+        "id": "447",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 110,
-        "id": "448"
+        "id": "448",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 130,
-        "id": "449"
+        "id": "449",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 110,
-        "id": "450"
+        "id": "450",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 130,
-        "id": "451"
+        "id": "451",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 130,
-        "id": "453"
+        "id": "453",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 210,
-        "id": "455"
+        "id": "455",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 210,
-        "id": "456"
+        "id": "456",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 300,
-        "id": "457"
+        "id": "457",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 300,
-        "id": "458"
+        "id": "458",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 210,
-        "id": "459"
+        "id": "459",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 210,
-        "id": "460"
+        "id": "460",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 110,
-        "id": "461"
+        "id": "461",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 130,
-        "id": "462"
+        "id": "462",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 210,
-        "id": "463"
+        "id": "463",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 220,
-        "id": "464"
+        "id": "464",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 300,
-        "id": "465"
+        "id": "465",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 120,
-        "id": "466"
+        "id": "466",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 220,
-        "id": "467"
+        "id": "467",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "468"
+        "id": "468",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 700,
-        "id": "469"
+        "id": "469",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "470"
+        "id": "470",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 110,
-        "id": "471"
+        "id": "471",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 310,
-        "id": "472"
+        "id": "472",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "473"
+        "id": "473",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "474"
+        "id": "474",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "475"
+        "id": "475",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "476"
+        "id": "476",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 130,
-        "id": "477"
+        "id": "477",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 110,
-        "id": "478"
+        "id": "478",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 130,
-        "id": "479"
+        "id": "479",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 110,
-        "id": "480"
+        "id": "480",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 110,
-        "id": "481"
+        "id": "481",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 110,
-        "id": "482"
+        "id": "482",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 132,
-        "id": "483"
+        "id": "483",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 400,
-        "id": "484"
+        "id": "484",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 400,
-        "id": "485"
+        "id": "485",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 400,
-        "id": "486"
+        "id": "486",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 400,
-        "id": "487"
+        "id": "487",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 110,
-        "id": "488"
+        "id": "488",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 110,
-        "id": "489"
+        "id": "489",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 110,
-        "id": "490"
+        "id": "490",
+        "parallel": true
     },
     {
         "year": 2000,
         "model": 110,
-        "id": "491"
+        "id": "491",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 110,
-        "id": "492"
+        "id": "492",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 130,
-        "id": "493"
+        "id": "493",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 110,
-        "id": "494"
+        "id": "494",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 110,
-        "id": "495"
+        "id": "495",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 110,
-        "id": "496"
+        "id": "496",
+        "parallel": true
     },
     {
         "year": 2002,
         "model": 120,
-        "id": "497"
+        "id": "497",
+        "parallel": true
     },
     {
         "year": 2002,
         "model": 120,
-        "id": "498"
+        "id": "498",
+        "parallel": true
     },
     {
         "year": 2006,
         "model": 300,
-        "id": "499"
+        "id": "499",
+        "parallel": true
     },
     {
         "year": 2013,
         "model": 300,
-        "id": "500"
+        "id": "500",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 110,
-        "id": "501"
+        "id": "501",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "502"
+        "id": "502",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 131,
-        "id": "503"
+        "id": "503",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 120,
-        "id": "504"
+        "id": "504",
+        "parallel": true
     },
     {
         "year": 2016,
         "model": 131,
-        "id": "505"
+        "id": "505",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 120,
-        "id": "506"
+        "id": "506",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 110,
-        "id": "507"
+        "id": "507",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 120,
-        "id": "513"
+        "id": "513",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 110,
-        "id": "520"
+        "id": "520",
+        "parallel": true
     },
     {
         "year": 2018,
         "model": 132,
-        "id": "521"
+        "id": "521",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 210,
-        "id": "523"
+        "id": "523",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "525"
+        "id": "525",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 220,
-        "id": "526"
+        "id": "526",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "528"
+        "id": "528",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "529"
+        "id": "529",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "530"
+        "id": "530",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "531"
+        "id": "531",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 110,
-        "id": "532"
+        "id": "532",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 400,
-        "id": "533"
+        "id": "533",
+        "parallel": true
     },
     {
         "year": 2004,
         "model": 110,
-        "id": "534"
+        "id": "534",
+        "parallel": true
     },
     {
         "year": 2013,
         "model": 700,
-        "id": "536"
+        "id": "536",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 700,
-        "id": "552"
+        "id": "552",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 700,
-        "id": "553"
+        "id": "553",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 700,
-        "id": "554"
+        "id": "554",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 700,
-        "id": "555"
+        "id": "555",
+        "parallel": true
     },
     {
         "year": 2011,
         "model": 700,
-        "id": "557"
+        "id": "557",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "558"
+        "id": "558",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 130,
-        "id": "559"
+        "id": "559",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "560"
+        "id": "560",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 130,
-        "id": "561"
+        "id": "561",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 400,
-        "id": "565"
+        "id": "565",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 700,
-        "id": "566"
+        "id": "566",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "567"
+        "id": "567",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 700,
-        "id": "568"
+        "id": "568",
+        "parallel": true
     },
     {
         "year": 2013,
         "model": 200,
-        "id": "571"
+        "id": "571",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 200,
-        "id": "572"
+        "id": "572",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "573"
+        "id": "573",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "574"
+        "id": "574",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 130,
-        "id": "575"
+        "id": "575",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 700,
-        "id": "583"
+        "id": "583",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 700,
-        "id": "584"
+        "id": "584",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 700,
-        "id": "586"
+        "id": "586",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 700,
-        "id": "591"
+        "id": "591",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 700,
-        "id": "592"
+        "id": "592",
+        "parallel": true
     },
     {
         "year": 1982,
         "model": 330,
-        "id": "594"
+        "id": "594",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 120,
-        "id": "595"
+        "id": "595",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "599"
+        "id": "599",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 700,
-        "id": "600"
+        "id": "600",
+        "parallel": true
     },
     {
         "year": 2011,
         "model": 100,
-        "id": "603"
+        "id": "603",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 130,
-        "id": "604"
+        "id": "604",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 130,
-        "id": "605"
+        "id": "605",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 120,
-        "id": "606"
+        "id": "606",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 110,
-        "id": "607"
+        "id": "607",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "608"
+        "id": "608",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "609"
+        "id": "609",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 110,
-        "id": "610"
+        "id": "610",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 110,
-        "id": "611"
+        "id": "611",
+        "parallel": true
     },
     {
         "year": 1983,
         "model": 120,
-        "id": "612"
+        "id": "612",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 120,
-        "id": "613"
+        "id": "613",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 130,
-        "id": "615"
+        "id": "615",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "623"
+        "id": "623",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 120,
-        "id": "624"
+        "id": "624",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 400,
-        "id": "625"
+        "id": "625",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 400,
-        "id": "626"
+        "id": "626",
+        "parallel": true
     },
     {
         "year": 2016,
         "model": 400,
-        "id": "627"
+        "id": "627",
+        "parallel": true
     },
     {
         "year": 2016,
         "model": 400,
-        "id": "628"
+        "id": "628",
+        "parallel": true
     },
     {
         "year": 2019,
         "model": 400,
-        "id": "629"
+        "id": "629",
+        "parallel": true
     },
     {
         "year": 2022,
         "model": 400,
-        "id": "630"
+        "id": "630",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 700,
-        "id": "631"
+        "id": "631",
+        "parallel": true
     },
     {
         "year": 2006,
         "model": 130,
-        "id": "634"
+        "id": "634",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 110,
-        "id": "635"
+        "id": "635",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 130,
-        "id": "637"
+        "id": "637",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 131,
-        "id": "638"
+        "id": "638",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 120,
-        "id": "639"
+        "id": "639",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 133,
-        "id": "640"
+        "id": "640",
+        "parallel": true
     },
     {
         "year": 2003,
         "model": 400,
-        "id": "642"
+        "id": "642",
+        "parallel": true
     },
     {
         "year": 1968,
         "model": 700,
-        "id": "643"
+        "id": "643",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 330,
-        "id": "644"
+        "id": "644",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 700,
-        "id": "646"
+        "id": "646",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 700,
-        "id": "647"
+        "id": "647",
+        "parallel": true
     },
     {
         "year": 2005,
         "model": 700,
-        "id": "649"
+        "id": "649",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 700,
-        "id": "650"
+        "id": "650",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 300,
-        "id": "651"
+        "id": "651",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 300,
-        "id": "652"
+        "id": "652",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 120,
-        "id": "658"
+        "id": "658",
+        "parallel": true
     },
     {
         "year": 2023,
         "model": 120,
-        "id": "659"
+        "id": "659",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 700,
-        "id": "671"
+        "id": "671",
+        "parallel": true
     },
     {
         "year": 1985,
         "model": 120,
-        "id": "680"
+        "id": "680",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "681"
+        "id": "681",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 120,
-        "id": "682"
+        "id": "682",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "683"
+        "id": "683",
+        "parallel": true
     },
     {
         "year": 2002,
         "model": 110,
-        "id": "688"
+        "id": "688",
+        "parallel": true
     },
     {
         "year": 1980,
         "model": 120,
-        "id": "698"
+        "id": "698",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 120,
-        "id": "699"
+        "id": "699",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "700"
+        "id": "700",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "701"
+        "id": "701",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "702"
+        "id": "702",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 130,
-        "id": "703"
+        "id": "703",
+        "parallel": true
     },
     {
         "year": 2013,
         "model": 120,
-        "id": "704"
+        "id": "704",
+        "parallel": true
     },
     {
         "year": 1998,
         "model": 400,
-        "id": "706"
+        "id": "706",
+        "parallel": true
     },
     {
         "year": 2009,
         "model": 700,
-        "id": "709"
+        "id": "709",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 120,
-        "id": "710"
+        "id": "710",
+        "parallel": true
     },
     {
         "year": 1979,
         "model": 110,
-        "id": "711"
+        "id": "711",
+        "parallel": true
     },
     {
         "year": 1981,
         "model": 700,
-        "id": "715"
+        "id": "715",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 130,
-        "id": "718"
+        "id": "718",
+        "parallel": true
     },
     {
         "year": 2003,
         "model": 130,
-        "id": "719"
+        "id": "719",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 130,
-        "id": "720"
+        "id": "720",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "721"
+        "id": "721",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 110,
-        "id": "722"
+        "id": "722",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 110,
-        "id": "723"
+        "id": "723",
+        "parallel": true
     },
     {
         "year": 2002,
         "model": 131,
-        "id": "724"
+        "id": "724",
+        "parallel": true
     },
     {
         "year": 2007,
         "model": 130,
-        "id": "725"
+        "id": "725",
+        "parallel": true
     },
     {
         "year": 2018,
         "model": 130,
-        "id": "752"
+        "id": "752",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 300,
-        "id": "765"
+        "id": "765",
+        "parallel": true
     },
     {
         "year": 1984,
         "model": 200,
-        "id": "767"
+        "id": "767",
+        "parallel": true
     },
     {
         "year": 2015,
         "model": 700,
-        "id": "770"
+        "id": "770",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 700,
-        "id": "771"
+        "id": "771",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "775"
+        "id": "775",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "776"
+        "id": "776",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 120,
-        "id": "781"
+        "id": "781",
+        "parallel": true
     },
     {
         "year": 2006,
         "model": 130,
-        "id": "782"
+        "id": "782",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 120,
-        "id": "783"
+        "id": "783",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 120,
-        "id": "784"
+        "id": "784",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 300,
-        "id": "785"
+        "id": "785",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 120,
-        "id": "788"
+        "id": "788",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 120,
-        "id": "792"
+        "id": "792",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 120,
-        "id": "793"
+        "id": "793",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 120,
-        "id": "794"
+        "id": "794",
+        "parallel": true
     },
     {
         "year": 2002,
         "model": 700,
-        "id": "797"
+        "id": "797",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 300,
-        "id": "808"
+        "id": "808",
+        "parallel": true
     },
     {
         "year": 1991,
         "model": 120,
-        "id": "809"
+        "id": "809",
+        "parallel": true
     },
     {
         "year": 1996,
         "model": 110,
-        "id": "810"
+        "id": "810",
+        "parallel": true
     },
     {
         "year": 2007,
         "model": 120,
-        "id": "811"
+        "id": "811",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 120,
-        "id": "812"
+        "id": "812",
+        "parallel": true
     },
     {
         "year": 2008,
         "model": 110,
-        "id": "813"
+        "id": "813",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 300,
-        "id": "817"
+        "id": "817",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 120,
-        "id": "818"
+        "id": "818",
+        "parallel": true
     },
     {
         "year": 2015,
         "model": 130,
-        "id": "819"
+        "id": "819",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 100,
-        "id": "832"
+        "id": "832",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 100,
-        "id": "851"
+        "id": "851",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 120,
-        "id": "853"
+        "id": "853",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 120,
-        "id": "854"
+        "id": "854",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "855"
+        "id": "855",
+        "parallel": true
     },
     {
         "year": 1992,
         "model": 120,
-        "id": "856"
+        "id": "856",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 120,
-        "id": "857"
+        "id": "857",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 130,
-        "id": "871"
+        "id": "871",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "874"
+        "id": "874",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "875"
+        "id": "875",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 700,
-        "id": "876"
+        "id": "876",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 120,
-        "id": "877"
+        "id": "877",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 110,
-        "id": "878"
+        "id": "878",
+        "parallel": true
     },
     {
         "year": 1999,
         "model": 700,
-        "id": "879"
+        "id": "879",
+        "parallel": true
     },
     {
         "year": 2004,
         "model": 400,
-        "id": "880"
+        "id": "880",
+        "parallel": true
     },
     {
         "year": 2004,
         "model": 400,
-        "id": "881"
+        "id": "881",
+        "parallel": true
     },
     {
         "year": 2015,
         "model": 400,
-        "id": "882"
+        "id": "882",
+        "parallel": true
     },
     {
         "year": 2007,
         "model": 400,
-        "id": "884"
+        "id": "884",
+        "parallel": true
     },
     {
         "year": 2014,
         "model": 400,
-        "id": "885"
+        "id": "885",
+        "parallel": true
     },
     {
         "year": 1986,
         "model": 130,
-        "id": "886"
+        "id": "886",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "887"
+        "id": "887",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 130,
-        "id": "888"
+        "id": "888",
+        "parallel": true
     },
     {
         "year": 2011,
         "model": 130,
-        "id": "889"
+        "id": "889",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 120,
-        "id": "890"
+        "id": "890",
+        "parallel": true
     },
     {
         "year": 1994,
         "model": 130,
-        "id": "891"
+        "id": "891",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 130,
-        "id": "892"
+        "id": "892",
+        "parallel": true
     },
     {
         "year": 2004,
         "model": 130,
-        "id": "893"
+        "id": "893",
+        "parallel": true
     },
     {
         "year": 2015,
         "model": 120,
-        "id": "932"
+        "id": "932",
+        "parallel": true
     },
     {
         "year": 1993,
         "model": 110,
-        "id": "933"
+        "id": "933",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 200,
-        "id": "934"
+        "id": "934",
+        "parallel": true
     },
     {
         "year": 1976,
         "model": 300,
-        "id": "935"
+        "id": "935",
+        "parallel": true
     },
     {
         "year": 1977,
         "model": 300,
-        "id": "936"
+        "id": "936",
+        "parallel": true
     },
     {
         "year": 1989,
         "model": 300,
-        "id": "940"
+        "id": "940",
+        "parallel": true
     },
     {
         "year": 1997,
         "model": 110,
-        "id": "941"
+        "id": "941",
+        "parallel": true
     },
     {
         "year": 2013,
         "model": 320,
-        "id": "942"
+        "id": "942",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 300,
-        "id": "943"
+        "id": "943",
+        "parallel": true
     },
     {
         "year": 1988,
         "model": 120,
-        "id": "948"
+        "id": "948",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "949"
+        "id": "949",
+        "parallel": true
     },
     {
         "year": 2012,
         "model": 100,
-        "id": "950"
+        "id": "950",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 110,
-        "id": "962"
+        "id": "962",
+        "parallel": true
     },
     {
         "year": 1995,
         "model": 700,
-        "id": "963"
+        "id": "963",
+        "parallel": true
     },
     {
         "year": 1987,
         "model": 130,
-        "id": "964"
+        "id": "964",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 130,
-        "id": "965"
+        "id": "965",
+        "parallel": true
     },
     {
         "year": 1990,
         "model": 120,
-        "id": "966"
+        "id": "966",
+        "parallel": true
     },
     {
         "year": 2001,
         "model": 130,
-        "id": "969"
+        "id": "969",
+        "parallel": true
     },
     {
         "year": 2010,
         "model": 110,
-        "id": "970"
+        "id": "970",
+        "parallel": true
     }
 ]

@@ -226,6 +226,27 @@ def improvements(data, n=10**3,p=8,lower=False):
     :returns: best_stats - dict by problem of dict by year of {"bs alg": name, 
                             "bw alg": name, "br alg": name}
                             (bs = span, bw = work, br = running time)
+    """
+    # Initialize best_stats with empty dictionaries
+    best_stats = {}
+    for prob in set(alg["problem"] for alg in data.values()):
+        best_stats[prob] = {}
+        for year in range(CUR_YEAR + 1):
+            best_stats[prob][year] = {
+                "bs alg": None,
+                "bw alg": None,
+                "br alg": None
+            }
+    """
+    Finds the best algorithms for every year for each aspect out of span, work,
+    and runtime. If there are ties, an arbitrary algorithm is returned.
+
+    :data: dataset to be used (*simulated* parallel)
+    :n: problem size for runtime calculation
+    :p: number of processors for runtime calculation
+    :returns: best_stats - dict by problem of dict by year of {"bs alg": name, 
+                            "bw alg": name, "br alg": name}
+                            (bs = span, bw = work, br = running time)
               first_stats - dict mapping problem to name of its first algorithm
     """
     # sort the algos based on increasing year, then based on decreasing span
@@ -306,33 +327,61 @@ def improvements(data, n=10**3,p=8,lower=False):
             best_stats[prob][year]["bw alg"] = name
             
         # update the best running time algorithm if necessary
-        if best_stats[prob][year]["br alg"] is None:
-            old_name = best_stats[prob][year-1]["br alg"]
-            wk = data[old_name]["work"]
-            sp = data[old_name]["span"]
-            if data[old_name]["parallel"]==1: parallel=True
-            else: parallel=False
-            best_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
-        else:
-            old_name = best_stats[prob][year]["br alg"]
-            wk = data[old_name]["work"]
-            sp = data[old_name]["span"]
-            if data[old_name]["parallel"]==1: parallel=True
-            else: parallel=False
-            best_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
+        try:
+            if best_stats[prob][year]["br alg"] is None:
+                old_name = best_stats[prob][year-1]["br alg"]
+                if old_name is None:
+                    print(f"Warning: No previous algorithm found for {prob} in year {year}")
+                    continue
+                if old_name not in data:
+                    print(f"Warning: Algorithm {old_name} not found in data")
+                    continue
+                wk = data[old_name]["work"]
+                sp = data[old_name]["span"]
+                parallel = True if data[old_name]["parallel"] == 1 else False
+                best_runtime = get_runtime(wk, sp, n, p, lower=lower, parallel=parallel)
+            else:
+                old_name = best_stats[prob][year]["br alg"]
+                if old_name not in data:
+                    print(f"Warning: Algorithm {old_name} not found in data")
+                    continue
+                if "parallel" not in data[old_name]:
+                    print(f"Missing parallel field for algorithm: {old_name}")
+                    print(f"Available fields: {list(data[old_name].keys())}")
+                wk = data[old_name]["work"]
+                sp = data[old_name]["span"]
+                parallel = True if data[old_name]["parallel"] == 1 else False
+                best_runtime = get_runtime(wk, sp, n, p, lower=lower, parallel=parallel)
+        except KeyError as e:
+            print(f"KeyError in improvements: {e}")
+            print(f"Algorithm causing error: {old_name}")
+            print(f"Available fields: {list(data[old_name].keys()) if old_name in data else 'Not found'}")
+            #continue
+        except Exception as e:
+            print(f"Unexpected error in improvements: {e}")
+            #continue
             
-        wk = data[name]["work"]
-        sp = data[name]["span"]
-        if data[name]["parallel"]==1: parallel=True
-        else: parallel=False
-        cur_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
-        if cur_runtime < best_runtime:
-            best_stats[prob][year]["br alg"] = name
+        try:
+            wk = data[name]["work"]
+            sp = data[name]["span"]
+            if "parallel" not in data[name]:
+                print(f"Missing parallel field for algorithm: {name}")
+                print(f"Available fields: {list(data[name].keys())}")
+            if data[name]["parallel"]==1: parallel=True
+            else: parallel=False
+            cur_runtime = get_runtime(wk,sp,n,p,lower=lower,parallel=parallel)
+            if cur_runtime < best_runtime:
+                best_stats[prob][year]["br alg"] = name
+        except KeyError as e:
+            print(f"KeyError in improvements: {e}")
+            print(f"Algorithm causing error: {name}")
+            print(f"Available fields: {list(data[name].keys())}")
 
         alg_i += 1
 
     return best_stats, first_stats
 
+# ... (rest of the code remains the same)
 
 def first_seq_names(data):
     '''returns: first_algos: dictionary by problem of algorithm names for the 1st algo of that problem'''

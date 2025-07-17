@@ -13,7 +13,7 @@ import copy
 #VERSION="_JAN26"
 #VERSION="_FEB18"
 # VERSION="_MAR9"
-VERSION="_MAY1"
+VERSION="_JULY6"
 import warnings
 
 
@@ -487,9 +487,9 @@ if __name__ == '__main__':
 
     #wut?^^^^
 
-    create_par_data("Parallel_Algos_MAY1")
+    create_par_data("Parallel_Algos_July6")
     print("DONE WITH PARALLEL")
     #technically should probably use this one but im just copying the old ones and changing the version name
-    create_seq_data("Sheet1_MAY1","Sheet1_New_Entries_MAY1")
+    create_seq_data("Sheet1_July6","Sheet1_New_Entries_July6")
 
     pass

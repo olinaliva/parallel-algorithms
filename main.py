@@ -24,12 +24,25 @@ from src.paper_plots.aggregate_switch_to_work_ineff import *
 
 from converter import *
 from data.processor_data_acquisition import *
+from src.processed_data import full_data, rel_speedup_seq_data, aux_data, top_processor_data, pc_processor_data, VERSION
 
 
 
 # from src.processed_data import *
 
 print("starting main")
+
+def patch_data_with_parallel_field(data_dict):
+    """
+    Adds missing 'parallel' field to all entries in the data dictionary.
+    Uses 'par' field to determine if algorithm is parallel (parallel=True if par > 0).
+    """
+    for name, entry in data_dict.items():
+        if "parallel" not in entry:
+            if "par" in entry and entry["par"] > 0:
+                entry["parallel"] = 1
+            else:
+                entry["parallel"] = 0
 
 
 ################################################################################
@@ -97,25 +110,31 @@ def make_model_dataset(par_algos):
         year = par_algos[name]["year"]
         model = par_algos[name]["model"]
         alg_id = par_algos[name]["id"]
-        jsonArray.append({"year":year,"model":model,"id":alg_id})
+        parallel = True
+        jsonArray.append({"year":year,"model":model,"id":alg_id,"parallel":parallel})
 
-    newJsonFilePath = r'./data/par_models_FEB18.json'
+    newJsonFilePath = r'./data/par_models_July6.json'
     with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 
         jsonString = json.dumps(jsonArray, indent=4)
         jsonf.write(jsonString)
     pass
 
-# make_model_dataset(simulated_par_data)
+make_model_dataset(simulated_par_data)
 
-# for elem in simulated_par_data:
-#     # print(simulated_par_data[elem]['id'])
-#     # print(type(simulated_par_data[elem]['id']))
-#     # break
-#     if simulated_par_data[elem]['id'] == '533':
-#         print(simulated_par_data[elem]['id'])
+# Patch all data dictionaries to ensure they have the parallel field
+patch_data_with_parallel_field(full_data)
+patch_data_with_parallel_field(simulated_par_data)
+patch_data_with_parallel_field(rel_speedup_seq_data)
 
-# create_aux_data(simulated_par_data,full_seq_data)
-# create_aux_data(full_data,rel_speedup_seq_data)
+for elem in simulated_par_data:
+    # print(simulated_par_data[elem]['id'])
+    # print(type(simulated_par_data[elem]['id']))
+    # break
+    if simulated_par_data[elem]['id'] == '533':
+        print(simulated_par_data[elem]['id'])
+
+create_aux_data(simulated_par_data,full_seq_data)
+create_aux_data(full_data,rel_speedup_seq_data)
 
 
 # helpers
@@ -268,6 +287,7 @@ print("running functions to make the actual graphs for the paper")
 #TODO: look at get_runtime in helper_functions.py and check its calculating runtime correctly for both serial and parallel
 #TODO: also look at get_seq_runtime and maybe change that since some functions might be calling it directly instead of get_runtime
 
+# this sets the histogram bucket size - consider moving somewhere else
 pset = get_problems(simulated_par_data)
 #{"max": 0.001, "label": "0-0.1%"},
 histo_buckets = [
@@ -316,7 +336,7 @@ print("sankey style figure")
 ######### FIGURE 3 #########
 print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Computational Length")
 #TODO: make sure that the hardcoded values in this graph are still ok
-span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
+#span_vs_work_multiple_probs_pareto_frontier(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'])
 print("figure 1.3: Work - Span Tradeoff for Parallel Algorithms // Speedup Relative to Sequantial Time")
 numerical_overhead_vs_span(simulated_par_data,full_seq_data, problems=['Topological Sorting','LCS','Bipartite Graph MCM'],n=10**6)
 
@@ -331,7 +351,7 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 #this one (should be) just parallel improvement: measures from best seq
 #TODO: add labels to axis
 EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
-                                p_values=[8,10**3,10**6],measure="rt",variation="just_par_impr")
+                               p_values=[8,10**3,10**6],measure="rt",variation="just_par_impr")
 
 
 ######### FIGURE 5 #########
@@ -354,7 +374,8 @@ print("figure 1.5: Work Overhead for the fastest algorithm")
 NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
                             upper_bounds=[0,100,1000,10000,math.inf],
                             max_p=10**9,allowed_models=set(model_dict.keys()))
-# fastest_algo_work_eff(simulated_par_data, n=10**6, min_p=1, max_p=10**6)
+fastest_algo_work_eff(simulated_par_data, n=10**6, min_p=1, max_p=10**6)
+# Ensure full_data is properly loaded before plotting
 count_fastest_algo_by_category(full_data, simulated_par_data, n=10**6, min_p=1, max_p=10**6, step=1)
 
 
