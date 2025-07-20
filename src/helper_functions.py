@@ -182,14 +182,18 @@ def get_nice_n(n):
     """
     return "10^{"+str(int(math.log(n,10)+1))+"}" if n>999 else str(n)
 
-def create_aux_data(par_data,seq_data):
+def create_aux_data(par_data, seq_data):
     '''
     Creates the problem-level dataset
 
-    for every problem in the parallel dataset, it aquires the following data:
+    for every problem in the parallel dataset, it acquires the following data:
         "best seq", "bs name", "bs span", "bs work", "bs par", "bs overhead",
         "we name", "we span", "we par", "we exist".
     '''
+    print("\n=== Debug: create_aux_data ===")
+    print(f"Parallel data entries: {len(par_data)}")
+    print(f"Sequential data entries: {len(seq_data)}")
+
     # In addition, there are parts of the original aux_data that aren't used:
     # - "bs work"
     # - "we exist"
@@ -223,13 +227,15 @@ def create_aux_data(par_data,seq_data):
     # print(prob_dict)
 
     # find the best sequential algorithms for every problem
+    print("\nProcessing sequential algorithms...")
     for val in seq_data:
         prob = seq_data[val]["problem"]
         if prob in prob_dict:
             if seq_data[val]["time"] < prob_dict[prob]["best seq"]:
+                print(f"  Found better seq algo for problem {prob}: {val} (time: {seq_data[val]['time']})")
                 prob_dict[prob]["best seq"] = seq_data[val]["time"]
                 prob_dict[prob]["best seq name"] = val
-            #in case the parallel algos are all really stupid, put sequential algo in for span
+            # in case the parallel algos are all really stupid, put sequential algo in for span
             if (prob_dict[prob]["bs span"] is None) or (seq_data[val]["time"] < prob_dict[prob]["bs span"]):
                 prob_dict[prob]["bs span"] = seq_data[val]["time"]
                 prob_dict[prob]["bs name"] = val
@@ -237,32 +243,45 @@ def create_aux_data(par_data,seq_data):
                 prob_dict[prob]["bs par"] = 0
 
     # for every parallel algorithm,
+    print("\nProcessing parallel algorithms...")
+    work_efficient_count = 0
     for val in par_data:
-    # - check to see if it has better span than the current bs for the problem
+        # - check to see if it has better span than the current bs for the problem
         prob = par_data[val]["problem"]
         sp = par_data[val]["span"]
         wk = par_data[val]["work"]
-        if ((prob_dict[prob]["bs span"] is None) or (prob_dict[prob]["bs span"] > sp) or 
-                                    ((prob_dict[prob]["bs span"] == sp 
-                                    and prob_dict[prob]["bs work"] > wk))):
-    #   + if so, update the current bs
-            print("this is some bs ", prob_dict[prob]["bs span"])
+        
+        if prob not in prob_dict:
+            print(f"  Warning: Problem {prob} from parallel data not found in prob_dict")
+            continue
+            
+        # Update best span if this algo has better span
+        if ((prob_dict[prob]["bs span"] is None) or 
+            (prob_dict[prob]["bs span"] > sp) or 
+            ((prob_dict[prob]["bs span"] == sp and prob_dict[prob]["bs work"] > wk))):
+            
+            print(f"  New best span for problem {prob}: {val} (span: {sp}, work: {wk})")
             prob_dict[prob]["bs name"] = val
             prob_dict[prob]["bs span"] = sp
             prob_dict[prob]["bs work"] = wk
             prob_dict[prob]["bs par"] = par_data[val]["par"]
-    # - check to see if it's work-efficient
-        if prob_dict[prob]["best seq"] == wk:
-            print("here! we exists!")
-    #   + if it is, check to see if span is better
-            if ((prob_dict[prob]["we exist"] is False) or (prob_dict[prob]["we span"]!=None and prob_dict[prob]["we span"]>sp)):
-    #     = if so, update the current we
+        
+        # Check if this algo is work-efficient
+        if abs(prob_dict[prob]["best seq"] - wk) < 1e-9:  # Using epsilon comparison for floating point
+            work_efficient_count += 1
+            print(f"  Found work-efficient algo: {val} (work: {wk}, best seq: {prob_dict[prob]['best seq']})")
+            
+            # If this is the first work-efficient algo or has better span
+            if ((not prob_dict[prob]["we exist"]) or 
+                (prob_dict[prob]["we span"] is not None and prob_dict[prob]["we span"] > sp)):
+                
                 prob_dict[prob]["we name"] = val
-                # prob_dict[prob]["we span"] = par_data[val]["span"]
                 prob_dict[prob]["we span"] = sp
                 prob_dict[prob]["we par"] = par_data[val]["par"]
                 prob_dict[prob]["we exist"] = True
-                print("here! we getting into the good shit")
+                print(f"    Updated best work-efficient algo for problem {prob}")
+    
+    print(f"\nFound {work_efficient_count} work-efficient parallel algorithms")
 
     for prob in prob_dict:
         wk = prob_dict[prob]["bs work"]

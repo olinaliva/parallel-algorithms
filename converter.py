@@ -13,7 +13,7 @@ import copy
 #VERSION="_JAN26"
 #VERSION="_FEB18"
 # VERSION="_MAR9"
-VERSION="_JULY6"
+VERSION="_MAY1"
 import warnings
 
 
@@ -89,12 +89,12 @@ PARALLEL_ALLOWABLE_MODELS = {100, 110, 120, 130, 131, 132, 133, 135, 200, 210,
                              220, 300, 310, 320, 330, 400, 500, 510, 520}
 
 
-def create_all_datasets():
-    '''
-    Creates the parallel dataset, sequential dataset (out of 2 sheets), and the
-    auxiliary dataset (with one entry per problem)
-    '''
-    pass
+#def create_all_datasets():
+'''
+Creates the parallel dataset, sequential dataset (out of 2 sheets), and the
+auxiliary dataset (with one entry per problem)
+'''
+#    pass
 
 
 def create_seq_data(name1,name2):
@@ -487,9 +487,10 @@ if __name__ == '__main__':
 
     #wut?^^^^
 
-    create_par_data("Parallel_Algos_July6")
+    create_par_data("Parallel_Algos_May1")
     print("DONE WITH PARALLEL")
     #technically should probably use this one but im just copying the old ones and changing the version name
-    create_seq_data("Sheet1_July6","Sheet1_New_Entries_July6")
+    create_seq_data("Sheet1_May1","Sheet1_New_Entries_May1")
+    print("DONE WITH SEQUENTIAL")
 
     pass

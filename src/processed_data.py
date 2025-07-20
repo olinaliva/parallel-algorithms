@@ -7,7 +7,7 @@ from src.standard_codes import CODE_DIVISON
 from src.helper_functions import create_aux_data
 import json
 
-VERSION = "_JAN23"
+VERSION = "_MAY1"
 
 # TODO Investigate if this data is complete.
 top_processor_data = {
@@ -65,7 +65,7 @@ rel_speedup_seq_data = {
 "10": {"problem": 17, "year": 2014, "auth": "Williams", "time": 29.1, "span fn": wi14, "const span fn": wi14_const},
 }
 
-#Unclear what this does
+#Unclear what this does - note this seems to get used in the figure that wants to update to topo sort and causes problems.
 full_data = {
 "13.1-20-Reif (1985)": {"year": 1985, "problem": 13.1, "span": 1, "span fn": comp_fn_1_0000, "work": 20, "work eff": 0, "sim": 0, "par": 19, "model": 135},
 "13.1-21-Gazit (1986)": {"year": 1986, "problem": 13.1, "span": 1, "span fn": comp_fn_1_0000, "work": 20, "work eff": 0, "sim": 0, "par": 19, "model": 135},

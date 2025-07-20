@@ -7,6 +7,9 @@ from header import *
 
 # histogram of the given aspect (e.g. "span", "work") for all problems
 def all_algorithms_histo(data, aspect, normalized=False):
+    print(f"\n=== Debug: all_algorithms_histo for aspect: {aspect} ===")
+    print(f"Total entries in data: {len(data)}")
+    
     if aspect == "span" or aspect == "work eff":
         fun = complexity_category_1
     elif aspect == "work":
@@ -20,6 +23,16 @@ def all_algorithms_histo(data, aspect, normalized=False):
         algs = data
     else:
         algs = {k: v for k, v in data.items() if v["sim"]==0}
+    
+    print(f"Entries after filtering (sim=0): {len(algs)}")
+    
+    # Print sample data for inspection
+    sample_key = next(iter(algs.keys()))
+    print(f"Sample entry ({sample_key}): {algs[sample_key]}")
+    
+    if aspect not in algs[sample_key]:
+        print(f"WARNING: Aspect '{aspect}' not found in data. Available keys: {list(algs[sample_key].keys())}")
+    
     names = list(algs.keys())
 
     spans_list = sorted([algs[name][aspect] for name in names])
