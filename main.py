@@ -323,14 +323,15 @@ speedup_for_available_processors(simulated_par_data,full_seq_data,'APSP', top_pr
 
 ######### FIGURE 2 #########
 print("sankey style figure")
+print("Figure 2 sankey style current commented out, key value error on kth order statistic")
 #TODO: try other colors
 #TODO: fix the label & title overlap
 #TODO: if the rightmost bar tick marks dont overlap because of thin categories, remove the buffer so every second one is not moved out
 #TODO: change titles
 #personal
-# sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
+#sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
 # #big
-# sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
+#sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
 
 
 ######### FIGURE 3 #########
@@ -355,7 +356,8 @@ EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,
 
 
 ######### FIGURE 5 #########
-print("figure 1.4: Fastest Parallel Algorithm and Work Overhead for Topological Sorting (in dense graphs)")
+print("Figure 1.4 commented out, currently broken with 0 examples")
+#print("figure 1.4: Fastest Parallel Algorithm and Work Overhead for Topological Sorting (in dense graphs)")
 #TODO: beutify algo names
 #TODO: place algo names/ "work overhead" somewhere nicer
 #TODO: in actual paper will need have something in caption that points to an explanation in the text about ignoring constants
@@ -364,12 +366,13 @@ print("figure 1.4: Fastest Parallel Algorithm and Work Overhead for Topological 
 #TODO: bigger fonts for everything
 #TODO: when things dont fit, move label outside of graph and add arrow
 #TODO: methodology addition about how we estimate work overhead and when we use each
-problem_speedup_vs_proc_three_curves(full_data,"Topological Sorting",n_values=[10**3,10**6, 10**9],max_p=10**10)
+#problem_speedup_vs_proc_three_curves(full_data,"Topological Sorting",n_values=[10**3,10**6, 10**9],max_p=10**10)
 
 
 ######### FIGURE 6 #########
 #TODO: keep tweaking colors
 print("figure 1.5: Work Overhead for the fastest algorithm")
+#TODO: many algos do not have a serial version
 #TODO: change % to x
 NEW_work_overhead_histogram_graph_multiple_p(simulated_par_data,full_seq_data,pset,p_values=[8,10**3,10**6],n_values=[10**3,10**6,10**9],
                             upper_bounds=[0,100,1000,10000,math.inf],
