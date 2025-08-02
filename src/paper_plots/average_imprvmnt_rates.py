@@ -1355,6 +1355,8 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
             best_work_rt = get_runtime(all_data[best_work]["work"], all_data[best_work]["span"], n, 1, parallel=False)
             speedup = best_work_rt / best_algo_rt
             prob_speedups.append(speedup)
+            if speedup>1024:
+                print(f"speedup for {prob} is {speedup}. best algo: {best_algo} best work: {best_work}" )
             # if (speedup>1000):
             #     print("speedup: ", speedup)
             #     print("best algo: ",best_algo, " work, span: ",all_data[best_algo]["work"], all_data[best_algo]["span"], " runtime: ", best_algo_rt)
@@ -1388,8 +1390,8 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
 
 
     speedup_bins = ["1-2x", "2x-4x", "4x-8x", "8x-16x", "16x-32x", "32x-64x", "64x-128x", "128x-256x", 
-                    "256x-512x", "512x-1024x", "oh no"]
-    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+                    "256x-512x", "512x-1024x", "1024x-2048x (oh no)", "2048x-4096x (oh no)"]
+    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for s in prob_speedups:
         if 1 < s < 2:
             speedup_values[0] += 1
@@ -1413,8 +1415,10 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
             speedup_values[9] += 1
         elif 1024 <= s < 2048: #oh no
             speedup_values[10] += 1
+        elif 2048 <= s < 4096: #oh no
+            speedup_values[11] += 1
         else:
-            raise ValueError("There is now a speedup more than 1024!")
+            raise ValueError(f"There is now a speedup more than 4096! oh no!! speedup value causing it is {s}")
 
 
     speedup_total = sum(speedup_values)

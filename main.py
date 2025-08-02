@@ -308,9 +308,9 @@ print("sankey style figure")
 #TODO: if the rightmost bar tick marks dont overlap because of thin categories, remove the buffer so every second one is not moved out
 #TODO: change titles
 #personal
-# sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
-# #big
-# sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
+sankey_style_graph(full_data,simulated_par_data, n=10**6, p=8)
+#big
+sankey_style_graph(full_data,simulated_par_data, n=10**9, p=10**3)
 
 
 ######### FIGURE 3 #########
