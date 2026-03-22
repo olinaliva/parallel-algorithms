@@ -26,7 +26,7 @@
         "we exist": true
     },
     "MCOP": {
-        "best seq name": "331T. C. Hu ; M. T. Shing (1982)",
+        "best seq name": "Matrix Chain Multiplication31T. C. Hu ; M. T. Shing (1982)",
         "best seq": 11.0,
         "bs name": "3Bradford, Rawlins, Shannon (3) (1998)",
         "bs span": 2.0,
@@ -54,18 +54,18 @@
     "LCS": {
         "best seq name": "4Alves, C\u00e1ceres, Song (2003)",
         "best seq": 20.0,
-        "bs name": "4Babu, Saxena (1) (1997)",
-        "bs span": 1.0,
-        "bs work": 21.0,
-        "bs par": 20.0,
-        "bs overhead": 1.0,
-        "we name": "4Babu, Saxena (2) (1997)",
-        "we span": 2.0,
-        "we par": 18.0,
+        "bs name": "4Alves, C\u00e1ceres, Song (2003)",
+        "bs span": 0.9,
+        "bs work": 20.0,
+        "bs par": 6.0,
+        "bs overhead": 0.0,
+        "we name": "4Alves, C\u00e1ceres, Song (2003)",
+        "we span": 0.9,
+        "we par": 6.0,
         "we exist": true
     },
     "Max Flow": {
-        "best seq name": "566Cheriyan et al. (1990)",
+        "best seq name": "Maximum Flow66Cheriyan et al. (1990)",
         "best seq": 15.95,
         "bs name": "5Peretz, Fischler (2022)",
         "bs span": 6.1,
@@ -78,7 +78,7 @@
         "we exist": false
     },
     "Matrix Multiplication": {
-        "best seq name": "684Fran\u00e7ois Le Gall (2014)",
+        "best seq name": "Matrix Product84Fran\u00e7ois Le Gall (2014)",
         "best seq": 15.101,
         "bs name": "6Gazit, Miller (parallel Coppersmith & Winograd 1987) (1988)",
         "bs span": 1.0,
@@ -182,7 +182,7 @@
         "we exist": true
     },
     "Transitive Closure": {
-        "best seq name": "13143Paul Purdom (1970)",
+        "best seq name": "Strongly Connected Components143Paul Purdom (1970)",
         "best seq": 16.0,
         "bs name": "13Ja'Ja' (1978)",
         "bs span": 2.0,
@@ -273,7 +273,7 @@
         "we exist": true
     },
     "directed nonneg SSSP": {
-        "best seq name": "16177Dijkstra's algorithm with list (Whiting & Hillier 1960) (1960)",
+        "best seq name": "Shortest Path (Directed Graphs)177Dijkstra's algorithm with list (Whiting & Hillier 1960) (1960)",
         "best seq": 10.0,
         "bs name": "16Brodal, Traff, Zaroliagis (1997)",
         "bs span": 6.0,
@@ -284,19 +284,6 @@
         "we span": 10.0,
         "we par": 0,
         "we exist": false
-    },
-    "undirected SSSP": {
-        "best seq name": "16Spencer (1991)",
-        "best seq": 16.1,
-        "bs name": "16Spencer (1991)",
-        "bs span": 10.0,
-        "bs work": 16.1,
-        "bs par": 6.1,
-        "bs overhead": 0.0,
-        "we name": "16Spencer (1991)",
-        "we span": 10.0,
-        "we par": 6.1,
-        "we exist": true
     },
     "directed SSSP": {
         "best seq name": "16Garg (2018)",
@@ -325,7 +312,7 @@
         "we exist": true
     },
     "Matrix LU Decomposition": {
-        "best seq name": "20212Bunch; Hopcroft (1974)",
+        "best seq name": "LU Decomposition212Bunch; Hopcroft (1974)",
         "best seq": 15.109,
         "bs name": "20Solomonik, Demmel (Classical 2.5D) (2011)",
         "bs span": 6.1,
@@ -351,7 +338,7 @@
         "we exist": true
     },
     "Edit Distance, constant-size alphabet": {
-        "best seq name": "23252Masek; Patterson (1980)",
+        "best seq name": "Sequence Alignment252Masek; Patterson (1980)",
         "best seq": 19.0,
         "bs name": "23Apostolico et al. (2) (1990)",
         "bs span": 1.15,
@@ -364,7 +351,7 @@
         "we exist": false
     },
     "Multiplication": {
-        "best seq name": "27277Furer's algorithm (2007)",
+        "best seq name": "Multiplication277Furer's algorithm (2007)",
         "best seq": 11.0,
         "bs name": "27Sinha, Srimani (1988)",
         "bs span": 1.0,
@@ -377,15 +364,15 @@
         "we exist": false
     },
     "Bipartite Graph MCM": {
-        "best seq name": "28287Mucha; Sankowski (planar) (2006)",
-        "best seq": 15.097,
+        "best seq name": "Maximum Cardinality Matching285Hopcroft\u2013Karp algorithm (1973)",
+        "best seq": 15.25,
         "bs name": "28Kim, Chwa (1987)",
         "bs span": 6.11,
         "bs work": 20.1,
         "bs par": 15.95,
-        "bs overhead": 9.81,
+        "bs overhead": 7.501,
         "we name": null,
-        "we span": 15.097,
+        "we span": 15.25,
         "we par": 0,
         "we exist": false
     },
@@ -454,6 +441,19 @@
         "we par": 15.4,
         "we exist": true
     },
+    "Bipartite Maximum-Weight Matching": {
+        "best seq name": "Maximum-Weight Matching357Hungarian algorithm (1955)",
+        "best seq": 20.0,
+        "bs name": "40Fayyazi, Kaeli, Meleis (2006)",
+        "bs span": 6.0,
+        "bs work": 30.0,
+        "bs par": 26.5,
+        "bs overhead": 10,
+        "we name": null,
+        "we span": 20.0,
+        "we par": 0,
+        "we exist": false
+    },
     "General Maximum-Weight Matching": {
         "best seq name": "40Osiakwan, Akl (1990)",
         "best seq": 16.0,
@@ -520,7 +520,7 @@
         "we exist": true
     },
     "Variance Calculations": {
-        "best seq name": "55448Na\u00efve algorithm (1940)",
+        "best seq name": "Variance Calculations448Na\u00efve algorithm (1940)",
         "best seq": 10.0,
         "bs name": "55452Chan's algorithm Parallel Implementation (1979)",
         "bs span": 1.0,
@@ -533,7 +533,7 @@
         "we exist": false
     },
     "Topological Sorting": {
-        "best seq name": "56453Kahn's algorithm (1962)",
+        "best seq name": "Topological Sorting453Kahn's algorithm (1962)",
         "best seq": 10.0,
         "bs name": "56Li, Pan, Shen (2003)",
         "bs span": 1.0,
@@ -546,7 +546,7 @@
         "we exist": false
     },
     "DFA Minimization": {
-        "best seq name": "57456Hopcroft's algorithm (1971)",
+        "best seq name": "DFA Minimization456Hopcroft's algorithm (1971)",
         "best seq": 11.0,
         "bs name": "57JaJa, Kosaraju (1988)",
         "bs span": 2.0,
@@ -585,7 +585,7 @@
         "we exist": true
     },
     "2-Dimensional Delaunay Triangulation": {
-        "best seq name": "64531Drysdale; Su (1996)",
+        "best seq name": "Delaunay Triangulation531Drysdale; Su (1996)",
         "best seq": 10.0,
         "bs name": "64Reif, Sen (1989)",
         "bs span": 1.0,
@@ -637,7 +637,7 @@
         "we exist": true
     },
     "Stable Marriage Problem": {
-        "best seq name": "78611Gale\u2013Shapley algorithm (1962)",
+        "best seq name": "Stable Matching Problem611Gale\u2013Shapley algorithm (1962)",
         "best seq": 20.0,
         "bs name": "78620Tomas Feder, Nimrod Megiddo, Serge A. Plotkin (1994)",
         "bs span": 6.23,
@@ -689,7 +689,7 @@
         "we exist": true
     },
     "Point-in-Polygon": {
-        "best seq name": "107830Ray casting algorithm Shimrat; M (1962)",
+        "best seq name": "Point-in-Polygon830Ray casting algorithm Shimrat; M (1962)",
         "best seq": 10.0,
         "bs name": "107Puri (2015)",
         "bs span": 1.0,
@@ -754,9 +754,9 @@
         "we exist": true
     },
     "Greatest Common Divisor": {
-        "best seq name": "1431003Euclid's algorithm (-300)",
+        "best seq name": "Greatest Common Divisor1003Euclid's algorithm (-300)",
         "best seq": 20.0,
-        "bs name": "1431003Euclid's algorithm (-300)",
+        "bs name": "Greatest Common Divisor1003Euclid's algorithm (-300)",
         "bs span": 20.0,
         "bs work": 20.0,
         "bs par": 0,

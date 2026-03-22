@@ -13,7 +13,7 @@ import copy
 #VERSION="_JAN26"
 #VERSION="_FEB18"
 # VERSION="_MAR9"
-VERSION="_MAY1"
+VERSION="_MAR21"
 import warnings
 
 
@@ -39,21 +39,20 @@ PARALLEL_ALGO_FIELDS={
     }
 
 SEQUENTIAL_ALGO_FIELDS={
-        "Old Family #": "family",
-        "Looked at?": "looked at", 
-        "Subproblem": "problem",
-        #"Subproblem (currently only for Parallel Algo)": "problem",
-        "Variation": "vars", 
-        "Algo ID": "id", 
-        "Algorithm Name": "auth", 
-        "Year": "year", 
+        "Family Name": "family",  # was "Old Family #" — Sheet1 no longer has that column
+        "Looked at?": "looked at",
+        "Subproblem (currently only for Parallel Algos)": "problem",
+        "Variation": "vars",
+        "Algo ID": "id",
+        "Algorithm Name": "auth",
+        "Year": "year",
         "Time Encoding": "time",
-        "Randomized?": "randomized", 
-        "Approximate?": "approximate", 
-        "Heuristic-based?": "heuristic", 
+        "Randomized?": "randomized",
+        "Approximate?": "approximate",
+        "Heuristic-based?": "heuristic",
         "Parallel?": "parallel",
-        "Quantum?": "quantum", 
-        "GPU-based?": "gpu", 
+        "Quantum?": "quantum",
+        "GPU-based?": "gpu",
         "Domains": "domains"
     }
 
@@ -72,16 +71,15 @@ PARALLEL_DISCARABLE_FIELD_VALUES = {
         "gpu": "1",
     }
 
-SEQUENTIAL_DISCARABLE_FIELD_VALUES = {        
-        "problem": "", #i think this field is specified for parallel algos, 
-        # not necessarily specified for seq so uh, need to check its not filtering out things we want 
-        "auth": "", 
-        "year": ("",'-'), 
+SEQUENTIAL_DISCARABLE_FIELD_VALUES = {
+        # "problem" removed: seq entries have empty Subproblem (it's only filled for parallel algos)
+        "auth": "",
+        "year": ("",'-'),
         "time": "",
-        "approximate": "1", 
-        "heuristic": "1", 
+        "approximate": "1",
+        "heuristic": "1",
         "parallel": "1",
-        "quantum": "1", 
+        "quantum": "1",
         "gpu": "1",
     }
 

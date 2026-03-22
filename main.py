@@ -332,6 +332,9 @@ print("figure 1.2: Algorithm Problem Average Yearly Improvement Rate (Sequantial
 #TODO: add labels to axis
 EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
                                 p_values=[8,10**3,10**6],measure="rt",variation="just_par_impr")
+EVERYTHING_yearly_impr_rate_histo_grid(full_data, histo_buckets,n_values=[10**3,10**6,10**9],
+                                p_values=[8,10**3,10**6],measure="rt",variation="seq_plus_all",
+                                par_data=simulated_par_data, seq_data=full_seq_data)
 
 
 ######### FIGURE 5 #########

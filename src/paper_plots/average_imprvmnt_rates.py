@@ -140,7 +140,7 @@ def yearly_impr_rate_histo_helper(ax,data, raw_buckets, n, p, measure="rt"):
         #take bast algo
         #print("best stats: ")
         #print(best_stats[problem])
-        best=best_stats[problem][2024]["bs alg"]
+        best=best_stats[problem][CUR_YEAR]["bs alg"]
         #print("best: ")
         #print(best)
         best_algo=data[best]
@@ -163,7 +163,7 @@ def yearly_impr_rate_histo_helper(ax,data, raw_buckets, n, p, measure="rt"):
         #     yearly_impr_rate = impr_ratio ** (1/time)-1
         # all_rates.append(yearly_impr_rate)
         #option 3: delta time is from first to now (2025?)
-        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
+        yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"]))-1
         all_rates.append(yearly_impr_rate)
 
 
@@ -482,7 +482,7 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
             first_algo=par_data[first]
             first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
         #take best algo
-        best=best_stats[problem][2024]["br alg"] #taking br here insetad of bs
+        best=best_stats[problem][CUR_YEAR]["br alg"] #taking br here insetad of bs
         best_algo=par_data[best]
         best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
         #print("problem: ",problem)
@@ -510,13 +510,13 @@ def NEW_yearly_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, m
         #delta t is from first seq to now (2025)
         #print(first_algo["year"])
         #print(impr_ratio)
-        #print(impr_ratio ** (1/(2025-first_algo["year"])))
+        #print(impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"])))
         
         if (first_algo["year"]>best_algo["year"]):
             print("first algo year: ",first_algo["year"], "best algo year: ", best_algo["year"])
             print("problem: ", problem)
         #double check formula!!
-        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
+        yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"]))-1
         all_rates.append(yearly_impr_rate)
 
     print("finished finding improvement rates")
@@ -610,7 +610,7 @@ def stacked_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, meas
             best_seq_rt = get_seq_runtime(best_seq_time,n)
             seq_impr_ratio=first_rt/best_seq_rt
             #seq_yearly_impr_rate = seq_impr_ratio ** (1/(best_seq_algo["year"]-first_algo["year"]))-1
-            seq_yearly_impr_rate = seq_impr_ratio ** (1/(2025-first_algo["year"]))-1
+            seq_yearly_impr_rate = seq_impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"]))-1
         else:
             #idk how to deal w/ otherwise
             seq_yearly_impr_rate=0 
@@ -626,7 +626,7 @@ def stacked_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, meas
             best_seq_algo=first_par_algo
             best_seq_rt=first_par_rt
             first_algo=first_par_algo
-        best=best_stats[problem][2024]["br alg"]
+        best=best_stats[problem][CUR_YEAR]["br alg"]
         best_algo=par_data[best]
         best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
 
@@ -635,8 +635,8 @@ def stacked_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p, meas
             #idk how to fix this :(((((
             par_impr_ratio=1
         
-        #par_yearly_impr_rate = par_impr_ratio ** (1/(2025-best_seq_algo["year"]))-1
-        par_yearly_impr_rate = par_impr_ratio ** (1/(2025-first_algo["year"]))-1
+        #par_yearly_impr_rate = par_impr_ratio ** (1/(CUR_YEAR+1-best_seq_algo["year"]))-1
+        par_yearly_impr_rate = par_impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"]))-1
         par_rates.append(par_yearly_impr_rate)
 
     print("finished finding improvement rates")
@@ -736,7 +736,7 @@ def WORK_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p):
             first_algo=par_data[first]
             first_rt = get_measure_value(measure, first_algo["work"], first_algo["span"],n,p)
         #take best algo
-        best=best_stats[problem][2024]["bs alg"]
+        best=best_stats[problem][CUR_YEAR]["bs alg"]
         best_algo=par_data[best]
         best_rt = get_measure_value(measure, best_algo["work"], best_algo["span"],n,p)
         print("problem: ",problem)
@@ -764,9 +764,9 @@ def WORK_impr_rate_histo_helper(ax,par_data,seq_data, raw_buckets, n, p):
         #delta t is from first seq to now (2025)
         print(first_algo["year"])
         print(impr_ratio)
-        print(impr_ratio ** (1/(2025-first_algo["year"])))
+        print(impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"])))
         #double check formula!!
-        yearly_impr_rate = impr_ratio ** (1/(2025-first_algo["year"]))-1
+        yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-first_algo["year"]))-1
         all_rates.append(yearly_impr_rate)
 
     print("finished finding improvement rates")
@@ -820,12 +820,12 @@ def EVERYTHING_yearly_impr_rate_histo_helper(ax,full_data, raw_buckets, n, p, me
         first_year=full_data[first_algo]["year"]
 
         #best algorithm
-        best_algo=best_stats[problem][2024]["br alg"]
+        best_algo=best_stats[problem][CUR_YEAR]["br alg"]
         #if parallel
         if (full_data[best_algo]["parallel"]=="1"):
             best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
             impr_ratio = first_rt / best_rt
-            yearly_impr_rate = impr_ratio ** (1/(2025-first_year))-1
+            yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
         else: #if no parallel algo
             yearly_impr_rate=0
 
@@ -985,11 +985,11 @@ def EVERYTHING_stacked_impr_rate_histo_helper(ax, full_data, par_data, seq_data,
         if (problem in best_seq.keys()):
             #best_seq_algo=best_seq[problem]
             #trying to account for best work from a parallel algo
-            best_seq_algo=best_stats[problem][2024]["bw alg"]
+            best_seq_algo=best_stats[problem][CUR_YEAR]["bw alg"]
             best_seq_rt=get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
             
             seq_impr_ratio = first_rt/best_seq_rt
-            seq_yearly_impr_rate = seq_impr_ratio ** (1/(2025-first_year))-1
+            seq_yearly_impr_rate = seq_impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
             #seq_rates.append(seq_early_impr_rate)
             if (seq_yearly_impr_rate==0.017):
                 print("17!!!!!!!!!!!")
@@ -1000,16 +1000,16 @@ def EVERYTHING_stacked_impr_rate_histo_helper(ax, full_data, par_data, seq_data,
             seq_yearly_impr_rate=0.017
 
         # seq_impr_ratio = first_rt/best_seq_rt
-        # seq_early_impr_rate = seq_impr_ratio ** (1/(2025-first_year))-1
+        # seq_early_impr_rate = seq_impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
         seq_rates.append(seq_yearly_impr_rate)
 
         #best algorithm
-        best_algo=best_stats[problem][2024]["br alg"]
+        best_algo=best_stats[problem][CUR_YEAR]["br alg"]
         #if parallel
         if (full_data[best_algo]["parallel"]=="1"):
             best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
             par_impr_ratio = best_seq_rt/ best_rt
-            par_yearly_impr_rate = par_impr_ratio ** (1/(2025-first_year))-1
+            par_yearly_impr_rate = par_impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
             #par_rates.append(par_yearly_impr_rate)
         else: #if no parallel algo
             par_yearly_impr_rate=0
@@ -1139,23 +1139,24 @@ def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_
         first_year=full_data[first_algo]["year"]
 
         #best algo by work (best seq or best par run on 1 processor)
-        best_seq_algo=best_stats[problem][2024]["bw alg"]
+        best_seq_algo=best_stats[problem][CUR_YEAR]["bw alg"]
         best_seq_rt=get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
         seq_impr_ratio = first_rt/best_seq_rt
-        seq_yearly_impr_rate = seq_impr_ratio ** (1/(2025-first_year))-1
-        seq_rates.append(seq_yearly_impr_rate)
+        if seq_impr_ratio > 0 and first_year < CUR_YEAR+1:
+            seq_yearly_impr_rate = seq_impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
+            seq_rates.append(seq_yearly_impr_rate)
 
         #best runtime overall
-        best_algo=best_stats[problem][2024]["br alg"]
+        best_algo=best_stats[problem][CUR_YEAR]["br alg"]
         best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
         all_impr_ratio = first_rt/ best_rt
-        all_yearly_impr_rate = all_impr_ratio ** (1/(2025-first_year))-1
+        if all_impr_ratio > 0 and first_year < CUR_YEAR+1:
+            all_yearly_impr_rate = all_impr_ratio ** (1/(CUR_YEAR+1-first_year))-1
 
-        
-        # if(p==8 and all_yearly_impr_rate>10):
-        #     print("problem: ",problem, "; best_seq_rt=", best_seq_rt, "; best_rt=", best_rt)
+            # if(p==8 and all_yearly_impr_rate>10):
+            #     print("problem: ",problem, "; best_seq_rt=", best_seq_rt, "; best_rt=", best_rt)
 
-        all_rates.append(all_yearly_impr_rate)
+            all_rates.append(all_yearly_impr_rate)
             
     print("finished finding improvement rates for n=", n," and p=",p)
 
@@ -1271,13 +1272,13 @@ def EVERYTHING_seq_plus_all_impr_rate_histo_helper(ax, full_data, par_data, seq_
 #     parallel_faster_count=0 
 #     prob_speedups=[]
 #     for prob in par_problems:
-#         best_algo = best_stats[prob][2024]["br alg"]
+#         best_algo = best_stats[prob][CUR_YEAR]["br alg"]
 #         best_algo_rt=get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"],n,p)
 #         # print(best_algo)
 #         # print(all_data[best_algo])
 #         if (all_data[best_algo]["parallel"]=="1"):
 #             parallel_faster_count+=1
-#         best_work = best_stats[prob][2024]["bw alg"]
+#         best_work = best_stats[prob][CUR_YEAR]["bw alg"]
 #         best_work_rt=get_runtime(all_data[best_work]["work"], all_data[best_work]["span"],n,1)
 #         speedup= best_work_rt/best_algo_rt
 #         prob_speedups.append(speedup)
@@ -1346,12 +1347,12 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     parallel_faster_count = 0
     prob_speedups = []
     for prob in par_problems:
-        best_algo = best_stats[prob][2024]["br alg"]
+        best_algo = best_stats[prob][CUR_YEAR]["br alg"]
         if all_data[best_algo]["parallel"] == "1":
             parallel_faster_count += 1
             parallel=True
             best_algo_rt = get_runtime(all_data[best_algo]["work"], all_data[best_algo]["span"], n, p,parallel=parallel)
-            best_work = best_stats[prob][2024]["bw alg"]
+            best_work = best_stats[prob][CUR_YEAR]["bw alg"]
             best_work_rt = get_runtime(all_data[best_work]["work"], all_data[best_work]["span"], n, 1, parallel=False)
             speedup = best_work_rt / best_algo_rt
             prob_speedups.append(speedup)
@@ -1389,9 +1390,9 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
 
 
 
-    speedup_bins = ["1-2x", "2x-4x", "4x-8x", "8x-16x", "16x-32x", "32x-64x", "64x-128x", "128x-256x", 
-                    "256x-512x", "512x-1024x", "1024x-2048x (oh no)", "2048x-4096x (oh no)"]
-    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    speedup_bins = ["1-2x", "2x-4x", "4x-8x", "8x-16x", "16x-32x", "32x-64x", "64x-128x", "128x-256x",
+                    "256x-512x", "512x-1024x", "1024x-2048x (oh no)", "2048x-4096x (oh no)", ">=4096x (oh no)"]
+    speedup_values = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     for s in prob_speedups:
         if 1 < s < 2:
             speedup_values[0] += 1
@@ -1417,8 +1418,8 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
             speedup_values[10] += 1
         elif 2048 <= s < 4096: #oh no
             speedup_values[11] += 1
-        else:
-            raise ValueError(f"There is now a speedup more than 4096! oh no!! speedup value causing it is {s}")
+        else: #oh no
+            speedup_values[12] += 1
 
 
     speedup_total = sum(speedup_values)
@@ -1471,8 +1472,9 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     #     bottom += speedup_values[i]
 
     bottom = 0
-    label_base_x = 3 + bar_width / 2 + 0.03  # starting x position
-    stagger_x_offset = 0.07  # offset for second-level stagger
+    label_base_x = 3 + bar_width / 2 + 0.03  # line endpoint x
+    label_gap = 0.03                           # gap between line end and text
+    stagger_x_offset = 0.07                   # additional offset for odd-indexed labels
     nonzero_idx = 0  # counts only non-empty bins
 
     #picking a colormap
@@ -1487,12 +1489,12 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
             # Percentage inside the bar
             ax.text(3, mid_y, f"{speedup_bins[i]}", ha='center', va='center', fontsize=8, color='black')
 
-            # Horizontal line to label
-            ax.plot([3 + bar_width / 2, label_base_x], [mid_y, mid_y], color='black', lw=0.5)
-
-            # Stagger labels only among non-empty categories
+            # Horizontal line to label — stop before the text so the endpoint
+            # does not visually read as a minus sign in front of the number
             level = nonzero_idx % 2
-            label_x = label_base_x + (stagger_x_offset if level else 0)
+            label_x = label_base_x + label_gap + (stagger_x_offset if level else 0)
+            ax.plot([3 + bar_width / 2, label_x - 0.01], [mid_y, mid_y], color='black', lw=0.5)
+
             ax.text(label_x, mid_y, f"{value * 100:.2f}%", ha='left', va='center', fontsize=8)
             nonzero_idx += 1
 
@@ -1545,6 +1547,7 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     # ax.set_yticklabels([])
     ax.set_title(f"Proportion of Algorithm Problems, n={n}, p={p}")
 
+    fig.subplots_adjust(top=0.85)
     plt.savefig(SAVE_LOC+'sankey_style_graph_n_'+str(n)+'_p_'+str(p)+'.png')
     # plt.show()
 
@@ -1568,20 +1571,20 @@ def EVERYTHING_yearly_impr_rate_histo_helper_just_par(ax,full_data, raw_buckets,
     best_stats, first_stats=improvements(full_data,n,p)
     for problem in problems:
         #best seq algo
-        best_seq_algo= best_stats[problem][2024]["bw alg"]
+        best_seq_algo= best_stats[problem][CUR_YEAR]["bw alg"]
         #either sequential or force it to be sequential by p=1
         best_seq_rt = get_measure_value(measure, full_data[best_seq_algo]["work"], full_data[best_seq_algo]["span"],n,1)
         best_seq_year=full_data[best_seq_algo]["year"]
         first_seq_year=full_data[first_stats[problem]]["year"]
 
         #best algorithm
-        best_algo=best_stats[problem][2024]["br alg"]
+        best_algo=best_stats[problem][CUR_YEAR]["br alg"]
         #if parallel
         if (full_data[best_algo]["parallel"]=="1"):
             best_rt = get_measure_value(measure, full_data[best_algo]["work"], full_data[best_algo]["span"],n,p)
             impr_ratio = best_seq_rt / best_rt
-            yearly_impr_rate = impr_ratio ** (1/(2025-first_seq_year))-1
-            # yearly_impr_rate = impr_ratio ** (1/(2025-best_seq_year))-1
+            yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-first_seq_year))-1
+            # yearly_impr_rate = impr_ratio ** (1/(CUR_YEAR+1-best_seq_year))-1
         else: #if no parallel algo
             yearly_impr_rate=0
 

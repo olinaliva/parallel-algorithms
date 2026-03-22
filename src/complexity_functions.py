@@ -467,8 +467,12 @@ def comp_fn_27_5000(n):
     return n**math.log(7,2)
 def comp_fn_28_0000(n):
     return n**math.log(7,2) * max(math.log(n,2),1)
+def comp_fn_28_5000(n):
+    return n**2.844
 
 
+def comp_fn_29_1000(n):
+    return n**3 / 2**((max(math.log(n,2),1))**0.5)
 def comp_fn_29_2000(n):
     return n**3 * max(math.log(max(math.log(n,2),1),2),1)**1.5 / max(math.log(n,2),1)**2.5
 def comp_fn_29_3000(n):
