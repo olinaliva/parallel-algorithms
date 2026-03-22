@@ -122,7 +122,9 @@ def comp_fn_1_1010(n):
 def comp_fn_1_1500(n):
     return max(math.log(n,2),1) * max(math.log(max(math.log(n,2),1),2),1)**2
 def comp_fn_1_2900(n):
-    return max(math.log(n,2),1)**(4/3) * max(math.log(max(math.log(n,2),1),2),1)**(1/3)
+    # O(log^{4/3}(n) / log^{1/3}(log n)) — quotient, not product
+    # Verified: CODE_DIVISON[(16.1, 15.998)] = f(16.1)/f(15.998) = this expression
+    return max(math.log(n,2),1)**(4/3) / max(math.log(max(math.log(n,2),1),2),1)**(1/3)
 def comp_fn_1_5000(n):
     return max(math.log(n,2),1)**1.5
 def comp_fn_2_0000(n):
@@ -140,7 +142,8 @@ def comp_fn_5_0000(n):
 
 
 def comp_fn_5_1000(n):
-    return 2**(max(math.log(n,2),1)**{0.5}) * max(math.log(n,2),1) / max(math.log(max(math.log(n,2),1),2),1)**2
+    # {0.5} was a set literal — fixed to float 0.5
+    return 2**(max(math.log(n,2),1)**0.5) * max(math.log(n,2),1) / max(math.log(max(math.log(n,2),1),2),1)**2
 def comp_fn_5_0200(n):
     return n**EPS
 def comp_fn_5_0210(n):
@@ -218,11 +221,15 @@ def comp_fn_8_9000(n):
 def comp_fn_8_9005(n):
     return n * alpha(n) / max(math.log(n,2),1)**2
 def comp_fn_8_9400(n):
-    return n / (max(math.log(n,2),1) * max(math.log(max(math.log(n,2),1),2),1) * 2**log_star*n,2)
+    # O(n / (log n · log log n · 2^{log*(n)}))
+    # Bug: `2**log_star*n,2` was a tuple expression; fixed to call log_star(n,2)
+    return n / (max(math.log(n,2),1) * max(math.log(max(math.log(n,2),1),2),1) * 2**log_star(n,2))
 def comp_fn_8_9500(n):
     return n / (max(math.log(n,2),1) * max(math.log(max(math.log(n,2),1),2),1))
 def comp_fn_8_9900(n):
-    return n / (max(math.log(n,2),1) * log_star*n,2)
+    # O(n / (log n · log*(n)))
+    # Bug: `log_star*n,2` was a tuple expression; fixed to call log_star(n,2)
+    return n / (max(math.log(n,2),1) * log_star(n,2))
 def comp_fn_9_0000(n):
     return n / max(math.log(n,2),1)
 def comp_fn_9_0005(n):
