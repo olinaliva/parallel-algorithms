@@ -126,7 +126,14 @@ def create_seq_data(name1,name2):
     print(len(algos_with_subproblems))
     algos_with_names = add_name_field(algos_with_subproblems)
     final_values = type_cast_data(algos_with_names)
-    
+
+    # Fallback: seq entries leave "Subproblem" blank (parallel-only field), so problem=="".
+    # Use vars as the problem name in that case — for entries WITH problem filled, vars==problem
+    # exactly, so this is safe to apply unconditionally.
+    for entry in final_values:
+        if entry.get("problem", "") == "":
+            entry["problem"] = entry.get("vars", "")
+
     print(str(len(final_values))+" algorithms in the sequential dataset")
     newJsonFilePath = r'./data/seq_data'+VERSION+r'.json'
     with open(newJsonFilePath, 'w', encoding='utf-8') as jsonf: 

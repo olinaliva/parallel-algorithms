@@ -133,7 +133,13 @@ def get_runtime(work,span,n,p,lower=False, parallel=True):
         parallel=0
     if parallel==True:
         parallel=1
-        if p>=(work_calc/p)/span_calc:
+        # When p >= parallelism (= work/span), adding more processors gives no benefit.
+        # The runtime at p = work/span under a greedy schedule is:
+        #   (work-span)/(work/span) + span = span - span²/work + span = 2*span - span²/work
+        # which is approximately 2·span.  We cap there for all p above that threshold.
+        # BUG NOTE (fixed 2026-03-22, AI): original condition was (work_calc/p)/span_calc,
+        # i.e. p >= work/(p·span), i.e. p >= sqrt(parallelism) — fired too early by sqrt factor.
+        if p >= work_calc/span_calc:
             return 2*span_calc-span_calc**2/work_calc
     return (work_calc-span_calc)/p + span_calc + parallel
     # #if parallel==False: return get_seq_runtime(work,n)

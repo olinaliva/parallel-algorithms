@@ -2,7 +2,7 @@
     {
         "family": "Optimal Binary Search Trees",
         "looked at": "2",
-        "problem": "",
+        "problem": "Alphabetic Tree Problem",
         "vars": "Alphabetic Tree Problem",
         "id": "351",
         "auth": "Klawe; Mumey",
@@ -686,7 +686,7 @@
     {
         "family": "Linear System",
         "looked at": "2",
-        "problem": "",
+        "problem": "Positive Definite, Hermitian Matrix",
         "vars": "Positive Definite, Hermitian Matrix",
         "id": "103",
         "auth": "Cholesky",
@@ -704,7 +704,7 @@
     {
         "family": "Linear System",
         "looked at": "2",
-        "problem": "",
+        "problem": "Non-Definite, Symmetric Matrix",
         "vars": "Non-Definite, Symmetric Matrix",
         "id": "105",
         "auth": "Aasen's method",
@@ -722,7 +722,7 @@
     {
         "family": "Linear System",
         "looked at": "2",
-        "problem": "",
+        "problem": "Toeplitz Matrix",
         "vars": "Toeplitz Matrix",
         "id": "106",
         "auth": "Levinson\u2013Durbin recursion",
@@ -740,7 +740,7 @@
     {
         "family": "Linear System",
         "looked at": "2",
-        "problem": "",
+        "problem": "Toeplitz Matrix",
         "vars": "Toeplitz Matrix",
         "id": "107",
         "auth": "Bareiss Algorithm",
@@ -758,7 +758,7 @@
     {
         "family": "Linear System",
         "looked at": "2",
-        "problem": "",
+        "problem": "Vandermonde Matrix",
         "vars": "Vandermonde Matrix",
         "id": "108",
         "auth": "Bjorck-Pereyra",
@@ -1190,7 +1190,7 @@
     {
         "family": "Line Clipping",
         "looked at": "2",
-        "problem": "",
+        "problem": "Rectangular Window",
         "vars": "Rectangular Window",
         "id": "265",
         "auth": "Cohen\u2013Sutherland",
@@ -1208,7 +1208,7 @@
     {
         "family": "Line Clipping",
         "looked at": "2",
-        "problem": "",
+        "problem": "Rectangular Window",
         "vars": "Rectangular Window",
         "id": "266",
         "auth": "Liang\u2013Barsky",
@@ -1226,7 +1226,7 @@
     {
         "family": "Line Clipping",
         "looked at": "2",
-        "problem": "",
+        "problem": "Rectangular Window",
         "vars": "Rectangular Window",
         "id": "268",
         "auth": "Nicholl\u2013Lee\u2013Nicholl",
@@ -1244,7 +1244,7 @@
     {
         "family": "Line Clipping",
         "looked at": "2",
-        "problem": "",
+        "problem": "Rectangular Window",
         "vars": "Rectangular Window",
         "id": "269",
         "auth": "Fast clipping",
@@ -1730,7 +1730,7 @@
     {
         "family": "The Traveling-Salesman Problem",
         "looked at": "2",
-        "problem": "",
+        "problem": "Minimum TSP",
         "vars": "Minimum TSP",
         "id": "488",
         "auth": "Miller-Tucker-Zemlin (MTZ) formulation ",
@@ -1748,7 +1748,7 @@
     {
         "family": "The Traveling-Salesman Problem",
         "looked at": "2",
-        "problem": "",
+        "problem": "Minimum TSP",
         "vars": "Minimum TSP",
         "id": "489",
         "auth": "Dantzig-Fulkerson-Johnson (DFJ) formulation",
@@ -3152,7 +3152,7 @@
     {
         "family": "All-Pairs Shortest Paths (APSP)",
         "looked at": "2",
-        "problem": "",
+        "problem": "APSP on Dense Undirected Unweighted Graphs; APSP on Sparse Undirected Unweighted Graphs",
         "vars": "APSP on Dense Undirected Unweighted Graphs; APSP on Sparse Undirected Unweighted Graphs",
         "id": "186",
         "auth": "Seidel's algorithm",
@@ -3188,7 +3188,7 @@
     {
         "family": "All-Pairs Shortest Paths (APSP)",
         "looked at": "2",
-        "problem": "",
+        "problem": "APSP on Dense Undirected Graphs with Positive Integer Weights; APSP on Sparse Undirected Graphs with Positive Integer Weights",
         "vars": "APSP on Dense Undirected Graphs with Positive Integer Weights; APSP on Sparse Undirected Graphs with Positive Integer Weights",
         "id": "189",
         "auth": "Thorup",
@@ -3206,7 +3206,7 @@
     {
         "family": "All-Pairs Shortest Paths (APSP)",
         "looked at": "2",
-        "problem": "",
+        "problem": "APSP on Geometrically Weighted Graphs",
         "vars": "APSP on Geometrically Weighted Graphs",
         "id": "190",
         "auth": "Chan (Geometrically Weighted)",
@@ -3602,7 +3602,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "Eigenpair with the Largest Eigenvalue",
         "vars": "Eigenpair with the Largest Eigenvalue",
         "id": "397",
         "auth": "Power Iteration",
@@ -3926,7 +3926,7 @@
     {
         "family": "String Search",
         "looked at": "2",
-        "problem": "",
+        "problem": "Multiple String Search",
         "vars": "Multiple String Search",
         "id": "244",
         "auth": "Commentz-Walter Algorithm",
@@ -3944,7 +3944,7 @@
     {
         "family": "String Search",
         "looked at": "2",
-        "problem": "",
+        "problem": "Multiple String Search",
         "vars": "Multiple String Search",
         "id": "245",
         "auth": "Aho\u2013Corasick (AC) Algorithm",
@@ -4268,7 +4268,7 @@
     {
         "family": "Maximum Cardinality Matching",
         "looked at": "2",
-        "problem": "",
+        "problem": "Planar Bipartite Graph Perfect Matching",
         "vars": "Planar Bipartite Graph Perfect Matching",
         "id": "293",
         "auth": "Klein (section 5)",
@@ -4286,7 +4286,7 @@
     {
         "family": "Mutual Exclusion",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "2-thread Mutual Exclusion",
         "vars": "2-thread Mutual Exclusion",
         "id": "296",
         "auth": "Dekker's algorithm",
@@ -4448,7 +4448,7 @@
     {
         "family": "Generating Random Permutations",
         "looked at": "2",
-        "problem": "",
+        "problem": "Cyclic Permutations",
         "vars": "Cyclic Permutations",
         "id": "329",
         "auth": "Sattolo's algorithm",
@@ -4484,7 +4484,7 @@
     {
         "family": "Optimal Binary Search Trees",
         "looked at": "2",
-        "problem": "",
+        "problem": "Alphabetic Tree Problem",
         "vars": "Alphabetic Tree Problem",
         "id": "343",
         "auth": "Garsia\u2013Wachs algorithm",
@@ -4502,7 +4502,7 @@
     {
         "family": "Optimal Binary Search Trees",
         "looked at": "2",
-        "problem": "",
+        "problem": "Alphabetic Tree Problem",
         "vars": "Alphabetic Tree Problem",
         "id": "344",
         "auth": "Hu\u2013Tucker algorithm",
@@ -5024,7 +5024,7 @@
     {
         "family": "Polygon Clipping",
         "looked at": "1",
-        "problem": "",
+        "problem": "Polygon Clipping with Convex Clipping Polygon",
         "vars": "Polygon Clipping with Convex Clipping Polygon",
         "id": "382",
         "auth": "Sutherland\u2013Hodgman algorithm",
@@ -5078,7 +5078,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "vars": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "id": "398",
         "auth": "Inverse iteration",
@@ -5096,7 +5096,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "Any eigenpair; Any eigenvalue",
         "vars": "Any eigenpair; Any eigenvalue",
         "id": "399",
         "auth": "Rayleigh quotient iteration",
@@ -5114,7 +5114,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "vars": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "id": "400",
         "auth": "LOBPCG algorithm",
@@ -5132,7 +5132,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Any eigenvalue",
         "vars": "Any eigenvalue",
         "id": "401",
         "auth": "Bisection method",
@@ -5150,7 +5150,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Any eigenvalue",
         "vars": "Any eigenvalue",
         "id": "402",
         "auth": "Laguerre iteration",
@@ -5168,7 +5168,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "All eigenvalues; Any eigenvalue",
         "vars": "All eigenvalues; Any eigenvalue",
         "id": "403",
         "auth": "QR algorithm",
@@ -5186,7 +5186,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "All eigenvalues; Any eigenvalue",
         "vars": "All eigenvalues; Any eigenvalue",
         "id": "404",
         "auth": "Jacobi eigenvalue algorithm",
@@ -5204,7 +5204,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "All eigenvalues; Any eigenvalue",
         "vars": "All eigenvalues; Any eigenvalue",
         "id": "405",
         "auth": "Divide-and-conquer",
@@ -5222,7 +5222,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "All eigenpairs; Eigenpair closest to mu; Any eigenpair; Any eigenvalue; All eigenvalues",
         "vars": "All eigenpairs; Eigenpair closest to mu; Any eigenpair; Any eigenvalue; All eigenvalues",
         "id": "406",
         "auth": "Homotopy method",
@@ -5240,7 +5240,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "vars": "Eigenpair closest to mu; Any eigenpair; Any eigenvalue",
         "id": "407",
         "auth": "Folded spectrum method",
@@ -5258,7 +5258,7 @@
     {
         "family": "Eigenvalues (Iterative Methods)",
         "looked at": "2",
-        "problem": "",
+        "problem": "Any eigenpair; Any eigenvalue",
         "vars": "Any eigenpair; Any eigenvalue",
         "id": "408",
         "auth": "MRRR algorithm",
@@ -5420,7 +5420,7 @@
     {
         "family": "Register Allocation",
         "looked at": "1",
-        "problem": "",
+        "problem": "Global Register Allocation",
         "vars": "Global Register Allocation",
         "id": "439",
         "auth": "Chaitin's Algorithm",
@@ -5438,7 +5438,7 @@
     {
         "family": "Register Allocation",
         "looked at": "1",
-        "problem": "",
+        "problem": "Global Register Allocation",
         "vars": "Global Register Allocation",
         "id": "440",
         "auth": "Chow's Algorithm",
@@ -5474,7 +5474,7 @@
     {
         "family": "Register Allocation",
         "looked at": "1",
-        "problem": "",
+        "problem": "Global Register Allocation",
         "vars": "Global Register Allocation",
         "id": "443",
         "auth": "Optimal Register Allocation (ORA), Goodwin & Wilken Algorithm",
@@ -5492,7 +5492,7 @@
     {
         "family": "Register Allocation",
         "looked at": "1",
-        "problem": "",
+        "problem": "Global Register Allocation",
         "vars": "Global Register Allocation",
         "id": "444",
         "auth": "Kong and Wilken Algorithm",
@@ -5708,7 +5708,7 @@
     {
         "family": "DFA Minimization",
         "looked at": "2",
-        "problem": "",
+        "problem": "Acyclic DFA Minimization",
         "vars": "Acyclic DFA Minimization",
         "id": "459",
         "auth": "Revuz's algorithm",
@@ -5726,7 +5726,7 @@
     {
         "family": "DFA Minimization",
         "looked at": "2",
-        "problem": "",
+        "problem": "Cyclic Nontrivial SCCs DFA Minimization",
         "vars": "Cyclic Nontrivial SCCs DFA Minimization",
         "id": "460",
         "auth": "Almeida & Zeitoun",
@@ -6518,7 +6518,7 @@
     {
         "family": "Delaunay Triangulation",
         "looked at": "1",
-        "problem": "",
+        "problem": "General Delaunay Triangulation (d-dimensions)",
         "vars": "General Delaunay Triangulation (d-dimensions)",
         "id": "532",
         "auth": "Dwyer (higher dimensions)",
@@ -6824,7 +6824,7 @@
     {
         "family": "The Vertex Cover Problem",
         "looked at": "1",
-        "problem": "",
+        "problem": "The Vertex Cover Problem, Degrees Bounded By 3",
         "vars": "The Vertex Cover Problem, Degrees Bounded By 3",
         "id": "579",
         "auth": "J. Chen; L. Liu; and W. Jia.",
@@ -7040,7 +7040,7 @@
     {
         "family": "Data Compression",
         "looked at": "2",
-        "problem": "",
+        "problem": "Lossy Compression",
         "vars": "Lossy Compression",
         "id": "593",
         "auth": "Discrete Cosine Transform",
@@ -7058,7 +7058,7 @@
     {
         "family": "Data Compression",
         "looked at": "2",
-        "problem": "",
+        "problem": "Lossy Compression",
         "vars": "Lossy Compression",
         "id": "594",
         "auth": "Maneva and M. J. Wainwright",
@@ -7076,7 +7076,7 @@
     {
         "family": "Data Compression",
         "looked at": "1",
-        "problem": "",
+        "problem": "Lossy Compression",
         "vars": "Lossy Compression",
         "id": "595",
         "auth": " Ciliberti; M\u00e9zard",
@@ -7094,7 +7094,7 @@
     {
         "family": "Data Compression",
         "looked at": "1",
-        "problem": "",
+        "problem": "Lossy Compression",
         "vars": "Lossy Compression",
         "id": "601",
         "auth": "Jalali and T. Weissman",
@@ -7112,7 +7112,7 @@
     {
         "family": "Data Compression",
         "looked at": "1",
-        "problem": "",
+        "problem": "Lossy Compression",
         "vars": "Lossy Compression",
         "id": "602",
         "auth": "Jalali; A. Montanari; and T. Weissman",
@@ -7130,7 +7130,7 @@
     {
         "family": "Factorization of Polynomials Over Finite Fields",
         "looked at": "1",
-        "problem": "",
+        "problem": "Distinct-degree; Equal-degree",
         "vars": "Distinct-degree; Equal-degree",
         "id": "604",
         "auth": "Berlekamp's algorithm",
@@ -7166,7 +7166,7 @@
     {
         "family": "Factorization of Polynomials Over Finite Fields",
         "looked at": "1",
-        "problem": "",
+        "problem": "Square-free",
         "vars": "Square-free",
         "id": "606",
         "auth": "Square-free factorization",
@@ -7184,7 +7184,7 @@
     {
         "family": "Factorization of Polynomials Over Finite Fields",
         "looked at": "1",
-        "problem": "",
+        "problem": "Distinct-degree",
         "vars": "Distinct-degree",
         "id": "607",
         "auth": "Distinct-degree factorization",
@@ -7202,7 +7202,7 @@
     {
         "family": "Factorization of Polynomials Over Finite Fields",
         "looked at": "1",
-        "problem": "",
+        "problem": "Equal-degree",
         "vars": "Equal-degree",
         "id": "608",
         "auth": "Cantor\u2013Zassenhaus algorithm",
@@ -7220,7 +7220,7 @@
     {
         "family": "Factorization of Polynomials Over Finite Fields",
         "looked at": "1",
-        "problem": "",
+        "problem": "Equal-degree",
         "vars": "Equal-degree",
         "id": "609",
         "auth": "Victor Shoup's algorithm",
@@ -7238,7 +7238,7 @@
     {
         "family": "Cryptanalysis of Linear Feedback Shift Registers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Cryptanalysis of Linear Feedback Shift Registers",
         "vars": "Cryptanalysis of Linear Feedback Shift Registers",
         "id": "610",
         "auth": "Berlekamp\u2013Massey algorithm",
@@ -7274,7 +7274,7 @@
     {
         "family": "Stable Matching Problem",
         "looked at": "1",
-        "problem": "",
+        "problem": "Stable Roommates Problem",
         "vars": "Stable Roommates Problem",
         "id": "612",
         "auth": "Irving's Algorithm",
@@ -7328,7 +7328,7 @@
     {
         "family": "Stable Matching Problem",
         "looked at": "1",
-        "problem": "",
+        "problem": "Arc Consistency?",
         "vars": "Arc Consistency?",
         "id": "615",
         "auth": "Hentenryck et. al.",
@@ -7364,7 +7364,7 @@
     {
         "family": "Stable Matching Problem",
         "looked at": "1",
-        "problem": "",
+        "problem": "Stable Roommates Problem",
         "vars": "Stable Roommates Problem",
         "id": "617",
         "auth": "Patrick Posser",
@@ -7634,7 +7634,7 @@
     {
         "family": "Longest Palindromic Substring",
         "looked at": "2",
-        "problem": "",
+        "problem": "Longest Palindromic Substring",
         "vars": "Longest Palindromic Substring",
         "id": "653",
         "auth": "Naive",
@@ -7652,7 +7652,7 @@
     {
         "family": "Longest Palindromic Substring",
         "looked at": "1",
-        "problem": "",
+        "problem": "Longest Palindromic Substring",
         "vars": "Longest Palindromic Substring",
         "id": "654",
         "auth": "Dynamic Programming",
@@ -7670,7 +7670,7 @@
     {
         "family": "Longest Palindromic Substring",
         "looked at": "2",
-        "problem": "",
+        "problem": "Longest Palindromic Substring",
         "vars": "Longest Palindromic Substring",
         "id": "655",
         "auth": "Manacher",
@@ -7688,7 +7688,7 @@
     {
         "family": "Longest Palindromic Substring",
         "looked at": "1",
-        "problem": "",
+        "problem": "Longest Palindromic Substring",
         "vars": "Longest Palindromic Substring",
         "id": "656",
         "auth": "Jeuring",
@@ -7706,7 +7706,7 @@
     {
         "family": "Longest Palindromic Substring",
         "looked at": "2",
-        "problem": "",
+        "problem": "Longest Palindromic Substring",
         "vars": "Longest Palindromic Substring",
         "id": "657",
         "auth": "Gusfield ",
@@ -7724,7 +7724,7 @@
     {
         "family": "AST to Code Translation",
         "looked at": "2",
-        "problem": "",
+        "problem": "Arithmetic Expression Binary Tree",
         "vars": "Arithmetic Expression Binary Tree",
         "id": "659",
         "auth": "Sethi\u2013Ullman Algorithm",
@@ -7742,7 +7742,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "673",
         "auth": "Sorting based [Merge Sort] + sequential pass",
@@ -7760,7 +7760,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "1",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "674",
         "auth": "Sorting based [Merge Sort] + real-time elimination",
@@ -7778,7 +7778,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "675",
         "auth": "BST Algorithm",
@@ -7796,7 +7796,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "676",
         "auth": "Priority Queue Algorithm",
@@ -7814,7 +7814,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "677",
         "auth": "Sorted Neighborhood Algorithm (SNA)",
@@ -7832,7 +7832,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "678",
         "auth": "Duplicate Elimination Sorted Neighborhood Method (DE-SNM)",
@@ -7850,7 +7850,7 @@
     {
         "family": "Duplicate Elimination",
         "looked at": "2",
-        "problem": "",
+        "problem": "Duplicate Elimination",
         "vars": "Duplicate Elimination",
         "id": "679",
         "auth": "Adaptive Duplicate Detection Algorithm (ADD)",
@@ -7868,7 +7868,7 @@
     {
         "family": "Hyperbolic Spline Interpolation",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "Hyperbolic Spline Interpolation",
         "vars": "Hyperbolic Spline Interpolation",
         "id": "682",
         "auth": "V. A. Lyul\u2019ka and I. E. Mikhailov",
@@ -7886,7 +7886,7 @@
     {
         "family": "Hyperbolic Spline Interpolation",
         "looked at": "1",
-        "problem": "",
+        "problem": "Hyperbolic Spline Interpolation",
         "vars": "Hyperbolic Spline Interpolation",
         "id": "685",
         "auth": "B. I. Kvasov",
@@ -7904,7 +7904,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "686",
         "auth": "ECK M.; DEROSE T.; DUCHAMP T.; 1995",
@@ -7922,7 +7922,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "687",
         "auth": "FLOATER 1997",
@@ -7940,7 +7940,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "688",
         "auth": "PINKALL U.; POLTHIER K 1993",
@@ -7958,7 +7958,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "689",
         "auth": "FLOATER 2003",
@@ -7976,7 +7976,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "690",
         "auth": "LEE Y.; KIM H. S.; LEE S 2002",
@@ -7994,7 +7994,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "691",
         "auth": "DESBRUN M.; MEYER M.; ALLIEZ P. 2002",
@@ -8012,7 +8012,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "693",
         "auth": "KARNI Z.; GOTSMAN C.; GORTLER S. J. 2005",
@@ -8030,7 +8030,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "694",
         "auth": "HORMANN K.; GREINER G 1999",
@@ -8048,7 +8048,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "695",
         "auth": "SHEFFER A.; DE STURLER E. 2000",
@@ -8066,7 +8066,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "696",
         "auth": "SHEFFER A.; L\u00c9VY B.; MOGILNITSKY M.; BOGOMYAKOV A. 2005",
@@ -8084,7 +8084,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "697",
         "auth": "ZAYER R.; L\u00c9VY B.; SEIDEL H.-P. 2007",
@@ -8102,7 +8102,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "698",
         "auth": "SANDER P. V.; SNYDER J.; GORTER S. J.; HOPPE 2001",
@@ -8120,7 +8120,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "699",
         "auth": "YAN J. Q.; YANG X.; SHI P. F 2006",
@@ -8138,7 +8138,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "700",
         "auth": "ZAYER R.; ROESSL C.; SEIDEL H.-P 2005",
@@ -8156,7 +8156,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "701",
         "auth": "YOSHIZAWA S.; BELYAEV A. G.; SEIDEL H.-P 2004",
@@ -8174,7 +8174,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "702",
         "auth": "CHEN Z. G.; LIU L. G.; ZHANG Z. Y.; WANG G. J. 2007",
@@ -8192,7 +8192,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "703",
         "auth": "YANG Y.; KIM J.; LUO F.; HU S.; GU X. 2008",
@@ -8210,7 +8210,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "704",
         "auth": "BEN-CHEN M.; GOTSMAN C.; BUNIN G. 2008",
@@ -8228,7 +8228,7 @@
     {
         "family": "Mesh Parameterization",
         "looked at": "0",
-        "problem": "",
+        "problem": "Mesh Parameterization",
         "vars": "Mesh Parameterization",
         "id": "705",
         "auth": "SPRINGBORN B.; SCHROEDER P.; PINKALL U. 2008",
@@ -8246,7 +8246,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "706",
         "auth": "Expectation-Maximization (EM) algorithm",
@@ -8264,7 +8264,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "707",
         "auth": "EM with Quasi-Newton Methods (Jamshidian; Mortaza; Jennrich; Robert I.)",
@@ -8282,7 +8282,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "708",
         "auth": "Parameter-expanded expectation maximization (PX-EM)",
@@ -8300,7 +8300,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "709",
         "auth": "Expectation conditional maximization (ECM)",
@@ -8318,7 +8318,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "710",
         "auth": "Expectation conditional maximization either (ECME) (Liu; Chuanhai; Rubin; Donald B)",
@@ -8336,7 +8336,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables",
         "id": "711",
         "auth": "\u03b1-EM Algorithm",
@@ -8354,7 +8354,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "1",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables; multi-view model, discrete observations",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables; multi-view model, discrete observations",
         "id": "712",
         "auth": "Shaban; Amirreza; Mehrdad; Farajtabar",
@@ -8372,7 +8372,7 @@
     {
         "family": "Maximum Likelihood Methods in Unknown Latent Variables",
         "looked at": "0",
-        "problem": "",
+        "problem": "Maximum Likelihood Methods in Unknown Latent Variables, Hidden Markov Models",
         "vars": "Maximum Likelihood Methods in Unknown Latent Variables, Hidden Markov Models",
         "id": "713",
         "auth": "alpha-HMM (Matsuyama, Yasuo)",
@@ -8444,7 +8444,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "753",
         "auth": "Kalman Filter",
@@ -8462,7 +8462,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "754",
         "auth": "Particle filter Del Moral",
@@ -8480,7 +8480,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "755",
         "auth": "Stratonovich",
@@ -8498,7 +8498,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "756",
         "auth": "Stratonovich",
@@ -8516,7 +8516,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "757",
         "auth": "Kushner non-linear filter",
@@ -8534,7 +8534,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "758",
         "auth": "Zakai",
@@ -8552,7 +8552,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "1",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "759",
         "auth": "Maybeck; Peter S Extended Kalman Filter",
@@ -8570,7 +8570,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "0",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "761",
         "auth": "Del Moral; Pierre",
@@ -8588,7 +8588,7 @@
     {
         "family": "Filtering Problem (Stochastic Processes)",
         "looked at": "0.001",
-        "problem": "",
+        "problem": "Filtering Problem (Stochastic Processes)",
         "vars": "Filtering Problem (Stochastic Processes)",
         "id": "762",
         "auth": "Ocone",
@@ -8750,7 +8750,7 @@
     {
         "family": "Link Analysis",
         "looked at": "1",
-        "problem": "",
+        "problem": "InDegree Analysis",
         "vars": "InDegree Analysis",
         "id": "792",
         "auth": "The INDEGREE Algorithm",
@@ -9092,7 +9092,7 @@
     {
         "family": "Clock Synchronization in Distributed Systems",
         "looked at": "2",
-        "problem": "",
+        "problem": "Clock Synchronization in Distributed Systems",
         "vars": "Clock Synchronization in Distributed Systems",
         "id": "879",
         "auth": "ASP",
@@ -9110,7 +9110,7 @@
     {
         "family": "Clock Synchronization in Distributed Systems",
         "looked at": "1",
-        "problem": "",
+        "problem": "Clock Synchronization in Distributed Systems",
         "vars": "Clock Synchronization in Distributed Systems",
         "id": "880",
         "auth": "Clock-sampling mutual network synchronization",
@@ -9128,7 +9128,7 @@
     {
         "family": "Clock Synchronization in Distributed Systems",
         "looked at": "1",
-        "problem": "",
+        "problem": "Clock Synchronization in Distributed Systems",
         "vars": "Clock Synchronization in Distributed Systems",
         "id": "881",
         "auth": "MATSF",
@@ -9362,7 +9362,7 @@
     {
         "family": "Median String Problem",
         "looked at": "2",
-        "problem": "",
+        "problem": "Median String Problem with Unbounded Alphabets",
         "vars": "Median String Problem with Unbounded Alphabets",
         "id": "971",
         "auth": "Naive Solution",
@@ -9380,7 +9380,7 @@
     {
         "family": "The Frequent Words Problem",
         "looked at": "2",
-        "problem": "",
+        "problem": "The Frequent Words Problem",
         "vars": "The Frequent Words Problem",
         "id": "978",
         "auth": "Naive solution",
@@ -9398,7 +9398,7 @@
     {
         "family": "The Frequent Words Problem",
         "looked at": "1",
-        "problem": "",
+        "problem": "The Frequent Words Problem",
         "vars": "The Frequent Words Problem",
         "id": "1984",
         "auth": "Rabin-Karp (hashing-based)",
@@ -9416,7 +9416,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "980",
         "auth": "MD5",
@@ -9434,7 +9434,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "981",
         "auth": "SHA-1",
@@ -9452,7 +9452,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "982",
         "auth": "RIPEMD-160",
@@ -9470,7 +9470,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "983",
         "auth": "bcrypt",
@@ -9506,7 +9506,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "985",
         "auth": "SHA-2",
@@ -9524,7 +9524,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unkeyed Hash Functions",
         "vars": "Unkeyed Hash Functions",
         "id": "986",
         "auth": "SHA-3",
@@ -9542,7 +9542,7 @@
     {
         "family": "One-Way Hash Functions",
         "looked at": "1",
-        "problem": "",
+        "problem": "Optional Key?",
         "vars": "Optional Key?",
         "id": "987",
         "auth": "BLAKE2",
@@ -9632,7 +9632,7 @@
     {
         "family": "Block Ciphers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Block Ciphers",
         "vars": "Block Ciphers",
         "id": "994",
         "auth": "Lucifer / DES",
@@ -9650,7 +9650,7 @@
     {
         "family": "Block Ciphers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Block Ciphers",
         "vars": "Block Ciphers",
         "id": "995",
         "auth": "IDEA",
@@ -9668,7 +9668,7 @@
     {
         "family": "Block Ciphers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Block Ciphers",
         "vars": "Block Ciphers",
         "id": "996",
         "auth": "RC5",
@@ -9686,7 +9686,7 @@
     {
         "family": "Block Ciphers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Block Ciphers",
         "vars": "Block Ciphers",
         "id": "997",
         "auth": "Rijndael / AES",
@@ -9704,7 +9704,7 @@
     {
         "family": "Block Ciphers",
         "looked at": "1",
-        "problem": "",
+        "problem": "Block Ciphers",
         "vars": "Block Ciphers",
         "id": "998",
         "auth": "Blowfish",
@@ -9866,7 +9866,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Weighted Activity Selection Problem",
         "vars": "Weighted Activity Selection Problem",
         "id": "1007",
         "auth": "$O(n^3)$ Dynamic Programming",
@@ -9884,7 +9884,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Weighted Activity Selection Problem",
         "vars": "Weighted Activity Selection Problem",
         "id": "1008",
         "auth": "$O(n^2)$ Dynamic Programming",
@@ -9902,7 +9902,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Weighted Activity Selection Problem",
         "vars": "Weighted Activity Selection Problem",
         "id": "1009",
         "auth": "$O(n\\log n)$ Dynamic Programming",
@@ -9920,7 +9920,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1010",
         "auth": "Fixed priority shortest job first",
@@ -9938,7 +9938,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1011",
         "auth": "Priority scheduling",
@@ -9956,7 +9956,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1012",
         "auth": "Shortest remaining time first",
@@ -9974,7 +9974,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1013",
         "auth": "First come, first served",
@@ -9992,7 +9992,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1014",
         "auth": "Round-robin scheduling",
@@ -10010,7 +10010,7 @@
     {
         "family": "Interval Scheduling",
         "looked at": "1",
-        "problem": "",
+        "problem": "Unweighted Interval Scheduling, Online",
         "vars": "Unweighted Interval Scheduling, Online",
         "id": "1015",
         "auth": "Multilevel queue scheduling",
@@ -10028,7 +10028,7 @@
     {
         "family": "Page Replacements",
         "looked at": "1",
-        "problem": "",
+        "problem": "Offline",
         "vars": "Offline",
         "id": "1020",
         "auth": "The theoretically optimal page replacement algorithm",
@@ -10046,7 +10046,7 @@
     {
         "family": "Recovery",
         "looked at": "2",
-        "problem": "",
+        "problem": "Steal, No-Force",
         "vars": "Steal, No-Force",
         "id": "1030",
         "auth": "ARIES",
@@ -10182,7 +10182,7 @@
     },
     {
         "family": "Minimum Spanning Tree (MST)",
-        "problem": "",
+        "problem": "Directed (Optimum Branchings), General MST",
         "vars": "Directed (Optimum Branchings), General MST",
         "id": "",
         "auth": "Chu-Liu-Edmonds Algorithm",
@@ -10199,7 +10199,7 @@
     },
     {
         "family": "Minimum Spanning Tree (MST)",
-        "problem": "",
+        "problem": "Directed (Optimum Branchings), General MST",
         "vars": "Directed (Optimum Branchings), General MST",
         "id": "",
         "auth": "Tarjan (directed, general)",
@@ -10216,7 +10216,7 @@
     },
     {
         "family": "Minimum Spanning Tree (MST)",
-        "problem": "",
+        "problem": "Directed (Optimum Branchings), Super Dense MST",
         "vars": "Directed (Optimum Branchings), Super Dense MST",
         "id": "",
         "auth": "Tarjan (directed, dense)",
@@ -10233,7 +10233,7 @@
     },
     {
         "family": "Minimum Spanning Tree (MST)",
-        "problem": "",
+        "problem": "Directed (Optimum Branchings), General MST",
         "vars": "Directed (Optimum Branchings), General MST",
         "id": "",
         "auth": "Gabow, Galil, Spencer",
@@ -10250,7 +10250,7 @@
     },
     {
         "family": "Minimum Spanning Tree (MST)",
-        "problem": "",
+        "problem": "Directed (Optimum Branchings), General MST",
         "vars": "Directed (Optimum Branchings), General MST",
         "id": "",
         "auth": "Gabow et al, Section 3",
