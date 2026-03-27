@@ -56,19 +56,20 @@ SEQUENTIAL_ALGO_FIELDS={
         "Domains": "domains"
     }
 
-PARALLEL_DISCARABLE_FIELD_VALUES = {   
+PARALLEL_DISCARABLE_FIELD_VALUES = {
         "problem": ("","#N/A"),
-        "auth": "", 
-        "year": "", 
-        "span": ("","xxxx","xxx","yy"," "), 
+        "auth": "",
+        "year": "",
+        "span": ("","xxxx","xxx","yy"," "),
         "work": ("","xxxx","xxx","yy"," "),
-        "model": (""," "), 
-        "approximate": "1", 
-        "heuristic": "1", 
-        "parallel": ("0",""," "), 
-        "par": "", 
-        "quantum": "1", 
+        "model": (""," "),
+        "approximate": "1",
+        "heuristic": "1",
+        "parallel": ("0",""," "),
+        "par": "",
+        "quantum": "1",
         "gpu": "1",
+        "looked at": ("0", "0.001"),
     }
 
 SEQUENTIAL_DISCARABLE_FIELD_VALUES = {
@@ -81,10 +82,38 @@ SEQUENTIAL_DISCARABLE_FIELD_VALUES = {
         "parallel": "1",
         "quantum": "1",
         "gpu": "1",
+        "looked at": ("0", "0.001"),
     }
 
 PARALLEL_ALLOWABLE_MODELS = {100, 110, 120, 130, 131, 132, 133, 135, 200, 210, 
                              220, 300, 310, 320, 330, 400, 500, 510, 520}
+
+
+def log_underreviewed_entries(values, dataset_label, version):
+    """
+    Save entries with 'looked at' in ("0", "0.001") to data/underreviewed_entries_VERSION.json
+    for future data review. Reads any existing file and appends, so calling for seq then par
+    produces a single combined list.
+    """
+    flagged = []
+    for entry in values:
+        if entry.get("looked at", "") in ("0", "0.001"):
+            record = {"dataset": dataset_label}
+            for k in ("family", "id", "auth", "year", "problem", "vars", "domains", "looked at"):
+                if k in entry:
+                    record[k] = entry[k]
+            flagged.append(record)
+    output_path = f'./data/underreviewed_entries{version}.json'
+    existing = []
+    try:
+        with open(output_path, 'r', encoding='utf-8') as f:
+            existing = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    existing.extend(flagged)
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(existing, f, indent=4)
+    print(f"Logged {len(flagged)} underreviewed {dataset_label} entries ({len(existing)} total) to {output_path}")
 
 
 def create_all_datasets():
@@ -119,7 +148,8 @@ def create_seq_data(name1,name2):
     print(wanted_fields_only_values[0].keys())
     print(wanted_fields_only_values[-1].keys())
 
-    discarded_bad_algos_values = filter_unwanted_algos(wanted_fields_only_values, 
+    log_underreviewed_entries(wanted_fields_only_values, "seq", VERSION)
+    discarded_bad_algos_values = filter_unwanted_algos(wanted_fields_only_values,
                         unwanted_values=SEQUENTIAL_DISCARABLE_FIELD_VALUES)
     print(len(discarded_bad_algos_values))
     algos_with_subproblems = consolidate_subproblems(discarded_bad_algos_values)
@@ -128,11 +158,13 @@ def create_seq_data(name1,name2):
     final_values = type_cast_data(algos_with_names)
 
     # Fallback: seq entries leave "Subproblem" blank (parallel-only field), so problem=="".
-    # Use vars as the problem name in that case — for entries WITH problem filled, vars==problem
-    # exactly, so this is safe to apply unconditionally.
+    # Try vars first, then family (for problems with no subproblems, e.g. Cardinality Estimation).
     for entry in final_values:
         if entry.get("problem", "") == "":
-            entry["problem"] = entry.get("vars", "")
+            if entry.get("vars", "") != "":
+                entry["problem"] = entry["vars"]
+            elif entry.get("family", "") != "":
+                entry["problem"] = entry["family"]
 
     print(str(len(final_values))+" algorithms in the sequential dataset")
     newJsonFilePath = r'./data/seq_data'+VERSION+r'.json'
@@ -178,6 +210,7 @@ def apply_various_operations_to_change_the_json_file_so_its_usable(name,wanted_f
     wanted_fields_only_values = filter_unwanted_fields_json(values, wanted_fields)
     print("FILTER UNDWANTED FIELDS ONLY VALUES DONE")
 
+    log_underreviewed_entries(wanted_fields_only_values, "par", VERSION)
     discarded_bad_algos_values = filter_unwanted_algos(wanted_fields_only_values, unwanted_values)
     print("FILTER UNDWANTED ALGOS DONE")
 
