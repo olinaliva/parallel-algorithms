@@ -92,7 +92,7 @@ PRAM_LIKE_MODELS = {100, 110, 120, 130, 131, 132, 133, 135, 200, 210, 220,
                     300, 310, 320, 330}
 
 
-# SAVE_LOC = "Plots/PostFeedback/"
-#SAVE_LOC = "Plots/Feb18 data/"
-# SAVE_LOC = "Plots/Mar9 data/"
-SAVE_LOC = "Plots/MAR21 data/"
+# SAVE_LOC = "output-plots/PostFeedback/"
+# SAVE_LOC = "output-plots/Feb18 data/"
+# SAVE_LOC = "output-plots/Mar9 data/"
+SAVE_LOC = "output-plots/MAR21 data/"

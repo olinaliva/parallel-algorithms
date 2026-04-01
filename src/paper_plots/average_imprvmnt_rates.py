@@ -1545,9 +1545,12 @@ def sankey_style_graph(all_data, par_data, n=1000000, p=1000):
     ax.set_ylabel('')
     ax.set_ylabel("Percentage of Algorithm Problems", fontsize=12)
     # ax.set_yticklabels([])
-    ax.set_title(f"Proportion of Algorithm Problems, n={n}, p={p}")
+    def _fmt(v):
+        exp = int(math.log10(v)) if v > 0 else 0
+        return f"$10^{{{exp}}}$" if v == 10**exp else str(v)
+    ax.set_title(f"Proportion of Algorithm Problems, n={_fmt(n)}, p={_fmt(p)}", pad=28)
 
-    fig.subplots_adjust(top=0.85)
+    fig.subplots_adjust(top=0.82)
     plt.savefig(SAVE_LOC+'sankey_style_graph_n_'+str(n)+'_p_'+str(p)+'.png')
     # plt.show()
 

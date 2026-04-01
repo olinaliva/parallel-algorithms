@@ -1047,7 +1047,11 @@ def problem_speedup_vs_proc_three_curves(all_data, problem, n_values=[10**3], ma
             #label with algorithm name and work overhead
             mid_x = 10 ** ((math.log10(p1) + math.log10(p2)) / 2)
             top_y = serial_runtime / processor_data[max_p]["runtime"]*2
-            ax.text(mid_x, top_y, f"{algo}\nWork Overhead: {overhead:.0f}×-{overhead_upper:.0f}x",fontsize=8, ha='center', va='top', clip_on=False)
+            # Strip problem-family prefix from algo key (format: optional text + digits + author/name)
+            import re as _re
+            display_name = _re.sub(r'^[^\d]*\d+', '', algo).strip()
+            ax.text(mid_x, top_y, f"{display_name}\n{overhead:.0f}×-{overhead_upper:.0f}×",
+                    fontsize=8, ha='center', va='top', clip_on=True)
 
         ax.set_xscale('log')
         ax.set_yscale('log')
