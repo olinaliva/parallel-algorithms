@@ -1,0 +1,2406 @@
+DATA PIPELINE REPORT — version _MAR21
+Generated: 2026-03-27T21:27:15.647222
+
+================================================================
+  PARALLEL ALGORITHMS PIPELINE  [_MAR21]
+================================================================
+    Stage 0  Raw CSV rows:                            792
+    Stage 1  After field selection (rename only):     792
+
+  -- Stage 2  Exclusion breakdown --
+      Total excluded:                                   310
+        no subproblem specified:                                  36
+        no span encoding:                                         66
+        no work encoding:                                         24
+        no model encoding:                                        58
+        not a parallel algorithm:                                 26
+        no processor count encoding:                              99
+        not fully reviewed (looked_at=0/0.001):                    1
+      Entries passing all filters:                      482
+    Stage 3  After type casting (drops '-' values):   482  (0 dropped)
+
+  -- Stage 4  Model distribution (entries passing filters) --
+        PRAM-CRCW [130]:    94   (original + simulated)
+        PRAM-CREW [120]:    87   (original + simulated)
+        PRAM-EREW [110]:    73   (original + simulated)
+        Distributed Memory [700]:    45   (simulated only)
+        Sorting Network [510]:    33   (original + simulated)
+        MIMD-TC [300]:    30   (original + simulated)
+        BSP [400]:    22   (original + simulated)
+        SIMD-SM-R [210]:    21   (original + simulated)
+        PRAM (unspecified) [100]:    20   (original + simulated)
+        SIMD-SM [200]:    15   (original + simulated)
+        Hardware Sorter [520]:    15   (original + simulated)
+        PRAM-CRCW-ARB [131]:     8   (original + simulated)
+        PRAM-CRCW-COM [132]:     6   (original + simulated)
+        SIMD-SM-RW [220]:     5   (original + simulated)
+        MIMD-TC CRCW [330]:     3   (original + simulated)
+        MIMD-TC CREW [320]:     2   (original + simulated)
+        Unknown code -1 [-1]:     1   (EXCLUDED from both datasets)
+        MIMD-TC EREW [310]:     1   (original + simulated)
+        PRAM-CRCW-PRI [133]:     1   (original + simulated)
+    Stage 4a Original dataset  (known PRAM/MIMD/BSP/Circuit):  436
+    Stage 4b Simulated dataset (+Distributed Memory):           481
+             Excluded by model filter:                            1
+
+  -- Problem coverage in simulated dataset: 64 unique problems --
+        Comparison Sorting:                                     105
+        MST:                                                     45
+        Non-comparison Sorting:                                  26
+        CC:                                                      26
+        2-dimensional Convex Hull:                               17
+        LCS:                                                     16
+        3-dimensional Convex Hull:                               13
+        APSP:                                                    11
+        General Permutations:                                    11
+        Constuct Voronoi Diagram:                                10
+        2-Dimensional Delaunay Triangulation:                    10
+        Lossless Compression:                                    10
+        MCOP:                                                     9
+        Matrix Multiplication:                                    9
+        Single String Search:                                     9
+        Subset Sum:                                               9
+        Max Flow:                                                 8
+        2D Maximum Subarray:                                      8
+        Constructing Suffix Trees:                                8
+        OBST:                                                     7
+        Discrete Fourier Transform:                               6
+        Determinant of Matrices with Integer Entries:             6
+        Transitive Closure:                                       5
+        Matrix LU Decomposition:                                  5
+        Multiplication:                                           5
+        Constructing Eulerian Trails in a Graph:                  5
+        DFA Minimization:                                         5
+        Greatest Common Divisor:                                  5
+        General Linear System:                                    4
+        Intersection detection:                                   4
+        2-dimensional space Closest Pair Problem:                 4
+        kth Order Statistic:                                      3
+        General Linear Programming:                               3
+        Reporting intersection points:                            3
+        Edit Distance, constant-size alphabet:                    3
+        Line Drawing:                                             3
+        Topological Sorting:                                      3
+        2-Dimensional Poisson Problem:                            3
+        1D Maximum Subarray:                                      3
+        Transitive Reduction Problem of Directed Graphs:          3
+        SCCs:                                                     2
+        k-dimensional space Closest Pair Problem:                 2
+        undirected nonneg SSSP:                                   2
+        Bipartite Graph MCM:                                      2
+        General Graph MCM:                                        2
+        Polygon Clipping with Arbitrary Clipping Polygon:         2
+        CFG Parsing:                                              2
+        Point-in-Polygon:                                         2
+        2-D Polynomial Interpolation:                             2
+        Matrix Chain Scheduling Problem:                          1
+        Transitive Closure of a symmetric Boolean matrix:         1
+        directed MST:                                             1
+        directed nonneg SSSP:                                     1
+        directed SSSP:                                            1
+        Exact Laplacian Solver:                                   1
+        All Permutations:                                         1
+        Bipartite Maximum-Weight Matching:                        1
+        General Maximum-Weight Matching:                          1
+        Variance Calculations:                                    1
+        Enumerating Maximal Cliques:                              1
+        3-Dimensional Poisson Problem:                            1
+        3-Dimensional Delaunay Triangulation:                     1
+        Stable Marriage Problem:                                  1
+        Maximum Cut:                                              1
+
+================================================================
+  SEQUENTIAL ALGORITHMS PIPELINE  [_MAR21]
+================================================================
+    data/Sheet1_MAR21.csv:  998 rows
+    data/Sheet1_New_Entries_MAR21.csv:  274 rows
+    Stage 0  Raw CSV rows (both sheets combined):    1272
+    Stage 1  After field selection:                  1272
+
+  -- Stage 2  Exclusion breakdown --
+      Total excluded:                                   728
+        no author:                                                 7
+        no year:                                                  13
+        no time encoding:                                        523
+        approximate algorithm:                                   118
+        heuristic-based algorithm:                                 7
+        not a parallel algorithm:                                 26
+        quantum algorithm:                                         1
+        not fully reviewed (looked_at=0/0.001):                   33
+      Entries passing all filters:                      544
+    Stage 3  After type casting:                      542  (2 dropped)
+    Stage 4  Problem name fallback
+        Entries with blank problem before fallback:     124
+        Fixed by vars field:                            119
+        Fixed by family field:                            5
+        Still missing problem after fallback:             0
+
+  -- Problem coverage: 139 unique problems --
+        Max Flow:                                                22
+        MST:                                                     15
+        Subset Sum:                                              13
+        Comparison Sorting:                                      13
+        Single String Search:                                    13
+        LCS:                                                     12
+        2-Dimensional Poisson Problem:                           12
+        3-Dimensional Poisson Problem:                           12
+        Multiplication:                                          11
+        Discrete Fourier Transform:                              11
+        Link Analysis:                                           10
+        Non-comparison Sorting:                                   9
+        Matrix Multiplication:                                    9
+        Sequence Alignment:                                       9
+        The Vertex Cover Problem:                                 9
+        Motif Search:                                             8
+        SCCs:                                                     8
+        directed nonneg SSSP:                                     8
+        Point-in-Polygon:                                         8
+        Reporting intersection points:                            7
+        Mutual Exclusion:                                         7
+        2-Dimensional Delaunay Triangulation:                     7
+        Entity Resolution:                                        7
+        Duplicate Elimination:                                    7
+        2-dimensional Convex Hull:                                6
+        Line Simplification:                                      6
+        1D Maximum Subarray:                                      6
+        APSP:                                                     6
+        Integer Factoring:                                        6
+        Disk Scheduling:                                          6
+        Lossy Compression:                                        6
+        Maximum Likelihood Methods in Unknown Latent Variables:   6
+        Unkeyed Hash Functions:                                   6
+        Unweighted Interval Scheduling, Online:                   6
+        Line Drawing:                                             5
+        Maximum Likelihood Parameters:                            5
+        Lowest Common Ancestor:                                   5
+        Enumerating Maximal Cliques:                              5
+        Constructing Suffix Trees:                                5
+        Longest Palindromic Substring:                            5
+        Block Ciphers:                                            5
+        k-dimensional space Closest Pair Problem:                 4
+        Matrix LU Decomposition:                                  4
+        Edit Distance, constant-size alphabet:                    4
+        Rectangular Window:                                       4
+        Bipartite Graph MCM:                                      4
+        General Graph MCM:                                        4
+        OBST:                                                     4
+        Global Register Allocation:                               4
+        Variance Calculations:                                    4
+        Finding Frequent Itemsets:                                4
+        Stable Marriage Problem:                                  4
+        Filtering Problem (Stochastic Processes):                 4
+        Integer Relation:                                         4
+        Solutions to Nonlinear Equations:                         4
+        2-D Polynomial Interpolation:                             4
+        Greatest Common Divisor:                                  4
+        Directed (Optimum Branchings), General MST:               4
+        Alphabetic Tree Problem:                                  3
+        kth Order Statistic:                                      3
+        MCOP:                                                     3
+        k Nearest Neighbors Search:                               3
+        2-dimensional space Closest Pair Problem:                 3
+        Joins:                                                    3
+        #N/A:                                                     3
+        General Permutations:                                     3
+        Constructing Eulerian Trails in a Graph:                  3
+        Polygon Clipping with Arbitrary Clipping Polygon:         3
+        Eigenpair closest to mu; Any eigenpair; Any eigenvalue:   3
+        All eigenvalues; Any eigenvalue:                          3
+        DFA Minimization:                                         3
+        De Novo Genome Assembly:                                  3
+        Collaborative Filtering:                                  3
+        Clock Synchronization in Distributed Systems:             3
+        Discrete Logarithm Over Finite Fields:                    3
+        Weighted Activity Selection Problem:                      3
+        Toeplitz Matrix:                                          2
+        Minimum TSP:                                              2
+        3-dimensional Convex Hull:                                2
+        directed SSSP:                                            2
+        Multiple String Search:                                   2
+        Exact Laplacian Solver:                                   2
+        Any eigenpair; Any eigenvalue:                            2
+        Any eigenvalue:                                           2
+        Coset Enumeration:                                        2
+        Constuct Voronoi Diagram:                                 2
+        Topological Sorting:                                      2
+        CFG Parsing:                                              2
+        Equal-degree:                                             2
+        Stable Roommates Problem:                                 2
+        Optimal Policies for MDPs:                                2
+        Determinant of Matrices with Integer Entries:             2
+        The Frequent Words Problem:                               2
+        General Linear System:                                    1
+        Positive Definite, Hermitian Matrix:                      1
+        Non-Definite, Symmetric Matrix:                           1
+        Vandermonde Matrix:                                       1
+        Transitive Closure:                                       1
+        APSP on Dense Undirected Unweighted Graphs; APSP on Sparse Undirected Unweighted Graphs:   1
+        APSP on Dense Undirected Graphs with Positive Integer Weights; APSP on Sparse Undirected Graphs with Positive Integer Weights:   1
+        APSP on Geometrically Weighted Graphs:                    1
+        Eigenpair with the Largest Eigenvalue:                    1
+        Delaunay Triangulation:                                   1
+        Planar Bipartite Graph Perfect Matching:                  1
+        Cyclic Permutations:                                      1
+        Minimum value in each row of an implicitly-defined totally monotone matrix:   1
+        2-Player Nash Equilibria:                                 1
+        Bipartite Maximum-Weight Matching:                        1
+        General Maximum-Weight Matching:                          1
+        Polygon Clipping with Convex Clipping Polygon:            1
+        All eigenpairs; Eigenpair closest to mu; Any eigenpair; Any eigenvalue; All eigenvalues:   1
+        Cardinality Estimation:                                   1
+        Acyclic DFA Minimization:                                 1
+        Cyclic Nontrivial SCCs DFA Minimization:                  1
+        General Delaunay Triangulation (d-dimensions):            1
+        The Vertex Cover Problem, Degrees Bounded By 3:           1
+        CFG Recognition:                                          1
+        Distinct-degree; Equal-degree:                            1
+        Factorization of Polynomials Over Finite Fields:          1
+        Square-free:                                              1
+        Distinct-degree:                                          1
+        Cryptanalysis of Linear Feedback Shift Registers:         1
+        Arc Consistency?:                                         1
+        Longest Path on Interval Graphs:                          1
+        Arithmetic Expression Binary Tree:                        1
+        Hyperbolic Spline Interpolation:                          1
+        Maximum Likelihood Methods in Unknown Latent Variables; multi-view model, discrete observations:   1
+        The Set-Covering Problem:                                 1
+        InDegree Analysis:                                        1
+        Maximum Cut:                                              1
+        Transitive Reduction Problem of Directed Graphs:          1
+        Median String Problem with Unbounded Alphabets:           1
+        One-Way Hash Functions:                                   1
+        Optional Key?:                                            1
+        Offline:                                                  1
+        Steal, No-Force:                                          1
+        Undirected, Planar MST:                                   1
+        Directed (Optimum Branchings), Super Dense MST:           1
+        Directed, Weighted (Arbitrary weights):                   1
+
+================================================================
+  COMBINED SUMMARY
+================================================================
+    Problems with parallel algorithms:                 64
+    Problems with sequential algorithms:              139
+    Problems with BOTH par and seq data:               53
+    Problems with parallel data only:                  11
+    Problems with sequential data only:                86
+
+  -- Par-only problems --
+        2D Maximum Subarray
+        3-Dimensional Delaunay Triangulation
+        All Permutations
+        CC
+        General Linear Programming
+        Intersection detection
+        Lossless Compression
+        Matrix Chain Scheduling Problem
+        Transitive Closure of a symmetric Boolean matrix
+        directed MST
+        undirected nonneg SSSP
+
+  -- Seq-only problems --
+        #N/A
+        2-Player Nash Equilibria
+        APSP on Dense Undirected Graphs with Positive Integer Weights; APSP on Sparse Undirected Graphs with Positive Integer Weights
+        APSP on Dense Undirected Unweighted Graphs; APSP on Sparse Undirected Unweighted Graphs
+        APSP on Geometrically Weighted Graphs
+        Acyclic DFA Minimization
+        All eigenpairs; Eigenpair closest to mu; Any eigenpair; Any eigenvalue; All eigenvalues
+        All eigenvalues; Any eigenvalue
+        Alphabetic Tree Problem
+        Any eigenpair; Any eigenvalue
+        Any eigenvalue
+        Arc Consistency?
+        Arithmetic Expression Binary Tree
+        Block Ciphers
+        CFG Recognition
+        Cardinality Estimation
+        Clock Synchronization in Distributed Systems
+        Collaborative Filtering
+        Coset Enumeration
+        Cryptanalysis of Linear Feedback Shift Registers
+        Cyclic Nontrivial SCCs DFA Minimization
+        Cyclic Permutations
+        De Novo Genome Assembly
+        Delaunay Triangulation
+        Directed (Optimum Branchings), General MST
+        Directed (Optimum Branchings), Super Dense MST
+        Directed, Weighted (Arbitrary weights)
+        Discrete Logarithm Over Finite Fields
+        Disk Scheduling
+        Distinct-degree
+        Distinct-degree; Equal-degree
+        Duplicate Elimination
+        Eigenpair closest to mu; Any eigenpair; Any eigenvalue
+        Eigenpair with the Largest Eigenvalue
+        Entity Resolution
+        Equal-degree
+        Factorization of Polynomials Over Finite Fields
+        Filtering Problem (Stochastic Processes)
+        Finding Frequent Itemsets
+        General Delaunay Triangulation (d-dimensions)
+        Global Register Allocation
+        Hyperbolic Spline Interpolation
+        InDegree Analysis
+        Integer Factoring
+        Integer Relation
+        Joins
+        Line Simplification
+        Link Analysis
+        Longest Palindromic Substring
+        Longest Path on Interval Graphs
+        Lossy Compression
+        Lowest Common Ancestor
+        Maximum Likelihood Methods in Unknown Latent Variables
+        Maximum Likelihood Methods in Unknown Latent Variables; multi-view model, discrete observations
+        Maximum Likelihood Parameters
+        Median String Problem with Unbounded Alphabets
+        Minimum TSP
+        Minimum value in each row of an implicitly-defined totally monotone matrix
+        Motif Search
+        Multiple String Search
+        Mutual Exclusion
+        Non-Definite, Symmetric Matrix
+        Offline
+        One-Way Hash Functions
+        Optimal Policies for MDPs
+        Optional Key?
+        Planar Bipartite Graph Perfect Matching
+        Polygon Clipping with Convex Clipping Polygon
+        Positive Definite, Hermitian Matrix
+        Rectangular Window
+        Sequence Alignment
+        Solutions to Nonlinear Equations
+        Square-free
+        Stable Roommates Problem
+        Steal, No-Force
+        The Frequent Words Problem
+        The Set-Covering Problem
+        The Vertex Cover Problem
+        The Vertex Cover Problem, Degrees Bounded By 3
+        Toeplitz Matrix
+        Undirected, Planar MST
+        Unkeyed Hash Functions
+        Unweighted Interval Scheduling, Online
+        Vandermonde Matrix
+        Weighted Activity Selection Problem
+        k Nearest Neighbors Search
+
+================================================================
+  EXCLUDED ENTRIES  (all reasons except looked_at < 1)
+================================================================
+    Parallel entries excluded (non-looked_at): 309
+    Sequential entries excluded (non-looked_at): 695
+
+  -- Parallel excluded — sorted by family then year --
+        [no subproblem specified]
+          family=  id=  auth=  year=
+        [no processor count encoding]
+          family=1  id=  auth=Dohi et al.  year=1982
+        [no work encoding]
+          family=1  id=  auth=Bollobas and Thomason  year=1983
+        [no processor count encoding]
+          family=1  id=  auth=Bucket sort - Johnsson (3)  year=1984
+        [no work encoding]
+          family=1  id=  auth=n-sorter - Tseng and Lee  year=1985
+        [no processor count encoding]
+          family=1  id=  auth=Han  year=1985
+        [no processor count encoding]
+          family=1  id=  auth=Wagner, Han  year=1986
+        [no subproblem specified]
+          family=1  id=  auth=Alon, Azar, Vishkin  year=1986
+        [not a parallel algorithm]
+          family=1  id=  auth=Kunde  year=1988
+        [no processor count encoding]
+          family=1  id=  auth=parallel shellsort - Quinn  year=1988
+        [no processor count encoding]
+          family=1  id=  auth=Jagadish  year=1988
+        [no processor count encoding]
+          family=1  id=  auth=Saxena, Bhatt, Prasad  year=1988
+        [no subproblem specified]
+          family=1  id=  auth=shearsort - Scherson, Sen  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=SmoothSort - Plaxton (adaptive)  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=SmoothSort - Plaxton (nonadaptive)  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=parallel binsort 0 - Seidel, George (1)  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=parallel binsort 1 - Seidel, George (2)  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=parallel binsort 2 - Seidel, George (3)  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=Aggarwal, Chandra, Snir  year=1989
+        [no processor count encoding]
+          family=1  id=  auth=Raman  year=1990
+        [no processor count encoding]
+          family=1  id=  auth=Abali, Ozguner, Bataineh  year=1990
+        [no processor count encoding]
+          family=1  id=  auth=AGGARWAL, CHANDRA, SNIR  year=1990
+        [no processor count encoding]
+          family=1  id=  auth=Kruskal, Rudolph, Snir  year=1990
+        [no processor count encoding]
+          family=1  id=  auth=Parasort - Wheat, Evans  year=1990
+        [no subproblem specified]
+          family=1  id=  auth=Tang  year=1990
+        [no processor count encoding]
+          family=1  id=  auth=Bhatt, Diks, Hagerup, Prasad, Radzik, Saxena  year=1991
+        [no processor count encoding]
+          family=1  id=  auth=Matias, Vishkin (deterministic)  year=1991
+        [no processor count encoding]
+          family=1  id=  auth=Deo, Sarkar  year=1991
+        [no span encoding]
+          family=1  id=  auth=MeshSort (generalized Bitonic and Shear Sort) - Corbett, Scherson  year=1992
+        [no work encoding]
+          family=1  id=  auth=Hagerup, Raman (comparsion)  year=1992
+        [no work encoding]
+          family=1  id=  auth=Hagerup, Raman (ints in range, stable)  year=1992
+        [no work encoding]
+          family=1  id=  auth=Padded-sort - Hagerup, Raman  year=1993
+        [no span encoding]
+          family=1  id=  auth=Kale, Krishnan  year=1993
+        [no span encoding]
+          family=1  id=  auth=Vaidyanathan, Hartmann, Varshney  year=1993
+        [no span encoding]
+          family=1  id=  auth=T&B sort - Tridgell, Brent  year=1993
+        [no work encoding]
+          family=1  id=  auth=Chen, Reif  year=1993
+        [no subproblem specified]
+          family=1  id=  auth=Tianzhen, Zhou, Xiozhen  year=1993
+        [no span encoding]
+          family=1  id=  auth=Parallel Sorting by OverPartitioning (PSOP) - Li, Sevcik (Quicksort / PQOP)  year=1994
+        [no span encoding]
+          family=1  id=  auth=Parallel Sorting by OverPartitioning (PSOP) - Li, Sevcik (Radix sort / PROP)  year=1994
+        [no processor count encoding]
+          family=1  id=  auth=Chen, Chen (generalized)  year=1994
+        [no span encoding]
+          family=1  id=  auth=Gibbons, Matias, Ramachandran (1)  year=1994
+        [no work encoding]
+          family=1  id=  auth=Han and Shen  year=1995
+        [no span encoding]
+          family=1  id=  auth=Das, Sinha  year=1995
+        [no processor count encoding]
+          family=1  id=  auth=MM-sort - Zhang, Zheng  year=1995
+        [no work encoding]
+          family=1  id=  auth=(padded sorting) Goldberg, Zwick  year=1995
+        [no span encoding]
+          family=1  id=  auth=Parallel Sorting by Median-Median (PSMM) - Min  year=1995
+        [no processor count encoding]
+          family=1  id=  auth=Goodrich  year=1996
+        [no processor count encoding]
+          family=1  id=  auth=JaJa, Ryu, Vishkin (1)  year=1996
+        [no work encoding]
+          family=1  id=  auth=Shear-sort - De et al.  year=1997
+        [no work encoding]
+          family=1  id=  auth=Albers, Hagerup (1)  year=1997
+        [no work encoding]
+          family=1  id=  auth=Albers, Hagerup (2)  year=1997
+        [no subproblem specified]
+          family=1  id=  auth=Load Balanced Parallel Radix Sort - Sohn, Kodama  year=1998
+        [no span encoding]
+          family=1  id=  auth=ZZ-sort - Zheng, Calidas, Zhang  year=1999
+        [no processor count encoding]
+          family=1  id=  auth=Zhang, Zheng  year=1999
+        [no span encoding]
+          family=1  id=  auth=partitioned parallel radix (PPR) sort - Lee, Jeon, Sohn, Kim  year=2000
+        [no span encoding]
+          family=1  id=  auth=Sinkha, Mukherjee  year=2000
+        [no work encoding]
+          family=1  id=  auth=Han  year=2001
+        [no span encoding]
+          family=1  id=  auth=Gerbessiotis, Siniolakis  year=2001
+        [no subproblem specified]
+          family=1  id=  auth=Cerin  year=2002
+        [no work encoding]
+          family=1  id=  auth=Han, Shen  year=2002
+        [no processor count encoding]
+          family=1  id=  auth=Canturk  year=2002
+        [no work encoding]
+          family=1  id=  auth=load balanced parallel merge sort - Jeon, Kim  year=2003
+        [no span encoding]
+          family=1  id=  auth=Parallel Sorting by Exact Splitting (PSES) - Dian, Zhizhong  year=2004
+        [no processor count encoding]
+          family=1  id=  auth=Arefin, Hasan  year=2005
+        [no processor count encoding]
+          family=1  id=  auth=Cheng, Shah, Gilbert, Edelman  year=2007
+        [no processor count encoding]
+          family=1  id=  auth=partition and concurrent merging (PCM) - Herruzo, Ruiz, Benavides, Plata  year=2007
+        [no processor count encoding]
+          family=1  id=  auth=partition and concurrent merging (PCM) - Herruzo, Ruiz, Benavides, Plata  year=2007
+        [no span encoding]
+          family=1  id=  auth=Wei, Xiao, Zhang  year=2008
+        [no span encoding]
+          family=1  id=  auth=Li, Peng, Chu  year=2009
+        [no work encoding]
+          family=1  id=  auth=Dynamic Communication-Efficient parallel Sorting (DCES) - Thanakulwarapas, Werapun  year=2009
+        [not a parallel algorithm]
+          family=1  id=  auth=Multi-sort - Rakesh  year=2010
+        [no work encoding]
+          family=1  id=  auth=Parallel Sorting by Approximate Selection (PSAS) - Wu, Wu, Shang, Fang  year=2010
+        [no span encoding]
+          family=1  id=  auth=Li, Peng, Chu  year=2010
+        [no work encoding]
+          family=1  id=  auth=Cache-efficient Parallel Sort - Odeh, Green, Mwassi, Shmueli, Birk  year=2012
+        [no span encoding]
+          family=1  id=  auth=Han, He (1)  year=2012
+        [no span encoding]
+          family=1  id=  auth=Han, He (2)  year=2012
+        [no span encoding]
+          family=1  id=  auth=Bosakova-Ardenska, Vasilev, Kostadinova-Georgieva  year=2014
+        [no work encoding]
+          family=1  id=  auth=Axtmann, Bingmann, Sanders, Schulz  year=2015
+        [no span encoding]
+          family=1  id=  auth=Siebert, Wolf  year=2017
+        [no subproblem specified]
+          family=1  id=  auth=Kim, Choi, Bae  year=2018
+        [no work encoding]
+          family=1  id=  auth=Maurya, Singh  year=2018
+        [no span encoding]
+          family=1  id=  auth=Regions sort - Obeya, Kahssay, Fan, Shun  year=2019
+        [no work encoding]
+          family=1  id=  auth=Histogram Sort with Sampling (HSS) - Harsh, Kale, Solomonik  year=2019
+        [no span encoding]
+          family=1  id=  auth=Han, Mishra, Sayed  year=2019
+        [no work encoding]
+          family=1  id=  auth=Goyal (1)  year=2020
+        [no work encoding]
+          family=1  id=  auth=Goyal (2)  year=2020
+        [no work encoding]
+          family=1  id=  auth=Moghaddam, Moghaddam  year=2021
+        [no span encoding]
+          family=1  id=  auth=Han, He  year=2022
+        [no span encoding]
+          family=1  id=  auth=2mm - Mubarak, Iqbal, Naeem, Hussain  year=2022
+        [no model encoding]
+          family=1  id=  auth=Parallel D&C Bubble Sort - Ganapathi, Chowdhury (1)  year=2022
+        [no model encoding]
+          family=1  id=  auth=Parallel D&C Selection Sort - Ganapathi, Chowdhury (2)  year=2022
+        [no work encoding]
+          family=1  id=  auth=Parallel D&C Insertion Sort - Ganapathi, Chowdhury (3)  year=2022
+        [no span encoding]
+          family=1  id=  auth=Multi-Deque Partition DualDeque Merge Sorting algorithm (MPDMSort) - Ketchaya, Rattanatranurak  year=2023
+        [no model encoding]
+          family=10  id=  auth=Kamdoum  year=1982
+        [no processor count encoding]
+          family=10  id=  auth=Vaidya  year=1990
+        [no processor count encoding]
+          family=119  id=  auth=Borodin, von zur Gathem, Hopcroft  year=1982
+        [no subproblem specified]
+          family=119  id=  auth=Berkowitz  year=1984
+        [no subproblem specified]
+          family=119  id=  auth=Bini  year=1985
+        [no model encoding]
+          family=119  id=  auth=Pan  year=1987
+        [no span encoding]
+          family=120  id=  auth=Bailey, Broadhurst  year=2001
+        [no subproblem specified]
+          family=123  id=  auth=Sorenson  year=1994
+        [no processor count encoding]
+          family=13  id=  auth=Kruskal, Rudolph, Snir  year=1990
+        [no span encoding]
+          family=13  id=  auth=Iwama, Kambayashi  year=1994
+        [no processor count encoding]
+          family=13  id=  auth=Karczmarz, Sankowski  year=2021
+        [no subproblem specified]
+          family=142  id=  auth=Reif  year=1986
+        [no subproblem specified]
+          family=142  id=  auth=Eberly  year=1989
+        [no processor count encoding]
+          family=143  id=  auth=Sorenson (left shift k-ary)  year=1994
+        [no processor count encoding]
+          family=143  id=  auth=Sorenson (right shift k-ary)  year=1994
+        [no subproblem specified]
+          family=145  id=  auth=Martel  year=1988
+        [no subproblem specified]
+          family=145  id=  auth=Rodger  year=1988
+        [no subproblem specified]
+          family=153  id=  auth=Guo et al.  year=2017
+        [no processor count encoding]
+          family=16  id=  auth=Amato  year=1991
+        [no processor count encoding]
+          family=16  id=  auth=Cohen (d=sqrt(n))  year=1993
+        [no processor count encoding]
+          family=16  id=  auth=Cohen (d=n)  year=1993
+        [no processor count encoding]
+          family=16  id=  auth=Klein, Subramanian  year=1997
+        [no processor count encoding]
+          family=16  id=  auth=Shi, Spencer (1) (t=log(n))  year=1999
+        [no processor count encoding]
+          family=16  id=  auth=Shi, Spencer (1) (t=sqrt(n))  year=1999
+        [no processor count encoding]
+          family=16  id=  auth=Shi, Spencer (2) (t=log(n))  year=1999
+        [no processor count encoding]
+          family=16  id=  auth=Shi, Spencer (2) (t=n)  year=1999
+        [no processor count encoding]
+          family=16  id=  auth=Maleki, Nguyen, Lenharth, Garzarán, Padua, Pingali  year=2016
+        [no processor count encoding]
+          family=16  id=  auth=Dhulipala, Blelloch, Shun (1)  year=2017
+        [no processor count encoding]
+          family=16  id=  auth=Dhulipala, Blelloch, Shun (2)  year=2017
+        [no model encoding]
+          family=16  id=  auth=Cao, Fineman  year=2023
+        [no processor count encoding]
+          family=18  id=  auth=Parallel Lenstra's ECM (Brent)  year=1990
+        [no model encoding]
+          family=18.5  id=  auth=Silverman (multiple polynomial quadratic sieve)  year=1987
+        [not a parallel algorithm]
+          family=18.5  id=  auth=Åsbrink, Brynielsson (quadratic sieve with only parallel sieving)  year=2000
+        [no model encoding]
+          family=18.5  id=  auth=Yang, Xu, Lin, Quinn (GNFS with parallel sieving and serial biorthogonal block lanczos)  year=2006
+        [no model encoding]
+          family=18.5  id=  auth=Yang, Xu, Yeo, Hussain (GNFS with parallel sieving and montgomery block lanczos)  year=2010
+        [no model encoding]
+          family=18.5  id=  auth=Daoud, Gad (GNFS with parallel sieving)  year=2014
+        [no model encoding]
+          family=18.5  id=  auth=Yang, Huang, Feng, Pan, Zhu (GNFS with parallel sieving and MPI parallel block lanczos)  year=2017
+        [no model encoding]
+          family=18.5  id=  auth=Yang, Huang, Feng, Xu (GNFS with parallel sieving and parallel block wiedemann)  year=2017
+        [no model encoding]
+          family=18.5  id=  auth=Bouillaguet, Zimmermann (GNFS with structured gaussian elimination as dimension/density reduction before iterative linear solver)  year=2021
+        [no processor count encoding]
+          family=19  id=  auth=Wunderlich (continued fraction factoring)  year=1985
+        [no processor count encoding]
+          family=19  id=  auth=Yan (trial division)  year=1993
+        [no model encoding]
+          family=19  id=204  auth=Rational sieve  year=1993
+        [no processor count encoding]
+          family=19  id=  auth=Sorenson  year=1994
+        [no processor count encoding]
+          family=19  id=  auth=Yang, Xu, Lin (GNFS with parallel sieving and serial block lanczos)  year=2005
+        [no processor count encoding]
+          family=19  id=  auth=Bahig, Hazber, Al-Utaibi, Nassr  year=2022
+        [not a parallel algorithm]
+          family=20  id=  auth=Lüpke  year=1993
+        [not a parallel algorithm]
+          family=22  id=  auth=Rasool, Khare (parallel KMP)  year=2012
+        [no model encoding]
+          family=27  id=  auth=Karatsuba  year=1963
+        [no model encoding]
+          family=27  id=  auth=Toom–Cook  year=1963
+        [no model encoding]
+          family=27  id=  auth=Schönhage–Strassen   year=1971
+        [no model encoding]
+          family=27  id=  auth=Bunimov, Schimmler  year=2003
+        [no model encoding]
+          family=27  id=  auth=Furer  year=2007
+        [no model encoding]
+          family=27  id=  auth=Chmielowiec (existing FFT-based algorithm?)  year=2013
+        [no processor count encoding]
+          family=27  id=  auth=Tembhurne, Sathe (1)  year=2014
+        [no processor count encoding]
+          family=27  id=  auth=Tembhurne, Sathe (2)  year=2014
+        [no model encoding]
+          family=27  id=  auth=Harvey, van der Hoeven, Lecerf (2014)  year=2014
+        [no model encoding]
+          family=27  id=  auth=Harvey (2017)  year=2017
+        [no model encoding]
+          family=27  id=  auth=Harvey, van der Hoeven (2017)  year=2017
+        [no model encoding]
+          family=27  id=  auth=Harvey, van der Hoeven (2018)  year=2018
+        [no model encoding]
+          family=27  id=  auth=Harvey, van der Hoeven (2019)  year=2019
+        [no model encoding]
+          family=28  id=  auth=Karp, Upfal, Widgerson  year=1985
+        [no processor count encoding]
+          family=28  id=  auth=Galil (1)  year=1986
+        [no processor count encoding]
+          family=28  id=  auth=Galil (2)  year=1986
+        [no model encoding]
+          family=33  id=  auth=Alonso et al.  year=1996
+        [no model encoding]
+          family=34  id=  auth=Cevher, Becker, Schmidt (Consensus ADMM - first order mehtod)  year=2014
+        [no span encoding]
+          family=34  id=  auth=Bubeck, Jiang, Lee, Li, Sidford  year=2019
+        [no span encoding]
+          family=34  id=  auth=Carmon, Jambulapati, Jin, Lee, Liu, Sidford, Tian (Parallel EpochSGD)  year=2023
+        [no span encoding]
+          family=34  id=  auth=Carmon, Jambulapati, Jin, Lee, Liu, Sidford, Tian (Parallel AC-SA)  year=2023
+        [not a parallel algorithm]
+          family=39  id=  auth=Parallel Support Enumeration   year=2008
+        [not a parallel algorithm]
+          family=39  id=  auth=Parallel Vertex Enumeration  year=2009
+        [no processor count encoding]
+          family=4  id=  auth=Lu  year=1990
+        [no subproblem specified]
+          family=4  id=  auth=Tiskin  year=2005
+        [no processor count encoding]
+          family=4  id=  auth=Krusche, Tiskin (dynamic programming)  year=2006
+        [no processor count encoding]
+          family=4  id=  auth=Liu, Chen, Chen, Qin  year=2006
+        [no processor count encoding]
+          family=4  id=  auth=Liu, Chen  year=2008
+        [no subproblem specified]
+          family=4  id=  auth=Wang, Korkin, Shang  year=2008
+        [no model encoding]
+          family=4  id=  auth=Eswaran, RajaGopalan  year=2010
+        [no subproblem specified]
+          family=4  id=  auth=Tchendji, Tepiele, Onabid, Myoupo  year=2022
+        [no model encoding]
+          family=42  id=  auth=Swarztrauber  year=1987
+        [no processor count encoding]
+          family=44  id=  auth=Theoharis, Page (1)  year=1989
+        [no processor count encoding]
+          family=44  id=  auth=Theoharis, Page (2)  year=1989
+        [no processor count encoding]
+          family=44  id=  auth=Puri, Prasad  year=2014
+        [no subproblem specified]
+          family=47  id=  auth=Kuck, Sameh (Jacobi's method)  year=1971
+        [no subproblem specified]
+          family=47  id=  auth=Kuck, Sameh (Householder's method)  year=1971
+        [no subproblem specified]
+          family=47  id=  auth=Kuck, Sameh (QR algorithm)  year=1971
+        [no subproblem specified]
+          family=47  id=  auth=Sameh (Jacobi)  year=1971
+        [no subproblem specified]
+          family=47  id=  auth=Paardekooper  year=1986
+        [no subproblem specified]
+          family=47  id=  auth=Dongarra, Sorensen  year=1987
+        [no model encoding]
+          family=48  id=  auth=Ben-Or, Feig, Kozen, Tiwari (BFKT)  year=1986
+        [not a parallel algorithm]
+          family=48  id=  auth=parallel Graeffe's method - Rice, Jamieson  year=1989
+        [no span encoding]
+          family=48  id=  auth=Narendran, Tiwari  year=1992
+        [not a parallel algorithm]
+          family=48  id=  auth=Neff  year=1994
+        [not a parallel algorithm]
+          family=49  id=  auth=Goodrich  year=1985
+        [not a parallel algorithm]
+          family=49  id=  auth=Schieber, Vishkin  year=1990
+        [not a parallel algorithm]
+          family=49  id=  auth=Frieze, Miller, Teng  year=1992
+        [not a parallel algorithm]
+          family=49  id=  auth=Callahan, Kosaraju  year=1995
+        [not a parallel algorithm]
+          family=49  id=  auth=Gavrilova  year=2002
+        [no model encoding]
+          family=49  id=  auth=Connor, Kumar  year=2008
+        [no model encoding]
+          family=49  id=  auth=Two-dimensional partitioning with query point replication - Xiao, Biros (1)  year=2016
+        [no model encoding]
+          family=49  id=  auth=Cyclic partitioning - Xiao, Biros (2)  year=2016
+        [no model encoding]
+          family=5  id=  auth=Hong, He  year=2010
+        [no subproblem specified]
+          family=54  id=  auth=Saxena, Bhatt, Prasad (1)  year=1986
+        [no subproblem specified]
+          family=54  id=  auth=Saxena, Bhatt, Prasad (2)  year=1986
+        [no subproblem specified]
+          family=54  id=  auth=Saxena, Bhatt, Prasad (3)  year=1986
+        [no subproblem specified]
+          family=54  id=  auth=Saxena, Bhatt, Prasad (4)  year=1986
+        [no processor count encoding]
+          family=54  id=  auth=Reem  year=2012
+        [no processor count encoding]
+          family=54  id=  auth=Wang et al.  year=2013
+        [no processor count encoding]
+          family=55  id=  auth=Bennett et. al  year=2009
+        [no model encoding]
+          family=55  id=  auth=Schubert, Gertz  year=2018
+        [no model encoding]
+          family=56  id=  auth=Kahn  year=1962
+        [no processor count encoding]
+          family=56  id=  auth=Er  year=1983
+        [no processor count encoding]
+          family=56  id=  auth=Ma, Iwama, Takaoka, Gu  year=1991
+        [no processor count encoding]
+          family=58  id=  auth=Tsin, Chin  year=1984
+        [no processor count encoding]
+          family=58  id=  auth=Tsin [Section 3]  year=1986
+        [no processor count encoding]
+          family=58  id=  auth=Tsin [Section 4]  year=1986
+        [no processor count encoding]
+          family=58  id=  auth=Schieber; Vishkin [Parallel]  year=1988
+        [no processor count encoding]
+          family=58  id=  auth=Berkman, Vishkin  year=1990
+        [no processor count encoding]
+          family=58  id=  auth=Das, Halverson, Min  year=1994
+        [no processor count encoding]
+          family=58  id=  auth=Schenk  year=1994
+        [no model encoding]
+          family=58  id=  auth=Zhao et. al.  year=2012
+        [no span encoding]
+          family=6  id=  auth=Cannon (Classical 2D)  year=1969
+        [no processor count encoding]
+          family=6  id=  auth=Dekel; Nassimi & Sahni (4)  year=1981
+        [no processor count encoding]
+          family=6  id=  auth=Dekel; Nassimi & Sahni (6)  year=1981
+        [no processor count encoding]
+          family=6  id=  auth=Dekel; Nassimi & Sahni (7)  year=1981
+        [no span encoding]
+          family=6  id=  auth=Frieze & Rudolph  year=1984
+        [no span encoding]
+          family=6  id=  auth=Fox, Otto, Hey (aka broadcast-multiply-roll)  year=1987
+        [no span encoding]
+          family=6  id=  auth=Johnsson, Ho (multiple algorithms)  year=1987
+        [not a parallel algorithm]
+          family=6  id=  auth=Fox, Johnson, Lyzenga, Otto, Salmon, Walker  year=1988
+        [no span encoding]
+          family=6  id=  auth=Berntsen (Classical 3D)  year=1989
+        [no processor count encoding]
+          family=6  id=  auth=AGGARWAL, CHANDRA, SNIR  year=1990
+        [no span encoding]
+          family=6  id=  auth=Ho, Johnsson, Edelman  year=1991
+        [no span encoding]
+          family=6  id=  auth=Lin, Snyder  year=1992
+        [no span encoding]
+          family=6  id=  auth=Bjørstad, Manne, Sørevik, Vajteršic (Winograd's algorithm)  year=1992
+        [no span encoding]
+          family=6  id=  auth=Gupta, Kumar (variant of DNS81)  year=1993
+        [no processor count encoding]
+          family=6  id=  auth=Agarwal, Gustavson, Zubair  year=1994
+        [no processor count encoding]
+          family=6  id=  auth=Dumitrescu, Roch, Trystram (1)  year=1994
+        [no span encoding]
+          family=6  id=  auth=Dumitrescu, Roch, Trystram (2)  year=1994
+        [no span encoding]
+          family=6  id=  auth=Choi, Walker, Dongarra (PUMMA)  year=1994
+        [no span encoding]
+          family=6  id=  auth=Mathur, Johnsson (multiple algorithms)  year=1994
+        [no span encoding]
+          family=6  id=  auth=Agarwal, Bale, Gustavson, Joshi, Palkar (P_GEMM, Classical 3D)  year=1995
+        [no span encoding]
+          family=6  id=  auth=Luo, Drake (2D-Strassen) (1)  year=1995
+        [no span encoding]
+          family=6  id=  auth=Luo, Drake (Strassen-2D) (2)  year=1995
+        [no span encoding]
+          family=6  id=  auth=Grayson, Shah, Van De Geijn (Strassen-2D)  year=1996
+        [no span encoding]
+          family=6  id=  auth=Van De Geijn, Watts (SUMMA, Classical 2D)  year=1997
+        [no span encoding]
+          family=6  id=  auth=Lee, Robertson, Fortes (Cannon generalized for block-cyclic distributed matrices)  year=1997
+        [no span encoding]
+          family=6  id=  auth=Choi (DIMMA)  year=1997
+        [no span encoding]
+          family=6  id=  auth=Frigo, Leiserson, Prokop, Ramachandran  year=1999
+        [no span encoding]
+          family=6  id=  auth=Krishnan, Nieplocha (SRUMMA)  year=2004
+        [no span encoding]
+          family=6  id=  auth=Hunold, Rauber, Rünger  year=2008
+        [no span encoding]
+          family=6  id=  auth=Solomonik, Demmel (Classical 2.5D)  year=2011
+        [no span encoding]
+          family=6  id=  auth=Ballard, Demmel, Holtz, Lipshitz, Schwartz (CAPS)  year=2012
+        [no span encoding]
+          family=6  id=  auth=Ballard (CAPS) (same as 2012 paper)  year=2013
+        [no span encoding]
+          family=6  id=  auth=Ballard (2.5D-Strassen) (1)  year=2013
+        [no span encoding]
+          family=6  id=  auth=Ballard (Strassen-2.5D) (2)  year=2013
+        [no span encoding]
+          family=6  id=  auth=Demmel, Eliahu, Fox, Kamil, Lipshitz, Schwartz, Spillinger (CARMA)  year=2013
+        [no processor count encoding]
+          family=60  id=  auth=Dahlhaus, Karpinski  year=1988
+        [no model encoding]
+          family=60.1  id=  auth=Garcia  year=2019
+        [no model encoding]
+          family=60.4  id=  auth=Shi, Dhulipala, Shun  year=2021
+        [no model encoding]
+          family=60.4  id=  auth=Gianinazzi, Besta, Schaffner, Hoefler  year=2021
+        [no model encoding]
+          family=62  id=  auth=Buzbee [MD]  year=1973
+        [no model encoding]
+          family=62  id=  auth=Multigrid  year=1977
+        [no model encoding]
+          family=62  id=  auth=Xu, Wang [FDPI]  year=2011
+        [no model encoding]
+          family=63  id=  auth=Budiardja, Cardall  year=2011
+        [no model encoding]
+          family=63  id=  auth=Zhao Ning, Wang XuBen  year=2012
+        [no subproblem specified]
+          family=64  id=  auth=Saxena, Bhatt, Prasad (1)  year=1986
+        [no subproblem specified]
+          family=64  id=  auth=Saxena, Bhatt, Prasad (2)  year=1986
+        [no subproblem specified]
+          family=64  id=  auth=Saxena, Bhatt, Prasad (3)  year=1986
+        [no subproblem specified]
+          family=64  id=  auth=Saxena, Bhatt, Prasad (4)  year=1986
+        [no processor count encoding]
+          family=64  id=  auth=Teng, Sullivan, Beichl, Puppo  year=1993
+        [no model encoding]
+          family=64  id=  auth=Kohout, Kolingerova  year=2003
+        [no model encoding]
+          family=64  id=  auth=Wu, Guan, Gong  year=2011
+        [not a parallel algorithm]
+          family=65  id=  auth=Guidi, Selvitopi, Ellis, Oliker, Yelick, Buluc (ELBA)  year=2021
+        [no processor count encoding]
+          family=66  id=  auth=Sanches, Soma, Yanasse [Algorithm 1]  year=2008
+        [no processor count encoding]
+          family=66  id=  auth=Sanches, Soma, Yanasse [Algorithm 2a]  year=2008
+        [no processor count encoding]
+          family=66  id=  auth=Sanches, Soma, Yanasse [Algorithm 3]  year=2008
+        [no processor count encoding]
+          family=7.5  id=  auth=Kedem, Palem, Pantziou, Spirakis, Zaroliagis  year=1991
+        [no processor count encoding]
+          family=72  id=  auth=Cesati, Ianni  year=1998
+        [no processor count encoding]
+          family=72  id=  auth=Cheetham et. al.  year=2003
+        [not a parallel algorithm]
+          family=74  id=  auth=Agrawal, Shafer  year=1996
+        [not a parallel algorithm]
+          family=74  id=  auth=Zaki, Parthasarathy, Ogihara, Li  year=1997
+        [not a parallel algorithm]
+          family=74  id=  auth=Cheung, Hu, Xia  year=1998
+        [not a parallel algorithm]
+          family=74  id=  auth=Veloso, Meira, Parthasarathy  year=2003
+        [not a parallel algorithm]
+          family=74  id=  auth=Chung, Luo  year=2003
+        [not a parallel algorithm]
+          family=74  id=  auth=Ye, Chiang  year=2006
+        [no processor count encoding]
+          family=74  id=  auth=Craus, Archip  year=2008
+        [no model encoding]
+          family=74  id=  auth=Mesa, Feregrino-Uribe, Cumplido, Hern´andez-Palancar  year=2010
+        [not a parallel algorithm]
+          family=74  id=  auth=Ozkural, Uçar, Aykanat  year=2011
+        [not a parallel algorithm]
+          family=74  id=  auth=Phan, Le  year=2018
+        [not a parallel algorithm]
+          family=74  id=  auth=Zhang, Zhang, Liao, Jin  year=2018
+        [not a parallel algorithm]
+          family=75  id=  auth=Crochemore, Rytter  year=1991
+        [no model encoding]
+          family=75  id=  auth=Penzhorn  year=1992
+        [no model encoding]
+          family=75  id=  auth=Belinskaya, DeAgostino, Storer  year=1995
+        [no processor count encoding]
+          family=75  id=  auth=Farach, Muthukrishnan (1)  year=1995
+        [no processor count encoding]
+          family=75  id=  auth=Franaszek, Robinson, Thomas  year=1996
+        [no processor count encoding]
+          family=75  id=  auth=optimal - Hirschberg, Stauffer (1)  year=1997
+        [no processor count encoding]
+          family=75  id=  auth=Simpson, Sabharwal  year=1998
+        [no subproblem specified]
+          family=75  id=  auth=Mishra, Mishra, Pani  year=2012
+        [no processor count encoding]
+          family=75  id=  auth=Pérez, Saeed  year=2015
+        [no model encoding]
+          family=75  id=  auth=CZ algorithm - Jiancheng, Yiqin, Yu  year=2017
+        [no subproblem specified]
+          family=75  id=  auth=Dua, Kumar, Singh  year=2021
+        [no subproblem specified]
+          family=76  id=  auth=von zur Gathen  year=1983
+        [no model encoding]
+          family=78  id=618  auth=S. S. TSENG and R. C. T. LEE  year=1984
+        [no model encoding]
+          family=83  id=  auth=Alami, Aassem, Hafidi  year=2021
+        [no processor count encoding]
+          family=86  id=  auth=Pham, Palem, Rao  year=2020
+        [no model encoding]
+          family=9  id=  auth=Sameh, Kuck (1)  year=1978
+        [no span encoding]
+          family=9  id=  auth=Kaltofen, Pan  year=1992
+        [no processor count encoding]
+          family=97  id=  auth=parallel policy iteration - Zhang, Sun, Xu (1)  year=2009
+        [no span encoding]
+          family=97  id=  auth=parallel value iteration - Zhang, Sun, Xu (2)  year=2009
+        [no model encoding]
+          family=97  id=  auth=Chafik, Daoui  year=2016
+        [no span encoding]
+          family=97  id=  auth=Liu, Zhou, Kalathil, Kumar, Tian  year=2021
+        [no span encoding]
+          family=97  id=  auth=Primal-Dual Stochastic Mirror Descent - Tiapkin, Gasnikov  year=2022
+        [no span encoding]
+          family=97  id=  auth=Nachaoui, Chafik, Daoui  year=2022
+        [no span encoding]
+          family=97  id=  auth=Anchor-changing Regularized Natural Policy Gradient (ARNPG) framework - Zhou, Liu, Kalathil, Kumar, Tian  year=2022
+        [no model encoding]
+          family=99  id=  auth=Abbas, Abouelhoda, Bahig, Mohie-Eldin  year=2014
+        [no model encoding]
+          family=99  id=  auth=Ebnenasir, Qiu (recursEMS)  year=2023
+        [no model encoding]
+          family=99  id=  auth=Ebnenasir, Qiu (parEMS)  year=2023
+
+  -- Sequential excluded — sorted by family then year --
+        [no author]
+          family=  id=  auth=  year=
+        [no author]
+          family=  id=  auth=  year=
+        [no author]
+          family=  id=  auth=  year=
+        [no author]
+          family=  id=  auth=  year=
+        [no year]
+          family=#2 - Graph Coloring  id=  auth=BFS/DFS for connected components  year=-
+        [no time encoding]
+          family=#3 - Graph Coloring  id=  auth=Angelsmark, Jonsson  year=2003
+        [no time encoding]
+          family=#3 - Graph Coloring  id=  auth=Fürer, Kasiviswanathan  year=2005
+        [no time encoding]
+          family=#3 - Graph Coloring  id=  auth=Fomin; Gaspers & Saurabh  year=2007
+        [no time encoding]
+          family=#4 - Graph Coloring  id=  auth=Fomin; Gaspers & Saurabh  year=2007
+        [no year]
+          family=3SUM  id=  auth=Textbook Sort-and-Binary-Search  year=-
+        [no year]
+          family=3SUM  id=  auth=Textbook Sort-and-Two-Sided-Traversal  year=-
+        [no time encoding]
+          family=3SUM  id=  auth=Baran, Demaine, Patrascu  year=2008
+        [no time encoding]
+          family=3SUM  id=  auth=Baran, Demaine, Patrascu  year=2008
+        [no time encoding]
+          family=3SUM  id=  auth=Baran, Demaine, Patrascu  year=2008
+        [no time encoding]
+          family=3SUM  id=  auth=Baran, Demaine, Patrascu  year=2008
+        [no time encoding]
+          family=3SUM  id=  auth=Gronlund, Pettie  year=2014
+        [no time encoding]
+          family=3SUM  id=  auth=Gronlund, Pettie  year=2014
+        [no time encoding]
+          family=3SUM  id=  auth=Freund  year=2017
+        [no time encoding]
+          family=3SUM  id=  auth=Chan  year=2018
+        [no time encoding]
+          family=4NF Decomposition  id=557  auth=Tradu; Mirc  year=1967
+        [no time encoding]
+          family=4NF Decomposition  id=558  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=559  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=560  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=561  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=562  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=563  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=564  auth=Xu; Renio  year=1972
+        [no time encoding]
+          family=4NF Decomposition  id=  auth=Fagin  year=1977
+        [no time encoding]
+          family=4NF Decomposition  id=  auth=Sciore  year=1981
+        [no time encoding]
+          family=4NF Decomposition  id=  auth=Lien  year=1982
+        [no time encoding]
+          family=4NF Decomposition  id=  auth=Grahne and Räihä  year=1983
+        [no time encoding]
+          family=5 - Graph Coloring  id=  auth=Byskov  year=2004
+        [no time encoding]
+          family=5 - Graph Coloring  id=  auth=Bjorklund, Husfeldt, Theorem 1  year=2006
+        [no time encoding]
+          family=5 - Graph Coloring  id=  auth=Bjorklund, Husfeldt, Proposition 2  year=2006
+        [no time encoding]
+          family=5 - Graph Coloring  id=  auth=Zamir  year=2021
+        [no time encoding]
+          family=6 - Graph Coloring  id=  auth=Byskov, Theorem 14  year=2004
+        [no time encoding]
+          family=6 - Graph Coloring  id=  auth=Byskov, Theorem 20  year=2004
+        [no time encoding]
+          family=6 - Graph Coloring  id=  auth=Bjorklund, Husfeldt, Theorem 1  year=2006
+        [no time encoding]
+          family=6 - Graph Coloring  id=  auth=Bjorklund, Husfeldt, Proposition 2  year=2006
+        [no time encoding]
+          family=6 - Graph Coloring  id=  auth=Zamir  year=2021
+        [no time encoding]
+          family=All Maximal Non-Branching Paths in a Graph  id=791  auth=Naive  year=1940
+        [no time encoding]
+          family=All Permutations  id=341  auth=Tompkins–Paige algorithm  year=1956
+        [no time encoding]
+          family=All Permutations  id=340  auth=Steinhaus–Johnson–Trotter algorithm  year=1963
+        [no time encoding]
+          family=All Permutations  id=342  auth=Heap's algorithm  year=1963
+        [no time encoding]
+          family=All permutations  id=  auth=Wells  year=1961
+        [no time encoding]
+          family=All permutations  id=  auth=Langdon  year=1967
+        [no time encoding]
+          family=All permutations  id=  auth=Ord-Smith  year=1967
+        [no time encoding]
+          family=All permutations  id=  auth=Ives' algorithm c  year=1976
+        [no time encoding]
+          family=All permutations  id=  auth=Zaks' prefix reversal algorithm  year=1984
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Galil, Margalit  year=1997
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=188  auth=Pettie & Ramachandran  year=2002
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Zwick 2002  year=2002
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Thorup  year=2004
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Takaoka  year=2004
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Chan  year=2009
+        [no time encoding]
+          family=All-Pairs Shortest Paths (APSP)  id=  auth=Chan  year=2012
+        [no time encoding]
+          family=BCNF Decomposition  id=556  auth=Liu  year=1992
+        [no time encoding]
+          family=Betweenness Centrality (BC)  id=  auth=Brandes  year=2000
+        [no time encoding]
+          family=Betweenness Centrality (BC)  id=  auth=Brandes  year=2000
+        [no time encoding]
+          family=Bin Packing Problem  id=  auth=MTP (Martello-Toth Procedure)  year=1990
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Davis-Putnam-Logemann-Loveland Algorithm (DPLL)  year=1961
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Lewis 1978  year=1978
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=GSAT  year=1992
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=WalkSAT  year=1994
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Conflict-Driven Clause Learning (CDCL)  year=1999
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Quantum Adiabatic Algorithm (QAA)  year=2001
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Paturi, Pudlák, Saks, Zane (PPSZ) 2005  year=2005
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=XShort  year=2007
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Shi 2009  year=2009
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Hertli (Modified PPSZ)  year=2014
+        [no time encoding]
+          family=Boolean Satisfiability  id=  auth=Hertli (Modified PPSZ)  year=2014
+        [no time encoding]
+          family=CFG Problems  id=585  auth=Valiant  year=1975
+        [no time encoding]
+          family=Cardinality Estimation  id=437  auth=Min/max sketches streaming algorithm  year=1980
+        [no time encoding]
+          family=Cardinality Estimation  id=438  auth=Bottom-m sketches streaming algorithm  year=1980
+        [no time encoding]
+          family=Cardinality Estimation  id=433  auth= Flajolet–Martin algorithm  year=1984
+        [no time encoding]
+          family=Cardinality Estimation  id=434  auth=LogLog algorithm  year=2003
+        [no time encoding]
+          family=Cardinality Estimation  id=435  auth=HyperLogLog algorithm  year=2007
+        [no time encoding]
+          family=Cardinality Estimation  id=436  auth=HyperLogLog++  year=2014
+        [no time encoding]
+          family=Change-Making Problem  id=960  auth=Brute Force  year=1940
+        [no time encoding]
+          family=Change-Making Problem  id=961  auth=Dynamic Programming  year=1953
+        [approximate algorithm]
+          family=Change-Making Problem  id=962  auth=Probabilistic Convolution Tree  year=2014
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Christofides  year=1971
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Lawler  year=1976
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Eppstein  year=2003
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Byskov  year=2004
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Bjorklund, Husfeldt, Theorem 1  year=2006
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Bjorklund, Husfeldt, Proposition 2  year=2006
+        [no time encoding]
+          family=Chromatic Number  id=  auth=Koivisto  year=2006
+        [no time encoding]
+          family=Chromatic Polynomial  id=  auth=Zykov (deletion-contraction)  year=1949
+        [no time encoding]
+          family=Chromatic Polynomial  id=  auth=Bjorklund, Husfeldt, Proposition 3  year=2006
+        [no time encoding]
+          family=Chromatic Polynomial  id=  auth=Koivisto  year=2006
+        [no time encoding]
+          family=Clique Problems  id=482  auth=Shuji Tsukiyama, Mikio Ide, Hiromu Ariyoshi, and Isao Shirakawa  year=1977
+        [no time encoding]
+          family=Clique Problems  id=480  auth=Chiba and Nishizeki   year=1985
+        [no time encoding]
+          family=Clique Problems  id=  auth=Kose, Weckwerth, Linke, Fiehn  year=2001
+        [no time encoding]
+          family=Clique Problems  id=483  auth=Kazuhisa Makino, Takeaki Uno; Section 5  year=2004
+        [no time encoding]
+          family=Clique Problems  id=  auth=Kazuhisa Makino, Takeaki Uno; Section 6  year=2004
+        [no time encoding]
+          family=Clique Problems  id=478  auth=Segundo; Artieda;  Strash Parallel  year=2011
+        [not a parallel algorithm]
+          family=Closest Pair Problem  id=173  auth=Dyer  year=1980
+        [no time encoding]
+          family=Closest Pair Problem  id=  auth=Khuller, Matias  year=1995
+        [not a parallel algorithm]
+          family=Constructing Suffix Trees  id=636  auth=Süleyman Cenk Sahinalp ; Uzi Vishkin  year=1994
+        [not a parallel algorithm]
+          family=Constructing Suffix Trees  id=635  auth=Hariharan  year=1997
+        [not a parallel algorithm]
+          family=Constructing Suffix Trees  id=637  auth=Farach  year=1997
+        [not a parallel algorithm]
+          family=Constructing Suffix Trees  id=638  auth=Rytter  year=2004
+        [no year]
+          family=Convex Hull  id=  auth=(many more...)  year=
+        [no time encoding]
+          family=Convex Hull  id=  auth=Chand-Kapur, Gift Wrapping  year=1970
+        [no time encoding]
+          family=Convex Hull  id=133  auth=convex hull algorithm; Preparata and Hong  year=1977
+        [no time encoding]
+          family=Convex Hull  id=  auth=Online 2-d Convex Hull, Preparata  year=1979
+        [no time encoding]
+          family=Convex Hull  id=  auth=Dynamic 2-d Convex Hull, Overmars and van Leeuwen  year=1980
+        [no time encoding]
+          family=Convex Hull  id=  auth=Seidel's Shelling Algorithm  year=1986
+        [not a parallel algorithm]
+          family=Convex Hull  id=136  auth=Miller; Stout  year=1988
+        [no time encoding]
+          family=Convex Hull  id=  auth=N-dimensional Quickhull  year=1996
+        [no time encoding]
+          family=Convex Optimization (Non-linear)  id=330  auth=Gomory's cutting method  year=1953
+        [approximate algorithm]
+          family=Convex Optimization (Non-linear)  id=331  auth=Wolfe; Lemaréchal; Kiwiel  year=1964
+        [approximate algorithm]
+          family=Convex Optimization (Non-linear)  id=332  auth=Ellipsoid method  year=1971
+        [approximate algorithm]
+          family=Convex Optimization (Non-linear)  id=333  auth=Subgradient method  year=1981
+        [approximate algorithm]
+          family=Convex Optimization (Non-linear)  id=334  auth=Dual subgradients and the drift-plus-penalty method  year=1993
+        [no time encoding]
+          family=Coset Enumeration  id=425  auth=Knuth–Bendix algorithm  year=1970
+        [approximate algorithm]
+          family=Culling  id=751  auth=Occlusion Culling  year=1986
+        [approximate algorithm]
+          family=Culling  id=752  auth=Contribution Culling  year=1987
+        [approximate algorithm]
+          family=Culling  id=750  auth=Sector-Based Culling  year=1991
+        [approximate algorithm]
+          family=Culling  id=749  auth=view frustum culling  year=2008
+        [no time encoding]
+          family=Cycle Detection  id=321  auth=Floyd's tortoise and hare algorithm  year=1967
+        [no time encoding]
+          family=Cycle Detection  id=322  auth=Brent's algorithm  year=1973
+        [no time encoding]
+          family=Cycle Detection  id=323  auth=Gosper's algorithm  year=1978
+        [no time encoding]
+          family=Cycle Detection  id=324  auth=Sedgewick; Szymanski; and Yao  year=1982
+        [no time encoding]
+          family=Cycle Detection  id=325  auth=Nivasch  year=2004
+        [no time encoding]
+          family=Cyclic Peptide Sequencing Problem  id=816  auth=Brute force  year=1987
+        [no time encoding]
+          family=Cyclic Peptide Sequencing Problem  id=817  auth=Branch and bound  year=1993
+        [no time encoding]
+          family=Data Compression  id=596  auth=Brute force  year=1940
+        [no time encoding]
+          family=Data Compression  id=597  auth=Matsunaga; Yamamoto  year=2003
+        [no time encoding]
+          family=Data Compression  id=599  auth=Miyake 2006  year=2006
+        [no time encoding]
+          family=Data Compression  id=600  auth=Martinian and M. J. Wainwright  year=2006
+        [no time encoding]
+          family=Data Compression  id=598  auth=Sun; M. Shao; J. Chen; K. Wong; and X. Wu  year=2010
+        [no time encoding]
+          family=Data Compression  id=603  auth=Korada and R. Urbanke;  year=2010
+        [approximate algorithm]
+          family=De Novo Genome Assembly  id=537  auth=Greedy SEQAID  year=1984
+        [approximate algorithm]
+          family=De Novo Genome Assembly  id=534  auth=Overlap Layout Consensus  year=1987
+        [no time encoding]
+          family=Deadlock Avoidance  id=1017  auth=Resource hierarchy solution  year=1965
+        [no time encoding]
+          family=Deadlock Avoidance  id=1018  auth=Arbitrator solution  year=1965
+        [no time encoding]
+          family=Deadlock avoidance  id=1019  auth=Banker's Algorithm  year=1966
+        [no time encoding]
+          family=Delaunay Triangulation  id=520  auth=Naive algorithm  year=1934
+        [approximate algorithm]
+          family=Delaunay Triangulation  id=526  auth=Fortune  year=1992
+        [not a parallel algorithm]
+          family=Delaunay Triangulation  id=524  auth=Belloch  year=2006
+        [no time encoding]
+          family=Dependency Inference Problem  id=554  auth=Brute force algorithm  year=1967
+        [no time encoding]
+          family=Dependency Inference Problem  id=567  auth=Catriel Beeri Ronald Fagin John H. Howard  year=1977
+        [no time encoding]
+          family=Dependency Inference Problem  id=566  auth=Räihä; Manilla  year=1992
+        [no time encoding]
+          family=Dependency Inference Problem  id=555  auth=Schlimmer  year=1993
+        [no time encoding]
+          family=Distributed Locking Algorithms  id=805  auth=Leases (Cary G Gray and David R Cheriton)  year=1989
+        [no time encoding]
+          family=Distributed Locking Algorithms  id=807  auth=Tushar Deepak Chandra and Sam Toueg  year=1996
+        [no time encoding]
+          family=Distributed Locking Algorithms  id=806  auth=Chubby (Mike Burrows)  year=2006
+        [no time encoding]
+          family=Dominating Set  id=  auth=Fomin, Kratsch, Woeginger  year=2004
+        [no time encoding]
+          family=Dominating Set  id=  auth=Fabrizio Grandoni  year=2006
+        [no time encoding]
+          family=Dominating Set  id=  auth=Van Rooij, Bodlaender  year=2008
+        [no time encoding]
+          family=Dominating Set  id=  auth=Van Rooij, Bodlaender  year=2008
+        [no time encoding]
+          family=Dominating Set  id=  auth=Van Rooij, Nederlof, Van Dijk  year=2009
+        [no time encoding]
+          family=Exact-Weight k-Clique Problem  id=  auth=Gronlund, Pettie  year=2014
+        [approximate algorithm]
+          family=Feature Detection  id=717  auth=Moravec's algorithm 1980  year=1980
+        [approximate algorithm]
+          family=Feature Detection  id=720  auth=L. Kitchen and A. Rosenfeld  year=1982
+        [approximate algorithm]
+          family=Feature Detection  id=719  auth=Förstner algorithm 1987  year=1987
+        [approximate algorithm]
+          family=Feature Detection  id=718  auth=Harris and Stephens algorithm  year=1988
+        [approximate algorithm]
+          family=Feature Detection  id=721  auth=J. J. Koenderink and W. Richards 1988  year=1988
+        [approximate algorithm]
+          family=Feature Detection  id=743  auth=Lindeberg's watershed-based grey-level blob detection algorithm 1991  year=1991
+        [approximate algorithm]
+          family=Feature Detection  id=722  auth=Lindeberg (1994)  year=1994
+        [approximate algorithm]
+          family=Feature Detection  id=738  auth=Hessain Determinant Lindeberg 1994  year=1994
+        [approximate algorithm]
+          family=Feature Detection  id=728  auth=The Wang and Brady corner detection algorithm 1995  year=1995
+        [approximate algorithm]
+          family=Feature Detection  id=729  auth=The SUSAN corner detector  year=1997
+        [approximate algorithm]
+          family=Feature Detection  id=726  auth=T. Lindeberg and J. Garding (1997)  year=1997
+        [approximate algorithm]
+          family=Feature Detection  id=723  auth=Lindeberg (1998)  year=1998
+        [approximate algorithm]
+          family=Feature Detection  id=730  auth=The Trajkovic and Hedley corner detector 1998  year=1998
+        [approximate algorithm]
+          family=Feature Detection  id=739  auth=Hessain Determinant Lindeberg 1998  year=1998
+        [approximate algorithm]
+          family=Feature Detection  id=747  auth=local scale-invariant Lowe 1999  year=1999
+        [approximate algorithm]
+          family=Feature Detection  id=745  auth=A. Baumberg. 2000  year=2000
+        [approximate algorithm]
+          family=Feature Detection  id=746  auth=Y. Dufournaud; C. Schmid; and R. Horaud 2000  year=2000
+        [approximate algorithm]
+          family=Feature Detection  id=748  auth=T. Tuytelaars and L. Van Gool 2000  year=2000
+        [approximate algorithm]
+          family=Feature Detection  id=744  auth=Maximally stable extremal regions Matas 2002  year=2002
+        [approximate algorithm]
+          family=Feature Detection  id=724  auth=K. Mikolajczyk; K. and C. Schmid LoG 2004  year=2004
+        [approximate algorithm]
+          family=Feature Detection  id=725  auth=Lowe (2004)  year=2004
+        [approximate algorithm]
+          family=Feature Detection  id=737  auth=SIFT Algorithm Lowe 2004  year=2004
+        [approximate algorithm]
+          family=Feature Detection  id=741  auth=Hessian-Laplace Mikolajczyk and Schmid 2004  year=2004
+        [approximate algorithm]
+          family=Feature Detection  id=727  auth=Lindeberg 2005  year=2005
+        [approximate algorithm]
+          family=Feature Detection  id=731  auth=FAST E. Rosten and T. Drummond 2006  year=2006
+        [approximate algorithm]
+          family=Feature Detection  id=740  auth=SURF Descriptor 2006  year=2006
+        [approximate algorithm]
+          family=Feature Detection  id=732  auth=Trujillo and Olague 2008  year=2008
+        [approximate algorithm]
+          family=Feature Detection  id=733  auth=Geert Willems; Tinne Tuytelaars and Luc van Gool (2008)  year=2008
+        [approximate algorithm]
+          family=Feature Detection  id=742  auth=Spatio-temporal Geert Willems; Tinne Tuytelaars and Luc van Gool (2008)  year=2008
+        [approximate algorithm]
+          family=Feature Detection  id=735  auth=T. Lindeberg DoG 2012  year=2012
+        [approximate algorithm]
+          family=Feature Detection  id=736  auth=T. Lindeberg DoG 2015  year=2015
+        [approximate algorithm]
+          family=Feature Detection  id=734  auth=Tao Luo, Zaifeng Shi and Pumeng Wang  year=2019
+        [no time encoding]
+          family=Filtering Problem (Stochastic Processes)  id=760  auth=Damiano Brigo; Bernard Hanzon and François LeGland  year=1998
+        [no time encoding]
+          family=Frequent Words with Mismatches Problem  id=972  auth=Naive solution  year=1940
+        [no time encoding]
+          family=Graph Coloring  id=85  auth=Brute-force search  year=1852
+        [no time encoding]
+          family=Graph Coloring  id=98  auth=Brute force  year=1852
+        [no time encoding]
+          family=Graph Coloring  id=86  auth=Lawler  year=1976
+        [no time encoding]
+          family=Graph Coloring  id=99  auth=Lawler  year=1976
+        [no time encoding]
+          family=Graph Coloring  id=97  auth=Brélaz (DSatur)  year=1979
+        [no time encoding]
+          family=Graph Coloring  id=93  auth=Johnson  year=1988
+        [no time encoding]
+          family=Graph Coloring  id=96  auth=Petford and Welsh  year=1989
+        [no time encoding]
+          family=Graph Coloring  id=87  auth=Schiermeyer  year=1994
+        [no time encoding]
+          family=Graph Coloring  id=88  auth=Beigel & Eppstein  year=1995
+        [no time encoding]
+          family=Graph Coloring  id=95  auth=Karger, Blum  year=1997
+        [no time encoding]
+          family=Graph Coloring  id=94  auth=Alon and Kahale  year=1997
+        [no time encoding]
+          family=Graph Coloring  id=92  auth=Hirsch  year=1998
+        [no time encoding]
+          family=Graph Coloring  id=91  auth=Schöning  year=1999
+        [no time encoding]
+          family=Graph Coloring  id=89  auth=Beigel & Eppstein  year=2000
+        [no time encoding]
+          family=Graph Coloring  id=100  auth=Byskov  year=2004
+        [no time encoding]
+          family=Graph Coloring  id=101  auth=Fomin; Gaspers & Saurabh  year=2007
+        [no year]
+          family=Graph Diameter  id=  auth=Dense APSP algorithm  year=-
+        [no year]
+          family=Graph Diameter  id=  auth=Sparse APSP algorithm  year=-
+        [no year]
+          family=Graph Diameter  id=  auth=Binary representation search with matrix multiplication  year=-
+        [no time encoding]
+          family=Graph Diameter  id=  auth=Cygan, Gabow, Sankowski  year=2012
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=472  auth=Wang Y-K; Fan K-C; Horng J-T  year=1997
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=474  auth=Finch  year=1998
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=471  auth=Neuhaus, Riesen, Bunke  year=2006
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=469  auth=K Riesen  year=2013
+        [heuristic-based algorithm]
+          family=Graph Edit Distance Computation  id=468  auth=L Chang  year=2017
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=467  auth=Y Bai  year=2018
+        [no time encoding]
+          family=Graph Edit Distance Computation  id=466  auth= X Chen  year=2019
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=664  auth=Schmidt & Druffel  year=1976
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=665  auth=Ullman  year=1976
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=665  auth=Ullman  year=1976
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=661  auth=Babai  year=1980
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=  auth=Babai 1980  year=1980
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=  auth=Babai 1980  year=1980
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=663  auth=McKay  year=1981
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=660  auth=Babai and Luks  year=1983
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=668  auth=Bodlaender  year=1990
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=662  auth=Spielman  year=1996
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=667  auth=Muzychuk  year=2004
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=669  auth=Babai & Codenotti  year=2008
+        [no time encoding]
+          family=Graph Isomorphism Problem  id=666  auth=Babai  year=2017
+        [no time encoding]
+          family=Graph Realization Problems  id=670  auth=Kleitman–Wang Algorithm  year=1973
+        [no time encoding]
+          family=Graph Realization Problems  id=671  auth=Fulkerson–Chen–Anstee  year=1982
+        [no time encoding]
+          family=Graph Realization Problems  id=672  auth=Berger & Müller-Hannemann  year=2011
+        [no time encoding]
+          family=Gröbner Bases  id=335  auth=Buchberger's algorithm  year=1976
+        [no time encoding]
+          family=Gröbner Bases  id=336  auth=Faugère F4 algorithm  year=1999
+        [no time encoding]
+          family=Gröbner Bases  id=337  auth=Faugère F5 algorithm  year=2002
+        [no time encoding]
+          family=Hitting Set  id=  auth=Magnus Wahlström   year=2004
+        [no time encoding]
+          family=Hyperbolic Spline Interpolation  id=681  auth=V. A. Lyul’ka and A. V. Romanenko  year=1994
+        [no time encoding]
+          family=Hyperbolic Spline Interpolation  id=684  auth=P. Costantini, B. I. Kvasov, and C. Manni  year=1999
+        [no time encoding]
+          family=Hyperbolic Spline Interpolation  id=683  auth=V. I. Paasonen  year=2006
+        [no time encoding]
+          family=Hyperbolic Spline Interpolation  id=680  auth=B.I. Kvasov  year=2008
+        [no time encoding]
+          family=Image Compositing  id=804  auth=Petro Vlahos Algorithm  year=1985
+        [approximate algorithm]
+          family=Image Segmentation  id=845  auth=S.L. Horowitz and T. Pavlidis - directed split and merge  year=1974
+        [approximate algorithm]
+          family=Image Segmentation  id=839  auth=Recursive Region Splitting  year=1978
+        [approximate algorithm]
+          family=Image Segmentation  id=849  auth=watershed transformation 1979  year=1979
+        [approximate algorithm]
+          family=Image Segmentation  id=847  auth=Geman and Geman Markov random fields  year=1984
+        [approximate algorithm]
+          family=Image Segmentation  id=848  auth=Iterated conditional modes algorithm  year=1986
+        [approximate algorithm]
+          family=Image Segmentation  id=843  auth=Kass; Witkin and Terzopoulos  year=1987
+        [approximate algorithm]
+          family=Image Segmentation  id=846  auth=David Mumford and Jayant Shah (1989)  year=1989
+        [approximate algorithm]
+          family=Image Segmentation  id=844  auth=Chen's lambda-connected segmentation  year=1991
+        [approximate algorithm]
+          family=Image Segmentation  id=854  auth=Multiple Resolution segmentation - J. Liu and Y. H. Yang (1994)  year=1994
+        [approximate algorithm]
+          family=Image Segmentation  id=852  auth=Bijaoui and Rué  year=1995
+        [approximate algorithm]
+          family=Image Segmentation  id=850  auth=topological watershed  year=1997
+        [approximate algorithm]
+          family=Image Segmentation  id=851  auth=Florack and Kuijper  year=2000
+        [approximate algorithm]
+          family=Image Segmentation  id=838  auth=Linda G. Shapiro and George C. Stockman (2001)  year=2001
+        [approximate algorithm]
+          family=Image Segmentation  id=853  auth=Multi-scale MAP estimation - A. Bouman and M. Shapiro (2002)  year=2002
+        [approximate algorithm]
+          family=Image Segmentation  id=842  auth=R. Nock and F. Nielsen Statistical Region Merging  year=2004
+        [approximate algorithm]
+          family=Image Segmentation  id=855  auth=Quasi-linear Topological watershed  year=2005
+        [approximate algorithm]
+          family=Image Segmentation  id=856  auth=Isometric graph partitioning - Leo Grady and Eric L. Schwartz (2006)  year=2006
+        [approximate algorithm]
+          family=Image Segmentation  id=841  auth=Dual clustering - Guberman  year=2012
+        [approximate algorithm]
+          family=Image Segmentation  id=840  auth=Barghout; Lauren Visual Taxometric approach  year=2014
+        [no time encoding]
+          family=Informed Search  id=216  auth=Greedy Best-First Search  year=1959
+        [no time encoding]
+          family=Informed Search  id=217  auth=A* Algorithm  year=1968
+        [no time encoding]
+          family=Informed Search  id=226  auth=Iterative Deepening A* (IDA*)  year=1985
+        [no time encoding]
+          family=Informed Search  id=229  auth=Simplified Memory-Bounded A* (SMA*)  year=1992
+        [no time encoding]
+          family=Informed Search  id=221  auth=D*  year=1994
+        [no time encoding]
+          family=Informed Search  id=228  auth=Lifelong Planning A* (LPA*)  year=2001
+        [no time encoding]
+          family=Informed Search  id=231  auth=Anytime Repairing A* (ARA*)  year=2005
+        [no time encoding]
+          family=Informed Search  id=223  auth=Fringe  year=2005
+        [no time encoding]
+          family=Informed Search  id=  auth=Anytime Dynamic A* (ADA*)  year=2005
+        [no time encoding]
+          family=Informed Search  id=  auth=D* Lite  year=2005
+        [no time encoding]
+          family=Informed Search  id=  auth=Focused D*  year=2005
+        [no time encoding]
+          family=Informed Search  id=222  auth=Field D*  year=2006
+        [no time encoding]
+          family=Informed Search  id=218  auth=Bidirectional A* Algorithm  year=2007
+        [no time encoding]
+          family=Informed Search  id=224  auth=Fringe Saving A* (FSA*)  year=2008
+        [no time encoding]
+          family=Informed Search  id=225  auth=Generalized Adaptive A* (GAA*)  year=2008
+        [no time encoding]
+          family=Informed Search  id=232  auth=Time-Bounded A* (TBA*)  year=2009
+        [no time encoding]
+          family=Informed Search  id=230  auth=Theta*  year=2010
+        [no time encoding]
+          family=Informed Search  id=227  auth=Jump Point Search (JPS)  year=2011
+        [no time encoding]
+          family=Informed Search  id=220  auth=Block A*  year=2011
+        [no time encoding]
+          family=Integer Factoring  id=202  auth=Continued fraction factorization (CFRAC)  year=1931
+        [no time encoding]
+          family=Integer Factoring  id=200  auth=Special number field sieve  year=1940
+        [no time encoding]
+          family=Integer Factoring  id=195  auth=Pollard's p − 1 algorithm  year=1974
+        [no time encoding]
+          family=Integer Factoring  id=194  auth=Pollard's rho algorithm  year=1975
+        [no time encoding]
+          family=Integer Factoring  id=201  auth=Dixon's algorithm  year=1981
+        [no time encoding]
+          family=Integer Factoring  id=203  auth=Quadratic sieve  year=1981
+        [no time encoding]
+          family=Integer Factoring  id=  auth=Pomerance, Wagstaff  year=1983
+        [no time encoding]
+          family=Integer Factoring  id=197  auth=Lenstra elliptic curve factorization  year=1987
+        [no time encoding]
+          family=Integer Factoring  id=  auth=Buhler, Lenstra, Pomerance   year=1991
+        [no time encoding]
+          family=Integer Factoring  id=204  auth=Rational sieve  year=1993
+        [no time encoding]
+          family=Integer Factoring  id=205  auth=General number field sieve  year=1996
+        [no time encoding]
+          family=Integer Relation  id=923  auth=HJLS algorithm  year=1986
+        [no time encoding]
+          family=Integer Relation  id=  auth=Bailey, Broadhurst  year=2001
+        [no time encoding]
+          family=Integral Equations  id=979  auth=Naive Implementation  year=1800
+        [no time encoding]
+          family=Interval Scheduling  id=1006  auth=Brute force algorithm  year=1940
+        [no time encoding]
+          family=Key Exchange  id=294  auth=Diffie–Hellman key exchange  year=1978
+        [no time encoding]
+          family=Key Exchange  id=295  auth=Elliptic-curve Diffie-Hellman (ECDH)  year=2006
+        [no time encoding]
+          family=LU Decomposition  id=208  auth=Closed formula  year=1975
+        [heuristic-based algorithm]
+          family=LU Decomposition  id=214  auth=Press, Teukolsky, Flannery  year=2007
+        [approximate algorithm]
+          family=LU Decomposition  id=211  auth=Randomized LU Decomposition  year=2016
+        [no time encoding]
+          family=Line Clipping  id=267  auth=Cyrus–Beck  year=1978
+        [no time encoding]
+          family=Line Clipping  id=270  auth=O(lg N) algorithm  year=1994
+        [no time encoding]
+          family=Line Clipping  id=271  auth=Skala  year=1996
+        [no time encoding]
+          family=Line Clipping  id=271  auth=Skala  year=1996
+        [no time encoding]
+          family=Line segment intersection  id=122  auth=NIEVERGELT. J.. AND PREPARATA (Section 3)  year=1982
+        [no time encoding]
+          family=Line segment intersection  id="122.5"  auth=NIEVERGELT. J.. AND PREPARATA (Section 2)  year=1982
+        [no time encoding]
+          family=Line segment intersection  id=  auth=CHAZELLE 1986  year=1986
+        [no time encoding]
+          family=Line segment intersection  id=126  auth=Goodrich  year=1989
+        [no time encoding]
+          family=Linear Programming  id=110  auth=Fourier–Motzkin elimination  year=1940
+        [no time encoding]
+          family=Linear Programming  id=113  auth=Simplex Algorithm  year=1947
+        [no time encoding]
+          family=Linear Programming  id=115  auth=Affine scaling  year=1967
+        [no time encoding]
+          family=Linear Programming  id=111  auth=Khachiyan Ellipsoid algorithm   year=1979
+        [no time encoding]
+          family=Linear Programming  id=112  auth=Karmarkar's algorithm  year=1984
+        [no time encoding]
+          family=Linear Programming  id=114  auth=Terlaky's Criss-cross algorithm  year=1985
+        [no time encoding]
+          family=Linear Programming  id=  auth=Vaidya  year=1987
+        [no time encoding]
+          family=Linear Programming  id=  auth=Vaidya  year=1989
+        [no time encoding]
+          family=Linear Programming  id=117  auth=Lee and Sidford  year=2015
+        [no time encoding]
+          family=Linear Programming  id=116  auth=Cohen; Lee and Song  year=2018
+        [no time encoding]
+          family=Linear Programming  id=  auth=Jiang, Song, Weinstein and Zhang  year=2020
+        [no year]
+          family=Linear System  id=  auth=Berlekamp-Massey Algorithm  year=
+        [no time encoding]
+          family=Linear System  id=104  auth=Conjugate Gradient  year=1952
+        [no time encoding]
+          family=Linear System  id=  auth=Trench-Zohar  year=1974
+        [no time encoding]
+          family=Linear System  id=  auth=Brent, Gustavson, and Yun, Anti-Diagonal Toeplitz (ADT)  year=1980
+        [no time encoding]
+          family=Linear System  id=  auth=Brent, Gustavson, and Yun, Main-Diagonal Toeplitz (MDT)  year=1980
+        [no time encoding]
+          family=Linear System  id=  auth=Bitmead and Anderson  year=1980
+        [no time encoding]
+          family=Linear System  id=  auth=Morf  year=1980
+        [no time encoding]
+          family=Linear System  id=  auth=Generalized Levinson Algorithm for any Rank Profile  year=1985
+        [no time encoding]
+          family=Linear System  id=  auth=de Hoog  year=1987
+        [no time encoding]
+          family=Linear System  id=  auth=Ammar and Gragg  year=1988
+        [no time encoding]
+          family=Linear System  id=  auth=Schur Algorithms for Hermitian, Toeplitz, and Hankel matrices  year=1991
+        [no time encoding]
+          family=Linear System  id=  auth=A Look-ahead Levinson Algorithm  year=1992
+        [no time encoding]
+          family=Linear System  id=  auth=Extended Berlekamp-Massey  year=1992
+        [no time encoding]
+          family=Linear System  id=  auth=Pivoted Toeplitz algorithms  year=1993
+        [no time encoding]
+          family=Linear System  id=  auth=Lookahead Bareiss Algorithm  year=1994
+        [quantum algorithm]
+          family=Linear System  id=109  auth=Harrow (Quantum)  year=2009
+        [no year]
+          family=Linear system of equations  id=  auth=LU decomposition  year=
+        [no year]
+          family=Linear system of equations  id=  auth=Matrix inverse  year=
+        [no time encoding]
+          family=Linear system of equations  id=  auth=Asymptotically fast Toeplitz algorithms  year=2008?
+        [no author]
+          family=Linear system of equations  id=  auth=  year=2020
+        [no time encoding]
+          family=Logarithm Calculations  id=942  auth=Index calculus algorithm  year=1922
+        [no time encoding]
+          family=Logarithm Calculations  id=939  auth=Trial Multiplication  year=1940
+        [no time encoding]
+          family=Logarithm Calculations  id=940  auth=Baby-step Giant-step  year=1971
+        [no time encoding]
+          family=Logarithm Calculations  id=943  auth=Number Field Sieve (NFS)  year=1990
+        [no time encoding]
+          family=Logarithm Calculations  id=941  auth=Function Field Sieve (FFS)  year=1999
+        [no time encoding]
+          family=Longest Common Subsequence  id=39  auth=Hunt and Szymanski  year=1977
+        [no time encoding]
+          family=Longest Common Subsequence  id=40  auth=Mukhopadhyay  year=1980
+        [no time encoding]
+          family=Longest Common Subsequence  id=42  auth=Apostolico and Guerra (HS1 Algorithm)  year=1987
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Aho, Hopcroft, and Ullman [Offline]  year=1976
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Aho, Hopcroft, and Ullman [Static Trees]  year=1976
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Aho, Hopcroft, and Ullman [Linking]  year=1976
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Modified van Leeuwen [Static Trees]  year=1976
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Modified van Leeuwen [Linking Roots]  year=1976
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Sleator and Tarjan [Linking]  year=1983
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Sleator and Tarjan [Linking and Cutting]  year=1983
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Harel, Tarjan [Static Trees]  year=1984
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Harel, Tarjan [Linking Roots]  year=1984
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Schieber; Vishkin [Parallel]  year=1988
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Fischer, Heun  year=2006
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Fischer, Heun  year=2006
+        [no time encoding]
+          family=Lowest Common Ancestor  id=  auth=Kmett  year=2015
+        [no time encoding]
+          family=Matrix Chain Multiplication  id=36  auth=Chandra  year=1975
+        [no time encoding]
+          family=Matrix Chain Multiplication  id=37  auth=Chin  year=1978
+        [not a parallel algorithm]
+          family=Matrix Chain Multiplication  id=34  auth=Czumaj  year=1993
+        [no time encoding]
+          family=Matrix Chain Multiplication  id=35  auth=Czumaj  year=1996
+        [no time encoding]
+          family=Matrix Chain Multiplication  id=35.1  auth=Czumaj  year=1996
+        [not a parallel algorithm]
+          family=Matrix Chain Multiplication  id=33  auth=Prakesh Ramanan  year=1996
+        [approximate algorithm]
+          family=Matrix Chain Multiplication  id=32  auth=Heejo Lee; Jong Kim; Sungje Hong; and Sunggu Lee  year=1997
+        [no time encoding]
+          family=Matrix Multiplication  id=  auth=Method of Four Russians  year=1970
+        [no time encoding]
+          family=Matrix Multiplication  id=  auth=Alman, Vassilevska Williams  year=2020
+        [no time encoding]
+          family=Matrix Product  id=  auth=Method of Four Russians  year=1970
+        [no time encoding]
+          family=Matrix Product  id=  auth=O'Neil 1973  year=1973
+        [no time encoding]
+          family=Matrix Product  id=77  auth=Bini's algorithm  year=1979
+        [no time encoding]
+          family=Matrix Product  id=78  auth=Schonhage's algorithm  year=1980
+        [no time encoding]
+          family=Matrix Product  id=  auth=Bansal, Williams  year=2009
+        [no time encoding]
+          family=Matrix Product  id=  auth=Bansal, Williams  year=2009
+        [no time encoding]
+          family=Matrix Product  id=  auth=Chan  year=2015
+        [no time encoding]
+          family=Matrix Product  id=  auth=Chan  year=2015
+        [no time encoding]
+          family=Matrix Product  id=  auth=Yu  year=2015
+        [no time encoding]
+          family=Matrix Product  id=  auth=Output-Sensitive Quantum BMM  year=2018
+        [no author]
+          family=Matrix Product  id=  auth=  year=2018
+        [no time encoding]
+          family=Max Independent Set  id=90  auth=Robson  year=1986
+        [no time encoding]
+          family=Maximum Cardinality Matching  id=286  auth=Micali and Vazirani  year=1980
+        [no time encoding]
+          family=Maximum Cut  id=913  auth=Motwani & Raghavan  year=1995
+        [no time encoding]
+          family=Maximum Cut  id=916  auth=Goemans, Williamson  year=1995
+        [no time encoding]
+          family=Maximum Cut  id=914  auth=Mitzenmacher & Upfal  year=2005
+        [no time encoding]
+          family=Maximum Cut  id=915  auth=Khuller; Raghavachari & Young, "Greedy Methods"  year=2007
+        [no time encoding]
+          family=Maximum Cut  id=917  auth=Dunning; Gupta & Silberholz  year=2018
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Shiloach  year=1981
+        [no time encoding]
+          family=Maximum Flow  id=64  auth=Ahuja, Orlin, Tarjan  year=1987
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Goldberg & Rao (Parallel)  year=1997
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Goldberg & Rao (Parallel)  year=1997
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Lee, Sidford  year=2014
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Madry  year=2016
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Kathuria, Liu, Sidford  year=2020
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Kathuria, Liu, Sidford  year=2020
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Brand et al  year=2021
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Gao, Liu, Peng  year=2021
+        [no time encoding]
+          family=Maximum Flow  id=  auth=Chen et al  year=2022
+        [no time encoding]
+          family=Maximum Likelihood Parameters  id=430  auth=Generalized expectation maximization (GEM) algorithm  year=1994
+        [not a parallel algorithm]
+          family=Maximum Subarray Problem  id=628  auth=Perumalla and Deo  year=1995
+        [no time encoding]
+          family=Maximum cardinality matching  id=  auth=Blossom Algorithm  year=1961
+        [no time encoding]
+          family=Maximum cardinality matching  id=  auth=Micali, Vazirani  year=1980
+        [no time encoding]
+          family=Maximum cardinality matching  id=  auth=Alt, Blum, Mehlhorn, Paul  year=1991
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=brute force  year=1977
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Bentley  year=1984
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Smith  year=1987
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Smith  year=1987
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Wen  year=1995
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=KALYAN PERUMALLA and NARSINGH DEO  year=1995
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Wen  year=1995
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Tamaki, Tokuyama (exact)  year=1998
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Tamaki, Tokuyama (approximate)  year=1998
+        [no time encoding]
+          family=Maximum subarray problem  id=  auth=Takaoka  year=2002
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Edmonds-Karp  year=1972
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Gabow  year=1974
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Johnson (Edmonds-Karp-based)  year=1975
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Galil, Micali, Gabow  year=1982
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Fredman-Tarjan (Edmonds-Karp-based)  year=1984
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Gabow, Galil, Spencer  year=1989
+        [no time encoding]
+          family=Maximum-weight matching  id=  auth=Gabow  year=1990
+        [no time encoding]
+          family=Mesh Parameterization  id=692  auth=LÉVY B.; PETITJEAN S.; RAY N.; MAILLOT J 2002  year=2002
+        [no time encoding]
+          family=Mesh Simplification  id=857  auth=Coplanar facets merging - M.J. De Haemer and M.J. Zyda 1991  year=1991
+        [no time encoding]
+          family=Mesh Simplification  id=859  auth=Coplanar facets merging - Kalvin; A. D.; Cutting; C. B.; Haddad; B. and Noz; M. E. 1991  year=1991
+        [no time encoding]
+          family=Mesh Simplification  id=866  auth=Re-tiling - Turk; G 1992  year=1992
+        [no time encoding]
+          family=Mesh Simplification  id=858  auth=Coplanar facets merging - Hinker; P. and Hansen; C. 1993  year=1993
+        [no time encoding]
+          family=Mesh Simplification  id=867  auth=Vertex clustering - Rossignac; J. and Borrel; P. 1993  year=1993
+        [no time encoding]
+          family=Mesh Simplification  id=870  auth=Vertex clustering - Hoppe; H.; DeRose; T.;  1993  year=1993
+        [no time encoding]
+          family=Mesh Simplification  id=864  auth=Controlled vertex/edge/face decimation - Hamann 1994  year=1994
+        [no time encoding]
+          family=Mesh Simplification  id=873  auth=Wavelet-based - D.J. Hebert and H-J. Kim 1995  year=1995
+        [no time encoding]
+          family=Mesh Simplification  id=875  auth=Wavelet-based - Eck; M.; DeRose; T.; 1995  year=1995
+        [no time encoding]
+          family=Mesh Simplification  id=877  auth=Simplification via intermediate hierarchical rep-resentation - He; T.; Hong; L.; Kaufman 1995  year=1995
+        [no time encoding]
+          family=Mesh Simplification  id=860  auth=Coplanar facets merging - A.D. Kalvin and R.H. Taylor 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=861  auth=Controlled vertex/edge/face decimation - M.E. Algorri and F. Schmitt 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=862  auth=Controlled vertex/edge/face decimation - Guéziec 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=863  auth=Controlled vertex/edge/face decimation - R. Ronfard and J. Rossignac 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=865  auth=Controlled vertex/edge/face decimation - Cohen; J.; Varshney; A 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=869  auth=Vertex clustering - Reddy 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=872  auth=Wavelet-based - M.H. Gross; O.G. Staadt and R. Gatti 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=874  auth=Wavelet-based - Certain; A.; Popovic; J.; 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=876  auth=Simplification via intermediate hierarchical rep-resentation - Andujar 1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=878  auth=Simplification via intermediate hierarchical rep-resentation - He;  T.;  Hong;  1996  year=1996
+        [no time encoding]
+          family=Mesh Simplification  id=868  auth=Vertex clustering - Low; K. L. and Tan; T. S 1997  year=1997
+        [no time encoding]
+          family=Mesh Simplification  id=871  auth=Vertex clustering - Rossignac; J. and Borrel; P. 1997  year=1997
+        [no year]
+          family=Min-Weight k-Clique Problem  id=  auth=APSP algorithm  year=-
+        [no time encoding]
+          family=Minimum Spanning Tree (MST)  id=  auth=Gabow et al, Section 2  year=1986
+        [no time encoding]
+          family=Minimum Spanning Tree (MST)  id=  auth=Fredman & Tarjan  year=1987
+        [no time encoding]
+          family=Minimum Spanning Tree (MST)  id=  auth=Pettie, Ramachandran  year=2002
+        [not a parallel algorithm]
+          family=Minimum Spanning Tree (MST)  id=163  auth=Bader & Cong Parallel Implementation   year=2006
+        [no time encoding]
+          family=Minimum Tardiness Sequencing  id=  auth=Lawler  year=1977
+        [no time encoding]
+          family=Minimum Tardiness Sequencing  id=  auth=Schrage-Baker  year=1978
+        [no time encoding]
+          family=Minimum Tardiness Sequencing  id=  auth=Szwarc, Grosso, Della Croce  year=2001
+        [no time encoding]
+          family=Minimum Tardiness Sequencing  id=  auth=Shang, Garraffa, Della Croce, T’Kindt  year=2018
+        [no time encoding]
+          family=Minimum Tardiness Sequencing  id=  auth=Garraffa, Shang, Della Croce, T’Kindt  year=2018
+        [no time encoding]
+          family=Minimum value in each row of an implicitly-defined totally monotone matrix  id=339  auth=SMAWK algorithm  year=1987
+        [no time encoding]
+          family=Minimum value in each row of an implicitly-defined totally monotone matrix  id=  auth=Divide and Conquer  year=1987
+        [approximate algorithm]
+          family=Motif Search  id=784  auth=Lawrence, Reilly  year=1990
+        [approximate algorithm]
+          family=Motif Search  id=785  auth=Lawrence Gibbs Sampling  year=1993
+        [approximate algorithm]
+          family=Motif Search  id=786  auth=Roth AlignACE  year=1998
+        [no time encoding]
+          family=Motif Search  id=778  auth=Sinha S; Tompa M YMF (Yeast Motif Finder)  year=2000
+        [approximate algorithm]
+          family=Motif Search  id=787  auth=MotifSampler   year=2001
+        [no time encoding]
+          family=Motif Search  id=783  auth=Liang Cwinnower  year=2003
+        [no time encoding]
+          family=Mutual Exclusion  id=304  auth=Suzuki-Kasami's algorithm  year=1985
+        [no time encoding]
+          family=Mutual Exclusion  id=302  auth=Raymond's algorithm  year=1997
+        [no time encoding]
+          family=NFA to DFA conversion  id=272  auth=Rabin–Scott powerset construction  year=1959
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Lemke-Howson Algorithm  year=1964
+        [no time encoding]
+          family=Nash Equilibria  id=356  auth=Lipton; Mehta  year=2003
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Blum, Shelton, Koller  year=2003
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Lipton, Markakis and Mehta method  year=2003
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Lipton, Markakis and Mehta method 2  year=2003
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Support enumeration and search  year=2004
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Mixed Integer Programming  year=2005
+        [no time encoding]
+          family=Nash Equilibria  id=  auth=Global Newton Method  year=2008
+        [no time encoding]
+          family=Nearest Neighbor Search  id=422  auth=Compression/Clustering [Vector Quantization]  year=1992
+        [no time encoding]
+          family=Nearest Neighbor Search  id=420  auth=Locality-sensitive hashing  year=2010
+        [no time encoding]
+          family=Nearest Neighbor Search  id=421  auth=Projected radial search  year=2013
+        [approximate algorithm]
+          family=Nearest Neighbor Search  id=419  auth=Hierarchical Navigable Small World (HNSW)  year=2018
+        [no author]
+          family=Negative Triangle  id=  auth=  year=2018
+        [approximate algorithm]
+          family=Occupancy Grid Mapping  id=904  auth=Maximum a Posteriori Occupancy Mapping  year=2004
+        [no time encoding]
+          family=Online Matrix Vector Multiplication (OMV)  id=  auth=Williams  year=2007
+        [no time encoding]
+          family=Online Matrix Vector Multiplication (OMV)  id=  auth=Larsen, Williams (Theorem 1.1)  year=2017
+        [no time encoding]
+          family=Online Matrix Vector Multiplication (OMV)  id=  auth=Larsen, Williams (follows from Theorem 2.1)  year=2017
+        [approximate algorithm]
+          family=Optimal Binary Search Trees  id=348  auth=Melhorn's Approximation algorithm  year=1975
+        [approximate algorithm]
+          family=Optimal Binary Search Trees  id=352  auth=Larmore  year=1987
+        [approximate algorithm]
+          family=Optimal Binary Search Trees  id=353  auth=Levcopoulos; Lingas; Sack  year=1989
+        [approximate algorithm]
+          family=Optimal Binary Search Trees  id=354  auth=de Prisco  year=1993
+        [approximate algorithm]
+          family=Optimal Binary Search Trees  id=350  auth=Karpinski  year=1996
+        [no time encoding]
+          family=Optimal Policies for MDPs  id=763  auth=Bellman Value Iteration (VI)  year=1957
+        [no year]
+          family=Orthogonal Vectors  id=  auth=Exhaustive search  year=-
+        [no time encoding]
+          family=Orthogonal Vectors  id=  auth=Abboud, Williams, Yu  year=2015
+        [no time encoding]
+          family=Orthogonal Vectors  id=  auth=Reduction to Abboud, Williams, Yu  year=2015
+        [no time encoding]
+          family=Orthogonal Vectors  id=  auth=Chan, Williams  year=2016
+        [no time encoding]
+          family=Orthogonal Vectors  id=  auth=Reduction to Chan, Williams  year=2016
+        [no time encoding]
+          family=POMDPs  id=888  auth=Satia & Lave; 1973;   year=1973
+        [no time encoding]
+          family=POMDPs  id=890  auth=Barto;Bradtke; & Singhe; 1995;   year=1995
+        [no time encoding]
+          family=POMDPs  id=889  auth=Washington; 1997;   year=1997
+        [no time encoding]
+          family=POMDPs  id=892  auth=McAllester & Singh; 1999;  year=1999
+        [no time encoding]
+          family=POMDPs  id=893  auth=Bertsekas & Castanon; 1999;   year=1999
+        [no time encoding]
+          family=POMDPs  id=882  auth=Hauskrecht; 2000;  year=2000
+        [no time encoding]
+          family=POMDPs  id=883  auth= Pineau; Gordon; & Thrun; 2003;   year=2003
+        [no time encoding]
+          family=POMDPs  id=884  auth=Braziunas & Boutilier; 2004;   year=2004
+        [no time encoding]
+          family=POMDPs  id=885  auth=Poupart; 2005;   year=2005
+        [no time encoding]
+          family=POMDPs  id=886  auth=Smith & Simmons; 2005;   year=2005
+        [no time encoding]
+          family=POMDPs  id=887  auth=Spaan & Vlassis; 2005  year=2005
+        [no time encoding]
+          family=POMDPs  id=891  auth=Paquet; Tobin; & Chaib-draa; 2005;   year=2005
+        [no time encoding]
+          family=POMDPs  id=894  auth=Shani; Brafman; & Shimony; 2005  year=2005
+        [no time encoding]
+          family=Page Replacements  id=1021  auth=Not recently used  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1022  auth=First-in, first-out  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1023  auth=Second-chance  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1024  auth=Clock  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1025  auth=Least recently used  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1026  auth=Random  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1027  auth=Not frequently used (NFU)  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1028  auth=Aging  year=1940
+        [no time encoding]
+          family=Page Replacements  id=1029  auth=Longest distance first (LDF) page replacement algorithm  year=2017
+        [no time encoding]
+          family=Point-in-Polygon  id=  auth=Skala  year=1994
+        [approximate algorithm]
+          family=Rasterization  id=896  auth=Bresenham Algorithm  year=1962
+        [approximate algorithm]
+          family=Rasterization  id=895  auth=Digital Differential Analyzer (DDA)  year=1983
+        [approximate algorithm]
+          family=Ray Tracing  id=640  auth=Dürer rendering algorithm  year=1956
+        [approximate algorithm]
+          family=Ray Tracing  id=641  auth=Appel's algorithm 1968  year=1968
+        [approximate algorithm]
+          family=Ray Tracing  id=642  auth=Whitted's algorithm 1979  year=1979
+        [approximate algorithm]
+          family=Ray Tracing  id=643  auth=J.-C. Nebel 1998  year=1998
+        [approximate algorithm]
+          family=Ray Tracing  id=644  auth=A. Chalmers; T. Davis; and E. Reinhard 2002  year=2002
+        [heuristic-based algorithm]
+          family=Register Allocation  id=658  auth=Demand-Driven Register Allocation  year=1996
+        [heuristic-based algorithm]
+          family=Register Allocation  id=441  auth=Linear Scan, Poletto & Sarkar  year=1999
+        [no time encoding]
+          family=Rod-Cutting Problem  id=947  auth=Brute Force  year=1940
+        [no time encoding]
+          family=Rod-Cutting Problem  id=948  auth=Dynamic Programming  year=1953
+        [approximate algorithm]
+          family=Root Computation  id=410  auth=False position method  year=1690
+        [approximate algorithm]
+          family=Root Computation  id=409  auth=Bisection method  year=1820
+        [approximate algorithm]
+          family=Root Computation  id=411  auth=Newton's method  year=1940
+        [approximate algorithm]
+          family=Root Computation  id=412  auth=Halley's method  year=1940
+        [approximate algorithm]
+          family=Root Computation  id=413  auth=Secant method  year=1940
+        [no time encoding]
+          family=Root Computation  id=  auth=Householder's Method  year=1940(?)
+        [no time encoding]
+          family=Root Computation  id=  auth=Steffensen's method  year=1940(?)
+        [no time encoding]
+          family=Root Computation  id=  auth=Inverse quadratic interpolation  year=1940(?)
+        [no time encoding]
+          family=Root Computation  id=  auth=ITP Method  year=1940?
+        [approximate algorithm]
+          family=Root Computation  id=415  auth=Muller's method  year=1956
+        [no time encoding]
+          family=Root Computation  id=  auth=Illinois Algorithm  year=1971
+        [no time encoding]
+          family=Root Computation  id=  auth=Anderson–Björck algorithm  year=1973
+        [no time encoding]
+          family=Root Computation  id=  auth=Brent-Dekker Method  year=1973
+        [approximate algorithm]
+          family=Root Computation  id=414  auth=Ridder's method  year=1979
+        [no time encoding]
+          family=SDD Systems Solvers  id=307  auth=Vaidya  year=1990
+        [approximate algorithm]
+          family=SDD Systems Solvers  id=308  auth=Gremban; Miller; Zagha  year=1995
+        [no time encoding]
+          family=SDD Systems Solvers  id=310  auth=Boman; Hendrickson  year=2001
+        [no time encoding]
+          family=SDD Systems Solvers  id=306  auth=Spielman, Teng   year=2004
+        [no time encoding]
+          family=SDD Systems Solvers  id=311  auth=Boman; Chen; Hendrickson; Toledo  year=2004
+        [no time encoding]
+          family=SDD Systems Solvers  id=318  auth=Daitch; Spielman  year=2007
+        [no time encoding]
+          family=SDD Systems Solvers  id=312  auth=Koutis; Miller and Peng  year=2010
+        [no time encoding]
+          family=SDD Systems Solvers  id=314  auth=Blelloch; Koutis;  Miller; Tangwongsan  year=2010
+        [no time encoding]
+          family=SDD Systems Solvers  id=313  auth=Koutis; Miller and Peng  year=2011
+        [no time encoding]
+          family=SDD Systems Solvers  id=316  auth=Kelner; Orecchia; Sidford; Zhu  year=2013
+        [no time encoding]
+          family=SDD Systems Solvers  id=317  auth=Lee; Peng; Spielman  year=2015
+        [approximate algorithm]
+          family=SLAM Algorithms  id=905  auth=EKF SLAM  year=1998
+        [approximate algorithm]
+          family=SLAM Algorithms  id=906  auth=UKF  year=2000
+        [approximate algorithm]
+          family=SLAM Algorithms  id=909  auth=Rao-Blackwellized Particle Filtering SLAM  year=2001
+        [approximate algorithm]
+          family=SLAM Algorithms  id=907  auth=Compressed Extended KF  year=2002
+        [approximate algorithm]
+          family=SLAM Algorithms  id=910  auth=srba  year=2002
+        [no time encoding]
+          family=SLAM Algorithms  id=908  auth=FastSlam  year=2003
+        [no time encoding]
+          family=Secret Sharing  id=988  auth=Shamir's scheme  year=1979
+        [no time encoding]
+          family=Secret Sharing  id=989  auth=Blakley's scheme  year=1979
+        [no time encoding]
+          family=Self-Balancing Trees Creation  id=  auth=Scapegoat Tree  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Creation  id=  auth=Treap  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Creation  id=  auth=Tango Tree  year=2004
+        [no time encoding]
+          family=Self-Balancing Trees Deletion  id=  auth=AVL Tree  year=1962
+        [no time encoding]
+          family=Self-Balancing Trees Deletion  id=  auth=Bayer, McCreight B-Tree  year=1970
+        [no time encoding]
+          family=Self-Balancing Trees Deletion  id=  auth=Tarjan Splay Tree  year=1985
+        [no time encoding]
+          family=Self-Balancing Trees Deletion  id=  auth=Scapegoat Tree  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Deletion  id=  auth=Treap  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Insertion  id=  auth=AVL Tree  year=1962
+        [no time encoding]
+          family=Self-Balancing Trees Insertion  id=  auth=Bayer, McCreight B-Tree  year=1970
+        [no time encoding]
+          family=Self-Balancing Trees Insertion  id=  auth=Tarjan Splay Tree  year=1985
+        [no time encoding]
+          family=Self-Balancing Trees Insertion  id=  auth=Scapegoat Tree  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Insertion  id=  auth=Treap  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=AVL Tree  year=1962
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=Bayer, McCreight B-Tree  year=1970
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=Tarjan Splay Tree  year=1985
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=Scapegoat Tree  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=Treap  year=1989
+        [no time encoding]
+          family=Self-Balancing Trees Search  id=  auth=Tango Tree  year=2004
+        [no time encoding]
+          family=Sequence Alignment  id=  auth=Wagner-Fischer algorithm  year=1974
+        [no time encoding]
+          family=Sequence Alignment  id=  auth=Masek, Paterson  year=1980
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=932  auth=Amir et al.  year=1997
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=933  auth=Navarro  year=2000
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=934  auth=HybridSpades  year=2015
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=936  auth=Rautiainen and Marschall  year=2017
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=935  auth=V-ALIGN  year=2018
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=937  auth=Jain, Chang  year=2019
+        [no time encoding]
+          family=Sequence-to-Graph Alignment  id=938  auth=Rautiainen, Marschall  year=2019
+        [no time encoding]
+          family=Shortest Path (Directed graphs)  id=  auth=Dial's Algorithm  year=1969
+        [no time encoding]
+          family=Shortest Path (Undirected graphs)  id=  auth=Thorup  year=1999
+        [no time encoding]
+          family=Shown Surface Determination  id=386  auth=Warnock's algorithm  year=1969
+        [no time encoding]
+          family=Shown Surface Determination  id=388  auth=Binary space partitioning (BSP)  year=1969
+        [no time encoding]
+          family=Shown Surface Determination  id=385  auth=Painter's algorithm/Newell's algorithm  year=1972
+        [no time encoding]
+          family=Shown Surface Determination  id=389  auth=Z-buffering  year=1974
+        [no time encoding]
+          family=Shown Surface Determination  id=390  auth=S-buffer/Scanline Rendering  year=1980
+        [no time encoding]
+          family=Shown Surface Determination  id=387  auth=Ray tracing  year=1982
+        [not a parallel algorithm]
+          family=Sorting  id=17  auth=Bitonic Merge Sort Parallel Implementation  year=1968
+        [not a parallel algorithm]
+          family=Sorting  id=19  auth=Odd Even Sort Parallel  Implementation  year=1972
+        [not a parallel algorithm]
+          family=Sorting  id=25  auth=Spaghetti Sort Parallel Implementation  year=1984
+        [no time encoding]
+          family=Sorting  id=  auth=Parallel Merge Sort - Cole (1)  year=1988
+        [no time encoding]
+          family=Sorting  id=  auth=Parallel Merge Sort - Cole (2)  year=1988
+        [no time encoding]
+          family=Sorting  id=  auth=Sorting with Fusion Trees  year=1990
+        [not a parallel algorithm]
+          family=Sorting  id=10  auth=Cube Sort Parallel Implementation  year=1992
+        [no time encoding]
+          family=Sorting  id=  auth=Signature Sort  year=1998
+        [not a parallel algorithm]
+          family=Stable Matching Problem  id=618  auth=S. S. TSENG and R. C. T. LEE  year=1984
+        [not a parallel algorithm]
+          family=Stable Matching Problem  id=620  auth=Tomas Feder, Nimrod Megiddoy, Serge A Plotki  year=1994
+        [approximate algorithm]
+          family=Stable Matching Problem  id=619  auth=Valentin Polishchuk, and Jukka Suomela  year=2008
+        [heuristic-based algorithm]
+          family=String Search  id=235  auth=Boyer-Moore (BM) algorithm  year=1977
+        [no time encoding]
+          family=String Search  id=  auth=Galil, Seiferas  year=1980
+        [no time encoding]
+          family=String Search  id=  auth=Galil, Seiferas  year=1983
+        [no time encoding]
+          family=String Search  id=  auth=Wu and Manber, Fuzzy String Matching  year=1992
+        [not a parallel algorithm]
+          family=String Search  id=243  auth=Backward Non-Deterministic DAWG Matching (BNDM)  year=1998
+        [no time encoding]
+          family=Strongly Connected Components  id=  auth=Nuutila, Soisalon-Soininen  year=1994
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=140  auth=Fleischer forward-backward (FB) algorithm  year=2003
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=149  auth=CH Algorithm  year=2004
+        [no time encoding]
+          family=Strongly Connected Components  id=  auth=Geldenhuys-Valmari  year=2004
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=145  auth=Renault’s Algorithm  year=2009
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=148  auth=OBF Algorithm  year=2011
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=150  auth=Hong’s algorithm  year=2013
+        [not a parallel algorithm]
+          family=Strongly Connected Components  id=144  auth=Lowe’s Algorithm  year=2014
+        [approximate algorithm]
+          family=Texture Mapping  id=825  auth=Phong  year=1971
+        [approximate algorithm]
+          family=Texture Mapping  id=827  auth=Cook–Torrance (microfacets)  year=1973
+        [no time encoding]
+          family=Texture Mapping  id=897  auth=Blinn and Newell  year=1976
+        [approximate algorithm]
+          family=Texture Mapping  id=826  auth=Blinn–Phong  year=1977
+        [no time encoding]
+          family=Texture Mapping  id=899  auth=Sphere mapping  year=1984
+        [no time encoding]
+          family=Texture Mapping  id=821  auth=Kajiya; J. Anisotropic Reflection Models 1985  year=1985
+        [approximate algorithm]
+          family=Texture Mapping  id=898  auth= Nate Green  year=1986
+        [no time encoding]
+          family=Texture Mapping  id=828  auth=Ward anisotropic  year=1989
+        [no time encoding]
+          family=Texture Mapping  id=822  auth=Nakamae; E.; Kaneda; K.; Okamoto; T.; and
+Nishita 1990  year=1990
+        [no time encoding]
+          family=Texture Mapping  id=823  auth=Cabral; B.; Max; N.; and Springmeyer; R 1990  year=1990
+        [no time encoding]
+          family=Texture Mapping  id=820  auth=He; X. D.; Torrance; K. E.; Sillion; 1991  year=1991
+        [no time encoding]
+          family=Texture Mapping  id=824  auth=Westin; S. H.; Arvo; J. R.; and Torrance; K. E 1992  year=1992
+        [no time encoding]
+          family=Texture Mapping  id=818  auth=P.Hanrahan and W.Krueger 1993  year=1993
+        [approximate algorithm]
+          family=Texture Mapping  id=829  auth=Hanrahan–Krueger  year=1995
+        [approximate algorithm]
+          family=Texture Mapping  id=900  auth=Heidrich; W.; and H.-P. Seidel  year=1998
+        [no time encoding]
+          family=Texture Mapping  id=819  auth=H.W.Jensen 2001  year=2001
+        [approximate algorithm]
+          family=Texture Mapping  id=901  auth=Emil Praun  year=2003
+        [no time encoding]
+          family=Texture Mapping  id=902  auth=Mauro Steigleder  year=2005
+        [approximate algorithm]
+          family=Texture Mapping  id=903  auth=HEALPix mapping Wong  year=2008
+        [approximate algorithm]
+          family=Texture Synthesis  id=811  auth=R. Paget ; I.D. Longstaff  year=1998
+        [approximate algorithm]
+          family=Texture Synthesis  id=808  auth=non-parametric sampling Efros and Leung  year=1999
+        [approximate algorithm]
+          family=Texture Synthesis  id=809  auth=tree-structured vector quantization Wei-Levoy  year=2000
+        [no time encoding]
+          family=Texture Synthesis  id=810  auth=image analogies Hertzmann  year=2001
+        [approximate algorithm]
+          family=Texture Synthesis  id=813  auth=Image quilting Efros-Freeman  year=2001
+        [approximate algorithm]
+          family=Texture Synthesis  id=815  auth=CNN Based Gatys; Leon A 2001  year=2001
+        [approximate algorithm]
+          family=Texture Synthesis  id=814  auth=Kwatra 2003  year=2003
+        [no time encoding]
+          family=Texture Synthesis  id=812  auth=Spatial GAN-Based; Urs Bergmann, Nikolay Jetchev, Roland Vollgraf  year=2017
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Held-Karp  year=1961
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Karp Inclusion-Exclusion  year=1982
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Björklund  year=2010
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Bodlaender et al.  year=2015
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Cygan et al.  year=2018
+        [no time encoding]
+          family=The Hamitonian Circuit Problem  id=  auth=Nederlof et al.  year=2023
+        [no time encoding]
+          family=The Set Splitting Problem  id=  auth=Dehne, Fellows, Rosamond  year=2003
+        [no time encoding]
+          family=The Set Splitting Problem  id=  auth=Dehne, Fellows, Rosamond, Shaw  year=2004
+        [no time encoding]
+          family=The Set Splitting Problem  id=  auth=Lokshtanov-Sloper  year=2005
+        [no time encoding]
+          family=The Set Splitting Problem  id=  auth=Chen-Lu  year=2007
+        [no time encoding]
+          family=The Set Splitting Problem  id=  auth=Lokshtanov-Saurabh  year=2009
+        [no time encoding]
+          family=The Set-Covering Problem  id=767  auth=Chvatal greedy heuristic  year=1979
+        [approximate algorithm]
+          family=The Set-Covering Problem  id=766  auth=Vazirani (ILP, chapters 13-15)  year=2001
+        [approximate algorithm]
+          family=The Set-Covering Problem  id=772  auth=Alon; Moshkovitz & Safra  year=2006
+        [heuristic-based algorithm]
+          family=The Set-Covering Problem  id=774  auth=Cardoso; Nuno; Abreu; Rui  year=2014
+        [no time encoding]
+          family=The Subset-Sum Problem  id=550  auth=Eppstein  year=1997
+        [no time encoding]
+          family=The Subset-Sum Problem  id=545  auth=Bringman  year=2017
+        [heuristic-based algorithm]
+          family=The Traveling-Salesman Problem  id=484  auth=Held–Karp algorithm  year=1962
+        [approximate algorithm]
+          family=The Traveling-Salesman Problem  id=494  auth=Rosenkrantz; D. J.; Stearns; R. E.; Lewis; P. M.  year=1974
+        [approximate algorithm]
+          family=The Traveling-Salesman Problem  id=485  auth=Christofides algorithm  year=1976
+        [approximate algorithm]
+          family=The Traveling-Salesman Problem  id=495  auth=Lin–Kernighan  year=1981
+        [no time encoding]
+          family=The Traveling-Salesman Problem  id=490  auth=Barvinok  year=2003
+        [approximate algorithm]
+          family=The Traveling-Salesman Problem  id=491  auth=Applegate et al. (Concorde TSP Solver)  year=2006
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Exhaustive search  year=1940
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Downey, Fellows  year=1995
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Papadimitriou and M Yannakakis 1996 + Buss  year=1996
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Stege, Fellows  year=1999
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Stege, Fellows + Interleaving method (Niedermeier, Rossmanith)  year=2000
+        [no time encoding]
+          family=The Vertex Cover Problem  id=  auth=Mongelli et. al.  year=2009
+        [not a parallel algorithm]
+          family=Topological Sorting  id=455  auth=Dekel; Nassimi & Sahni Parallel Implementation   year=1981
+        [no time encoding]
+          family=Tower of Hanoi  id=973  auth=Iteration based  year=1883
+        [no time encoding]
+          family=Tower of Hanoi  id=974  auth=Recursion based  year=1883
+        [no time encoding]
+          family=Tower of Hanoi  id=975  auth=Non-recursion based  year=1883
+        [no time encoding]
+          family=Tower of Hanoi  id=976  auth=Gray-code based  year=1883
+        [no time encoding]
+          family=Tower of Hanoi  id=977  auth=Hanoi graph  year=2008
+        [no time encoding]
+          family=Transitive Reduction Problem  id=958.5  auth=Aho, Garey & Ullman  year=1972
+        [no time encoding]
+          family=Turnpike Problem  id=963  auth=Outside-In algorithm  year=1991
+        [not a parallel algorithm]
+          family=Variance Calculations  id=452  auth=Chan's algorithm Parallel Implementation  year=1979
+        [no time encoding]
+          family=Wiener Index  id=918  auth=Ruchansky  year=2015
+        [no time encoding]
+          family=Wiener Index  id=  auth=Exhaustive search  year=2015
+        [no time encoding]
+          family=d-Neighborhood of a String  id=911  auth=Iterative naive  year=1940
+        [no year]
+          family=k-Clique Problem  id=  auth=Brute force enumeration  year=-
+        [no time encoding]
+          family=k-Clique Problem  id=  auth=Nesetril, Poljak  year=1985
+        [no time encoding]
+          family=n-Queens Problem  id=964  auth=Naive Algorithm  year=1848
+        [no time encoding]
+          family=n-Queens Problem  id=965  auth=Naive + 1 queen per row restriction  year=1850
+        [no time encoding]
+          family=n-Queens Problem  id=967  auth=Method of determinants  year=1874
+        [no time encoding]
+          family=n-Queens Problem  id=968  auth=Gunther Determinants solution  year=1874
+        [no time encoding]
+          family=n-Queens Problem  id=966  auth=Dijkstra  year=1972
+        [no time encoding]
+          family=n-Queens Problem  id=969  auth=Rivin, Zabih  year=1992
+        [approximate algorithm]
+          family=n-Queens Problem  id=970  auth=Grigoryan  year=2018
